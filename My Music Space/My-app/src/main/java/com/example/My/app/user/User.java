@@ -1,12 +1,19 @@
 package com.example.My.app.user;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue
     private Long id;
-    private String firstname;
-    private String lastname;
+    private String username;
+    private String password;
     private String email;
     private Integer age;
     private LocalDate date;
@@ -15,18 +22,18 @@ public class User {
 
     }
 
-    public User(Long id, String firstname, String lastname, String email, Integer age, LocalDate date) {
+    public User(Long id, String username, String password, String email, Integer age, LocalDate date) {
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
         this.email = email;
         this.age = age;
         this.date = date;
     }
 
-    public User(String firstname, String lastname, String email, Integer age, LocalDate date) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public User(String username, String password, String email, Integer age, LocalDate date) {
+        this.username = username;
+        this.password = password;
         this.email = email;
         this.age = age;
         this.date = date;
@@ -41,20 +48,20 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getusername() {
+        return username;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setusername(String username) {
+        this.username = username;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getpassword() {
+        return password;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setpassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -86,8 +93,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", date=" + date +

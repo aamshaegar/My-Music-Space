@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public User getUser(@RequestParam(name = "id", defaultValue = "0") Long id){
-        return userService.getUserById(id);
+    public User getUser(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password){
+        return userService.getUserUsernameAndPassword(username, password);
     }
 }
