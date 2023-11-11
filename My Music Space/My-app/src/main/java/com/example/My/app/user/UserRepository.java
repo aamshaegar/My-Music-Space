@@ -1,15 +1,13 @@
 package com.example.My.app.user;
-
 import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
 
-import java.util.List;
+public interface UserRepository extends CrudRepository<User,Long> {
 
-// Riceve 2 attributi: il primo è la classe che stiamo mappando e il secondo è l'id Long
-    public interface UserRepository extends CrudRepository<User,Long> {
+        // Riceve 2 attributi: il primo è la classe che stiamo mappando e il secondo è l'id Long
+        // Non dobbiamo implementare nulla
+        // fa tutto spring con le annotation
 
-    // Non dobbiamo implementare nulla
-    // fa tutto spring con le annotation
-
-    User findUserByUsernameAndPassword(String username, String password);
+    public Optional<User> findUserByUsernameAndPassword(String username, String password);
 
 }

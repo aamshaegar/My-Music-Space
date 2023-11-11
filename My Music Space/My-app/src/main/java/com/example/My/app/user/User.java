@@ -3,7 +3,6 @@ package com.example.My.app.user;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
 import java.time.LocalDate;
 
 @Entity
@@ -18,8 +17,12 @@ public class User {
     private Integer age;
     private LocalDate date;
 
-    public User(){
-
+    public User(String username, String password, String email, Integer age, LocalDate date) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+        this.date = date;
     }
 
     public User(Long id, String username, String password, String email, Integer age, LocalDate date) {
@@ -31,13 +34,7 @@ public class User {
         this.date = date;
     }
 
-    public User(String username, String password, String email, Integer age, LocalDate date) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.age = age;
-        this.date = date;
-    }
+    public User(){}
 
 
     public Long getId() {
