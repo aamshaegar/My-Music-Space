@@ -1,2 +1,0 @@
-Alcune istruzioni su come usare Docker
-
