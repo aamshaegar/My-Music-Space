@@ -8,6 +8,10 @@ public interface UserRepository extends CrudRepository<User,Long> {
         // Non dobbiamo implementare nulla
         // fa tutto spring con le annotation
 
-    public Optional<User> findUserByUsernameAndPassword(String username, String password);
+    Optional<User> findUserByUsernameAndPassword(String username, String password);
+    Optional<User> findUserByUsernameAndEmail(String username, String email);
+    Optional<User> findUserByEmailAndPassword(String email, String password);
+
+
 
 }

@@ -12,20 +12,41 @@ public class UserController {
 
     @Autowired
     private final UserService userService;
-    public UserController(UserService userService) {this.userService = userService;}
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
-    @GetMapping("/list")
-    public List<User> getUsers(){return userService.findAllUsers();}
+    @GetMapping("/debug/list")
+    public List<User> findAllUsers() {
+        return userService.findAllUsers();
+    }
 
     @GetMapping
-    public ResponseEntity<User> getUser(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password){return userService.findUserByUsernameAndPassword(username, password);}
+    public ResponseEntity<User> findUser(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password) {
+        return userService.findUserByUsernameAndPassword(username, password);
+    }
 
     @PostMapping
-    public User insertUser(@Validated @RequestBody User user) {return userService.insertUser(user);}
+    public User insertUser(@Validated @RequestBody User user) {
+        return userService.insertUser(user);
+    }
 
-    @PutMapping
-    public ResponseEntity <User> updateUser(@Validated @RequestBody User user){return userService.updateUser(user);}
+    @PutMapping("/updateUserInfo")
+    public ResponseEntity<User> updateUser(@Validated @RequestBody User user) {
+        return userService.updateUser(user);
+    }
+
+    @PutMapping("/recoverUserPassword")
+    public ResponseEntity <User> recoverUserPassword(@RequestParam(name = "username") String username, @RequestParam(name = "email") String email) {
+        return userService.recoverUserPassword(username,email);
+    }
+
+    @PutMapping("/recoverUserUsername")
+    public ResponseEntity <User> recoverUserUsername(@RequestBody String email, @RequestBody String password) {
+        return userService.recoverUserUsername(email, password);
+    }
+
 }
 
 
