@@ -6,13 +6,16 @@ services:
   # MYSQL DBMS
   #######################################
 
-  db:
+  mysql:
     image: mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
-      MYSQL_DATABASE: test_db
+      MYSQL_DATABASE: prova
+      MYSQL_USER: user
+      MYSQL_PASSWORD: test
       MYSQL_ROOT_PASSWORD: test
+
     volumes:
       - ./dump:/docker-entrypoint-initdb.d
       - persistent:/var/lib/mysql
@@ -26,17 +29,26 @@ services:
   phpmyadmin:
     image: phpmyadmin
     links:
-      - db:db
+      - mysql:mysql
     ports:
       - "8081:80"
     environment:
       MYSQL_USER: user
       MYSQL_PASSWORD: test
       MYSQL_ROOT_PASSWORD: test
-
+      PMA_HOST: mysql
 volumes:
   persistent:
 
 # PER ACCEDERE A MYSQL DA PHPMYADMIN:
+
+# sudo docker-compose -f docker-compose.yml up --force-recreate -V
+# localhost:80
 # Username:   root
 # Password:   test
+
+
+# Se non si riescono a chiudere i container
+# sudo systemctl stop docker.socket
+# sudo systemctl stop docker
+# sudo systemctl restart docker

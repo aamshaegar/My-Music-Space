@@ -1,11 +1,11 @@
 package com.example.My.app.user;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
+@Table
 public class User {
 
     @Id
@@ -14,28 +14,31 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private Integer age;
     private LocalDate date;
 
-    public User(String username, String password, String email, Integer age, LocalDate date) {
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
+
+    @Transient
+    private Integer age;
+
+
+    public User(String username, String password, String email, LocalDate date) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.age = age;
         this.date = date;
     }
 
-    public User(Long id, String username, String password, String email, Integer age, LocalDate date) {
+    public User(Long id, String username, String password, String email, LocalDate date) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.age = age;
         this.date = date;
     }
 
     public User(){}
-
 
     public Long getId() {
         return id;
@@ -45,19 +48,19 @@ public class User {
         this.id = id;
     }
 
-    public String getusername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setusername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setpassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -70,7 +73,7 @@ public class User {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.date, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
@@ -85,6 +88,14 @@ public class User {
         this.date = date;
     }
 
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
 
     @Override
     public String toString() {

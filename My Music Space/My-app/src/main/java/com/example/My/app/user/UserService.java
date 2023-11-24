@@ -1,5 +1,6 @@
 package com.example.My.app.user;
 import com.example.My.app.utilities.Encode;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -23,60 +24,53 @@ public class UserService {
         System.out.println("REST request to find User by username and password:");
         String passwordEncoded = Encode.encodeString(password);
         Optional<User> currentUser = userRepository.findUserByUsernameAndPassword(username,passwordEncoded);
-        if(currentUser.isPresent()) {
-            return ResponseEntity.ok().body(currentUser.get());
-        } else {
-            return ResponseEntity.notFound().build();
+        return currentUser.map(user -> ResponseEntity.ok().body(user)).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    public void insertUser(User user){
+        System.out.println("REST request to insert new User :" + user.getUsername());
+        Optional<User> existingUser = userRepository.findUserByEmail(user.getEmail());
+        if(existingUser.isPresent()){
+            throw new IllegalStateException("Email is present yet!");
         }
+        // Else, we encode the password and we store the user
+        String passwordEncoded = Encode.encodeString(user.getPassword());
+        user.setPassword(passwordEncoded);
+        userRepository.save(user);
     }
 
-    public User insertUser(User user){
-        System.out.println("REST request to insert new User :" + user.getusername());
-        String passwordEncoded = Encode.encodeString(user.getpassword());
-        user.setpassword(passwordEncoded);
-        return userRepository.save(user);
-    }
 
-    public ResponseEntity<User> updateUser(User user) {
-        System.out.println("REST request to update User :" + user.getId());
+    public void updateUser(User user) {
+        System.out.println("PUT request to update User :" + user.getId());
         Optional<User> currentUser = userRepository.findById(user.getId());
         if(currentUser.isPresent()) {
-            User result = userRepository.save(user);
-            return ResponseEntity.ok().body(result);
+            userRepository.save(user);
         } else {
-            return ResponseEntity.notFound().build();
+            throw new IllegalStateException("User does not exists");
         }
     }
 
-    public ResponseEntity<User> recoverUserPassword(String username, String email) {
-        System.out.println("REST request recover password for the user :" + username);
-        Optional<User> currentUser = userRepository.findUserByUsernameAndEmail(username,email);
+
+    public void recoverUserPassword(String email) {
+        System.out.println("REST request recover password for the user :" + email);
+        Optional<User> currentUser = userRepository.findUserByEmail(email);
         if(currentUser.isPresent()) {
 
             String randomPassword = Encode.generateRandomPassword(30);
-            currentUser.get().setpassword(randomPassword);
-            User result = userRepository.save(currentUser.get());
+            currentUser.get().setPassword(randomPassword);
+            userRepository.save(currentUser.get());
 
-            return ResponseEntity.ok().body(result);
         }else{
-            return ResponseEntity.notFound().build();
+            throw new IllegalStateException("User does not exists");
         }
     }
 
-    public ResponseEntity<User> recoverUserUsername(String email, String password) {
-        System.out.println("REST request recover username by email:" + email);
-
-        String passwordEncoded = Encode.encodeString(password);
-        Optional<User> currentUser = userRepository.findUserByEmailAndPassword(email,passwordEncoded);
-        if(currentUser.isPresent()) {
-
-            String randomUsername = Encode.generateRandomPassword(30);
-            currentUser.get().setusername(randomUsername);
-            User result = userRepository.save(currentUser.get());
-
-            return ResponseEntity.ok().body(result);
-        }else{
-            return ResponseEntity.notFound().build();
+    public void deleteUser(Long id) {
+        System.out.println("DELETE request: delete user with id: " + id);
+        Optional<User> existingUser = userRepository.findById(id);
+        if (existingUser.isEmpty()){
+            throw new IllegalStateException("User does not exist");
         }
+        userRepository.deleteById(id);
     }
 }

@@ -10,9 +10,8 @@ import java.util.List;
 @RequestMapping(path = "api/user")
 public class UserController {
 
-    @Autowired
     private final UserService userService;
-
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -28,25 +27,24 @@ public class UserController {
     }
 
     @PostMapping
-    public User insertUser(@Validated @RequestBody User user) {
-        return userService.insertUser(user);
+    public void insertUser(@Validated @RequestBody User user) {
+        userService.insertUser(user);
     }
 
-    @PutMapping("/updateUserInfo")
-    public ResponseEntity<User> updateUser(@Validated @RequestBody User user) {
-        return userService.updateUser(user);
+    @PutMapping
+    public void updateUser(@Validated @RequestBody User user) {
+        userService.updateUser(user);
     }
 
     @PutMapping("/recoverUserPassword")
-    public ResponseEntity <User> recoverUserPassword(@RequestParam(name = "username") String username, @RequestParam(name = "email") String email) {
-        return userService.recoverUserPassword(username,email);
+    public void recoverUserPassword(@RequestParam(name = "email") String email) {
+        userService.recoverUserPassword(email);
     }
 
-    @PutMapping("/recoverUserUsername")
-    public ResponseEntity <User> recoverUserUsername(@RequestBody String email, @RequestBody String password) {
-        return userService.recoverUserUsername(email, password);
+    @DeleteMapping
+    public void deleteUser(@RequestParam(name = "id") Long id){
+        userService.deleteUser(id);
     }
-
 }
 
 
