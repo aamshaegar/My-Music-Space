@@ -1,4 +1,5 @@
-package com.example.My.app.user;
+package com.example.My.app.model;
+import com.example.My.app.user.Provider;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
