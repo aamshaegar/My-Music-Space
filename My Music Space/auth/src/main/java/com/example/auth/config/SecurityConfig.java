@@ -14,6 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 // in springboot 3, le prime 2 annotazioni devono sempre andare insieme
 @Configuration
 @EnableWebSecurity
@@ -44,6 +46,10 @@ public class SecurityConfig {
                 )
                 .authenticationProvider(authenticationProvider)
 
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll()
+                )
                 // devo chiamare questo filtro prima di quello dello username e password
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

@@ -45,7 +45,7 @@ public class JwtService {
                 .setIssuedAt(new Date(System.currentTimeMillis()))                   // quando il claim è stato creato, serve per
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))      // capire se è scaduto e la data di scadenza
                 .signWith(getSingInKey(), SignatureAlgorithm.HS256)
-                .compact();     //questo metodo genera e ritorna il token
+                .compact();     // questo metodo genera e ritorna il token
     }
 
     // vogliamo controllare se l'username in input è lo stesso che c'è nel token e se è scaduto o no
