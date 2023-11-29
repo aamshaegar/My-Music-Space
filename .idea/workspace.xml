@@ -6,7 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="88653a86-9149-415c-9e85-df2597ece601" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/My Music Space/My-app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/src/main/java/com/example/My/app/MyAppApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/src/main/java/com/example/My/app/user/Provider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/src/main/java/com/example/My/app/user/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/src/main/java/com/example/My/app/user/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/src/main/java/com/example/My/app/user/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/src/main/java/com/example/My/app/user/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/src/main/java/com/example/My/app/utilities/Encode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/My Music Space/My-app/src/test/java/com/example/My/app/MyAppApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,19 +43,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="MyAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="My-app" />
@@ -59,6 +76,9 @@
       <updated>1699615370410</updated>
       <workItem from="1699615373742" duration="40000" />
       <workItem from="1699621066102" duration="608000" />
+      <workItem from="1700836221954" duration="906000" />
+      <workItem from="1700839434104" duration="203000" />
+      <workItem from="1700840081785" duration="12000" />
     </task>
     <servers />
   </component>
