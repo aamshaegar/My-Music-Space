@@ -4,6 +4,10 @@ spring:
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  application:
+    name: chat
+
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -13,3 +17,19 @@ spring:
         format_sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
+
+
+
+  cloud:
+    compatibility-verifier:
+      enabled: false
+
+server:
+  port: 8091
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+
+
