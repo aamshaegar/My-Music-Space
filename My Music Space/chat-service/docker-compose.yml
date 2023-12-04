@@ -10,9 +10,9 @@ services:
     image: mysql:8.0
     container_name: mysqlDB
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
-      MYSQL_DATABASE: test_DB
+      MYSQL_DATABASE: chatDB
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
@@ -51,19 +51,19 @@ services:
   # Demo container
   #######################################
 
-  chat:
-    container_name: chat
-    build:
+#  chat:
+#    container_name: chat
+#    build:
 #      context: My Music Space/my-spikes
-      dockerfile: Dockerfile
-    image: chat:latest
-    ports:
-      - "8080:8080"
-    networks:
-      - mynetwork
-    depends_on:
-      - mysqlDB
-    restart: always
+#      dockerfile: Dockerfile
+#    image: chat:latest
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - mynetwork
+#    depends_on:
+#      - mysqlDB
+#    restart: always
 
 
 volumes:
