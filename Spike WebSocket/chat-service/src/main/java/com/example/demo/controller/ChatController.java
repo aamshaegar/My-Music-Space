@@ -2,7 +2,6 @@ package com.example.demo.controller;
 import com.example.demo.model.ChatMessage;
 import com.example.demo.model.ChatMessageRepository;
 import com.example.demo.model.MessageType;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -15,35 +14,35 @@ import java.util.Objects;
 
 
 @Controller
-@RequiredArgsConstructor
 public class ChatController {
 
-    private final ChatService service;
+    @Autowired
+    ChatMessageRepository repository;
 
     @MessageMapping("/chat/{room}")
     @SendTo("/topic/messages/{room}")
-    public ChatMessage registerAndSend(@DestinationVariable String room, @Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+    public ChatMessage register(@DestinationVariable String room, @Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 
         if (headerAccessor.getSessionAttributes() != null) {
+            headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+            System.out.println("User connected: " + chatMessage.getSender() + " on room: " + room);
+        }
 
-            // restituisco il messaggio di "CONNECT" cosicchè tutti i client possono mostrare che un certo .getSender() si è connesso
-            if(chatMessage.getType() == MessageType.JOIN){
-                headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-                System.out.println("User connected: " + chatMessage.getSender() + " on room: " + room);
-            }else if (chatMessage.getType() == MessageType.CHAT){
-                System.out.println("SEND MESSAGE: " + chatMessage);
-                service.saveChat(chatMessage);
-            }
+        // restituisco il messaggio di "CONNECT" cosicchè tutti i client possono
+        // mostrare che un certo .getSender() si è connesso
+
+        if(chatMessage.getType() == MessageType.CHAT){
+            repository.save(chatMessage);
+            System.out.println("MESSAGE SAVED" + chatMessage);
         }
         return chatMessage;
     }
 
-/*
     @MessageMapping("/chat")
     @SendTo("/topic/messages")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
         System.out.println("SEND MESSAGE: " + chatMessage);
         return chatMessage;
-    }*/
+    }
 
 }
