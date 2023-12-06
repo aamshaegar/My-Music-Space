@@ -6,6 +6,9 @@ import com.example.demo.model.MessageType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class ChatService {
@@ -15,5 +18,10 @@ public class ChatService {
     public void saveChat(ChatMessage chatMessage){
         repository.save(chatMessage);
         System.out.println("MESSAGE SAVED" + chatMessage);
+    }
+
+    public ArrayList<ChatMessage> retrieveChatMessages(String room){
+        System.out.println("Retrieve 10 messages from room: " + room);
+        return repository.getAllChatMessagesByRoom(room);
     }
 }

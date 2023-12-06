@@ -42,10 +42,58 @@ var colors = [
 ];
 
 
+function cleanMessages(){
+    messageArea.innerHTML = ""
+}
+
+function printMessage(message){
+
+    var messageElement = document.createElement('li');
+    messageElement.classList.add('chat-message');
+    var avatarElement = document.createElement('i');
+    var avatarText = document.createTextNode(message.sender[0]);
+    avatarElement.appendChild(avatarText);
+    avatarElement.style['background-color'] = getAvatarColor(message.sender);
+
+    messageElement.appendChild(avatarElement);
+
+    var usernameElement = document.createElement('span');
+    var usernameText = document.createTextNode(message.sender);
+    usernameElement.appendChild(usernameText);
+    messageElement.appendChild(usernameElement);
+
+    var textElement = document.createElement('p');
+    var messageText = document.createTextNode(message.content);
+    textElement.appendChild(messageText);
+    messageElement.appendChild(textElement);
+
+    messageArea.appendChild(messageElement);
+    messageArea.scrollTop = messageArea.scrollHeight;
+
+}
+
+function retrieveMessagesList(){
+
+    $.ajax({
+        type:"GET",
+        url: "/chat/messages",
+        data: { room: actualRoom} ,
+        contentType: "application/json"
+    }).then(function(data) {
+
+        for(let text in data) {
+            printMessage(data[text]);
+        }
+
+    });
+}
+
 
 function changeRoom(room,event){
 
     if(room === actualRoom) return
+
+    /*
     let new_messages = {}
     for (let obj in messageList){
         if (messageList[obj]['room'] === actualRoom){
@@ -54,16 +102,19 @@ function changeRoom(room,event){
         if (messageList[obj]['room'] === room){
             new_messages = messageList[obj]['messages']
         }
-    }
+    }*/
 
+    cleanMessages()
     actualRoom = room;
     roomName.innerText = "# " + room;
     disconnect();
     connect(event)
 
-    console.log(messageList)
-    if(new_messages != null) messageArea.innerHTML = new_messages
-    else messageArea.innerHTML = ""
+    //console.log(messageList)
+    /*if(new_messages != null) messageArea.innerHTML = new_messages
+    else messageArea.innerHTML = ""*/
+
+    //retrieveMessagesList()
 }
 
 function changeView() {
@@ -115,6 +166,7 @@ function disconnect() {
 
 
 function send(event) {
+
     var messageContent = messageInput.value.trim();
 
     if(messageContent && stompClient) {
@@ -123,7 +175,7 @@ function send(event) {
             content: messageInput.value,
             type: 'CHAT',
             room: actualRoom,
-            date: new Date().toLocaleString()
+            date: new Date().toLocaleString('en-GB')
         };
 
         stompClient.send("/app/chat/" + actualRoom, {}, JSON.stringify(chatMessage));
@@ -140,9 +192,12 @@ function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
     var messageElement = document.createElement('li');
     if(message.type === 'JOIN') {
-
+        if(message.sender === username) {
+            retrieveMessagesList()
+        }
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
+
     } else if (message.type === 'LEAVE') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' left!';
