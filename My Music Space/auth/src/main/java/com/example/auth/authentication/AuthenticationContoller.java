@@ -24,5 +24,4 @@ public class AuthenticationContoller {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
-
 }

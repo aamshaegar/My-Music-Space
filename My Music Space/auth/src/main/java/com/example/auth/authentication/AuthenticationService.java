@@ -27,9 +27,15 @@ public class AuthenticationService {
     // crea lo user, lo salva nel db e ritorna il token generato
     public AuthenticationResponse register(RegisterRequest request){
 
+
+        // TODO: potrebbe essere fatto meglio?
         // controllo che l'utente non esista
         if(repository.findByEmail(request.getEmail()).isPresent()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already exists!");
+            //throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already exists!");
+            return AuthenticationResponse.builder()
+                    .token("")
+                    .response("Error: username already exist")
+                    .build();
         }
 
         var user = User.builder()
@@ -43,6 +49,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .response("Registration was successful!")
                 .build();
     }
 
@@ -62,6 +69,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .response("Authentication was successful!")
                 .build();
     }
 }
