@@ -1,6 +1,7 @@
 function View() {
   return (
     <div
+      className="View"
       style={{
         backgroundColor: "#404040",
         marginRight: "5%",
