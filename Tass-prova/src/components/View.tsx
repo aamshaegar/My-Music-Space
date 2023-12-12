@@ -1,3 +1,5 @@
+
+
 function View() {
   return (
     <div
@@ -10,7 +12,7 @@ function View() {
         position: "relative",
         top: "15vh",
         left: "45vh",
-        borderRadius: "5%",
+        borderRadius: "5vh",
       }}
     >
       Ciao
