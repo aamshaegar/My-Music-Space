@@ -6,9 +6,9 @@ function View() {
         backgroundColor: "#404040",
         marginRight: "5%",
         width: "70%",
-        height: "95vh",
+        height: "80vh",
         position: "relative",
-        top: "5vh",
+        top: "15vh",
         left: "45vh",
         borderRadius: "5%",
       }}
