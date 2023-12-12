@@ -46,7 +46,7 @@
   object-fit: cover 
 }
 
-.musicButton{
+.menuButton{
   background-color: #232425;
   box-shadow: #000000 0vh 0vh 2vh inset;
   box-sizing: border-box;
@@ -77,9 +77,9 @@
   margin-bottom: 4vh;
 }
 
-.musicButton:hover{
-  background-color: #3E99CF;
-  box-shadow: #000000 0vh 0vh 2vh inset;
+.menuButton:hover{
+  background-color: #3E99CF !important;
+  box-shadow: #000000 0vh 0vh 2vh inset !important;
 }
 
 
@@ -108,7 +108,7 @@
 .search input{
   position: relative;
   background-color: #404040;
-  width: 153vh;
+  width: 70%;
   height: 5vh;
   top: 5vh;
   left: 45vh;
@@ -130,7 +130,7 @@
 
 .Lente{
   position: absolute;
-  background-color: #404040;
+  
   width: 5vh;
   margin-right: 5%;
   height: 5vh;
