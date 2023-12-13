@@ -22,7 +22,7 @@ function Menu() {
           <div className="patina"></div>
           <img className="immagini" src={imageUrl1} alt="Immagine" />
         </div>
-        <div className="MyShopButton">
+        <div className="MySongsButton">
           <div className="patina"></div>
           <img className="immagini" src={imageUrl2} alt="Immagine" />
         </div>

@@ -1,13 +1,18 @@
+body{
+  background-image: linear-gradient(top right, #232425 3%, #AACFEF 100%) !important;
+  background-color: #232425 !important;
+  display: block;
+}
+
 /* Menu.tsx CSS */
 .Menu{
   background-color: #404040;
-  height: 70vh;
-  width: 30vh;
-  position: absolute;
-  top: 25vh;
+  height: 80vh;
+  width: 35vh;
+  position: relative;
   left: 1vh;
-  margin-bottom: 20vh;
-  border-radius: 5vh
+  border-radius: 5vh;
+  float: left;
 }
 
 .MySongsButton{
@@ -18,11 +23,12 @@
   position: relative;
   padding-left: 0.05vh;
   top: 5vh;
-  left: 2vh
+  margin-left: 5vh;
+  float: left;
 }
 
 .patina{
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -30,15 +36,6 @@
   background-color: rgba(0, 0, 0, 0.5)
 }
 
-.MyShopButton{
-  width: 10vh;
-  height: 10vh;
-  border-radius: 50%;
-  overflow: hidden;
-  position: absolute;
-  top: 5vh;
-  right: 3vh
-}
 
 .immagini{
   width: 100%;
@@ -59,10 +56,10 @@
   width:25vh;
   position: relative;
   top: 11vh;
-  left: 2vh;
+  left: 5vh;
   font-weight: bold;
   font-style: italic;
-  font-size: 150%;
+  font-size: 3vh;
   display: inline-block;
   cursor: pointer;
   letter-spacing: -.24px;
@@ -87,11 +84,20 @@
 /* User.tsx CSS */
 .UserDiv{
   background-color: #3E99CF;
-  width: 35vh;
-  height: 25vh;
+  width: 40vh;
+  height: 17vh;
   border-radius: 0px 0% 50% 0px;
-  position: absolute;
-  top: -5vh
+  position: relative;
+  float: left;
+  padding-top: 3vh;
+  padding-left: 1vh;
+  margin-bottom: 2vh;
+}
+
+.UserDiv p{
+  margin-top: 2.3vh;
+  margin-left: 1vh;
+  float: left;
 }
 
 .imgContainer{
@@ -100,43 +106,93 @@
   border-radius: 50%;
   overflow: hidden;
   position: relative;
-  top: 10vh;
-  left: 2vh
+  float: left;
 }
 
 /*Search css*/
+.search{
+  float: left;
+  width: 100%;
+}
 .search input{
   position: relative;
   background-color: #404040;
   width: 70%;
-  height: 5vh;
   top: 5vh;
-  left: 45vh;
+  margin-left: 2vh;
   border-radius: 50vh;
   border: 0;
   padding-left: 6vh;
-}
-
-.search button{
-  position: relative;
-  background-color: #232425;
-  width: 10vh;
-  height: 5vh;
-  top: 4vh;
-  left:35vh;
-  border-radius: 50vh;
-  border-color: white;
+  color:white;
+  float: left;
 }
 
 .Lente{
-  position: absolute;
-  
+  position: relative;
   width: 5vh;
-  margin-right: 5%;
   height: 5vh;
   top: 5vh;
-  left: 45vh;
   border-radius: 50vh;
 }
+
+
+.View{
+  background-color: #404040;
+  margin-right: 5%;
+  width: 75%;
+  height: 80vh;
+  position: relative;
+  left: 5vh;
+  border-radius: 5vh;
+  float: left;
+}
+
+.Container{
+  height: 24vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  position: relative;
+  width: 97%;
+  border-radius: 5vh;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #232425;
+}
+.title{
+  margin-left: 5vh;
+  margin-top: 1vh;
+  position: relative;
+}
+
+.productImg{
+  background-color: #3E99CF;
+  height: 15vh;
+  border-radius: 10%;
+  width: 15vh;
+  position:relative;
+  left:5vh;
+}
+
+.Object{
+  position: relative;
+  width: auto ;
+  float: left;
+  margin-left: 5vh;
+
+}
+
+.Menu+View, .Search-User{
+  display: flex;
+  flex-direction: row;
+}
+
+
+#root, #All{
+  height: 0;
+}
+
 
 

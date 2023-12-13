@@ -5,13 +5,21 @@ import View from "./components/View";
 import Search from "./components/Search";
 
 function App() {
-  document.body.style = "background: #232526; position:relative";
+
+  const utente = "Aldo"
+
   return (
-    <div>
-      <Search />
-      <User />
-      <Menu />
-      <View />
+    <div id="All">
+        <div className="Search-User">
+          <User name={utente}/>
+            <Search />
+        </div>
+
+        <div className="Menu+View">
+          <Menu />
+          <View > </View>
+        </div>
+
     </div>
   );
 }
