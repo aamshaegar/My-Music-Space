@@ -1,3 +1,5 @@
+import View from "./View";
+
 const imageUrl1 = "/src/img/backgroundBlu.jpg";
 const imageUrl2 =
   "https://as1.ftcdn.net/v2/jpg/04/54/29/98/1000_F_454299832_EAOJOc0GKq8S5dsXuv6B79bbIc0GhQmy.jpg";
@@ -13,6 +15,12 @@ function Menu() {
       elements[i].style.backgroundColor = "#232425";
     }
     document.getElementById(id)!.style.backgroundColor = "#3E99CF";
+    const ViewElements = Array.from(document.getElementsByClassName("View")) as HTMLCollectionOf<HTMLElement>
+      console.log("Sono qui");
+      while (ViewElements.length > 0) {
+        console.log("Sono qui");
+          /*ViewElements[0].remove();*/
+      }
   }
 
   return (
