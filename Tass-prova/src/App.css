@@ -194,6 +194,49 @@ body{
   left:5vh;
 }
 
+.HomeView{
+  display:none;
+}
+
+.ChatView{
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.ChatRow{
+  width: 100%;
+  border: white 2px solid;
+  height: 27vh;
+  position: relative;
+}
+
+.Chat{
+  position: relative;
+  height: 100%;
+  width: 33%;
+  float:left;
+}
+
+.ChatView img{
+  margin-left: 25%;
+  width: 60%;
+  height: 100%;
+  float:left;
+  position: relative;
+}
+
+.ChatView p{
+  float:left;
+  top:6vh;
+  left: -13vh;
+  position: relative;
+  color:white;
+  font-weight: bold;
+
+}
+
+
 .description{
   margin-left: 5vh;
 }

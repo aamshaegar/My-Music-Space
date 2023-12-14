@@ -3,6 +3,7 @@ import User from "./components/User";
 import Menu from "./components/Menu";
 import Cart from "./components/Cart";
 import HomeView from "./components/HomeView";
+import ChatView from "./components/ChatView";
 import Search from "./components/Search";
 
 function App() {
@@ -18,7 +19,10 @@ function App() {
 
       <div className="Menu+View">
         <Menu />
-        <HomeView> </HomeView>
+          <div className="View">
+            <HomeView> </HomeView>
+            <ChatView></ChatView>
+          </div>
       </div>
     </div>
   );
