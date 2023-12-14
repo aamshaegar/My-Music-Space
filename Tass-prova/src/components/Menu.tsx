@@ -1,11 +1,10 @@
-import View from "./View";
-
 const imageUrl1 = "/src/img/backgroundBlu.jpg";
 const imageUrl2 =
   "https://as1.ftcdn.net/v2/jpg/04/54/29/98/1000_F_454299832_EAOJOc0GKq8S5dsXuv6B79bbIc0GhQmy.jpg";
 
 function Menu() {
   function selected(id: string) {
+    console.log("Sono qui");
     const elements = Array.from(
       document.getElementsByClassName(
         "menuButton"
@@ -14,13 +13,22 @@ function Menu() {
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.backgroundColor = "#232425";
     }
+
     document.getElementById(id)!.style.backgroundColor = "#3E99CF";
-    const ViewElements = Array.from(document.getElementsByClassName("View")) as HTMLCollectionOf<HTMLElement>
+
+    /*
+    const ViewElements = Array.from(
+      document.getElementsByClassName("View")
+    ) as HTMLCollectionOf<HTMLElement>;
+
+    var viewLenght = ViewElements.length;
+
+    while (viewLenght > 0) {
       console.log("Sono qui");
-      while (ViewElements.length > 0) {
-        console.log("Sono qui");
-          /*ViewElements[0].remove();*/
-      }
+      viewLenght--;
+      //ViewElements[0].remove();
+    }
+    */
   }
 
   return (
@@ -63,25 +71,24 @@ function Menu() {
       >
         Chat
       </button>
-        <div className="Social">
-            <div className="SocialButton">
-                <img className="immagini" src={imageUrl1} alt="Immagine" />
-                <div className="patina"></div>
-            </div>
-            <div className="SocialButton">
-                <img className="immagini" src={imageUrl1} alt="Immagine" />
-                <div className="patina"></div>
-            </div>
-            <div className="SocialButton">
-                <img className="immagini" src={imageUrl1} alt="Immagine" />
-                <div className="patina"></div>
-            </div>
-            <div className="SocialButton">
-                <img className="immagini" src={imageUrl1} alt="Immagine" />
-                <div className="patina"></div>
-            </div>
+      <div className="Social">
+        <div className="SocialButton">
+          <img className="immagini" src={imageUrl1} alt="Immagine" />
+          <div className="patina"></div>
         </div>
-
+        <div className="SocialButton">
+          <img className="immagini" src={imageUrl1} alt="Immagine" />
+          <div className="patina"></div>
+        </div>
+        <div className="SocialButton">
+          <img className="immagini" src={imageUrl1} alt="Immagine" />
+          <div className="patina"></div>
+        </div>
+        <div className="SocialButton">
+          <img className="immagini" src={imageUrl1} alt="Immagine" />
+          <div className="patina"></div>
+        </div>
+      </div>
     </div>
   );
 }
