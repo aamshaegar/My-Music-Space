@@ -24,11 +24,11 @@ function Grid({title}:Props) {
         <div className="title" >
           {title}
         </div>
-        <Object imgUrl={"Pippo"} description={"Viva la vida "}></Object>
-        <Object imgUrl={"Pippo"} description={"Viva la vida "}></Object>
-        <Object imgUrl={"Pippo"} description={"Viva la vida "}></Object>
-        <Object imgUrl={"Pippo"} description={"Viva la vida "}></Object>
-        <Object imgUrl={"Pippo"} description={"Viva la vida "}></Object>
+        <Object imgUrl={"/src/img/Viva la vida.jpg"} description={"Viva la vida"}></Object>
+        <Object imgUrl={"/src/img/Viva la vida.jpg"} description={"Viva la vida"}></Object>
+        <Object imgUrl={"/src/img/Viva la vida.jpg"} description={"Viva la vida"}></Object>
+        <Object imgUrl={"/src/img/Viva la vida.jpg"} description={"Viva la vida"}></Object>
+        <Object imgUrl={"/src/img/Viva la vida.jpg"} description={"Viva la vida"}></Object>
       </div>
   );
 }

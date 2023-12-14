@@ -26,21 +26,36 @@ body{
   margin-left: 5vh;
   float: left;
 }
+.Social{
+  top:10vh;
+  position:relative;
+}
+
+.SocialButton{
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  top: 5vh;
+  margin-left: 3vh;
+  float: left;
+}
 
 .patina{
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5)
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 
 .immagini{
   width: 100%;
   height: 100%;
-  object-fit: cover 
+  object-fit: cover
 }
 
 .menuButton{
@@ -117,7 +132,7 @@ body{
 .search input{
   position: relative;
   background-color: #404040;
-  width: 70%;
+  width: 88%;
   top: 5vh;
   margin-left: 2vh;
   border-radius: 50vh;
@@ -129,10 +144,13 @@ body{
 
 .Lente{
   position: relative;
-  width: 5vh;
-  height: 5vh;
+  float:left;
+  width: 4vh;
+  height: 4vh;
   top: 5vh;
+  left:6vh;
   border-radius: 50vh;
+  z-index: 1;
 }
 
 
@@ -167,7 +185,7 @@ body{
   position: relative;
 }
 
-.productImg{
+.productImg img{
   background-color: #3E99CF;
   height: 15vh;
   border-radius: 10%;
@@ -176,11 +194,15 @@ body{
   left:5vh;
 }
 
+.description{
+  margin-left: 5vh;
+}
+
 .Object{
   position: relative;
   width: auto ;
   float: left;
-  margin-left: 5vh;
+  margin-left: 10vh;
 
 }
 

@@ -19,12 +19,12 @@ function Menu() {
     <div className="Menu">
       <div>
         <div className="MySongsButton">
-          <div className="patina"></div>
           <img className="immagini" src={imageUrl1} alt="Immagine" />
+          <div className="patina"></div>
         </div>
         <div className="MySongsButton">
-          <div className="patina"></div>
           <img className="immagini" src={imageUrl2} alt="Immagine" />
+          <div className="patina"></div>
         </div>
       </div>
       <button
@@ -55,6 +55,25 @@ function Menu() {
       >
         Chat
       </button>
+        <div className="Social">
+            <div className="SocialButton">
+                <img className="immagini" src={imageUrl1} alt="Immagine" />
+                <div className="patina"></div>
+            </div>
+            <div className="SocialButton">
+                <img className="immagini" src={imageUrl1} alt="Immagine" />
+                <div className="patina"></div>
+            </div>
+            <div className="SocialButton">
+                <img className="immagini" src={imageUrl1} alt="Immagine" />
+                <div className="patina"></div>
+            </div>
+            <div className="SocialButton">
+                <img className="immagini" src={imageUrl1} alt="Immagine" />
+                <div className="patina"></div>
+            </div>
+        </div>
+
     </div>
   );
 }
