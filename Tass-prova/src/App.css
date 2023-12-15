@@ -199,12 +199,18 @@ body{
 }
 
 .ChatView{
-  display: block;
+  display: none;
   margin-left:auto;
   margin-right:auto;
 }
 
-.ChatRow{
+.ShopView{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.ChatRow, .VinylRow{
   width: 100%;
   border: white 2px solid;
   height: 27vh;
@@ -217,6 +223,12 @@ body{
   width: 33%;
   float:left;
 }
+.VinylProduct{
+  position: relative;
+  height: 100%;
+  width: 20%;
+  float:left;
+}
 
 .ChatView img{
   margin-left: 25%;
@@ -225,11 +237,60 @@ body{
   float:left;
   position: relative;
 }
+.ShopView img{
+  margin-left: 25%;
+  width: 20vh;
+  height: 20vh;
+  float:left;
+  position: relative;
+  border-radius: 50vh;
+}
+
+.ShopView .Vinyl{
+  position: absolute;
+  z-index: 3;
+}
+/* Animation css*/
+.Vinyl{
+  -webkit-animation:spin 4s linear infinite;
+  -moz-animation:spin 4s linear infinite;
+  animation:spin 4s linear infinite;
+  animation-play-state:paused;
+}
+.Vinyl:hover{
+  -webkit-animation:spin 4s linear infinite;
+  -moz-animation:spin 4s linear infinite;
+  animation:spin 4s linear infinite;
+  animation-play-state: running;
+}
+
+@-moz-keyframes spin {
+  100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform:rotate(360deg);
+  }
+}
 
 .ChatView p{
   float:left;
   top:6vh;
   left: -13vh;
+  position: relative;
+  color:white;
+  font-weight: bold;
+
+}
+
+.ShopView p{
+  float:left;
+  top:0vh;
+  left: 13vh;
   position: relative;
   color:white;
   font-weight: bold;
