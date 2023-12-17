@@ -13,7 +13,7 @@ function VinylProduct(){
 
 function ShopView() {
     return (
-        <div className="ShopView">
+        <div className="ShopView" id = "ShopView">
             <div className="VinylRow">
                 <VinylProduct></VinylProduct>
                 <VinylProduct></VinylProduct>

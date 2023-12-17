@@ -5,6 +5,7 @@ import Cart from "./components/Cart";
 import HomeView from "./components/HomeView";
 import ChatView from "./components/ChatView";
 import ShopView from "./components/ShopView";
+import MusicView from "./components/MusicView"
 import Search from "./components/Search";
 
 function App() {
@@ -20,10 +21,11 @@ function App() {
 
       <div className="Menu+View">
         <Menu />
-          <div className="View">
+          <div className="View" id="View">
             <HomeView> </HomeView>
             <ChatView></ChatView>
             <ShopView></ShopView>
+            <MusicView></MusicView>
           </div>
       </div>
     </div>

@@ -4,32 +4,34 @@ const imageUrl2 =
 
 function Menu() {
   function selected(id: string) {
-    console.log("Sono qui");
-    const elements = Array.from(
-      document.getElementsByClassName(
-        "menuButton"
-      ) as HTMLCollectionOf<HTMLElement>
-    );
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.backgroundColor = "#232425";
-    }
-
-    document.getElementById(id)!.style.backgroundColor = "#3E99CF";
-
-    /*
-    const ViewElements = Array.from(
-      document.getElementsByClassName("View")
-    ) as HTMLCollectionOf<HTMLElement>;
-
-    var viewLenght = ViewElements.length;
-
-    while (viewLenght > 0) {
       console.log("Sono qui");
-      viewLenght--;
-      //ViewElements[0].remove();
+      const elements = Array.from(
+          document.getElementsByClassName(
+              "menuButton"
+          ) as HTMLCollectionOf<HTMLElement>
+      );
+      for (let i = 0; i < elements.length; i++) {
+          elements[i].style.backgroundColor = "#232425";
+      }
+      document.getElementById(id)!.style.backgroundColor = "#3E99CF";
+      document.getElementById("HomeView")!.style.display = "none";
+      document.getElementById("ShopView")!.style.display = "none";
+      document.getElementById("ChatView")!.style.display = "none";
+      document.getElementById("MusicView")!.style.display = "none";
+      if (id == "homeButton") {
+          document.getElementById("HomeView")!.style.display = "block";
+      }
+      if (id == "musicButton") {
+          document.getElementById("MusicView")!.style.display = "block";
+      }
+      if (id == "shopButton") {
+          document.getElementById("ShopView")!.style.display = "block";
+      }
+      if (id == "chatButton") {
+          document.getElementById("ChatView")!.style.display = "block";
+      }
     }
-    */
-  }
+
 
   return (
     <div className="Menu">
@@ -52,8 +54,8 @@ function Menu() {
       </button>
       <button
         className="menuButton"
-        id="menuButton"
-        onClick={() => selected("menuButton")}
+        id="musicButton"
+        onClick={() => selected("musicButton")}
       >
         Musica
       </button>

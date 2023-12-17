@@ -57,7 +57,7 @@ function Grid({ title }: Props) {
 
 function HomeView() {
   return (
-    <div className="HomeView">
+    <div className="HomeView" id ="HomeView">
       <Grid title={op[0]}> </Grid>
       <Grid title={op[1]}> </Grid>
       <Grid title={op[2]}> </Grid>

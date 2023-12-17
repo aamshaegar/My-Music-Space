@@ -14,7 +14,7 @@ function Chat(){
 
 function ChatView() {
     return (
-        <div className="ChatView">
+        <div className="ChatView" id="ChatView">
             <div className="ChatRow">
                 <Chat></Chat>
                 <Chat></Chat>
