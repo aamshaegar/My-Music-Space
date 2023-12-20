@@ -11,4 +11,4 @@ services:
       MYSQL_USER: aclm
       MYSQL_PASSWORD: ricerca_Taass
     ports:
-      - 3307:3306
+      - 3306:3306
