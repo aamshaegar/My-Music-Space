@@ -18,24 +18,10 @@ var roomName = document.querySelector('#room_name');
 
 // Questo è il nostro websocket, inizialmente NULL
 
-var path = "http://localhost:8080/CHAT-SERVICE"
+var path = "http://localhost:8091"
 var stompClient = null;
 var username = null;
 var actualRoom = "general"
-var messageList = [
-    {
-        "room": "general",
-        "messages": null
-    },
-    {
-        "room": "metal",
-        "messages": null
-    },
-    {
-        "room": "classic",
-        "messages": null
-    },
-]
 
 // serve per assegnare colori agli utenti
 var colors = [
@@ -137,7 +123,7 @@ function connect(event) {
         // nascondiamo la pagina di login e mostriamo quella di chat
         // Qui inizia la connessione al broker STOMP
 
-        var socket = new SockJS( path + '/websocket');
+        var socket = new SockJS('/websocket');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
         changeView()
