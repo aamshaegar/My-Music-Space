@@ -5,14 +5,25 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: demo1
-          uri: lb://demo1
+        - id: discovery-service
+          uri: lb://discovery-service
           predicates:
-            - Path=/demo1**
+            - Path=/eureka/web
+          filters:
+            - SetPath=/
+
+        - id: chat-service
+          uri: lb://chat-service
+          predicates:
+            - Path=/chat-service/**
+
           # PER ACCEDERE, DA BROWSER ANDARE SU: http://localhost:8080/DEMO1/say
 
   application:
     name: api-gateway-service
+  web:
+    resources:
+      static-locations: classpath:/static/
 server:
   port: 8080
 eureka:

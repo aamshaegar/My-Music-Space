@@ -17,6 +17,8 @@ var classicButton = document.querySelector('#button_classic');
 var roomName = document.querySelector('#room_name');
 
 // Questo è il nostro websocket, inizialmente NULL
+
+var path = "http://localhost:8080/CHAT-SERVICE"
 var stompClient = null;
 var username = null;
 var actualRoom = "general"
@@ -135,7 +137,7 @@ function connect(event) {
         // nascondiamo la pagina di login e mostriamo quella di chat
         // Qui inizia la connessione al broker STOMP
 
-        var socket = new SockJS('/websocket');
+        var socket = new SockJS( path + '/websocket');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
         changeView()

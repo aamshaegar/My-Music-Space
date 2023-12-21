@@ -23,10 +23,10 @@ FROM openjdk:17
 WORKDIR /app
 
 # Copy the built JAR file from the Maven build stage
-COPY --from=build /app/target/discovery-service-0.0.1-SNAPSHOT.jar discovery-service-1.0.0.jar
+COPY --from=build /app/target/spike-dockerfile-0.0.1-SNAPSHOT.jar spike-dockerfile-1.0.0.jar
 
 # Expose the port your Spring Boot app listens on (default is 8080)
-EXPOSE 8761
+EXPOSE 8091
 
 # Define the command to run your Spring Boot application
-CMD ["java", "-jar", "discovery-service-1.0.0.jar"]
+CMD ["java", "-jar", "spike-dockerfile-1.0.0.jar"]

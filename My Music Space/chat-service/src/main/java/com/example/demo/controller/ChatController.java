@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 import com.example.demo.model.ChatMessage;
 import com.example.demo.model.MessageType;
-import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -11,10 +10,13 @@ import org.springframework.stereotype.Controller;
 
 
 @Controller
-@RequiredArgsConstructor
 public class ChatController {
 
     private final ChatService service;
+
+    public ChatController(ChatService service) {
+        this.service = service;
+    }
 
     @MessageMapping("/chat/{room}")
     @SendTo("/topic/messages/{room}")

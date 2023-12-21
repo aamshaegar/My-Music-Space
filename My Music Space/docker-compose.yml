@@ -4,29 +4,31 @@ services:
 
 
   #######################################
-  # MYSQL DBMS
+  # MYSQL CHATDB DBMS
   #######################################
 
   mysqlDB:
-    image: mysql:5.7
+    image: mysql:8.0
     container_name: mysqlDB
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: test_DB
+      MYSQL_DATABASE: chatDB
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
+
     volumes:
       - persistent:/var/lib/mysql
+
     restart: always
     networks:
       - mynetwork
 
 
-  #######################################
-  # PHP MY ADMIN
-  #######################################
+    #######################################
+    # PHP MY ADMIN
+    #######################################
 
   phpmyadmin:
     image: phpmyadmin
@@ -46,10 +48,7 @@ services:
       - mysqlDB
 
 
-
-
-
-  #######################################
+ #######################################
   # discovery-service
   #######################################
 
@@ -90,15 +89,15 @@ services:
 
 
   #######################################
-  # Chat container
+  # chat-service container
   #######################################
 
-  chat:
-    container_name: chat
+  chat-service:
+    container_name: chat-service
     build:
       context: chat-service
       dockerfile: Dockerfile
-    image: chat:latest
+    image: chat-service:latest
     ports:
       - "8091:8091"
     environment:
@@ -106,8 +105,8 @@ services:
     networks:
       - mynetwork
     depends_on:
-      - mysqlDB
       - discovery-service
+      - mysqlDB
     restart: always
 
 

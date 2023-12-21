@@ -18,3 +18,7 @@ Se non si riescono a chiudere i container... ESEGUIRE TUTTI QUESTI COMANDI
 - sudo systemctl stop docker
 - sudo systemctl restart docker
 
+
+PER REINSTALLARE DOCKER
+- sudo apt-get install --reinstall docker-ce
+

@@ -4,8 +4,14 @@ FROM maven:latest AS build
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the project files into the container
-COPY . .
+# Copy only the POM file to take advantage of Docker layer caching
+COPY pom.xml .
+
+# Download dependencies and build the project
+RUN mvn dependency:go-offline
+
+# Copy the source code into the container
+COPY src src
 
 # Build the Spring Boot application using Maven
 RUN mvn clean package -DskipTests

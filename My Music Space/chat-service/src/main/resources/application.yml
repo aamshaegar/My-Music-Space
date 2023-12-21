@@ -1,9 +1,9 @@
 spring:
   application:
-    name: chat
+    name: chat-service
 
   datasource:
-    url: jdbc:mysql://localhost:3307/chatDB?createDatabaseIfNotExist=true
+    url: jdbc:mysql://mysqlDB:3306/chatDB?createDatabaseIfNotExist=true
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -19,6 +19,14 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
 
+  web:
+    resources:
+      static-locations: classpath:/static/
+
 
 server:
   port: 8091
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}

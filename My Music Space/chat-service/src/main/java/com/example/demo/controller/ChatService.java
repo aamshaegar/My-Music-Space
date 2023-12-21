@@ -2,18 +2,17 @@ package com.example.demo.controller;
 
 import com.example.demo.model.ChatMessage;
 import com.example.demo.model.ChatMessageRepository;
-import com.example.demo.model.MessageType;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class ChatService {
 
     private final ChatMessageRepository repository;
+
+    public ChatService(ChatMessageRepository repository) {
+        this.repository = repository;
+    }
 
     public void saveChat(ChatMessage chatMessage){
         repository.save(chatMessage);
