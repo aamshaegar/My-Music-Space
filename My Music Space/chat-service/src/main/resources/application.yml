@@ -22,7 +22,12 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/
+  mvc:
+    dispatch-options-request: true
 
+
+cross:
+  origin: "http://localhost:5500"
 
 server:
   port: 8091

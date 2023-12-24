@@ -1,21 +1,48 @@
 spring:
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+        httpclient:
+          pool:
+            max-idle-time: 10s
+        ssl:
+          useInsecureTrustManager: true
+        filter:
+          remove-non-proxy-headers:
+            headers:
+              - Keep-Alive
+              - TE
+              - Trailer
+              - Transfer-Encoding
       discovery:
         locator:
           enabled: true
       routes:
         - id: discovery-service
-          uri: lb://discovery-service
+          uri: lb://DISCOVERY-SERVICE
           predicates:
             - Path=/eureka/web
           filters:
-            - SetPath=/
+            - SetPath=/**
 
-        - id: chat-service
-          uri: lb://chat-service
+        - id: chat-service1
+          uri: lb://CHAT-SERVICE
           predicates:
-            - Path=/chat-service/**
+            - Path=/chat/**
+
+        - id: chat-service2
+          uri: lb://CHAT-SERVICE
+          predicates:
+            - Path=/websocket/**
+
+
 
           # PER ACCEDERE, DA BROWSER ANDARE SU: http://localhost:8080/DEMO1/say
 

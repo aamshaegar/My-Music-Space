@@ -83,11 +83,11 @@ function retrieveMessagesList(){
 
     $.ajax({
         type:"GET",
-        url: "/chat/messages",
+        url: path + "/chat/messages",
         data: { room: actualRoom} ,
         contentType: "application/json"
     }).then(function(data) {
-
+        //alert(data);
         let lista = data.reverse();
         for(let text in lista) {
             printMessage(lista[text]);
@@ -126,7 +126,9 @@ function connect(event) {
         // nascondiamo la pagina di login e mostriamo quella di chat
         // Qui inizia la connessione al broker STOMP
 
-        var socket = new SockJS('/websocket');
+
+        //retrieveMessagesList();   CHECK CORS
+        var socket = new SockJS(path + '/websocket');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
         changeView()

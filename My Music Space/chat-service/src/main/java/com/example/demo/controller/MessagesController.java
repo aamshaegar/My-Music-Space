@@ -1,15 +1,13 @@
 package com.example.demo.controller;
 import com.example.demo.model.ChatMessage;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/chat/messages")
+//@CrossOrigin(origins = "http://localhost:5500")
 public class MessagesController {
 
     private final ChatService service;
