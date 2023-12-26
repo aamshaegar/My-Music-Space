@@ -155,7 +155,7 @@ body{
 }
 
 
-.View{
+.View {
   background-color: #404040;
   margin-right: 5%;
   width: 75%;
@@ -209,6 +209,7 @@ body{
   display:none;
   margin-left:auto;
   margin-right:auto;
+  transition: display 0s, opacity 0.5s linear;
 }
 
 .ChatRow, .VinylRow, .TicketRow, .MerchRow{
@@ -410,6 +411,729 @@ body{
 .MusicView{
   display:None;
 }
+
+/*Music View*/
+
+.MusicView{
+  width:100%;
+}
+.PlaylistColumn, .NewMusicColumn, .RadioColumn {
+  width: 33%;
+  height: 100%;
+  position: absolute;
+  color:white;
+}
+
+.NewMusicColumn{
+  margin-left: 33%;
+}
+.RadioColumn{
+  margin-left: 66%
+}
+
+.Playlist{
+  width: 50%;
+  height: 22%;
+  margin-top: 0.9vh;
+  margin-left: 1vh;
+  position: relative;
+}
+.Playlist img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 2vh;
+}
+
+.Playlist button{
+  position: relative;
+  left: 100%;
+  background-color: #232425;
+  margin-left: 1vh;
+  top:25%;
+  box-shadow: white 0 0 1vh inset;
+  box-sizing: border-box;
+  appearance: none;
+  border-style: none;
+  color:white;
+  border-radius: 5vh;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 3vh;
+  display: inline-block;
+  cursor: pointer;
+  letter-spacing: -.24px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 4vh;
+
+}
+
+.PlaylistColumn p,.NewMusicColumn p, .RadioColumn p{
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.NewMusic{
+  margin-top:2vh;
+  margin-bottom: 5vh;
+  margin-left: 1vh;
+  position: relative;
+}
+.NewMusic img{
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  position: absolute;
+  float: left;
+}
+.NewMusic button{
+  margin-bottom: 2vh;
+  top: 2vh;
+  position: relative;
+  left: 20%;
+  background-color: #232425;
+  margin-left: 1vh;
+  box-shadow: white 0 0 1vh inset;
+  box-sizing: border-box;
+  appearance: none;
+  border-style: none;
+  color:white;
+  border-radius: 5vh;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 3vh;
+  display: inline-block;
+  cursor: pointer;
+  letter-spacing: -.24px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.Radio{
+  margin-top: 2vh;
+}
+.Radio img{
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  position: relative;
+  float: left;
+  margin-bottom: 2vh;
+  background-color: #232425;
+  margin-left: 1vh;
+  box-shadow: white 0 0 1vh inset;
+  box-sizing: border-box;
+  appearance: none;
+  border-style: none;
+  color:white;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 3vh;
+  display: inline-block;
+  cursor: pointer;
+  letter-spacing: -.24px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.Radio p{
+  position: relative;
+  float: left;
+  width: 50%;
+  top: 2vh;
+}
+
+body{
+  background-image: linear-gradient(top right, #232425 3%, #AACFEF 100%) !important;
+  background-color: #232425 !important;
+  display: block;
+}
+
+/* Menu.tsx CSS */
+.Menu{
+  background-color: #404040;
+  height: 80vh;
+  width: 35vh;
+  position: relative;
+  left: 1vh;
+  border-radius: 5vh;
+  float: left;
+}
+
+.MySongsButton{
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  padding-left: 0.05vh;
+  top: 5vh;
+  margin-left: 5vh;
+  float: left;
+}
+.Social{
+  top:10vh;
+  position:relative;
+}
+
+.SocialButton{
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  top: 5vh;
+  margin-left: 3vh;
+  float: left;
+}
+
+.patina{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.immagini{
+  width: 100%;
+  height: 100%;
+  object-fit: cover
+}
+
+.menuButton{
+  background-color: #232425;
+  box-shadow: #000000 0vh 0vh 2vh inset;
+  box-sizing: border-box;
+  appearance: none;
+  border-style: none;
+  color:white;
+  border-radius: 5vh;
+  border: 0;
+  height:7vh;
+  width:25vh;
+  position: relative;
+  top: 11vh;
+  left: 5vh;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 3vh;
+  display: inline-block;
+  cursor: pointer;
+  letter-spacing: -.24px;
+  margin:0;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 4vh;
+}
+
+.menuButton:hover{
+  background-color: #3E99CF !important;
+  box-shadow: #000000 0vh 0vh 2vh inset !important;
+}
+
+
+
+/* User.tsx CSS */
+.UserDiv{
+  background-color: #3E99CF;
+  width: 40vh;
+  height: 17vh;
+  border-radius: 0px 0% 50% 0px;
+  position: relative;
+  float: left;
+  padding-top: 3vh;
+  padding-left: 1vh;
+  margin-bottom: 2vh;
+}
+
+.UserDiv p{
+  margin-top: 2.3vh;
+  margin-left: 1vh;
+  font-size: 2.3vh ;
+  float: left;
+}
+
+.imgContainer{
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  float: left;
+}
+
+/*Search css*/
+.search{
+  float: left;
+  width: 100%;
+}
+.search input{
+  position: relative;
+  background-color: #404040;
+  width: 88%;
+  top: 5vh;
+  margin-left: 2vh;
+  border-radius: 50vh;
+  border: 0;
+  padding-left: 6vh;
+  color:white;
+  float: left;
+}
+
+.Lente{
+  position: relative;
+  float:left;
+  width: 4vh;
+  height: 4vh;
+  top: 5vh;
+  left:6vh;
+  border-radius: 50vh;
+  z-index: 1;
+}
+
+
+.View {
+  background-color: #404040;
+  margin-right: 5%;
+  width: 75%;
+  height: 80vh;
+  position: relative;
+  left: 5vh;
+  border-radius: 5vh;
+  float: left;
+}
+
+.Container{
+  height: 24vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  position: relative;
+  width: 97%;
+  border-radius: 5vh;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #232425;
+}
+.title{
+  margin-left: 5vh;
+  margin-top: 1vh;
+  position: relative;
+}
+
+.productImg img{
+  background-color: #3E99CF;
+  height: 15vh;
+  border-radius: 10%;
+  width: 15vh;
+  position:relative;
+  left:5vh;
+}
+
+.HomeView{
+  display:block;
+}
+
+.ChatView{
+  display: none;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.ShopView{
+  display:none;
+  margin-left:auto;
+  margin-right:auto;
+  transition: display 0s, opacity 0.5s linear;
+}
+
+.ChatRow, .VinylRow, .TicketRow, .MerchRow{
+  width: 100%;
+  height: 27vh;
+  position: relative;
+}
+
+.Chat{
+  position: relative;
+  height: 100%;
+  width: 33%;
+  float:left;
+}
+.VinylProduct, .TicketProduct, .MerchProduct{
+  top:1vh;
+  position: relative;
+  height: 100%;
+  width: 20%;
+  float:left;
+}
+
+.ChatView img{
+  margin-left: 25%;
+  width: 60%;
+  height: 100%;
+  float:left;
+  position: relative;
+}
+.VinylProduct img{
+  margin-left: 25%;
+  width: 20vh;
+  height: 20vh;
+  float:left;
+  position: relative;
+  border-radius: 50vh;
+}
+
+.MerchProduct img{
+  margin-left: 25%;
+  width: 18vh;
+  height: 18vh;
+  float:left;
+  position: relative;
+  margin-bottom: 3%;
+  transition: transform 0.3s ease-in-out;
+}
+.MerchProduct img:hover{
+  transform: scale(1.2);
+}
+
+
+.TicketFront {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  left: 15%;
+  margin-left: 25%;
+  width: 10vh;
+  height: 15vh;
+  float:left;
+  position: relative;
+  transform: rotate(25deg);
+  z-index: 1;
+  object-fit: cover;
+}
+.TicketBack {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  left: 25%;
+  margin-left: 25%;
+  width: 10vh;
+  height: 15vh;
+  float:left;
+  position: absolute;
+  transform: rotate(30deg);
+  object-fit: cover;
+}
+
+.TicketFront:hover{
+  animation: myAnim 2s ease infinite forwards;
+  animation-play-state: running;
+}
+.TicketFront:hover ~ .TicketBack{
+  animation: myAnim 2s ease infinite forwards;
+  animation-play-state: running;
+}
+
+/*Animation css*/
+
+@keyframes myAnim {
+  0%,
+  100% {
+    transform-origin: 50% 50%;
+  }
+
+  15% {
+    transform: translateY(-15px) rotate(-6deg);
+  }
+
+  30% {
+    transform: translateY(7px) rotate(6deg);
+  }
+
+  45% {
+    transform: translateY(-7px) rotate(-3.6deg);
+  }
+
+  60% {
+    transform: translateY(5px) rotate(2.4deg);
+  }
+
+  75% {
+    transform: translateY(-2px) rotate(-1.2deg);
+  }
+}
+
+
+
+.ShopView .Vinyl{
+  position: absolute;
+  z-index: 3;
+}
+/* Animation css*/
+.Vinyl{
+  -webkit-animation:spin 4s linear infinite;
+  -moz-animation:spin 4s linear infinite;
+  animation:spin 4s linear infinite;
+  animation-play-state:paused;
+}
+.Vinyl:hover{
+  -webkit-animation:spin 4s linear infinite;
+  -moz-animation:spin 4s linear infinite;
+  animation:spin 4s linear infinite;
+  animation-play-state: running;
+}
+
+@-moz-keyframes spin {
+  100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform:rotate(360deg);
+  }
+}
+
+.ChatView p{
+  float:left;
+  top:6vh;
+  left: -13vh;
+  position: relative;
+  color:white;
+  font-weight: bold;
+
+}
+
+.ShopView p{
+  float:left;
+  top:0vh;
+  left: 25%;
+  position: relative;
+  color:white;
+  font-weight: bold;
+
+}
+
+
+.description{
+  margin-left: 5vh;
+}
+
+.Object{
+  position: relative;
+  width: 20% ;
+  float: left;
+  margin-left:auto;
+  margin-right:auto;
+
+}
+
+.Menu+View, .Search-User{
+  display: flex;
+  flex-direction: row;
+}
+
+
+#root, #All{
+  height: 0;
+}
+
+.cartImg{
+  height: 100%;
+  width: 100%;
+
+}
+.MusicView{
+  display:None;
+}
+
+/*Music View*/
+
+.MusicView{
+  width:100%;
+}
+.PlaylistColumn, .NewMusicColumn, .RadioColumn {
+  width: 33%;
+  height: 100%;
+  position: absolute;
+  color:white;
+}
+
+.NewMusicColumn{
+  margin-left: 33%;
+}
+.RadioColumn{
+  margin-left: 66%
+}
+
+.Playlist{
+  width: 50%;
+  height: 22%;
+  margin-top: 0.9vh;
+  margin-left: 1vh;
+  position: relative;
+}
+.Playlist img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 2vh;
+}
+
+.Playlist button{
+  position: relative;
+  left: 100%;
+  background-color: #232425;
+  margin-left: 1vh;
+  top:25%;
+  box-shadow: white 0 0 1vh inset;
+  box-sizing: border-box;
+  appearance: none;
+  border-style: none;
+  color:white;
+  border-radius: 5vh;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 3vh;
+  display: inline-block;
+  cursor: pointer;
+  letter-spacing: -.24px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 4vh;
+
+}
+
+.PlaylistColumn p,.NewMusicColumn p, .RadioColumn p{
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.NewMusic{
+  margin-top:2vh;
+  margin-bottom: 5vh;
+  margin-left: 1vh;
+  position: relative;
+}
+.NewMusic img{
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  position: absolute;
+  float: left;
+}
+.NewMusic button{
+  margin-bottom: 2vh;
+  top: 2vh;
+  position: relative;
+  left: 20%;
+  background-color: #232425;
+  margin-left: 1vh;
+  box-shadow: white 0 0 1vh inset;
+  box-sizing: border-box;
+  appearance: none;
+  border-style: none;
+  color:white;
+  border-radius: 5vh;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 3vh;
+  display: inline-block;
+  cursor: pointer;
+  letter-spacing: -.24px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.Radio{
+  margin-top: 2vh;
+}
+.Radio img{
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  position: relative;
+  float: left;
+  margin-bottom: 2vh;
+  background-color: #232425;
+  margin-left: 1vh;
+  box-shadow: white 0 0 1vh inset;
+  box-sizing: border-box;
+  appearance: none;
+  border-style: none;
+  color:white;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 3vh;
+  display: inline-block;
+  cursor: pointer;
+  letter-spacing: -.24px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.Radio p{
+  position: relative;
+  float: left;
+  width: 50%;
+  top: 2vh;
+}
+
+.HomeView{
+  opacity: 1;
+}
+
+.MusicView, .ChatView, .ShopView{
+  opacity: 0;
+}
+
+
+
+
+
 
 
 
