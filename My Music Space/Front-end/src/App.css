@@ -60,7 +60,7 @@ body{
 
 .menuButton{
   background-color: #232425;
-  box-shadow: #000000 0vh 0vh 2vh inset;
+  box-shadow: #000000 0 0 2vh inset;
   box-sizing: border-box;
   appearance: none;
   border-style: none;
@@ -91,7 +91,7 @@ body{
 
 .menuButton:hover{
   background-color: #3E99CF !important;
-  box-shadow: #000000 0vh 0vh 2vh inset !important;
+  box-shadow: #000000 0 0 2vh inset !important;
 }
 
 
@@ -101,7 +101,7 @@ body{
   background-color: #3E99CF;
   width: 40vh;
   height: 17vh;
-  border-radius: 0px 0% 50% 0px;
+  border-radius: 0 0 50% 0;
   position: relative;
   float: left;
   padding-top: 3vh;
@@ -371,7 +371,7 @@ body{
 
 .ShopView p{
   float:left;
-  top:0vh;
+  top:0;
   left: 25%;
   position: relative;
   color:white;
@@ -622,7 +622,7 @@ body{
 
 .menuButton{
   background-color: #232425;
-  box-shadow: #000000 0vh 0vh 2vh inset;
+  box-shadow: #000000 0 0 2vh inset;
   box-sizing: border-box;
   appearance: none;
   border-style: none;
@@ -653,7 +653,7 @@ body{
 
 .menuButton:hover{
   background-color: #3E99CF !important;
-  box-shadow: #000000 0vh 0vh 2vh inset !important;
+  box-shadow: #000000 0 0 2vh inset !important;
 }
 
 
@@ -663,7 +663,7 @@ body{
   background-color: #3E99CF;
   width: 40vh;
   height: 17vh;
-  border-radius: 0px 0% 50% 0px;
+  border-radius: 0 0 50% 0;
   position: relative;
   float: left;
   padding-top: 3vh;
@@ -933,7 +933,7 @@ body{
 
 .ShopView p{
   float:left;
-  top:0vh;
+  top:0;
   left: 25%;
   position: relative;
   color:white;
@@ -1130,9 +1130,144 @@ body{
   opacity: 0;
 }
 
+/*User pointer*/
 
+.UserDiv img {
+  cursor: pointer;
+}
 
+/*UserView css*/
 
+.UserView{
+  display:none;
+  background-color: #3E99CF;
+  width: 30%;
+  height: 100%;
+  border-radius: 0 0 50% 0;
+  position: absolute;
+  z-index: 30;
+  float: left;
+  padding-top: 3vh;
+  padding-left: 1vh;
+  margin-bottom: 2vh;
+  opacity: 0;
+}
+
+.Welcome{
+  font-weight: bold;
+  left: 15%;
+  margin:0;
+  padding:0;
+  top:2%;
+  font-size: 150%;
+  position: relative;
+}
+
+.UserInfo{
+  margin-top: 10%;
+  position: absolute;
+  float: left;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.UserView img {
+  cursor: pointer;
+}
+
+/* CartView*/
+.cartImg{
+  cursor: pointer;
+}
+
+.CartView{
+  display:none;
+  background-color: white;
+  width: 30%;
+  height: 100%;
+  border-radius: 0 0 0 50%;
+  position: absolute;
+  z-index: 30;
+  float: right;
+  right:0;
+  padding-top: 3vh;
+  padding-left: 3vh;
+  opacity: 0;
+}
+.imgContainer img {
+  cursor: pointer;
+  float: left;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.CartView .imgContainer{
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  float: right;
+}
+
+.ProductImg{
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+  float: right;
+  left:50%;
+  position: relative;
+}
+
+.CartInfo{
+  margin-top: 10%;
+  position: absolute;
+  float: left;
+  font-size: 120%;
+  font-weight: bold;
+}
+.BuyButton{
+  position: relative;
+  text-align: center;
+  margin: auto;
+  left: 40%;
+}
+.BuyButton button{
+  background-color: #3E99CF;
+  box-shadow: #000000 0 0 2vh inset;
+  box-sizing: border-box;
+  appearance: none;
+  border-style: none;
+  color:white;
+  border-radius: 5vh;
+  border: 0;
+  height:7vh;
+  width:25vh;
+  position: relative;
+  top: 11vh;
+  left: 5vh;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 3vh;
+  display: inline-block;
+  cursor: pointer;
+  letter-spacing: -.24px;
+  margin:0;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-bottom: 4vh;
+}
+
+.BuyButton button:hover{
+  background-color: green !important;
+  box-shadow: #000000 0 0 2vh inset !important;
+}
 
 
 
