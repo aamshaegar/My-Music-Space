@@ -1,21 +1,18 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-
-
-@Entity
-@Table
+@Document
 public class ChatMessage {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    private String id;
     private String content;
     private String sender;
+    @Transient
     private MessageType type;
     private String room;
     private String date;
@@ -25,7 +22,7 @@ public class ChatMessage {
 
     }
 
-    public ChatMessage(Long id, String content, String sender, MessageType type, String room, String date) {
+    public ChatMessage(String id, String content, String sender, MessageType type, String room, String date) {
         this.id = id;
         this.content = content;
         this.sender = sender;
@@ -42,11 +39,18 @@ public class ChatMessage {
         this.date = date;
     }
 
-    public Long getId() {
+    public ChatMessage(String content, String sender, String room, String date) {
+        this.content = content;
+        this.sender = sender;
+        this.room = room;
+        this.date = date;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -97,7 +101,7 @@ public class ChatMessage {
                 ", sender='" + sender + '\'' +
                 ", type=" + type +
                 ", room='" + room + '\'' +
-                ", date=" + date +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

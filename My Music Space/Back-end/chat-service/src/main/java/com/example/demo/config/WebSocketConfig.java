@@ -20,7 +20,6 @@ broker supporting the protocol.
 
 @Configuration
 @EnableWebSocketMessageBroker
-//@CrossOrigin(origins = "http://localhost:8080/CHAT-SERVICE")
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override

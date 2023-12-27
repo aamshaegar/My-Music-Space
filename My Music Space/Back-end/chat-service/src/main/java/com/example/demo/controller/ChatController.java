@@ -7,7 +7,6 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @Controller
@@ -30,19 +29,10 @@ public class ChatController {
                 headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
                 System.out.println("User connected: " + chatMessage.getSender() + " on room: " + room);
             }else if (chatMessage.getType() == MessageType.CHAT){
-                System.out.println("SEND MESSAGE: " + chatMessage);
+                //System.out.println("SEND MESSAGE: " + chatMessage);
                 service.saveChat(chatMessage);
             }
         }
         return chatMessage;
     }
-
-/*
-    @MessageMapping("/chat")
-    @SendTo("/topic/messages")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-        System.out.println("SEND MESSAGE: " + chatMessage);
-        return chatMessage;
-    }*/
-
 }

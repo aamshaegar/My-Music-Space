@@ -2,33 +2,6 @@ spring:
   application:
     name: chat-service
 
-  datasource:
-    url: jdbc:mysql://mysqlDB:3306/chatDB?createDatabaseIfNotExist=true
-    username: root
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQLDialect
-
-  web:
-    resources:
-      static-locations: classpath:/static/
-  mvc:
-    dispatch-options-request: true
-
-
-cross:
-  origin: "http://localhost:5500"
-
 server:
   port: 8091
 eureka:

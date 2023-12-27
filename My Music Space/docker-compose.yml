@@ -1,0 +1,184 @@
+version: '3.7'
+
+services:
+
+
+  #######################################
+  # MYSQL CHATDB DBMS
+  #######################################
+
+#  mysqlDB:
+#    image: mysql:8.0
+#    container_name: mysqlDB
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      MYSQL_DATABASE: chatDB
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: password
+#      MYSQL_ROOT_PASSWORD: password
+#
+#    volumes:
+#      - persistent:/var/lib/mysql
+
+#    restart: always
+#    networks:
+#      - mynetwork
+
+
+    #######################################
+    # PHP MY ADMIN
+    #######################################
+
+#  phpmyadmin:
+#    image: phpmyadmin
+#    container_name: phpmyadmin
+#    links:
+#      - mysqlDB:mysqlDB
+#    ports:
+#      - "80:80"
+#    environment:
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: password
+#      MYSQL_ROOT_PASSWORD: password
+#      PMA_HOST: mysqlDB
+#    networks:
+#      - mynetwork
+#    depends_on:
+#      - mysqlDB
+      
+      
+ #######################################
+  # mongoDB
+ #######################################
+
+
+  mongoDB:
+    image: mongo
+    container_name: mongoDB
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=rootuser
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass
+    networks:
+      - mynetwork
+
+
+ #######################################
+  # Mongo express
+  #######################################
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+      - ME_CONFIG_MONGODB_SERVER=mongoDB
+    networks:
+      - mynetwork
+
+
+
+
+
+ #######################################
+  # discovery-service
+  #######################################
+
+  discovery-service:
+    container_name: discovery-service
+    build:
+      context: Back-end/discovery-service
+      dockerfile: Dockerfile
+    image: discovery-service:latest
+    ports:
+      - "8761:8761"
+    restart: always
+    depends_on:
+      - mongoDB
+    networks:
+      - mynetwork
+
+
+  #######################################
+  # API GATEWAY
+  #######################################
+
+  api-gateway-service:
+    container_name: api-gateway-service
+    build:
+      context: Back-end/api-gateway-service
+      dockerfile: Dockerfile
+    image: api-gateway-service
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    depends_on:
+      - discovery-service
+    restart: always
+    networks:
+      - mynetwork
+
+
+  #######################################
+  # chat-service container
+  #######################################
+
+  chat-service:
+    container_name: chat-service
+    build:
+      context: Back-end/chat-service
+      dockerfile: Dockerfile
+    image: chat-service:latest
+    ports:
+      - "8091:8091"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    networks:
+      - mynetwork
+    depends_on:
+      - discovery-service
+      - mongoDB
+    restart: always
+
+
+volumes:
+   mongodata:
+#  persistent:
+
+networks:
+  mynetwork:
+    driver: bridge
+
+
+
+
+
+
+# PER ACCEDERE A MYSQL DA PHPMYADMIN:
+
+# SPIEGAZIONE
+# per creare tutti i container e lanciare il progetto:
+# prima creare una network nuova con "docker network create mynetwork"
+# dopo lanciare il comando: sudo docker-compose -f docker-compose.yml up --force-recreate -V
+# per stoppare tutto usare: docker-compose -f docker-compose.yml down
+
+
+# localhost:80
+# Username:   root
+# Password:   test
+
+
+# Se non si riescono a chiudere i container
+# sudo systemctl stop docker.socket
+# sudo systemctl stop docker
+# sudo systemctl restart docker

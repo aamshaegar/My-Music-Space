@@ -18,12 +18,6 @@ public class MessagesController {
 
     @GetMapping
     public List<ChatMessage> retrieveMessages(@RequestParam(name = "room") String room){
-
-        ArrayList<ChatMessage> messages = service.retrieveChatMessages(room);
-        /*for(ChatMessage m: messages){
-            System.out.println(m);
-        }*/
-        return messages;
-
+        return service.retrieveChatMessages(room);
     }
 }
