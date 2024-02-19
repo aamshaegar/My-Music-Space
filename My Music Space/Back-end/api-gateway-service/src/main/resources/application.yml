@@ -1,59 +1,62 @@
+server:
+  port: 8080
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone:
+        ${EUREKA_SERVER:http://eurekaservice:8761/eureka}
+
+  instance:
+    appname: api-gateway-service
+    instanceId: api-gateway-service
+
 spring:
+  application:
+    name: api-gateway-service
   cloud:
+    loadbalancer:
+      cache:
+        enabled: false
     gateway:
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:
-        corsConfigurations:
+        cors-configurations:
           '[/**]':
-            allowedOrigins: "*"
-            allowedMethods: "*"
-            allowedHeaders: "*"
-        httpclient:
-          pool:
-            max-idle-time: 10s
-        ssl:
-          useInsecureTrustManager: true
-        filter:
-          remove-non-proxy-headers:
-            headers:
-              - Keep-Alive
-              - TE
-              - Trailer
-              - Transfer-Encoding
+            allowedOrigins: "http://localhost:5500"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            max-age: 3600
+            allowed-headers: "Requestor-Type"
+            exposed-headers: "X-Get-Header"
       discovery:
         locator:
           enabled: true
+          lower-case-service-id: true
       routes:
+        #
+        #        - id: chefservice
+        #          uri: lb://chefservice
+        #          predicates:
+        #            - Path=/api/v1/chefs/**
+        #
+        #        - id: recipeservice
+        #          uri: lb://recipeservice
+        #          predicates:
+        #            - Path=/api/v1/recipes/**, /api/v1/ingredients/**
+
         - id: discovery-service
-          uri: lb://DISCOVERY-SERVICE
+          uri: lb://discovery-service
           predicates:
             - Path=/eureka/web
           filters:
             - SetPath=/**
 
-        - id: chat-service1
-          uri: lb://CHAT-SERVICE
+        - id: chat-service
+          uri: lb://chat-service
           predicates:
-            - Path=/chat/**
-
-        - id: chat-service2
-          uri: lb://CHAT-SERVICE
-          predicates:
-            - Path=/websocket/**
-
-
-
-          # PER ACCEDERE, DA BROWSER ANDARE SU: http://localhost:8080/DEMO1/say
-
-  application:
-    name: api-gateway-service
-  web:
-    resources:
-      static-locations: classpath:/static/
-server:
-  port: 8080
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+            - Path=/chat-service/**
