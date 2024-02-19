@@ -9,6 +9,7 @@ import java.util.List;
 @SpringBootApplication
 @RestController
 @RequestMapping("api/v1/canzoni")
+
 public class Ricerca_MySQL {
 
     public final CanzoniRepository canzoniRepository;
@@ -28,8 +29,8 @@ public class Ricerca_MySQL {
 
     record NewCanzoniRequest(
             String Titolo,
-            String Album,
-            String Artista,
+            Integer AlbumC,
+            Integer ArtistaC,
             Integer Anno,
             Integer Durata,
             String Feat
@@ -39,8 +40,8 @@ public class Ricerca_MySQL {
     public void  addCanzoni(@RequestBody NewCanzoniRequest request){
         Canzoni canzoni = new Canzoni();
         canzoni.setTitolo(request.Titolo());
-        canzoni.setAlbum(request.Album());
-        canzoni.setArtista(request.Artista());
+        canzoni.setAlbumC(request.AlbumC());
+        canzoni.setArtistaC(request.ArtistaC());
         canzoni.setAnno(request.Anno());
         canzoni.setDurata(request.Durata());
         canzoni.setFeat(request.Feat());

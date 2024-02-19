@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table (name = "Canzoni")
 public class Canzoni {
 
     @Id
@@ -16,19 +17,21 @@ public class Canzoni {
             strategy = GenerationType.SEQUENCE,
             generator = "canzoni_id_sequence"
     )
-    private Integer id;
+    @Column (nullable = false)
+    private Integer IdC;
+
     private String Titolo;
-    private String Album;
-    private String Artista;
+    private Integer AlbumC;
+    private Integer ArtistaC;
     private Integer Anno;
     private Integer Durata;
     private String Feat;
 
-    public Canzoni(Integer id, String titolo, String album, String artista, Integer anno, Integer durata, String feat) {
-        this.id = id;
+    public Canzoni(Integer idc, String titolo, Integer albumc, Integer artistac, Integer anno, Integer durata, String feat) {
+        this.IdC = idc;
         Titolo = titolo;
-        Album = album;
-        Artista = artista;
+        AlbumC = albumc;
+        ArtistaC = artistac;
         Anno = anno;
         Durata = durata;
         Feat = feat;
@@ -38,11 +41,11 @@ public class Canzoni {
     }
 
     public Integer getId() {
-        return id;
+        return IdC;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer idc) {
+        this.IdC = idc;
     }
 
     public String getTitolo() {
@@ -53,20 +56,20 @@ public class Canzoni {
         Titolo = titolo;
     }
 
-    public String getAlbum() {
-        return Album;
+    public Integer getAlbumC() {
+        return AlbumC;
     }
 
-    public void setAlbum(String album) {
-        Album = album;
+    public void setAlbumC(Integer albumc) {
+        AlbumC = albumc;
     }
 
-    public String getArtista() {
-        return Artista;
+    public Integer getArtistaC() {
+        return ArtistaC;
     }
 
-    public void setArtista(String artista) {
-        Artista = artista;
+    public void setArtistaC(Integer artistac) {
+        ArtistaC = artistac;
     }
 
     public Integer getAnno() {
@@ -98,21 +101,21 @@ public class Canzoni {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Canzoni canzoni = (Canzoni) o;
-        return Objects.equals(id, canzoni.id) && Objects.equals(Titolo, canzoni.Titolo) && Objects.equals(Album, canzoni.Album) && Objects.equals(Artista, canzoni.Artista) && Objects.equals(Anno, canzoni.Anno) && Objects.equals(Durata, canzoni.Durata) && Objects.equals(Feat, canzoni.Feat);
+        return Objects.equals(IdC, canzoni.IdC) && Objects.equals(Titolo, canzoni.Titolo) && Objects.equals(AlbumC, canzoni.AlbumC) && Objects.equals(ArtistaC, canzoni.ArtistaC) && Objects.equals(Anno, canzoni.Anno) && Objects.equals(Durata, canzoni.Durata) && Objects.equals(Feat, canzoni.Feat);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, Titolo, Album, Artista, Anno, Durata, Feat);
+        return Objects.hash(IdC, Titolo, AlbumC, ArtistaC, Anno, Durata, Feat);
     }
 
     @Override
     public String toString() {
         return "Canzoni{" +
-                "id=" + id +
+                "IdC=" + IdC +
                 ", Titolo='" + Titolo + '\'' +
-                ", Album='" + Album + '\'' +
-                ", Artista='" + Artista + '\'' +
+                ", AlbumC='" + AlbumC + '\'' +
+                ", ArtistaC='" + ArtistaC + '\'' +
                 ", Anno=" + Anno +
                 ", Durata=" + Durata +
                 ", Feat='" + Feat + '\'' +
