@@ -44,7 +44,7 @@ function Menu() {
           }, 50);
       }
       if (id == "chatButton") {
-          document.getElementById("ChatView")!.style.display = "block";
+          document.getElementById("ChatView")!.style.display = "grid";
           document.getElementById("ChatView")!.style.transition = "opacity 1s";
           setTimeout(function() {
               document.getElementById("ChatView")!.style.opacity = "1";

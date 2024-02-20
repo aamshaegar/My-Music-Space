@@ -10,6 +10,7 @@ import MusicView from "./components/MusicView"
 import UserView from "./components/UserView"
 import Search from "./components/Search";
 import CartView from "./components/CartView";
+import ChatMessage from "./components/ChatMessage";
 
 function App() {
   const name = "Aldo";
@@ -40,6 +41,7 @@ function App() {
             <HomeView></HomeView>
             <ChatView></ChatView>
             <ShopView></ShopView>
+            <ChatMessage></ChatMessage>
             <MusicView></MusicView>
           </div>
       </div>

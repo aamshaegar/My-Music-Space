@@ -203,6 +203,9 @@ body{
   display: none;
   margin-left:auto;
   margin-right:auto;
+  grid-template-columns: auto auto auto;
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .ShopView{
@@ -232,7 +235,7 @@ body{
   float:left;
 }
 
-.ChatView img{
+.Chat img{
   margin-left: 25%;
   width: 60%;
   height: 100%;
@@ -359,11 +362,10 @@ body{
   }
 }
 
-.ChatView p{
-  float:left;
-  top:6vh;
-  left: -13vh;
-  position: relative;
+.Chat p{
+  top:7vh;
+  left: 58%;
+  position: absolute;
   color:white;
   font-weight: bold;
 
@@ -760,11 +762,6 @@ body{
   display:block;
 }
 
-.ChatView{
-  display: none;
-  margin-left:auto;
-  margin-right:auto;
-}
 
 .ShopView{
   display:none;
@@ -782,7 +779,7 @@ body{
 .Chat{
   position: relative;
   height: 100%;
-  width: 33%;
+  width: 100%;
   float:left;
 }
 .VinylProduct, .TicketProduct, .MerchProduct{
@@ -793,13 +790,6 @@ body{
   float:left;
 }
 
-.ChatView img{
-  margin-left: 25%;
-  width: 60%;
-  height: 100%;
-  float:left;
-  position: relative;
-}
 .VinylProduct img{
   margin-left: 25%;
   width: 20vh;
@@ -920,15 +910,6 @@ body{
   }
 }
 
-.ChatView p{
-  float:left;
-  top:6vh;
-  left: -13vh;
-  position: relative;
-  color:white;
-  font-weight: bold;
-
-}
 
 .ShopView p{
   float:left;
@@ -1366,5 +1347,8 @@ body{
   cursor: pointer;
 }
 
+.Chat img{
+  cursor: pointer;
+}
 
 
