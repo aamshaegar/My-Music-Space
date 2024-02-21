@@ -44,10 +44,15 @@ function Menu() {
           }, 50);
       }
       if (id == "chatButton") {
-          document.getElementById("ChatView")!.style.display = "grid";
+          document.getElementById("ChatView")!.style.display = "block";
           document.getElementById("ChatView")!.style.transition = "opacity 1s";
+          document.getElementById("Chats")!.style.display = "grid";
+          document.getElementById("ChatMessage")!.style.display = "none";
           setTimeout(function() {
               document.getElementById("ChatView")!.style.opacity = "1";
+          }, 50);
+          setTimeout(function() {
+              document.getElementById("Chats")!.style.opacity = "1";
           }, 50);
       }
     }

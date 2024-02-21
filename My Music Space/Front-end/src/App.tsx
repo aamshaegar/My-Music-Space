@@ -10,7 +10,6 @@ import MusicView from "./components/MusicView"
 import UserView from "./components/UserView"
 import Search from "./components/Search";
 import CartView from "./components/CartView";
-import ChatMessage from "./components/ChatMessage";
 
 function App() {
   const name = "Aldo";
@@ -30,18 +29,16 @@ function App() {
       <div className="Search-User">
         <UserView name={name} surname={surname} email={email} plane={plane} ></UserView>
         <User name={name} />
-        <Search />
-        <Cart />
         <CartView productname={productname} type={type} price={price} vendor={vendor} date={date}></CartView>
+        <Cart />
       </div>
-
       <div className="Menu+View">
         <Menu />
           <div className="View" id="View">
+            <Search />
             <HomeView></HomeView>
             <ChatView></ChatView>
             <ShopView></ShopView>
-            <ChatMessage></ChatMessage>
             <MusicView></MusicView>
           </div>
       </div>

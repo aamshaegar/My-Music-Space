@@ -7,7 +7,6 @@ function ChatMessage({message}){
     }, [message]);
     return(
     <div className="ChatMessage" id="ChatMessage">
-        {console.log("Message in ChatMessage component:", message)}
             <p>{message}</p>
     </div>)
 

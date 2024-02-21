@@ -948,7 +948,8 @@ body{
 .cartImg{
   height: 100%;
   width: 100%;
-
+  float:right;
+  position: relative;
 }
 .MusicView{
   display:None;
@@ -1176,7 +1177,7 @@ body{
 }
 .imgContainer img {
   cursor: pointer;
-  float: left;
+  float: right;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -1351,4 +1352,16 @@ body{
   cursor: pointer;
 }
 
-
+#Chats{
+  display: grid;
+  margin-left:auto;
+  margin-right:auto;
+  grid-template-columns: auto auto auto;
+  overflow-y: auto;
+  max-height: 100%;
+}
+.cartDiv{
+  float:right;
+  margin-left: auto;
+  top:10vh;
+}
