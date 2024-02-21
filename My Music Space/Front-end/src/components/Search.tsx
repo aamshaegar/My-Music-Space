@@ -7,9 +7,10 @@ function Search() {
         <input
           type="text"
           className="searchTerm"
-          placeholder="What are you looking for?"
+          placeholder="Cosa stai cercando?"
         />
           <i className="fa fa-search"></i>
+          <button className="back" id="back" >&lt;</button>
       </div>
   );
 }

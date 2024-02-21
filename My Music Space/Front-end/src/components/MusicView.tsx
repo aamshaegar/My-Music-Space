@@ -38,7 +38,6 @@ function MusicView() {
                 <Playlist></Playlist>
                 <Playlist></Playlist>
                 <Playlist></Playlist>
-                <Playlist></Playlist>
             </div>
             <div className="NewMusicColumn">
                 <p>Nuove Uscite</p>

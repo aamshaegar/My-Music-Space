@@ -58,36 +58,6 @@ body{
   object-fit: cover
 }
 
-.menuButton{
-  background-color: #232425;
-  box-shadow: #000000 0 0 2vh inset;
-  box-sizing: border-box;
-  appearance: none;
-  border-style: none;
-  color:white;
-  border-radius: 5vh;
-  border: 0;
-  height:7vh;
-  width:25vh;
-  position: relative;
-  top: 11vh;
-  left: 5vh;
-  font-weight: bold;
-  font-style: italic;
-  font-size: 3vh;
-  display: inline-block;
-  cursor: pointer;
-  letter-spacing: -.24px;
-  margin:0;
-  outline: none;
-  text-align: center;
-  text-decoration: none;
-  transition: all .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin-bottom: 4vh;
-}
 
 .menuButton:hover{
   background-color: #3E99CF !important;
@@ -137,21 +107,11 @@ body{
   top: 5vh;
   margin-left: 2vh;
   border-radius: 50vh;
-  border: 0;
+  border-style: solid;
   padding-left: 6vh;
+  border-color: #3E99CF;
   color:white;
   float: left;
-}
-
-.Lente{
-  position: relative;
-  float:left;
-  width: 4vh;
-  height: 4vh;
-  top: 5vh;
-  left:6vh;
-  border-radius: 50vh;
-  z-index: 1;
 }
 
 
@@ -159,27 +119,15 @@ body{
   background-color: #404040;
   margin-right: 5%;
   width: 75%;
-  height: 80vh;
-  position: relative;
-  left: 5vh;
+  height: 97%;
+  position: absolute;
+  left: 45vh;
   border-radius: 5vh;
   float: left;
+  top: 1vh;
 }
 
-.Container{
-  height: 24vh;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-  position: relative;
-  width: 97%;
-  border-radius: 5vh;
-  color: white;
-  font-weight: bold;
-  font-style: italic;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #232425;
-}
+
 .title{
   margin-left: 5vh;
   margin-top: 1vh;
@@ -203,7 +151,7 @@ body{
   display: none;
   margin-left:auto;
   margin-right:auto;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
   overflow-y: auto;
   max-height: 100%;
 }
@@ -264,32 +212,6 @@ body{
   transform: scale(1.2);
 }
 
-
-.TicketFront {
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-  left: 15%;
-  margin-left: 25%;
-  width: 10vh;
-  height: 15vh;
-  float:left;
-  position: relative;
-  transform: rotate(25deg);
-  z-index: 1;
-  object-fit: cover;
-}
-.TicketBack {
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-  left: 25%;
-  margin-left: 25%;
-  width: 10vh;
-  height: 15vh;
-  float:left;
-  position: absolute;
-  transform: rotate(30deg);
-  object-fit: cover;
-}
 
 .TicketFront:hover{
   animation: myAnim 2s ease infinite forwards;
@@ -363,7 +285,7 @@ body{
 }
 
 .Chat p{
-  top:7vh;
+  top: 30%;
   left: 58%;
   position: absolute;
   color:white;
@@ -446,34 +368,6 @@ body{
   border-radius: 2vh;
 }
 
-.Playlist button{
-  position: relative;
-  left: 100%;
-  background-color: #232425;
-  margin-left: 1vh;
-  top:25%;
-  box-shadow: white 0 0 1vh inset;
-  box-sizing: border-box;
-  appearance: none;
-  border-style: none;
-  color:white;
-  border-radius: 5vh;
-  font-weight: bold;
-  font-style: italic;
-  font-size: 3vh;
-  display: inline-block;
-  cursor: pointer;
-  letter-spacing: -.24px;
-  outline: none;
-  text-align: center;
-  text-decoration: none;
-  transition: all .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin-bottom: 4vh;
-
-}
 
 .PlaylistColumn p,.NewMusicColumn p, .RadioColumn p{
   margin: 0;
@@ -494,65 +388,12 @@ body{
   position: absolute;
   float: left;
 }
-.NewMusic button{
-  margin-bottom: 2vh;
-  top: 2vh;
-  position: relative;
-  left: 20%;
-  background-color: #232425;
-  margin-left: 1vh;
-  box-shadow: white 0 0 1vh inset;
-  box-sizing: border-box;
-  appearance: none;
-  border-style: none;
-  color:white;
-  border-radius: 5vh;
-  font-weight: bold;
-  font-style: italic;
-  font-size: 3vh;
-  display: inline-block;
-  cursor: pointer;
-  letter-spacing: -.24px;
-  outline: none;
-  text-align: center;
-  text-decoration: none;
-  transition: all .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
+
 
 .Radio{
   margin-top: 2vh;
 }
-.Radio img{
-  width: 10vh;
-  height: 10vh;
-  border-radius: 50%;
-  position: relative;
-  float: left;
-  margin-bottom: 2vh;
-  background-color: #232425;
-  margin-left: 1vh;
-  box-shadow: white 0 0 1vh inset;
-  box-sizing: border-box;
-  appearance: none;
-  border-style: none;
-  color:white;
-  font-weight: bold;
-  font-style: italic;
-  font-size: 3vh;
-  display: inline-block;
-  cursor: pointer;
-  letter-spacing: -.24px;
-  outline: none;
-  text-align: center;
-  text-decoration: none;
-  transition: all .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
+
 
 .Radio p{
   position: relative;
@@ -626,10 +467,9 @@ body{
   box-shadow: #000000 0 0 2vh inset;
   box-sizing: border-box;
   appearance: none;
-  border-style: none;
   color:white;
   border-radius: 5vh;
-  border: 0;
+  border: 0 none;
   height:7vh;
   width:25vh;
   position: relative;
@@ -641,7 +481,6 @@ body{
   display: inline-block;
   cursor: pointer;
   letter-spacing: -.24px;
-  margin:0;
   outline: none;
   text-align: center;
   text-decoration: none;
@@ -649,7 +488,7 @@ body{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin-bottom: 4vh;
+  margin: 0 0 4vh;
 }
 
 .menuButton:hover{
@@ -692,18 +531,7 @@ body{
 .search{
   float: left;
   width: 100%;
-}
-.search input{
-  position: relative;
-  background-color: #404040;
-  width: 88%;
-  top: 5vh;
-  margin-left: 2vh;
-  border-radius: 50vh;
-  border: 0;
-  padding-left: 6vh;
-  color:white;
-  float: left;
+  position: absolute;
 }
 
 .Lente{
@@ -711,36 +539,22 @@ body{
   float:left;
   width: 4vh;
   height: 4vh;
-  top: 5vh;
-  left:6vh;
+  top: 5.5vh;
+  left:6.5vh;
   border-radius: 50vh;
   z-index: 1;
 }
 
 
-.View {
-  background-color: #404040;
-  margin-right: 5%;
-  width: 75%;
-  height: 80vh;
-  position: relative;
-  left: 5vh;
-  border-radius: 5vh;
-  float: left;
-}
-
 .Container{
   height: 24vh;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
   position: relative;
   width: 97%;
   border-radius: 5vh;
   color: white;
   font-weight: bold;
   font-style: italic;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 2vh auto;
   background-color: #232425;
 }
 .title{
@@ -962,7 +776,7 @@ body{
 }
 .PlaylistColumn, .NewMusicColumn, .RadioColumn {
   width: 33%;
-  height: 100%;
+  height: 85%;
   position: absolute;
   color:white;
 }
@@ -1219,10 +1033,9 @@ body{
   box-shadow: #000000 0 0 2vh inset;
   box-sizing: border-box;
   appearance: none;
-  border-style: none;
   color:white;
   border-radius: 5vh;
-  border: 0;
+  border: 0 none;
   height:7vh;
   width:25vh;
   position: relative;
@@ -1234,7 +1047,6 @@ body{
   display: inline-block;
   cursor: pointer;
   letter-spacing: -.24px;
-  margin:0;
   outline: none;
   text-align: center;
   text-decoration: none;
@@ -1242,7 +1054,7 @@ body{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin-bottom: 4vh;
+  margin: 0 0 4vh;
 }
 
 .BuyButton button:hover{
@@ -1313,10 +1125,9 @@ body{
   box-shadow: #000000 0 0 2vh inset;
   box-sizing: border-box;
   appearance: none;
-  border-style: none;
   color:white;
   border-radius: 5vh;
-  border: 0;
+  border: 0 none;
   height:7vh;
   width:25vh;
   position: relative;
@@ -1326,7 +1137,6 @@ body{
   display: inline-block;
   cursor: pointer;
   letter-spacing: -.24px;
-  margin:0;
   outline: none;
   text-align: center;
   text-decoration: none;
@@ -1334,7 +1144,7 @@ body{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin-bottom: 4vh;
+  margin: 0 0 4vh;
 }
 #LoginButton:hover{
   background-color: #3E99CF;
@@ -1356,7 +1166,7 @@ body{
   display: grid;
   margin-left:auto;
   margin-right:auto;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto ;
   overflow-y: auto;
   max-height: 100%;
 }
@@ -1364,4 +1174,57 @@ body{
   float:right;
   margin-left: auto;
   top:10vh;
+}
+
+.HomeView, .ChatView, .MusicView, .ShopView{
+  top:5%;
+  margin-top: 7%;
+  height: 85vh;
+
+}
+
+/*SCROLL BAR*/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#Chat img{
+  border-width: thick;
+  border-color: #3E99CF;
+  border-style: solid;
+  border-radius: 30%;
+}
+
+#Chat{
+  padding-top: 7%;
+}
+
+#back{
+  width: 7vh;
+  height: 7vh;
+  margin-top: 4vh;
+  margin-left:2vh;
+  background-color: #232425;
+  border-radius:50%;
+  color: white;
+  font-weight: bold;
+  font-size: x-large;
 }
