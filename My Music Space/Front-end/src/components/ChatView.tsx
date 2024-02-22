@@ -13,6 +13,8 @@ function Chat({name, handleMessageChange }){
                 document.getElementById("ChatMessage")!.style.opacity = "1";}, 50);
             const message = { name: name };
             handleMessageChange(message.name);
+            $(".search").hide(0);
+            $("#ChatMessage").show(0);
         }
     return(
         <div className="Chat" id="Chat"  onClick={() => selected(name)}>

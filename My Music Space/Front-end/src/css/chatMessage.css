@@ -1,0 +1,88 @@
+#ChatMessage{
+    display: none;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-bottom: 5%;
+    color: white;
+    background-color:  #384066;
+    border-radius: 2vh;
+    min-height: 90%;
+    max-height: 95%;
+    position: relative;
+}
+
+#ChatMessage .searchTerm{
+    width: 100%;
+}
+
+#ChatMessage .searchTerm input{
+    background-color: white;
+    width: 94%;
+    margin-left: 3%;
+    border-radius: 50vh;
+    border-style: solid;
+    padding-right: 6vh;
+    padding-left: 2vh;
+    border-color: #3E99CF;
+    color:404040;
+    margin-bottom: 3%;
+    position: absolute;
+    bottom: 0;
+}
+
+#ChatMessage .title{
+    background-color: #09214b;
+    border-radius: 1vh;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    padding: 1%;
+    align-content: center;
+    align-items: center;
+}
+
+#ChatMessage .title img{
+    width: 35%;
+    height: 60%;
+    margin: 1%;
+}
+
+#ChatMessage .title{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#ChatMessage .title i{
+    color: #3E99CF;
+}
+
+#ChatMessage .titleName{
+    margin: 1%;
+}
+
+#ChatMessage .chatContainer{
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 1%;
+}
+
+#ChatMessage .chatContainer #ChatList{
+    overflow-y: auto;
+    max-height: 50vh;
+}
+
+.chatContainer .OtherMessageBox{
+    margin: 1%;
+    padding: 2%;
+    border-radius: 1vh;
+    background-color: #182a59;
+    color: antiquewhite;
+}
+
+.chatContainer .MyMessageBox{
+    margin: 1%;
+    padding: 2%;
+    border-radius: 1vh;
+    background-color: #3c62c2;
+    color: antiquewhite;
+}

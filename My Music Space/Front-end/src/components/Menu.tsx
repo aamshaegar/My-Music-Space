@@ -23,6 +23,7 @@ function Menu() {
       document.getElementById("MusicView")!.style.opacity = "0";
       document.getElementById("MusicView")!.style.display = "none";
       if (id == "homeButton") {
+          $(".search").show(0);
           document.getElementById("HomeView")!.style.display = "block";
           document.getElementById("HomeView")!.style.transition = "opacity 1s";
           setTimeout(function() {
@@ -30,6 +31,7 @@ function Menu() {
           }, 50);
       }
       if (id == "musicButton") {
+          $(".search").show(0);
           document.getElementById("MusicView")!.style.display = "block";
           document.getElementById("MusicView")!.style.transition = "opacity 1s";
           setTimeout(function() {
@@ -37,6 +39,7 @@ function Menu() {
           }, 50);
       }
       if (id == "shopButton") {
+          $(".search").show(0);
           document.getElementById("ShopView")!.style.display = "block";
           document.getElementById("ShopView")!.style.transition = "opacity 1s";
           setTimeout(function() {
@@ -44,10 +47,11 @@ function Menu() {
           }, 50);
       }
       if (id == "chatButton") {
+          $(".search").show(0);
           document.getElementById("ChatView")!.style.display = "block";
           document.getElementById("ChatView")!.style.transition = "opacity 1s";
           document.getElementById("Chats")!.style.display = "grid";
-          document.getElementById("ChatMessage")!.style.display = "none";
+          //document.getElementById("ChatMessage")!.style.display = "none";
           setTimeout(function() {
               document.getElementById("ChatView")!.style.opacity = "1";
           }, 50);
