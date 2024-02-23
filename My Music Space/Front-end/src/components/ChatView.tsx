@@ -18,8 +18,8 @@ function Chat({name, handleMessageChange }){
         }
     return(
         <div className="Chat" id="Chat"  onClick={() => selected(name)}>
-            <img src={ImgChat}></img>
             <p>{name}</p>
+            <img src={ImgChat}></img>
         </div>
     );
 }

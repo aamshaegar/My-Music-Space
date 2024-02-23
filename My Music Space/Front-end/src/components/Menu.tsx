@@ -1,4 +1,5 @@
 const imageUrl1 = "/src/img/backgroundBlu.jpg";
+const imageUrlInsta="/src/img/Instagram_logo_2022.svg.png"
 const imageUrl2 =
   "https://as1.ftcdn.net/v2/jpg/04/54/29/98/1000_F_454299832_EAOJOc0GKq8S5dsXuv6B79bbIc0GhQmy.jpg";
 
@@ -64,16 +65,10 @@ function Menu() {
 
   return (
     <div className="Menu">
-      <div>
         <div className="MySongsButton">
           <img className="immagini" src={imageUrl1} alt="Immagine" />
           <div className="patina"></div>
         </div>
-        <div className="MySongsButton">
-          <img className="immagini" src={imageUrl2} alt="Immagine" />
-          <div className="patina"></div>
-        </div>
-      </div>
       <button
         className="menuButton"
         id="homeButton"
@@ -104,7 +99,7 @@ function Menu() {
       </button>
       <div className="Social">
         <div className="SocialButton">
-          <img className="immagini" src={imageUrl1} alt="Immagine" />
+          <img className="immagini" src={imageUrlInsta} alt="Immagine" />
           <div className="patina"></div>
         </div>
         <div className="SocialButton">

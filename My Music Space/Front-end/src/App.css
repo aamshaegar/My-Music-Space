@@ -284,12 +284,28 @@ body{
   }
 }
 
+.Chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.Chat img {
+  max-width: 100%;
+  height: auto;
+}
+
 .Chat p{
-  top: 30%;
-  left: 58%;
+  margin: auto;
+  z-index: 1;
   position: absolute;
   color:white;
   font-weight: bold;
+  font-size: x-large;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  Cursor: pointer;
 
 }
 
@@ -425,11 +441,19 @@ body{
   border-radius: 50%;
   overflow: hidden;
   position: relative;
+  left:22%;
   padding-left: 0.05vh;
   top: 5vh;
-  margin-left: 5vh;
   float: left;
 }
+
+.patina:hover
+{
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+
 .Social{
   top:10vh;
   position:relative;
@@ -1207,10 +1231,9 @@ body{
 }
 
 #Chat img{
-  border-width: thick;
-  border-color: #3E99CF;
-  border-style: solid;
   border-radius: 30%;
+  background: conic-gradient(from 180deg at 50% 50%, #00324F 0deg, #005282 120deg, #0082CF 240deg, #3E99CF 360deg);
+
 }
 
 #Chat{
