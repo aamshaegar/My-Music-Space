@@ -23,6 +23,12 @@ function Menu() {
 
 
   function selected(id: string) {
+
+      // GESTION BRUTTISSIMA... Per Ora OK... Meglio usare un array di booleani DOPO
+      if(document.getElementById(id)!.style.backgroundColor === "rgb(62, 153, 207)"){
+        return;
+      }
+
       sign_button_selected(id);
       document.getElementById(id)!.style.backgroundColor = "#3E99CF";
       document.getElementById("HomeView")!.style.opacity = "0";
@@ -33,7 +39,9 @@ function Menu() {
       document.getElementById("ChatView")!.style.display = "none";
       document.getElementById("MusicView")!.style.opacity = "0";
       document.getElementById("MusicView")!.style.display = "none";
-      //$("#ChatMessage").hide(0);
+      
+      // GESTIONE BRUTTA, PER IL MOMENTO OK;
+      $("#ChatMessage").hide(0);
 
       if (id == "homeButton") {
           $(".search").show(0);

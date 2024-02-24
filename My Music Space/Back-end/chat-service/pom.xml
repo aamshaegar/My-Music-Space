@@ -20,7 +20,6 @@
     </properties>
     <dependencies>
 
-
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

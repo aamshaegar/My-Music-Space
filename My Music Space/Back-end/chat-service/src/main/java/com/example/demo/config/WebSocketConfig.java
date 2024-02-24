@@ -25,7 +25,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     //@CrossOrigin(origins = "http://localhost:5500")
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/websocket").setAllowedOrigins("http://localhost:5500").withSockJS();
+        registry.addEndpoint("/websocket").setAllowedOrigins("http://localhost:5173").withSockJS().setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js");
         //registry.addEndpoint("/websocket").withSockJS();
     }
 

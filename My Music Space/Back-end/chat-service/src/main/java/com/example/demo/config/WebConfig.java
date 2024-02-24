@@ -15,7 +15,7 @@ public class WebConfig {
             public void addCorsMappings(final CorsRegistry registry) {
                 // Modificare qui con la porta del client...
                 // assumiamo il client esegui su un server locale
-                registry.addMapping("/**").allowedMethods("*").allowedHeaders("*").allowedOrigins("http://localhost:5500");
+                registry.addMapping("/**").allowedMethods("*").allowedHeaders("*").allowedOrigins("http://localhost:5173");
             }
         };
     }

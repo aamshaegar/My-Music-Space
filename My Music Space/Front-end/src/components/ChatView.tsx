@@ -7,13 +7,12 @@ import Chat from "./Chat";
 function ChatView() {
     
     // questa lista verrà richiesta quando clicco sul bottone Chat, quindi sarà memorizzata nel padre e passata al figlio.
-    const ChatNames = ["#Pop","#Classic","#Metal","#Funky","#R&B","#Indie","#Soul","Banana","Casa"];
+    const ChatNames = ["#general","#classic","#metal","#Funky","#R&B","#Indie","#Soul","Banana","Casa"];
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [message, setMessage] = useState("");
 
     useEffect(() => {
         setIsButtonClicked(false);
-        //retrieveMessagesList();
     }, []);
     
     
