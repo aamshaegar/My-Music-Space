@@ -183,13 +183,7 @@ body{
   float:left;
 }
 
-.Chat img{
-  margin-left: 25%;
-  width: 60%;
-  height: 100%;
-  float:left;
-  position: relative;
-}
+
 .VinylProduct img{
   margin-left: 25%;
   width: 20vh;
@@ -293,8 +287,10 @@ body{
 }
 
 .Chat img {
-  max-width: 100%;
-  height: auto;
+  max-width: 80%;
+  cursor: pointer;
+  width: 60%;
+  height: 100%;
 }
 
 .Chat p{
@@ -1182,9 +1178,6 @@ body{
   cursor: pointer;
 }
 
-.Chat img{
-  cursor: pointer;
-}
 
 #Chats{
   display: grid;

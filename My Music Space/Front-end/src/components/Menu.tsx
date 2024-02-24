@@ -1,19 +1,29 @@
+import React, { useEffect } from 'react';
+
 const imageUrl1 = "/src/img/backgroundBlu.jpg";
 const imageUrlInsta="/src/img/Instagram_logo_2022.svg.png"
-const imageUrl2 =
-  "https://as1.ftcdn.net/v2/jpg/04/54/29/98/1000_F_454299832_EAOJOc0GKq8S5dsXuv6B79bbIc0GhQmy.jpg";
+//const imageUrl2 = "https://as1.ftcdn.net/v2/jpg/04/54/29/98/1000_F_454299832_EAOJOc0GKq8S5dsXuv6B79bbIc0GhQmy.jpg";
 
 function Menu() {
+
+  // per eseguire istruzioni all'atto del caricamento del componente
+  // non è possibile interagire direttamente col DOM qui dentro, quindi
+  // bisogna dichiarare una funzione ad hoc per ogni azione sul DOM
+  useEffect(() => {
+    sign_button_selected("homeButton");
+  }, []);
+
+  function sign_button_selected(id: string){
+    document.getElementById("homeButton")!.style.backgroundColor = "#232425";
+    document.getElementById("musicButton")!.style.backgroundColor = "#232425";
+    document.getElementById("shopButton")!.style.backgroundColor = "#232425";
+    document.getElementById("chatButton")!.style.backgroundColor = "#232425";
+    document.getElementById(id)!.style.backgroundColor = "#3E99CF";
+  }
+
+
   function selected(id: string) {
-      console.log("Sono qui");
-      const elements = Array.from(
-          document.getElementsByClassName(
-              "menuButton"
-          ) as HTMLCollectionOf<HTMLElement>
-      );
-      for (let i = 0; i < elements.length; i++) {
-          elements[i].style.backgroundColor = "#232425";
-      }
+      sign_button_selected(id);
       document.getElementById(id)!.style.backgroundColor = "#3E99CF";
       document.getElementById("HomeView")!.style.opacity = "0";
       document.getElementById("HomeView")!.style.display = "none";
@@ -23,6 +33,8 @@ function Menu() {
       document.getElementById("ChatView")!.style.display = "none";
       document.getElementById("MusicView")!.style.opacity = "0";
       document.getElementById("MusicView")!.style.display = "none";
+      //$("#ChatMessage").hide(0);
+
       if (id == "homeButton") {
           $(".search").show(0);
           document.getElementById("HomeView")!.style.display = "block";

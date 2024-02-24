@@ -9,12 +9,12 @@ function ChatMex({object}){
 
             {object['sender'] == 'Io' ? 
     
-                <div className="MyMessageBox">
+                <div className="MessageBox MyMessageBox">
                     <div className="sender">{object['sender']}</div>
                     <div className="content">{object['content']}</div>
                 </div>
             : 
-                <div className="OtherMessageBox">
+                <div className="MessageBox OtherMessageBox">
                     <div className="sender">{object['sender']}</div>
                     <div className="content">{object['content']}</div>
                 </div>
@@ -24,27 +24,53 @@ function ChatMex({object}){
     );
 }
 
-function ChatMessage({message}){
+function ChatMessage({message, handleClick}){
+    
+    // In ascolto sulla variabile "message == nome della chatroom"
+    
+    useEffect(() => {
+        //console.log("In ChatMessage! ")
+    }, [message]);
+    
+
+    /*  Qui bisogna fare le chiamate al "chat-service".
+        Una volta catturato il click su una certa chat, all'atto del caricamento di chatMessage
+        facciamo partire una richiesta Di connessione al chat-service ottenendo 
+        la lista dei messaggi da visualizzare. 
+    */
+
+    // GESTIRE LE CORS POLICY CON REACT JS
+
+    // ----------------------------------------------------
+    // Dichiarazione delle variabili
+    // ----------------------------------------------------
 
     // Type: JOIN, CHAT, LEAVE
-    const ChatMessages = [
+    let ChatMessages = [
         {"id":null,"content":"Contenuto1","sender":"Io","type":"CHAT","room":"NomeStanza","date":"Data"},
         {"id":null,"content":"Contenuto2","sender":"Nome mittente","type":"CHAT","room":"NomeStanza","date":"Data"},
         {"id":null,"content":"Contenuto3","sender":"Nome mittente","type":"CHAT","room":"NomeStanza","date":"Data"},
         {"id":null,"content":"Contenuto4","sender":"Nome mittente","type":"CHAT","room":"NomeStanza","date":"Data"}
     ];
 
-    useEffect(() => {
-        console.log("Nuovo messaggio ricevuto:", message);
-    }, [message]);
-    
+
+    function back(){
+        $("#ChatMessage").fadeOut(300, function(){
+            handleClick(-1);
+        }); 
+    }
     
     
     return(
         <div className="ChatMessage" id="ChatMessage">
             <div className="title">
-                <div className="titleSymbol"> <img src="/src/img/people.png" alt="People"/></div>
-                <div className="titleName">Chat Room <i>{message}</i></div>
+                <div className="left">
+                    <div className="titleSymbol"> <img src="/src/img/people.png" alt="People"/></div>
+                    <div className="titleName">Chat Room <i>{message}</i></div>
+                </div>
+                <div className="right">
+                    <div className="backButton"><button id="backButton" onClick={() => {back()}}> &#8592;</button></div>
+                </div>
             </div>
 
             <div className="chatContainer">

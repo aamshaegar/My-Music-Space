@@ -1,47 +1,49 @@
 import {useState} from "react";
+import {useEffect} from "react";
 import ChatMessage from "./ChatMessage";
+import Chat from "./Chat";
 
-const ImgChat = "/src/img/chat-icon.png"
-
-function Chat({name, handleMessageChange }){
-        function selected(name){
-            document.getElementById("Chats")!.style.opacity = "0";
-            document.getElementById("Chats")!.style.display = "none";
-            document.getElementById("ChatMessage")!.style.display = "block";
-            document.getElementById("ChatMessage")!.style.transition = "opacity 1s";
-            setTimeout(function() {
-                document.getElementById("ChatMessage")!.style.opacity = "1";}, 50);
-            const message = { name: name };
-            handleMessageChange(message.name);
-            $(".search").hide(0);
-            $("#ChatMessage").show(0);
-        }
-    return(
-        <div className="Chat" id="Chat"  onClick={() => selected(name)}>
-            <p>{name}</p>
-            <img src={ImgChat}></img>
-        </div>
-    );
-}
-
-
-const ChatNames = ["#Pop","#Classic","#Metal","#Funky","#R&B","#Indie","#Soul","Banana","Casa"];
 
 function ChatView() {
+    
+    // questa lista verrà richiesta quando clicco sul bottone Chat, quindi sarà memorizzata nel padre e passata al figlio.
+    const ChatNames = ["#Pop","#Classic","#Metal","#Funky","#R&B","#Indie","#Soul","Banana","Casa"];
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [message, setMessage] = useState("");
 
+    useEffect(() => {
+        setIsButtonClicked(false);
+        //retrieveMessagesList();
+    }, []);
+    
+    
     const handleMessageChange = (newMessage) => {
         setMessage(newMessage);
     };
+
+
+    // crea il chatMessage Dinamicamente quando clicco su una chat
+    const handleClick = (index) => { //ascolto sulla chiat cliccata e retropropago l'indice dell'array Chats
+        if(index === -1){
+            setIsButtonClicked(false);
+            $(".search").fadeIn(400);
+            $("#Chats").fadeIn(400);
+        }
+        else
+            setIsButtonClicked(true);
+    };
+
+
     return (
         <div className="ChatView" id="ChatView">
             <div id="Chats">
-            {ChatNames.map(name => (
-                <Chat key={name} name={name} handleMessageChange={handleMessageChange} />
-            ))}
+                {ChatNames.map((name,i) => (
+                    <Chat key={i} index={i} name={name} handleClick={handleClick} handleMessageChange={handleMessageChange} />
+                ))}
             </div>
-            <ChatMessage message={message} />
+                {isButtonClicked && <ChatMessage message={message} handleClick={handleClick}/>}
         </div>
     );
 }
+
 export default ChatView;
