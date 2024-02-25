@@ -1,0 +1,6 @@
+++ aggiungere i services tra i controller e i repository
+++ riordinare il codice (la relazione artist - song deve essere gestita da SongContrller, ora lo è da ArtistController)
+
+++ (opzionale) aggiungere url delle immagini
+++ (opzionale) aggiungere tracce audio e player
+

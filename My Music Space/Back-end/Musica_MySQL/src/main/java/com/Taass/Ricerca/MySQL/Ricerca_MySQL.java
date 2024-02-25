@@ -1,25 +1,24 @@
 package com.Taass.Ricerca.MySQL;
 
+//https://www.youtube.com/watch?v=f5bdUjEIbrg
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @SpringBootApplication
 @RestController
 @RequestMapping("api/v1/canzoni")
-
 public class Ricerca_MySQL {
-
-    public final CanzoniRepository canzoniRepository;
-
-    public Ricerca_MySQL(CanzoniRepository canzoniRepository) {
-        this.canzoniRepository = canzoniRepository;
-    }
 
     public static void main(String[] args){
         SpringApplication.run(Ricerca_MySQL.class, args);
+    }
+
+    //public final CanzoniRepository canzoniRepository;
+
+    /*public Ricerca_MySQL(CanzoniRepository canzoniRepository) {
+        this.canzoniRepository = canzoniRepository;
     }
 
     @GetMapping
@@ -52,4 +51,5 @@ public class Ricerca_MySQL {
     public void deleteCanzoni(@PathVariable("canzoniId") Integer id){
         canzoniRepository.deleteById(id);
     }
+     */
 }
