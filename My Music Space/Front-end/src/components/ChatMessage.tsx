@@ -55,7 +55,7 @@ function ChatMessage({message, handleClick}){
 
 
     function updateMessages(newMessage){
-        console.log("Aggiorno lista ", newMessage)
+        //console.log("Aggiorno lista ", newMessage)
         setChatMessages([...array, newMessage]);
         array = [...array, newMessage];
     }
@@ -104,6 +104,7 @@ function ChatMessage({message, handleClick}){
 
     function onError(error) {
         alert('ERROR! Non è stato possibile stabilire alcuna connessione con il webSocket server! ');
+        handleClick(-1);
     }
 
 
@@ -112,7 +113,6 @@ function ChatMessage({message, handleClick}){
             stompClient.disconnect();
             stompClient = null;
             setStatus("disconnected!")
-            
         }
     }
 
@@ -161,7 +161,7 @@ function ChatMessage({message, handleClick}){
                 date: new Date().toLocaleString('en-GB')
             };
     
-            console.log(new_chatMessage)
+            //console.log(new_chatMessage)
             stompClient.send("/app/chat/" + actualRoom, {}, JSON.stringify(new_chatMessage));
             setInputValue("");
         }
