@@ -143,7 +143,7 @@ body{
   left:5vh;
 }
 
-.HomeView{
+.MusicView{
   display:block;
 }
 
@@ -343,15 +343,14 @@ body{
   width: 100%;
   
 }
-.MusicView{
-  display:None;
-}
+
 
 /*Music View*/
 
 .MusicView{
   width:100%;
 }
+
 .PlaylistColumn, .NewMusicColumn, .RadioColumn {
   width: 33%;
   height: 100%;
@@ -592,9 +591,6 @@ body{
   left:5vh;
 }
 
-.HomeView{
-  display:block;
-}
 
 
 .ShopView{
@@ -785,9 +781,7 @@ body{
   float:right;
   position: relative;
 }
-.MusicView{
-  display:None;
-}
+
 
 /*Music View*/
 
@@ -937,11 +931,12 @@ body{
   top: 2vh;
 }
 
-.HomeView{
+
+.MusicView{
   opacity: 1;
 }
 
-.MusicView, .ChatView, .ShopView{
+.ChatView, .ShopView{
   opacity: 0;
 }
 
@@ -1193,7 +1188,7 @@ body{
   top:10vh;
 }
 
-.HomeView, .ChatView, .MusicView, .ShopView{
+.ChatView, .MusicView, .ShopView{
   top:5%;
   margin-top: 7%;
   height: 85vh;

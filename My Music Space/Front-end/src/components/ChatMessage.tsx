@@ -48,12 +48,17 @@ function ChatMessage({message, handleClick}){
     const [chatMessages, setChatMessages] = useState([]);
     const [status, setStatus] = useState("disconnected!");
     const [inputValue, setInputValue] = useState('');
-
-    
-    
     let username = "Aldo";
     let actualRoom = message.replace("#", "");
     let array = [];
+
+
+
+    function updateMessages(newMessage){
+        console.log("Aggiorno lista ", newMessage)
+        setChatMessages([...array, newMessage]);
+        array = [...array, newMessage];
+    }
 
 
     const handleChange = (event) => {
@@ -95,8 +100,6 @@ function ChatMessage({message, handleClick}){
     function onConnected() {
         stompClient.subscribe('/topic/messages/' + actualRoom, onMessageReceived);
         stompClient.send("/app/chat/" + actualRoom, {}, JSON.stringify({sender: username, type: 'JOIN'}))
-
-        
     }
 
     function onError(error) {
@@ -138,8 +141,7 @@ function ChatMessage({message, handleClick}){
         } else if (new_message.type === 'LEAVE') {
             setStatus("left")
         } else {
-            array.push(new_message);
-            setChatMessages(array);
+            updateMessages(new_message);
         }
     }
 

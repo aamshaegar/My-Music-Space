@@ -1,30 +1,13 @@
 const ImgPlaylist ="/src/img/texas-road-trip-playlist.jpg"
 const ImgRadio="/src/img/music-note.png"
 
-function Album({object}){
+function Object({object}){
     return(
-        <div className="Playlist">
-            <img src={object['imgURL']}></img>
-            <button>{object['name']}</button>
-        </div>
-    );
-}
-
-function Artista({object}){
-    return(
-        <div className="NewMusic">
-            <img src={object['imgURL']}></img>
-            <button>{object['name']}</button>
-        </div>
-
-    );
-}
-
-function Brano({object}){
-    return(
-        <div className="Radio">
-            <p>{object['name']}</p>
-            <img src={object['imgURL']}></img>
+        <div className="Object">
+            <div className="productImg">
+                <img src={object['imgURL']}></img>
+            </div>
+            <div className="description">{object['title']}</div>
         </div>
     );
 }
@@ -37,59 +20,79 @@ function MusicView() {
     // Type 3 == Brani
 
     const objects = [{
+        title: "Viva la vida",
         type: 1,
-        name: "Album1",
-        imgURL: "/src/img/texas-road-trip-playlist.jpg"
+        imgURL: "/src/img/Viva la vida.jpg",
     },
     {
+        title: "Viva la vida",
         type: 1,
-        name: "Album2",
-        imgURL: "/src/img/texas-road-trip-playlist.jpg"
+        imgURL: "/src/img/Viva la vida.jpg",
+    },
+
+    {
+        title: "Viva la vida",
+        type: 1,
+        imgURL: "/src/img/Viva la vida.jpg",
+    },
+
+    {
+        title: "Viva la vida",
+        type: 1,
+        imgURL: "/src/img/Viva la vida.jpg",
+    },
+
+    {
+        title: "Viva la vida",
+        type: 1,
+        imgURL: "/src/img/Viva la vida.jpg",
     },
     {
+        title: "Viva la vida",
         type: 2,
-        name: "Artista1",
-        imgURL: "/src/img/texas-road-trip-playlist.jpg"
+        imgURL: "/src/img/Viva la vida.jpg",
     },
     {
+        title: "Viva la vida",
         type: 2,
-        name: "Artista2",
-        imgURL: "/src/img/texas-road-trip-playlist.jpg"
+        imgURL: "/src/img/Viva la vida.jpg",
     },
     {
+        title: "Viva la vida",
         type: 3,
-        name: "Brano1",
-        imgURL: "/src/img/music-note.png"
+        imgURL: "/src/img/Viva la vida.jpg",
     },
     {
+        title: "Viva la vida",
         type: 3,
-        name: "Brano2",
-        imgURL: "/src/img/music-note.png"
-    },]
+        imgURL: "/src/img/Viva la vida.jpg",
+    }
+]
 
 
     return (
         <div className="MusicView" id = "MusicView">
-            <div className="PlaylistColumn" >
-                <div className="ColumnName">
-                    <p>Album</p>
-                </div>
-                {objects.map((obj,index) => (
-                    obj['type'] == 1 ? (<Album key={index} object={obj} />) : null))
-                }
+
+            <div className="Container">
+                <div className="title">Artisti</div>
+                    {objects.map((obj,index) => (
+                        obj['type'] == 1 ? (<Object key={index} object={obj} />) : null))
+                    }
             </div>
-            <div className="NewMusicColumn">
-                <p>Artisti</p>
-                {objects.map((obj,index) => (
-                    obj['type'] == 2 ? (<Artista key={index} object={obj} />) : null))
-                }
+            <div className="Container">
+                <div className="title">Album</div>
+                    {objects.map((obj,index) => (
+                        obj['type'] == 2 ? (<Object key={index} object={obj} />) : null))
+                    }
             </div>
-            <div className="RadioColumn">
-                <p>Brani</p>
-                {objects.map((obj,index) => (
-                    obj['type'] == 3 ? (<Brano key={index} object={obj} />) : null))
-                }
+
+            <div className="Container">
+                <div className="title">Brani</div>
+                    {objects.map((obj,index) => (
+                        obj['type'] == 3 ? (<Object key={index} object={obj} />) : null))
+                    }
             </div>
+
         </div>
     );
 }

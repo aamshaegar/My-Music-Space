@@ -36,7 +36,6 @@ function App() {
         <Menu />
           <div className="View" id="View">
             <Search />
-            <HomeView></HomeView>
             <ChatView></ChatView>
             <ShopView></ShopView>
             <MusicView></MusicView>

@@ -10,11 +10,10 @@ function Menu() {
   // non è possibile interagire direttamente col DOM qui dentro, quindi
   // bisogna dichiarare una funzione ad hoc per ogni azione sul DOM
   useEffect(() => {
-    sign_button_selected("homeButton");
+    sign_button_selected("musicButton");
   }, []);
 
   function sign_button_selected(id: string){
-    document.getElementById("homeButton")!.style.backgroundColor = "#232425";
     document.getElementById("musicButton")!.style.backgroundColor = "#232425";
     document.getElementById("shopButton")!.style.backgroundColor = "#232425";
     document.getElementById("chatButton")!.style.backgroundColor = "#232425";
@@ -31,26 +30,16 @@ function Menu() {
 
       sign_button_selected(id);
       document.getElementById(id)!.style.backgroundColor = "#3E99CF";
-      document.getElementById("HomeView")!.style.opacity = "0";
-      document.getElementById("HomeView")!.style.display = "none";
+      document.getElementById("MusicView")!.style.opacity = "0";
+      document.getElementById("MusicView")!.style.display = "none";
       document.getElementById("ShopView")!.style.opacity = "0";
       document.getElementById("ShopView")!.style.display = "none";
       document.getElementById("ChatView")!.style.opacity = "0";
       document.getElementById("ChatView")!.style.display = "none";
-      document.getElementById("MusicView")!.style.opacity = "0";
-      document.getElementById("MusicView")!.style.display = "none";
       
       // GESTIONE BRUTTA, PER IL MOMENTO OK;
       $("#ChatMessage").hide(0);
 
-      if (id == "homeButton") {
-          $(".search").show(0);
-          document.getElementById("HomeView")!.style.display = "block";
-          document.getElementById("HomeView")!.style.transition = "opacity 1s";
-          setTimeout(function() {
-              document.getElementById("HomeView")!.style.opacity = "1";
-          }, 50);
-      }
       if (id == "musicButton") {
           $(".search").show(0);
           document.getElementById("MusicView")!.style.display = "block";
@@ -89,13 +78,6 @@ function Menu() {
           <img className="immagini" src={imageUrl1} alt="Immagine" />
           <div className="patina"></div>
         </div>
-      <button
-        className="menuButton"
-        id="homeButton"
-        onClick={() => selected("homeButton")}
-      >
-        Home
-      </button>
       <button
         className="menuButton"
         id="musicButton"
