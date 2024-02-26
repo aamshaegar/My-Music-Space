@@ -1,5 +1,7 @@
 ++ aggiungere i services tra i controller e i repository
-++ riordinare il codice (la relazione artist - song deve essere gestita da SongContrller, ora lo è da ArtistController)
+++ song è linkata al più ad un artista, una stessa canzone non può avere 2 artisti, fare controlli sugli id
+++ finire il service di song e scrivere quello di artist
+++ per qualche motivo non funziona più artist-song
 
 ++ (opzionale) aggiungere url delle immagini
 ++ (opzionale) aggiungere tracce audio e player

@@ -2,7 +2,10 @@ package com.Taass.Ricerca.MySQL.songs;
 
 import com.Taass.Ricerca.MySQL.album.Album;
 import com.Taass.Ricerca.MySQL.album.AlbumRepository;
+import com.Taass.Ricerca.MySQL.album.AlbumService;
 import com.Taass.Ricerca.MySQL.artists.Artist;
+import com.Taass.Ricerca.MySQL.artists.ArtistRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,36 +14,27 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/song")
+@RequiredArgsConstructor
 public class SongController {
     @Autowired
-    SongRepository songRepository;
-
-    @Autowired
-    AlbumRepository albumRepository;
+    private final SongService service;
 
     @GetMapping
-    List<Song> getSong(){return songRepository.findAll();}
+    List<Song> getSong(){return service.getSong();}
+
 
     @PostMapping
-    Song createSong(@RequestBody Song song){return songRepository.save(song);}
+    Song createSong(@RequestBody Song song){return service.createSong(song);}
 
     @PutMapping("/{songId}/album/{albumId}")
     Song assignAlbumToSong(
             @PathVariable Long songId,
             @PathVariable Long albumId
-    ){
-        //gestire caso in cui uno dei due id non si trova
-        Album album = albumRepository.findById(albumId).get();
-        Song song = songRepository.findById(songId).get();
+    ){return service.assignAlbumToSong(songId, albumId);}
 
-        song.assignAlbum(album);
-        songRepository.save(song);
-
-        /*
-        //forse non serve?
-        song.assignArtist(artist);
-        songRepository.save(song);
-        */
-        return song;
-    }
+    @PutMapping("/{songId}/artist/{artistId}")
+    Artist assignSongToArtist(
+            @PathVariable Long artistId,
+            @PathVariable Long songId
+    ){return service.assignSongToArtist(artistId,songId);}
 }

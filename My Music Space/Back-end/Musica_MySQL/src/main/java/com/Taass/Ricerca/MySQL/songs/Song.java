@@ -25,8 +25,14 @@ public class Song {
     private Long id;
     private String title;
 
+
     @JsonIgnore
-    @ManyToMany(mappedBy = "wroteSongs")
+    @ManyToMany
+    @JoinTable(
+            name="artists_songs",
+            joinColumns = @JoinColumn(name="idArtist"),
+            inverseJoinColumns = @JoinColumn(name="idSong")
+    )
     private Set<Artist> artists = new HashSet<>();
 
     @JsonIgnore

@@ -24,20 +24,10 @@ public class Artist {
     private Long id;
     private String name;
 
-    //non devono essere interi
-    //private int album;
-    //private int songs;
-
-
 
     public Artist(){}
 
-    @ManyToMany
-    @JoinTable(
-            name="artists_songs",
-            joinColumns = @JoinColumn(name="idArtist"),
-            inverseJoinColumns = @JoinColumn(name="idSong")
-    )
+    @ManyToMany(mappedBy = "artists")
     private Set<Song> wroteSongs = new HashSet<>();
 
     @OneToMany(mappedBy="artist")
