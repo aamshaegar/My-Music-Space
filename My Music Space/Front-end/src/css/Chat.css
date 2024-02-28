@@ -1,0 +1,9 @@
+#Chat img{
+    border-radius: 30%;
+    background: conic-gradient(from 180deg at 50% 50%, #00324F 0deg, #005282 120deg, #0082CF 240deg, #3E99CF 360deg);
+
+}
+
+#Chat{
+    padding-top: 7%;
+}

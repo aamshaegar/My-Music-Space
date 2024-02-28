@@ -1,0 +1,43 @@
+
+.search input{
+    position: relative;
+    background-color: #404040;
+    width: 88%;
+    top: 5vh;
+    margin-left: 2vh;
+    border-radius: 50vh;
+    border-style: solid;
+    padding-left: 6vh;
+    border-color: #3E99CF;
+    color:white;
+    float: left;
+}
+/*Search css*/
+.search{
+    float: left;
+    width: 100%;
+    position: absolute;
+}
+
+.Lente{
+    position: relative;
+    float:left;
+    width: 4vh;
+    height: 4vh;
+    top: 5.5vh;
+    left:6.5vh;
+    border-radius: 50vh;
+    z-index: 1;
+}
+
+#back{
+    width: 7vh;
+    height: 7vh;
+    margin-top: 4vh;
+    margin-left:2vh;
+    background-color: #232425;
+    border-radius:50%;
+    color: white;
+    font-weight: bold;
+    font-size: x-large;
+}

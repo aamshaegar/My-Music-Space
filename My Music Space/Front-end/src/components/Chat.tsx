@@ -1,4 +1,5 @@
 const ImgChat = "/src/img/chat-icon.png"
+import "../css/Chat.css"
 
 function Chat({index, name, handleClick, handleMessageChange }){
 

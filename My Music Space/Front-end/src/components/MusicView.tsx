@@ -1,5 +1,6 @@
 const ImgPlaylist ="/src/img/texas-road-trip-playlist.jpg"
 const ImgRadio="/src/img/music-note.png"
+import "../css/MusicView.css"
 
 function Object({object}){
     return(

@@ -1,4 +1,5 @@
 const imageUrl = "/src/img/cart.jpg";
+import "../css/Cart.css"
 
 function Cart() {
     function selected() {

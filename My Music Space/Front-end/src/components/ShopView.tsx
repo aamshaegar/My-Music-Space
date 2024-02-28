@@ -2,7 +2,7 @@ const ImgVinyl = "/src/img/Vinyl_icon.png"
 const ImgAlbum = "/src/img/Viva la vida.jpg"
 const ImgTicket = "/src/img/elodie-show-2023.jpg"
 const ImgMerch ="/src/img/Cappello PTN.jpg"
-
+import "../css/ShopView.css"
 function VinylProduct({object}){
     return(
         <div className="VinylProduct">

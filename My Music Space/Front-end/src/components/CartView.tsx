@@ -1,4 +1,5 @@
 const imageUrl = "/src/img/cart.jpg";
+import "../css/CartView.css"
 
 interface Props{
     productname: string;

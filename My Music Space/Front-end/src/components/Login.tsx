@@ -1,4 +1,5 @@
 const LogoUrl = "/src/img/My Music Space Logo.png";
+import "../css/Login.css"
 
 function Login() {
     function selected (){

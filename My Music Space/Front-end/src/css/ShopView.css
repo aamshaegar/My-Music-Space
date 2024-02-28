@@ -1,0 +1,270 @@
+.ShopView{
+    display:none;
+    margin-left:auto;
+    margin-right:auto;
+    transition: display 0s, opacity 0.5s linear;
+}
+
+.ShopView .Vinyl{
+    position: absolute;
+    z-index: 3;
+}
+/* Animation css*/
+.Vinyl{
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+    animation-play-state:paused;
+}
+.Vinyl:hover{
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+    animation-play-state: running;
+}
+
+@-moz-keyframes spin {
+    100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+
+.ShopView p{
+    float:left;
+    top:0;
+    left: 25%;
+    position: relative;
+    color:white;
+    font-weight: bold;
+}
+
+.ShopView{
+    display:none;
+    margin-left:auto;
+    margin-right:auto;
+    transition: display 0s, opacity 0.5s linear;
+}
+
+.VinylProduct, .TicketProduct, .MerchProduct{
+    top:1vh;
+    position: relative;
+    height: 100%;
+    width: 20%;
+    float:left;
+}
+
+
+.VinylProduct img{
+    margin-left: 25%;
+    width: 20vh;
+    height: 20vh;
+    float:left;
+    position: relative;
+    border-radius: 50vh;
+}
+
+.MerchProduct img{
+    margin-left: 25%;
+    width: 18vh;
+    height: 18vh;
+    float:left;
+    position: relative;
+    margin-bottom: 3%;
+    transition: transform 0.3s ease-in-out;
+}
+.MerchProduct img:hover{
+    transform: scale(1.2);
+}
+
+
+.TicketFront:hover{
+    animation: myAnim 2s ease infinite forwards;
+    animation-play-state: running;
+}
+.TicketFront:hover ~ .TicketBack{
+    animation: myAnim 2s ease infinite forwards;
+    animation-play-state: running;
+}
+
+/*Animation css*/
+
+@keyframes myAnim {
+    0%,
+    100% {
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        transform: translateY(-15px) rotate(-6deg);
+    }
+
+    30% {
+        transform: translateY(7px) rotate(6deg);
+    }
+
+    45% {
+        transform: translateY(-7px) rotate(-3.6deg);
+    }
+
+    60% {
+        transform: translateY(5px) rotate(2.4deg);
+    }
+
+    75% {
+        transform: translateY(-2px) rotate(-1.2deg);
+    }
+}
+
+.VinylProduct, .TicketProduct, .MerchProduct{
+    top:1vh;
+    position: relative;
+    height: 100%;
+    width: 20%;
+    float:left;
+}
+
+.VinylProduct img{
+    margin-left: 25%;
+    width: 20vh;
+    height: 20vh;
+    float:left;
+    position: relative;
+    border-radius: 50vh;
+}
+
+.MerchProduct img{
+    margin-left: 25%;
+    width: 18vh;
+    height: 18vh;
+    float:left;
+    position: relative;
+    margin-bottom: 3%;
+    transition: transform 0.3s ease-in-out;
+}
+.MerchProduct img:hover{
+    transform: scale(1.2);
+}
+
+
+.TicketFront {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    left: 15%;
+    margin-left: 25%;
+    width: 10vh;
+    height: 15vh;
+    float:left;
+    position: relative;
+    transform: rotate(25deg);
+    z-index: 1;
+    object-fit: cover;
+}
+.TicketBack {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    left: 25%;
+    margin-left: 25%;
+    width: 10vh;
+    height: 15vh;
+    float:left;
+    position: absolute;
+    transform: rotate(30deg);
+    object-fit: cover;
+}
+
+.TicketFront:hover{
+    animation: myAnim 2s ease infinite forwards;
+    animation-play-state: running;
+}
+.TicketFront:hover ~ .TicketBack{
+    animation: myAnim 2s ease infinite forwards;
+    animation-play-state: running;
+}
+
+/*Animation css*/
+
+@keyframes myAnim {
+    0%,
+    100% {
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        transform: translateY(-15px) rotate(-6deg);
+    }
+
+    30% {
+        transform: translateY(7px) rotate(6deg);
+    }
+
+    45% {
+        transform: translateY(-7px) rotate(-3.6deg);
+    }
+
+    60% {
+        transform: translateY(5px) rotate(2.4deg);
+    }
+
+    75% {
+        transform: translateY(-2px) rotate(-1.2deg);
+    }
+}
+
+
+
+.ShopView .Vinyl{
+    position: absolute;
+    z-index: 3;
+}
+/* Animation css*/
+.Vinyl{
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+    animation-play-state:paused;
+}
+.Vinyl:hover{
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+    animation-play-state: running;
+}
+
+@-moz-keyframes spin {
+    100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+
+.ShopView p{
+    float:left;
+    top:0;
+    left: 25%;
+    position: relative;
+    color:white;
+    font-weight: bold;
+
+}
+
+.ShopView{
+    top:5%;
+    margin-top: 7%;
+    height: 85vh;
+    opacity: 0;
+}

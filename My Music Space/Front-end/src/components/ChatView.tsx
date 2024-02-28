@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useEffect} from "react";
 import ChatMessage from "./ChatMessage";
 import Chat from "./Chat";
+import "../css/ChatView.css"
 
 
 function ChatView() {

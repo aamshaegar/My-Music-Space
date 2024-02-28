@@ -1,4 +1,5 @@
 const imageLente = "/src/img/Lente.png";
+import "../css/Search.css"
 
 function Search() {
   return (
