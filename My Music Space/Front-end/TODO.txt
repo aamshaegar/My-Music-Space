@@ -9,11 +9,7 @@ COSE DA FARE
 
 - 5) Ricerca nelle 3 sezioni 
 - 6) Interfaccia dei "mi piace", "del carrello (da finire)" e delle "chat a cui ci si è iscritto"
-- 7) Pulire il CSS e fare animazioni
-    -Puliza css
-        -App css ancora punti (87% fatto)
-        -ShopView.css ha codice duplicato
-    -Idee animazioni
+- 7) Idee per fare animazioni
         -modificare radiant di chat che gira e poi si espande
         -Fare caricamento cerchiolino
         -Animazioni di transizione della View?

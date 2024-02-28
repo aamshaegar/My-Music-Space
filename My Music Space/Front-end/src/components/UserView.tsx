@@ -1,4 +1,5 @@
 const imageUrl = "/src/img/user.jpg";
+import "../css/UserView.css"
 
 interface Props{
     name: string;

@@ -1,7 +1,7 @@
-body{
-  background-image: linear-gradient(top right, #232425 3%, #AACFEF 100%) !important;
-  background-color: #232425 !important;
-  display: block;
+body {
+  background-image: linear-gradient(top right,#232425 3%,#aacfef 100%)!important;
+  background-color: #232425!important;
+  display: block
 }
 
 .View {
@@ -14,157 +14,81 @@ body{
   border-radius: 5vh;
   float: left;
   top: 1vh;
+  z-index:-5;
 }
 
-
-.title{
+.title {
   margin-left: 5vh;
   margin-top: 1vh;
-  position: relative;
+  position: relative
 }
 
-
-.description{
-  margin-left: 5vh;
+#All,#root {
+  height: 0
 }
 
-.Object{
-  position: relative;
-  width: 20% ;
-  float: left;
-  margin-left:auto;
-  margin-right:auto;
-
-}
-
-.Menu+View, .Search-User{
-  display: flex;
-  flex-direction: row;
-}
-
-#root, #All{
-  height: 0;
-}
-
-
-.Container{
+.Container {
   height: 24vh;
   position: relative;
   width: 97%;
   border-radius: 5vh;
-  color: white;
-  font-weight: bold;
+  color: #fff;
+  font-weight: 700;
   font-style: italic;
   margin: 2vh auto;
-  background-color: #232425;
+  background-color: #232425
 }
 
-.productImg img{
-  background-color: #3E99CF;
+.productImg img {
+  background-color: #3e99cf;
   height: 15vh;
   border-radius: 10%;
   width: 15vh;
-  position:relative;
-  left:5vh;
+  position: relative;
+  left: 5vh
 }
 
-.ChatRow, .VinylRow, .TicketRow, .MerchRow{
+.ChatRow,.MerchRow,.TicketRow,.VinylRow {
   width: 100%;
   height: 27vh;
-  position: relative;
+  position: relative
 }
 
-.description{
-  margin-left: 5vh;
+.description {
+  margin-left: 5vh
 }
 
-.Object{
+.Object {
   position: relative;
-  width: 20% ;
+  width: 20%;
   float: left;
-  margin-left:auto;
-  margin-right:auto;
-
+  margin-left: auto;
+  margin-right: auto
 }
 
-.Menu+View, .Search-User{
+.Menu+View,.Search-User {
   display: flex;
-  flex-direction: row;
-}
-
-
-#root, #All{
-  height: 0;
-}
-
-/*User pointer*/
-
-.UserDiv img {
-  cursor: pointer;
-}
-
-/*UserView css*/
-
-.UserView{
-  display:none;
-  background-color: #3E99CF;
-  width: 30%;
-  height: 100%;
-  border-radius: 0 0 50% 0;
-  position: absolute;
-  z-index: 30;
-  float: left;
-  padding-top: 3vh;
-  padding-left: 1vh;
-  margin-bottom: 2vh;
-  opacity: 0;
-}
-
-.Welcome{
-  font-weight: bold;
-  left: 15%;
-  margin:0;
-  padding:0;
-  top:2%;
-  font-size: 150%;
-  position: relative;
-}
-
-.UserInfo{
-  margin-top: 10%;
-  position: absolute;
-  float: left;
-  font-size: 120%;
-  font-weight: bold;
-}
-
-.UserView img {
-  cursor: pointer;
+  flex-direction: row
 }
 
 #All {
-  display: block;
+  display: block
 }
 
-/*SCROLL BAR*/
-/* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 10px
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
-  border-radius: 10px;
+  border-radius: 10px
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
-  border-radius: 10px;
+  border-radius: 10px
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #555
 }
