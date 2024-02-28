@@ -27,13 +27,18 @@ public class Artist {
 
     public Artist(){}
 
-    @ManyToMany(mappedBy = "artists")
+    @ManyToMany
+    @JoinTable(
+            name="artists_songs",
+            joinColumns = @JoinColumn(name="idArtist"),
+            inverseJoinColumns = @JoinColumn(name="idSong")
+    )
     private Set<Song> wroteSongs = new HashSet<>();
 
     @OneToMany(mappedBy="artist")
     private Set<Album> albums = new HashSet<>();
 
-    public Long getId() {return id;}
+    public Long getIdArtist() {return id;}
 
     public void setId(Long id) {this.id = id;}
 

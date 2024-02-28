@@ -22,12 +22,12 @@ public class SongService {
     ArtistRepository artistRepository;
 
     private boolean isSongInAlbum(Song song, Album album) {return (album.getSongs().contains(song));}
-    private boolean isSongInArtist(Song song, Artist artist) {return (artist.getSongs().contains(song));}
+    //private boolean isSongInArtist(Song song, Artist artist) {return (artist.getSongs().contains(song));}
 
     public List<Song> getSong() {return songRepository.findAll();}
 
     public Song createSong(Song song) {return songRepository.save(song);}
-
+/*
     public Artist assignSongToArtist(Long artistId, Long songId) {
         try {
             Artist artist = artistRepository.findById(artistId).get();
@@ -36,10 +36,6 @@ public class SongService {
             if(!isSongInArtist(song, artist)){
                 artist.assignSong(song);
                 artistRepository.save(artist);
-                System.out.println("\n");System.out.println("\n");
-                System.out.println(artist.getSongs());
-                System.out.println(song.getTitle());
-                System.out.println("\n");System.out.println("\n");
                 return artist;
             }
             System.out.println("artist " + artist.getName() +
@@ -50,6 +46,8 @@ public class SongService {
             return null;
         }
     }
+
+ */
 
     public Song assignAlbumToSong(Long songId, Long albumId) {
         try {

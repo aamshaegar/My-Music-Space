@@ -27,12 +27,7 @@ public class Song {
 
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name="artists_songs",
-            joinColumns = @JoinColumn(name="idArtist"),
-            inverseJoinColumns = @JoinColumn(name="idSong")
-    )
+    @ManyToMany(mappedBy = "wroteSongs")
     private Set<Artist> artists = new HashSet<>();
 
     @JsonIgnore
@@ -46,7 +41,7 @@ public class Song {
 
     public Song() {}
 
-    public Long getId() {return this.id;}
+    public Long getIdSong() {return this.id;}
 
     public void setId(Long id) {this.id = id;}
 
