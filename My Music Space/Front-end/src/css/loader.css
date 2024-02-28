@@ -1,0 +1,54 @@
+@property --a
+{
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.loader{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: repeating-conic-gradient(from 10deg, var(--clr) 0%, var(--clr) 0%, transparent 5%, transparent 40%, var(--clr) 100%);
+    --clr: #3E99CF;
+    border-radius: 50%;
+    animation: animate 2s linear infinite;
+}
+
+@keyframes animate {
+    0%
+    {
+        transform: rotate(0deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
+
+}
+
+.loader::before{
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #404040;
+    border-radius: 50%;
+}
+
+.loader span{
+    position: absolute;
+    inset: 0;
+}
+
+.loader span::before {
+    content: '';
+    position: absolute;
+    left: 96px;
+    width: 10px;
+    height: 10px;
+    background: var(--clr);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--clr),
+    0 0 20px var(--clr),
+    0 0 40px var(--clr);
+}

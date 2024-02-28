@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useEffect} from "react";
 import ChatMessage from "./ChatMessage";
 import Chat from "./Chat";
+import Loader from "./Loader"
 import "../css/ChatView.css"
 
 
@@ -42,6 +43,7 @@ function ChatView() {
                 ))}
             </div>
                 {isButtonClicked && <ChatMessage message={message} handleClick={handleClick}/>}
+            <Loader></Loader>
         </div>
     );
 }
