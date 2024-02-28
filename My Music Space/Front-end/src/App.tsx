@@ -3,6 +3,7 @@ import Login from "./components/Login"
 import User from "./components/User";
 import Menu from "./components/Menu";
 import Cart from "./components/Cart";
+import HomeView from "./components/HomeView";
 import ChatView from "./components/ChatView";
 import ShopView from "./components/ShopView";
 import MusicView from "./components/MusicView"

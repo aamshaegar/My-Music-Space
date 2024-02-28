@@ -35,7 +35,7 @@ public class Album {
 
     public Album(){}
 
-    public Long getId() {return this.id;}
+    public Long getIdAlbum() {return this.id;}
 
     public void setId(Long id) {this.id = id;}
 

@@ -23,7 +23,7 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: "http://localhost:5500"
+            allowedOrigins: "*"
             allowedMethods:
               - GET
               - POST
@@ -60,3 +60,10 @@ spring:
           uri: lb://chat-service
           predicates:
             - Path=/chat-service/**
+
+        - id: music-service
+            uri: lb://music-service
+            predicates:
+              - Path=/eureka/web
+            filters:
+              - SetPath=/**

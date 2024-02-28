@@ -1,10 +1,10 @@
-server:
-  port:8080
+#server:
+#  port:8092
 
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/Taass_Db
+    url: jdbc:mysql://mysqlDB:3306/Taass_Db
     username: aclm
     password: ricerca_Taass
   jpa:

@@ -7,26 +7,27 @@ services:
   # MYSQL CHATDB DBMS
   #######################################
 
-#  mysqlDB:
-#    image: mysql:8.0
-#    container_name: mysqlDB
-#    ports:
-#      - "3306:3306"
-#    environment:
-#      MYSQL_DATABASE: chatDB
-#      MYSQL_USER: user
-#      MYSQL_PASSWORD: password
-#      MYSQL_ROOT_PASSWORD: password
-#
-#    volumes:
-#      - persistent:/var/lib/mysql
+  #  version: "4.25"
+  mysqlDB:
+    image: mysql:8.0
+    container_name: mysqlDB
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+       - "3307:3307"
+    environment:
+      MYSQL_ROOT_PASSWORD: ricerca
+      MYSQL_DATABASE: Taass_Db
+      MYSQL_USER: aclm
+      MYSQL_PASSWORD: ricerca_Taass
+    volumes:
+      - persistent:/var/lib/mysql
+    restart: always
+    networks:
+      - mynetwork
 
-#    restart: always
-#    networks:
-#      - mynetwork
 
 
-    #######################################
+      #######################################
     # PHP MY ADMIN
     #######################################
 
@@ -46,8 +47,9 @@ services:
 #      - mynetwork
 #    depends_on:
 #      - mysqlDB
-      
-      
+
+
+
  #######################################
   # mongoDB
  #######################################
@@ -128,6 +130,26 @@ services:
     networks:
       - mynetwork
 
+  #######################################
+  # MUSIC
+  #######################################
+
+  musica-service:
+    container_name: music-service
+    build:
+      context: Back-end/Musica_MySQL
+      dockerfile: Dockerfile
+    image: music-service
+    ports:
+      - "8092:8092"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    depends_on:
+      - discovery-service
+    restart: always
+    networks:
+      - mynetwork
+
 
   #######################################
   # chat-service container
@@ -152,8 +174,8 @@ services:
 
 
 volumes:
-   mongodata:
-#  persistent:
+  mongodata:
+  persistent:
 
 networks:
   mynetwork:
