@@ -14,6 +14,7 @@ function Login() {
     }
     return (
         <div className="Login" id="login">
+            <div className="slider-thumb"></div>
             <div className="ContainerLogin">
                 <img className="LogoImg" src={LogoUrl}></img>
                 <form>

@@ -1,7 +1,10 @@
+#All {
+  display: block;
+}
+
 body {
   background-image: linear-gradient(top right,#232425 3%,#aacfef 100%)!important;
   background-color: #232425!important;
-  display: block
 }
 
 .View {
@@ -71,10 +74,6 @@ body {
   flex-direction: row
 }
 
-#All {
-  display: block
-}
-
 ::-webkit-scrollbar {
   width: 10px
 }
@@ -91,4 +90,67 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555
+}
+
+/*background*/
+#All{
+  z-index: 4;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+#All .air{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url("./img/wave.png");
+  background-size: 1000px 100px
+}
+#All .air.air1{
+  animation: wave 30s linear infinite;
+  z-index: -997;
+  opacity: 1;
+  animation-delay: 0s;
+  bottom: 0;
+}
+#All .air.air2{
+  animation: wave2 15s linear infinite;
+  z-index: -998;
+  opacity: 0.5;
+  animation-delay: -5s;
+  bottom: 10px;
+}
+#All .air.air3{
+  animation: wave 30s linear infinite;
+  z-index: -999;
+  opacity: 0.2;
+  animation-delay: -2s;
+  bottom: 15px;
+}
+#All .air.air4{
+  animation: wave2 5s linear infinite;
+  z-index: -1000;
+  opacity: 0.7;
+  animation-delay: -5s;
+  bottom: 20px;
+}
+@keyframes wave{
+  0%{
+    background-position-x: 0px;
+  }
+  100%{
+    background-position-x: 1000px;
+  }
+}
+@keyframes wave2{
+  0%{
+    background-position-x: 0px;
+  }
+  100%{
+    background-position-x: -1000px;
+  }
 }
