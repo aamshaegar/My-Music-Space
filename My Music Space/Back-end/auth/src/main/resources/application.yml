@@ -1,15 +1,16 @@
+server:
+  port:8080
+
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3305/springSecurity?createDatabaseIfNotExist=true
-    username: root
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/Taass_Db
+    username: aclm
+    password: ricerca_Taass
   jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQLDialect
+main:
+  web-application-type: servlet
