@@ -154,3 +154,8 @@ body {
     background-position-x: -1000px;
   }
 }
+
+.Search-User{
+  z-index: -5;
+  position: relative;
+}

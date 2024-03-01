@@ -1,4 +1,7 @@
 
+.search{
+    z-index:-5;
+}
 .search input{
     position: relative;
     background-color: #404040;

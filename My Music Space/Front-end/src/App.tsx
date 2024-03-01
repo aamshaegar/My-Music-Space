@@ -33,7 +33,7 @@ function App() {
       </div>
       <div className="Menu+View">
         <Menu />
-          <div className="View" id="View">
+      <div className="View" id="View">
             <Search />
             <ChatView></ChatView>
             <ShopView></ShopView>
