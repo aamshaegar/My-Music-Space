@@ -5,7 +5,7 @@ const imageUrlInsta="/src/img/Instagram_logo_2022.svg.png"
 import "../css/Menu.css"
 //const imageUrl2 = "https://as1.ftcdn.net/v2/jpg/04/54/29/98/1000_F_454299832_EAOJOc0GKq8S5dsXuv6B79bbIc0GhQmy.jpg";
 
-function Menu() {
+function Menu({onClick}) {
 
   // per eseguire istruzioni all'atto del caricamento del componente
   // non è possibile interagire direttamente col DOM qui dentro, quindi
@@ -48,6 +48,8 @@ function Menu() {
           setTimeout(function() {
               document.getElementById("MusicView")!.style.opacity = "1";
           }, 50);
+
+          onClick("musicButton")
       }
       if (id == "shopButton") {
           $(".search").show(0);
@@ -56,6 +58,8 @@ function Menu() {
           setTimeout(function() {
               document.getElementById("ShopView")!.style.opacity = "1";
           }, 50);
+
+          onClick("shopButton")
       }
       if (id == "chatButton") {
           $(".search").show(0);
@@ -69,6 +73,9 @@ function Menu() {
           setTimeout(function() {
               document.getElementById("Chats")!.style.opacity = "1";
           }, 50);
+
+          onClick("chatButton")
+
       }
     }
 

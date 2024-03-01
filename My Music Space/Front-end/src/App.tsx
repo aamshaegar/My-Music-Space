@@ -10,6 +10,8 @@ import UserView from "./components/UserView"
 import Search from "./components/Search";
 import CartView from "./components/CartView";
 
+import {useState} from "react";
+
 function App() {
   const name = "Aldo";
   const surname ="Rambaudo";
@@ -21,31 +23,42 @@ function App() {
   const vendor ="PTN"
   const date=""
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [focus, setFocus] = useState("musicButton");
+
+  function handleSearchBar(query){
+    setSearchQuery(query);
+  }
+
+  function handleMenuButton(button){
+    setFocus(button)
+  }
+
   return (
       <div id="My Music Space">
         <Login></Login>
-    <div id="All">
-      <div className="Search-User">
-        <UserView name={name} surname={surname} email={email} plane={plane} ></UserView>
-        <User name={name} />
-        <CartView productname={productname} type={type} price={price} vendor={vendor} date={date}></CartView>
-        <Cart />
-      </div>
-      <div className="Menu+View">
-        <Menu />
-      <div className="View" id="View">
-            <Search />
-            <ChatView></ChatView>
-            <ShopView></ShopView>
-            <MusicView></MusicView>
+        <div id="All">
+          <div className="Search-User">
+            <UserView name={name} surname={surname} email={email} plane={plane} ></UserView>
+            <User name={name} />
+            <CartView productname={productname} type={type} price={price} vendor={vendor} date={date}></CartView>
+            <Cart />
           </div>
+          <div className="Menu+View">
+            <Menu onClick={handleMenuButton}/>
+            <div className="View" id="View">
+              <Search onClick={handleSearchBar} />
+              <ChatView focus={focus} query={searchQuery}></ChatView>
+              <ShopView></ShopView>
+              <MusicView></MusicView>
+            </div>
+          </div>
+            <div className='air air1'></div>
+            <div className='air air2'></div>
+            <div className='air air3'></div>
+            <div className='air air4'></div>
+        </div>
       </div>
-        <div className='air air1'></div>
-        <div className='air air2'></div>
-        <div className='air air3'></div>
-        <div className='air air4'></div>
-    </div>
-</div>
   );
 }
 

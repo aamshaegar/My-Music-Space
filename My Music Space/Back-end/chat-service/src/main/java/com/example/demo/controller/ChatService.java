@@ -22,6 +22,21 @@ public class ChatService {
     private MongoClient client;
 
 
+    public ArrayList<String> getFirstCollections(){
+        MongoDatabase db = client.getDatabase("chatDB");
+        MongoIterable<String> collections = db.listCollectionNames();
+        ArrayList<String> filteredCollectionNames = new ArrayList<>();
+
+        int i = 0;
+        for (String collectionName : collections) {
+            if (i < 9){filteredCollectionNames.add(collectionName);
+            }else{break;}
+            i++;
+        }
+        System.out.println("Retrieved first collections: " + filteredCollectionNames);
+        return filteredCollectionNames;
+    }
+
     public ArrayList<String> getCollectionNames(String query){
         MongoDatabase db = client.getDatabase("chatDB");
         MongoIterable<String> collections = db.listCollectionNames();

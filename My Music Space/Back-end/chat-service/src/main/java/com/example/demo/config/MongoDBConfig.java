@@ -51,7 +51,7 @@ public class MongoDBConfig {
     public int insertMessages() {
 
         // ["#general","#classic","#metal","#Funky","#R&B","#Indie","#Soul","Banana","Casa"];
-        List<String> collectionNames = List.of("General", "Classic", "Metal", "Pop", "Funky", "Indie", "Soul", "Folk", "Rock", "R&B", "House", "Lofi");
+        List<String> collectionNames = List.of("General", "Classic", "Metal", "Pop", "Funky", "Indie", "Soul", "Folk", "Rock", "R&B", "House", "Lofi", "GenderFree", "PinkFloydOfficial", "BelloFigo", "Sexy25+F-BI");
         List<String> randomNames = List.of("Aldo", "Michele", "Corrado", "Lorenzo", "Giovanna", "Harry Potter", "Mario Giordano", "Fragola 86", "Petardo 666");
         List<String> randomQueries = List.of(
                 "Hey, how's it going?",
@@ -69,10 +69,9 @@ public class MongoDBConfig {
         );
 
         for (String collection: collectionNames){
-            if (mongoTemplate.collectionExists(collection)){
-                mongoTemplate.dropCollection(collection);
+            if (!mongoTemplate.collectionExists(collection)) {
+                this.createListMessages(collection, randomQueries, randomAnswer, randomNames);
             }
-            this.createListMessages(collection, randomQueries, randomAnswer, randomNames);
         }
 
         return 0;

@@ -112,7 +112,6 @@ function ChatMessage({message, handleClick}){
             stompClient.disconnect();
             stompClient = null;
             setStatus("disconnected!")
-            
         }
     }
 
@@ -148,10 +147,7 @@ function ChatMessage({message, handleClick}){
 
     function sendMessage(event) {
 
-        if (event && event.key !== "Enter") {
-            return;
-        }
-
+        if (event && event.key !== "Enter") {return;}
         if(inputValue != "" && stompClient) {
             let new_chatMessage = {
                 sender: username,

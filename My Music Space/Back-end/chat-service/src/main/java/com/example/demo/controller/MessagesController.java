@@ -26,4 +26,9 @@ public class MessagesController {
     public ArrayList<String> getAllCollections(@RequestParam(name = "room") String room){
         return service.getCollectionNames(room);
     }
+
+    @GetMapping("/collections/all")
+    public ArrayList<String> getFirstCollections(){
+        return service.getFirstCollections();
+    }
 }

@@ -6,16 +6,23 @@ import Loader from "./Loader"
 import "../css/ChatView.css"
 
 
-function ChatView() {
+function ChatView({focus, query}) {
     
     // questa lista verrà richiesta quando clicco sul bottone Chat, quindi sarà memorizzata nel padre e passata al figlio.
-    const ChatNames = ["#general","#classic","#metal","#Funky","#R&B","#Indie","#Soul","Banana","Casa"];
+    const [ChatNames, setChatNames] = useState([]);
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [message, setMessage] = useState("");
 
     useEffect(() => {
         setIsButtonClicked(false);
     }, []);
+
+    useEffect(() => {
+        if(focus == "chatButton"){
+            if(query && query != ""){retrieveChatRoomsByQuery(query);
+            }else{retrieveChatRooms();}
+        }
+    },[focus, query]);
     
     
     const handleMessageChange = (newMessage) => {
@@ -34,7 +41,42 @@ function ChatView() {
             setIsButtonClicked(true);
     };
 
+    function retrieveChatRoomsByQuery(query){
+        $.ajax({
+            type:"GET",
+            url: "/chat/messages/collections",
+            data:{room:query},
+            contentType: "application/json",
+            headers:{
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+            }
 
+        }).then(function(data) {
+            setChatNames(data);
+            //console.log("Collecions retrieved!")
+        });
+    }
+
+
+    function retrieveChatRooms(){
+        $.ajax({
+            type:"GET",
+            url: "/chat/messages/collections/all",
+            contentType: "application/json",
+            headers:{
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+            }
+
+        }).then(function(data) {
+            setChatNames(data);
+        });
+    }
+
+    // ANIMAZIONE CARICAMENTO <Loader></Loader>
     return (
         <div className="ChatView" id="ChatView">
             <div id="Chats">
@@ -43,7 +85,7 @@ function ChatView() {
                 ))}
             </div>
                 {isButtonClicked && <ChatMessage message={message} handleClick={handleClick}/>}
-            <Loader></Loader>
+                
         </div>
     );
 }
