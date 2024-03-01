@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 import com.example.demo.model.ChatMessage;
+import com.mongodb.client.MongoIterable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,5 +20,10 @@ public class MessagesController {
     @GetMapping
     public List<ChatMessage> retrieveMessages(@RequestParam(name = "room") String room){
         return service.retrieveChatMessages(room);
+    }
+
+    @GetMapping("/collections")
+    public ArrayList<String> getAllCollections(@RequestParam(name = "room") String room){
+        return service.getCollectionNames(room);
     }
 }

@@ -38,16 +38,6 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        #
-        #        - id: chefservice
-        #          uri: lb://chefservice
-        #          predicates:
-        #            - Path=/api/v1/chefs/**
-        #
-        #        - id: recipeservice
-        #          uri: lb://recipeservice
-        #          predicates:
-        #            - Path=/api/v1/recipes/**, /api/v1/ingredients/**
 
         - id: discovery-service
           uri: lb://discovery-service
@@ -62,8 +52,6 @@ spring:
             - Path=/chat-service/**
 
         - id: music-service
-            uri: lb://music-service
-            predicates:
-              - Path=/eureka/web
-            filters:
-              - SetPath=/**
+          uri: lb://music-service
+          predicates:
+            - Path=/music-service/**

@@ -4,7 +4,7 @@ services:
 
 
   #######################################
-  # MYSQL CHATDB DBMS
+  # MYSQL DBMS
   #######################################
 
   #  version: "4.25"
@@ -13,7 +13,7 @@ services:
     container_name: mysqlDB
     command: --default-authentication-plugin=mysql_native_password
     ports:
-       - "3307:3307"
+       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ricerca
       MYSQL_DATABASE: Taass_Db
@@ -27,7 +27,7 @@ services:
 
 
 
-      #######################################
+    #######################################
     # PHP MY ADMIN
     #######################################
 
@@ -39,9 +39,9 @@ services:
 #    ports:
 #      - "80:80"
 #    environment:
-#      MYSQL_USER: user
-#      MYSQL_PASSWORD: password
-#      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_USER: aclm
+#      MYSQL_PASSWORD: ricerca_Taass
+#      MYSQL_ROOT_PASSWORD: ricerca
 #      PMA_HOST: mysqlDB
 #    networks:
 #      - mynetwork
@@ -104,8 +104,6 @@ services:
     ports:
       - "8761:8761"
     restart: always
-    depends_on:
-      - mongoDB
     networks:
       - mynetwork
 
@@ -130,14 +128,16 @@ services:
     networks:
       - mynetwork
 
+
+
   #######################################
   # MUSIC
   #######################################
 
-  musica-service:
+  music-service:
     container_name: music-service
     build:
-      context: Back-end/Musica_MySQL
+      context: Back-end/music-service
       dockerfile: Dockerfile
     image: music-service
     ports:
