@@ -38,7 +38,7 @@ function App() {
       <div id="My Music Space">
         <Login></Login>
         <div id="All">
-          <div className="Search-User">
+          <div className="Search-User" id="Search-User">
             <UserView name={name} surname={surname} email={email} plane={plane} ></UserView>
             <User name={name} />
             <CartView productname={productname} type={type} price={price} vendor={vendor} date={date}></CartView>

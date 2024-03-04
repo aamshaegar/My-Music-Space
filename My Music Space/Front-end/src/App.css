@@ -156,6 +156,9 @@ body {
 }
 
 .Search-User{
-  z-index: -5;
+  z-index: -6;
   position: relative;
+}
+#Search-User{
+  z-index: -6;
 }

@@ -28,7 +28,11 @@
     position: absolute;
     float: left;
     font-size: 120%;
-    font-weight: 700
+    font-weight: 700;
+}
+.UserView{
+    height: 550%;
+    width: 30%;
 }
 
 .UserDiv img,.UserView img {

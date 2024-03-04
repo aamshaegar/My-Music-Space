@@ -15,6 +15,8 @@ function UserView({name, surname, email, plane}:Props) {
             document.getElementById("UserView")!.style.opacity = "0";
         }, 50);
         setTimeout(function() {
+            if( document.getElementById("CartView")!.style.opacity!=1) document.getElementById("View")!.style.zIndex="-5";
+            document.getElementById("Menu")!.style.zIndex="";
             document.getElementById("UserView")!.style.display = "none";
         }, 500);
     }

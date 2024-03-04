@@ -6,10 +6,11 @@ interface Props{
 
 function User({name}:Props) {
     function selected() {
-        console.log("Sono qui");
         document.getElementById("UserView")!.style.display = "block";
         document.getElementById("UserView")!.style.transition = "opacity 1s";
         setTimeout(function() {
+            document.getElementById("View")!.style.zIndex="-7";
+            document.getElementById("Menu")!.style.zIndex="-8";
             document.getElementById("UserView")!.style.opacity = "1";
         }, 50);
     }

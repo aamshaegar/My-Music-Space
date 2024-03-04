@@ -3,11 +3,12 @@ import "../css/Cart.css"
 
 function Cart() {
     function selected() {
-        console.log("Sono qui");
         document.getElementById("CartView")!.style.display = "block";
         document.getElementById("CartView")!.style.transition = "opacity 1s";
         setTimeout(function() {
+            document.getElementById("View")!.style.zIndex="-7";
             document.getElementById("CartView")!.style.opacity = "1";
+            document.getElementById("Menu")!.style.zIndex="-8";
         }, 50);
     }
   return (

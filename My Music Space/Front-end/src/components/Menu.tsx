@@ -81,7 +81,7 @@ function Menu({onClick}) {
 
 
   return (
-    <div className="Menu">
+    <div className="Menu" id="Menu">
         <div className="MySongsButton">
           <img className="immagini" src={imageUrl1} alt="Immagine" />
           <div className="patina"></div>

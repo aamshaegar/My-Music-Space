@@ -19,10 +19,10 @@
     display:none;
     background-color: white;
     width: 30%;
-    height: 100%;
+    height: 530%;
     border-radius: 0 0 0 50%;
     position: absolute;
-    z-index: 30;
+    z-index: -4;
     float: right;
     right:0;
     padding-top: 3vh;
