@@ -4,13 +4,17 @@ import "../css/Login.css"
 function Login() {
     function selected (){
         console.log("Sono qui");
-        document.getElementById("Login")!.style.opacity = "0";
-        document.getElementById("Login")!.style.display = "none";
-        document.getElementById("All")!.style.display = "block";
+        document.getElementById("login")!.style.opacity = "0";
+        document.getElementById("login")!.style.display = "none";
+        document.getElementById("liquidContainer")!.style.display="block";
         document.getElementById("All")!.style.transition = "opacity 1s";
+        document.getElementById("liquidContainer")!.style.transition = "opacity 1s";
         setTimeout(function() {
+            document.getElementById("All")!.style.display = "block";
+            document.getElementById("liquidContainer")!.style.display="none";
             document.getElementById("All")!.style.opacity = "1";
-        }, 50);
+            document.getElementById("liquidContainer")!.style.opacity = "1";
+        }, 4000);
     }
     return (
         <div className="Login" id="login">
@@ -20,17 +24,16 @@ function Login() {
                 <form>
                     <label htmlFor="email">Email:</label>
                     <br></br>
-                    <input type="text"></input>
+                    <input type="text" placeholder=""></input>
                     <br></br>
                     <label htmlFor="password">Password:</label>
                     <br></br>
-                    <input type="text"></input>
+                    <input type="text" placeholder=""></input>
                     <br></br>
                     <input id="LoginButton" type="submit" value="Login"></input>
                     <div id="MessaggioRegistrazione">Non sei registrato? Registrati!</div>
-                    <button onClick={() => selected()}></button>
                 </form>
-
+                <button onClick={() => selected()}> AVANZA</button>
             </div>
         </div>
     );
