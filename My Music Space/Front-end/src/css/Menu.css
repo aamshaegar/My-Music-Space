@@ -22,7 +22,6 @@
     top: 5vh;
     margin-left: 5vh;
     float: left;
-    left:22%;
 }
 
 .patina:hover
@@ -57,11 +56,20 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.patinaImmagine{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10vh;
+    height: 10vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 
 .immagini{
     width: 100%;
     height: 100%;
-    object-fit: cover
+    object-fit: cover;
 }
 
 .menuButton{

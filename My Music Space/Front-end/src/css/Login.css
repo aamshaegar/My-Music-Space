@@ -26,11 +26,10 @@
 
 .ContainerLogin input{
     position: relative;
-    width: 50%;
-    height: 10%;
-    margin-bottom: 10%;
+    width: 30vh;
+    height: 4%;
+    margin-bottom: 6%;
     border-radius: 5vh;
-
     box-sizing: border-box;
     border: 3px solid #ccc;
     -webkit-transition: 0.5s;
@@ -43,8 +42,8 @@
 }
 
 .LogoImg{
-    width: 40%;
-    height: 33%;
+    width: 28vh;
+    height: 25vh;
     margin-top:5%;
     margin-bottom: 5%;
     border-radius: 50%;
@@ -62,7 +61,6 @@
     border-radius: 5vh;
     border: 0 none;
     height:7vh;
-    width:25vh;
     position: relative;
     font-weight: bold;
     font-style: italic;
@@ -87,8 +85,12 @@
 {
     margin: auto;
     position: relative;
-    width: fit-content;
+    width: 35vh;
     cursor: pointer;
+}
+
+form label{
+    width: 30vh;
 }
 
 /*Background*/

@@ -36,10 +36,10 @@
 }
 
 .Chat img {
-    max-width: 80%;
+    max-width: 35vh;
     cursor: pointer;
-    width: 60%;
-    height: 100%;
+    width: 60vh;
+    height: 35vh;
 }
 
 .Chat p{

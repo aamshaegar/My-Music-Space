@@ -4,17 +4,18 @@ import "../css/Login.css"
 function Login() {
     function selected (){
         console.log("Sono qui");
-        document.getElementById("login")!.style.opacity = "0";
-        document.getElementById("login")!.style.display = "none";
         document.getElementById("liquidContainer")!.style.display="block";
-        document.getElementById("All")!.style.transition = "opacity 1s";
         document.getElementById("liquidContainer")!.style.transition = "opacity 1s";
         setTimeout(function() {
             document.getElementById("All")!.style.display = "block";
-            document.getElementById("liquidContainer")!.style.display="none";
+            document.getElementById("All")!.style.transition = "opacity 1s";
+            document.getElementById("liquidContainer")!.style.opacity = "0";
+            document.getElementById("login")!.style.opacity = "0";
+        }, 2500);
+        setTimeout(function (){
             document.getElementById("All")!.style.opacity = "1";
-            document.getElementById("liquidContainer")!.style.opacity = "1";
-        }, 4000);
+            document.getElementById("login")!.style.display = "none";
+            document.getElementById("liquidContainer")!.style.display="none";}, 3000);
     }
     return (
         <div className="Login" id="login">

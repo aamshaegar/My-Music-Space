@@ -197,9 +197,9 @@ body {
   position:absolute;
   top:-2%;
   left:-10%;
-  background-color:#3E99CF;
+  background:#3E99CF;
   border-radius:10%;
-  animation: liquid 5s forwards;
+  animation: liquid 3s forwards;
 }
 
 .blobs{
@@ -217,11 +217,11 @@ body {
   position:absolute;
   top:0;
   @include leftPos(9);
-  animation: drip_one 5s forwards;
+  animation: drip_one 3s forwards;
 
 &:nth-of-type(4n-7){
    width:65px;
-   animation: drip_four 5s forwards;
+   animation: drip_four 3s forwards;
  }
 &:nth-of-type(3n-2){
    width:26px;
@@ -231,15 +231,15 @@ body {
 
  }
 &:nth-of-type(8){
-   animation: drip_five 5s infinite;
+   animation: drip_five 3s infinite;
  }
 &:nth-of-type(4n+2){
    height:56px;
-   animation: drip_two 5s infinite;
+   animation: drip_two 3s infinite;
  }
 &:nth-of-type(6n-2){
    height:42px;
-   animation: drip_three 5s infinite;
+   animation: drip_three 3s infinite;
  }
 }
 
