@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -14,6 +13,7 @@ public class ChatMessage {
     private String sender;
     @Transient
     private MessageType type;
+    @Transient
     private String room;
     private String date;
 
@@ -39,10 +39,9 @@ public class ChatMessage {
         this.date = date;
     }
 
-    public ChatMessage(String content, String sender, String room, String date) {
+    public ChatMessage(String content, String sender,String date) {
         this.content = content;
         this.sender = sender;
-        this.room = room;
         this.date = date;
     }
 

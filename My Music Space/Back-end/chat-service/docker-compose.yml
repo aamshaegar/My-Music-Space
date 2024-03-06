@@ -31,6 +31,9 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
       - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
       - ME_CONFIG_MONGODB_SERVER=mongoDB
+
+    depends_on:
+      - mongoDB
     networks:
       - mynetwork
 

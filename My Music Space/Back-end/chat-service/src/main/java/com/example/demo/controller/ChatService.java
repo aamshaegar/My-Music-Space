@@ -42,7 +42,8 @@ public class ChatService {
         MongoIterable<String> collections = db.listCollectionNames();
 
         ArrayList<String> filteredCollectionNames = new ArrayList<>();
-        Pattern pattern = Pattern.compile("^" + query, Pattern.CASE_INSENSITIVE);
+        String regex = "(^" + query + "\\w*)|.*" + query + ".*";
+        Pattern pattern = Pattern.compile("^" + regex, Pattern.CASE_INSENSITIVE);
 
         for (String collectionName : collections) {
             if (pattern.matcher(collectionName).find()) {
@@ -55,19 +56,14 @@ public class ChatService {
 
 
     public void saveChat(ChatMessage chatMessage){
-
         template.save(chatMessage,chatMessage.getRoom());
         System.out.println("MESSAGE SAVED" + chatMessage + " --- On collection: " + chatMessage.getRoom());
-
     }
 
     public ArrayList<ChatMessage> retrieveChatMessages(String room){
         System.out.println("Retrieve 10 messages from room: " + room);
-
         Query query = new Query().limit(10);
         query.with(Sort.by(Sort.Order.desc("date")));
         return (ArrayList<ChatMessage>) template.find(query,ChatMessage.class, room);
-
-        //return repository.findChatMessageByRoomOrderByDateDesc(room, Limit.of(10));
     }
 }

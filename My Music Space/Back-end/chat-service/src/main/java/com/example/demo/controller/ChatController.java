@@ -29,7 +29,7 @@ public class ChatController {
                 headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
                 System.out.println("User connected: " + chatMessage.getSender() + " on room: " + room);
             }else if (chatMessage.getType() == MessageType.CHAT){
-                //System.out.println("SEND MESSAGE: " + chatMessage);
+                System.out.println("SEND MESSAGE: " + chatMessage);
                 service.saveChat(chatMessage);
             }
         }
