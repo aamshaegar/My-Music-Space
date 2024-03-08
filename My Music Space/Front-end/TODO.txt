@@ -5,10 +5,8 @@ COSE DA FARE
 - 2) Comunicazione col servizio di musica
 - 3) Comunicazione col servizio di shop
 - 4) Login separato dal progetto principale e fare interfaccia registazione
-    - interfaccia login da mofidicare con git e google
-
+    - interfaccia login da modificare con git e google
 - 5) Ricerca nelle 3 sezioni 
 - 6) Interfaccia dei "mi piace", "del carrello (da finire)" e delle "chat a cui ci si è iscritto", sezione ordini precedenti
 - 7) Idee per fare animazioni
-        -Animazioni sfondo normale?
         -Animazioni di transizione della View?

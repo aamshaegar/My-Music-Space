@@ -11,6 +11,8 @@ import Search from "./components/Search";
 import CartView from "./components/CartView";
 
 import {useState} from "react";
+import MyChatView from "./components/MyChatView";
+import MyLikeView from "./components/MyLikeView";
 
 function App() {
   const name = "Aldo";
@@ -76,6 +78,8 @@ function App() {
             <Menu onClick={handleMenuButton}/>
             <div className="View" id="View">
               <Search onClick={handleSearchBar} />
+              <MyLikeView></MyLikeView>
+              <MyChatView></MyChatView>
               <ChatView focus={focus} query={searchQuery}></ChatView>
               <ShopView></ShopView>
               <MusicView></MusicView>

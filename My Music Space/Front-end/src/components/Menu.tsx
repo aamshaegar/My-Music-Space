@@ -15,6 +15,8 @@ function Menu({onClick}) {
   }, []);
 
   function sign_button_selected(id: string){
+      document.getElementById("patinaSong")!.style.display = "block";
+      document.getElementById("patinaMyLike")!.style.display="block";
     document.getElementById("musicButton")!.style.backgroundColor = "#232425";
     document.getElementById("shopButton")!.style.backgroundColor = "#232425";
     document.getElementById("chatButton")!.style.backgroundColor = "#232425";
@@ -25,12 +27,16 @@ function Menu({onClick}) {
   function selected(id: string) {
 
       // GESTION BRUTTISSIMA... Per Ora OK... Meglio usare un array di booleani DOPO
-      if(document.getElementById(id)!.style.backgroundColor === "rgb(62, 153, 207)"){
-        return;
+      if(document.getElementById(id)!.style.backgroundColor === "rgb(62, 153, 207)") {
+          return;
       }
 
       sign_button_selected(id);
       document.getElementById(id)!.style.backgroundColor = "#3E99CF";
+      document.getElementById("MyLikeView")!.style.opacity = "0";
+      document.getElementById("MyLikeView")!.style.display = "none";
+      document.getElementById("MyChatView")!.style.opacity = "0";
+      document.getElementById("MyChatView")!.style.display = "none";
       document.getElementById("MusicView")!.style.opacity = "0";
       document.getElementById("MusicView")!.style.display = "none";
       document.getElementById("ShopView")!.style.opacity = "0";
@@ -66,7 +72,6 @@ function Menu({onClick}) {
           document.getElementById("ChatView")!.style.display = "block";
           document.getElementById("ChatView")!.style.transition = "opacity 1s";
           document.getElementById("Chats")!.style.display = "grid";
-          //document.getElementById("ChatMessage")!.style.display = "none";
           setTimeout(function() {
               document.getElementById("ChatView")!.style.opacity = "1";
           }, 50);
@@ -77,18 +82,44 @@ function Menu({onClick}) {
           onClick("chatButton")
 
       }
+      if (id == "MyChatButton") {
+          $(".search").show(0);
+          document.getElementById("patinaSong")!.style.display = "none";
+          document.getElementById("MyChatView")!.style.display = "block";
+          document.getElementById("MyChatView")!.style.transition = "opacity 1s";
+          document.getElementById("Chats")!.style.display = "grid";
+          setTimeout(function () {
+              document.getElementById("MyChatView")!.style.opacity = "1";
+          }, 50);
+          setTimeout(function () {
+              document.getElementById("Chats")!.style.opacity = "1";
+          }, 50);
+
+          onClick("MyChatButton")
+      }
+
+      if (id == "MyLikeButton") {
+          $(".search").show(0);
+          document.getElementById("patinaMyLike")!.style.display = "none";
+          document.getElementById("MyLikeView")!.style.display = "block";
+          document.getElementById("MyLikeView")!.style.transition = "opacity 1s";
+          setTimeout(function () {
+              document.getElementById("MyLikeView")!.style.opacity = "1";
+          }, 50);
+          onClick("MyLikeButton")
+      }
     }
 
 
   return (
     <div className="Menu" id="Menu">
-        <div className="MySongsButton">
+        <div className="MySongsButton" id="MyLikeButton" onClick={() => selected("MyLikeButton")}>
             <img className="immagini" src={imageUrl1} alt="Immagine" />
-            <div className="patina"></div>
+            <div className="patina" id="patinaMyLike"></div>
         </div>
-        <div className="MySongsButton">
+        <div className="MySongsButton" id="MyChatButton" onClick={() => selected("MyChatButton")}>
             <img className="immagini" src={imageUrl2} alt="Immagine" />
-            <div className="patina"></div>
+            <div className="patina" id="patinaSong"></div>
         </div>
       <button
         className="menuButton"
