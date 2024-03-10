@@ -1,0 +1,43 @@
+services:
+
+
+  mongoShopDB:
+    image: mongo
+    container_name: mongoShopDB
+    restart: always
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongodata:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=rootuser
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass
+    networks:
+      - mynetwork
+
+
+  #######################################
+  # Mongo express
+  #######################################
+
+  mongo-express-shop:
+    image: mongo-express
+    container_name: mongo-express-shop
+    restart: always
+    ports:
+      - "8082:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+      - ME_CONFIG_MONGODB_SERVER=mongoShopDB
+
+    depends_on:
+      - mongoShopDB
+    networks:
+      - mynetwork
+volumes:
+  mongodata:
+
+networks:
+  mynetwork:
+    driver: bridge
