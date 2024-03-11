@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.model.chatMessage;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -39,10 +39,11 @@ public class ChatMessage {
         this.date = date;
     }
 
-    public ChatMessage(String content, String sender,String date) {
+    public ChatMessage(String content, String sender, String room, String date) {
         this.content = content;
         this.sender = sender;
         this.date = date;
+        this.room = room;
     }
 
     public String getId() {

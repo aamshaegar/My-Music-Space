@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.model.chatMessage;
 import org.springframework.data.domain.Limit;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.ArrayList;

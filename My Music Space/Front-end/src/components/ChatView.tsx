@@ -20,7 +20,7 @@ function ChatView({focus, query}) {
     useEffect(() => {
         if(focus == "chatButton"){
             if(query && query != ""){retrieveChatRoomsByQuery(query);
-            }else{retrieveChatRooms();}
+            }else{retrieveChatRoomsByQuery(null);}
         }
     },[focus, query]);
     
@@ -35,17 +35,18 @@ function ChatView({focus, query}) {
         if(index === -1){
             setIsButtonClicked(false);
             $(".search").fadeIn(400);
-            $("#Chats").fadeIn(400);
+            $("#chats").fadeIn(400);
         }
-        else
+        else{
             setIsButtonClicked(true);
+        }
     };
 
     function retrieveChatRoomsByQuery(query){
         $.ajax({
             type:"GET",
-            url: "/chat/messages/collections",
-            data:{room:query},
+            url: "/chatrooms",
+            data:{name:query},
             contentType: "application/json",
             headers:{
                 'Access-Control-Allow-Origin': '*',
@@ -54,32 +55,18 @@ function ChatView({focus, query}) {
             }
 
         }).then(function(data) {
-            setChatNames(data);
+            const chatRoomNames = []
+            for(const el in data) chatRoomNames.push(data[el]["name"])
+            setChatNames(chatRoomNames);
             //console.log("Collecions retrieved!")
         });
     }
 
 
-    function retrieveChatRooms(){
-        $.ajax({
-            type:"GET",
-            url: "/chat/messages/collections/all",
-            contentType: "application/json",
-            headers:{
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
-            }
-
-        }).then(function(data) {
-            setChatNames(data);
-        });
-    }
-
     // ANIMAZIONE CARICAMENTO <Loader></Loader>
     return (
         <div className="ChatView" id="ChatView">
-            <div id="Chats">
+            <div id="chats">
                 {ChatNames.map((name,i) => (
                     <Chat key={i} index={i} name={name} handleClick={handleClick} handleMessageChange={handleMessageChange} />
                 ))}

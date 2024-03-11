@@ -1,6 +1,9 @@
 package com.example.demo.config;
 
-import com.example.demo.model.ChatMessage;
+import com.example.demo.model.chatMessage.ChatMessage;
+import com.example.demo.model.chatRoom.Chatroom;
+import com.example.demo.service.ChatService;
+import com.example.demo.service.ChatroomService;
 import com.google.gson.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -16,7 +19,10 @@ import java.nio.charset.StandardCharsets;
 public class MongoDBConfig {
 
     @Autowired
-    private MongoTemplate mongoTemplate;
+    private ChatroomService chatroomService;
+
+    @Autowired
+    private ChatService service;
 
     @Autowired
     ApplicationContext appContext;
@@ -37,9 +43,10 @@ public class MongoDBConfig {
                 if (element.isJsonObject()) {
                     JsonObject jsonObject = element.getAsJsonObject();
 
-                    String name = jsonObject.get("collection_name").getAsString();
+                    String room = jsonObject.get("collection_name").getAsString();
 
-                    if (!mongoTemplate.collectionExists(name)) {
+                    if (!chatroomService.checkChatroomExists(room)) {
+                        chatroomService.createChatroom(new Chatroom(room));
                         JsonArray jsonMessages = jsonObject.getAsJsonArray("messages");
                         for (JsonElement messageElement : jsonMessages) {
                             if (messageElement.isJsonObject()) {
@@ -49,7 +56,7 @@ public class MongoDBConfig {
                                 String sender = messageObject.get("sender").getAsString();
                                 String date = messageObject.get("date").getAsString();
 
-                                mongoTemplate.save(new ChatMessage(content, sender, date), name);
+                                service.saveChat(new ChatMessage(content, sender, room, date));
                             }
                         }
                     }

@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.model.chatMessage;
 
 public enum MessageType {
     CHAT, LEAVE, JOIN

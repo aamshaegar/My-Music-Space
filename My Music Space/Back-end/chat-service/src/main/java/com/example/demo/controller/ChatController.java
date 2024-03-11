@@ -1,6 +1,7 @@
 package com.example.demo.controller;
-import com.example.demo.model.ChatMessage;
-import com.example.demo.model.MessageType;
+import com.example.demo.model.chatMessage.ChatMessage;
+import com.example.demo.model.chatMessage.MessageType;
+import com.example.demo.service.ChatService;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;

@@ -7,6 +7,7 @@ export default defineConfig({
     proxy: {
       "/websocket": "http://localhost:8091",
       "/chat": "http://localhost:8091",
+      "/chatrooms":"http://localhost:8091",
       "/app":"http://localhost:8091",
     }  
   },

@@ -5,11 +5,12 @@ function Chat({index, name, handleClick, handleMessageChange }){
 
 
     function chatClicked(){
+
         document.getElementById(name).className = 'rotate-vert-center';
 
         setTimeout(function (){
         $(".search").fadeOut(400);
-        $("#Chats").fadeOut(400, function(){$("#ChatMessage").fadeIn(500);
+        $("#chats").fadeOut(400, function(){$("#ChatMessage").fadeIn(500);
         });
         document.getElementById(name).className = '';},400)
         handleMessageChange(name); 

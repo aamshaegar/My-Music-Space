@@ -1,6 +1,6 @@
 package com.example.demo.controller;
-import com.example.demo.model.ChatMessage;
-import com.mongodb.client.MongoIterable;
+import com.example.demo.model.chatMessage.ChatMessage;
+import com.example.demo.service.ChatService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,7 +8,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/chat/messages")
-//@CrossOrigin(origins = "http://localhost:5500")
 public class MessagesController {
 
     private final ChatService service;
@@ -22,13 +21,4 @@ public class MessagesController {
         return service.retrieveChatMessages(room);
     }
 
-    @GetMapping("/collections")
-    public ArrayList<String> getAllCollections(@RequestParam(name = "room") String room){
-        return service.getCollectionNames(room);
-    }
-
-    @GetMapping("/collections/all")
-    public ArrayList<String> getFirstCollections(){
-        return service.getFirstCollections();
-    }
 }

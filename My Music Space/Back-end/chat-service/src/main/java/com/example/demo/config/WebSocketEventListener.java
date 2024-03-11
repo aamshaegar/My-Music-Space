@@ -1,7 +1,7 @@
 package com.example.demo.config;
 
-import com.example.demo.model.ChatMessage;
-import com.example.demo.model.MessageType;
+import com.example.demo.model.chatMessage.ChatMessage;
+import com.example.demo.model.chatMessage.MessageType;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
