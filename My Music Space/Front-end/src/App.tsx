@@ -38,6 +38,7 @@ function App() {
 
   return (
       <div id="My Music Space">
+        <link rel="icon" type="image/x-icon" href="./img/Logo_My%20Music%20Space_round.png"></link>
         <Login></Login>
         <div className="liquidContainer" id="liquidContainer">
 

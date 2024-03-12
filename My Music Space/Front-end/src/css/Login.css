@@ -42,14 +42,11 @@
 }
 
 .LogoImg{
-    width: 28vh;
-    height: 25vh;
-    margin-top:5%;
-    margin-bottom: 5%;
+    width: 38vh;
+    height: 35vh;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    border: white 1vh solid;
 }
 
 #LoginButton{
