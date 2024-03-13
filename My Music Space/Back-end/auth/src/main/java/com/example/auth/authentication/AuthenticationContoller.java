@@ -14,6 +14,13 @@ public class AuthenticationContoller {
 
     private final AuthenticationService service;
 
+
+    @GetMapping
+    public String prova(){
+        return "Qualcosa";
+    }
+
+
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){
         return ResponseEntity.ok(service.register(request));

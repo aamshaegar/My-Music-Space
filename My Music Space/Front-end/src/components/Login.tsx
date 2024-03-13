@@ -17,12 +17,27 @@ function Login() {
             document.getElementById("login")!.style.display = "none";
             document.getElementById("liquidContainer")!.style.display="none";}, 3000);
     }
+
+function prova(){
+
+    // Prima c'era un bottone <input> e il form
+    $.get(
+        'http://localhost:8094/api/v1/auth',
+        function(returnedData){
+            console.log("ciao")
+            console.log(returnedData)
+        }).fail(function(response){
+        alert('Error: ' + response.responseText);
+    });
+
+
+}
     return (
         <div className="Login" id="login">
             <div className="slider-thumb"></div>
             <div className="ContainerLogin">
                 <img className="LogoImg" src={LogoUrl}></img>
-                <form>
+                
                     <label htmlFor="email">Email:</label>
                     <br></br>
                     <input type="text" placeholder=""></input>
@@ -31,9 +46,10 @@ function Login() {
                     <br></br>
                     <input type="text" placeholder=""></input>
                     <br></br>
-                    <input id="LoginButton" type="submit" value="Login"></input>
+                    
+                    <button id="LoginButton" type="submit" value="Login" onClick={() => prova()}></button>
                     <div id="MessaggioRegistrazione">Non sei registrato? Registrati!</div>
-                </form>
+                
                 <button onClick={() => selected()}> AVANZA</button>
             </div>
         </div>

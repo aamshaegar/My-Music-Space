@@ -1,4 +1,5 @@
 package com.example.shopservice.controller;
+import com.example.shopservice.model.ItemType;
 import com.example.shopservice.model.ShopItem;
 import com.example.shopservice.model.ShopItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping(path="/shop")
 public class ShopController {
 
-    @Autowired
-    private MongoTemplate template;
 
     @Autowired
     private ShopItemRepository Repository;
@@ -24,7 +24,13 @@ public class ShopController {
     @GetMapping("/random")
     public List <ShopItem> getRandomItems(){
         //Query query = new Query().limit(10);
-        return Repository.findFirst10By();
+
+        //Repository.save(new ShopItem(ItemType.CD, "coso", 4.0f, "nome", "data", "path"));
+
+        List<ShopItem> myList = Repository.findTop10ShopItemByType(ItemType.CD);
+        myList.addAll(Repository.findTop10ShopItemByType(ItemType.TICKET));
+        myList.addAll(Repository.findTop10ShopItemByType(ItemType.PRODUCT));
+        return myList;
         //return template.find(query, ShopItem.class);
     }
 

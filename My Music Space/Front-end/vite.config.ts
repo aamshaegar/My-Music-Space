@@ -9,6 +9,7 @@ export default defineConfig({
       "/chat": "http://localhost:8091",
       "/chatrooms":"http://localhost:8091",
       "/app":"http://localhost:8091",
+      "/api":"http://localhost:8094"
     }  
   },
   plugins: [react()],

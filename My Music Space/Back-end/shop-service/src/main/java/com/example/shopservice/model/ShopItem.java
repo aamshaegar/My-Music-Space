@@ -9,14 +9,14 @@ import java.util.Date;
 public class ShopItem {
     @Id
     private String id;
-    private String type;
+    private ItemType type;
     private String name;
     private Float price;
     private String vendor;
     private String date;
     private String imagePath;
 
-    public ShopItem(String id, String type, String name, Float price, String vendor, String date, String imagePath) {
+    public ShopItem(String id,  ItemType type, String name, Float price, String vendor, String date, String imagePath) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -29,7 +29,7 @@ public class ShopItem {
     public ShopItem() {
     }
 
-    public ShopItem(String type, String name, Float price, String vendor, String date, String imagePath) {
+    public ShopItem(ItemType type, String name, Float price, String vendor, String date, String imagePath) {
         this.type = type;
         this.name = name;
         this.price = price;
@@ -46,11 +46,11 @@ public class ShopItem {
         this.id = id;
     }
 
-    public String getType() {
+    public ItemType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ItemType type) {
         this.type = type;
     }
 
