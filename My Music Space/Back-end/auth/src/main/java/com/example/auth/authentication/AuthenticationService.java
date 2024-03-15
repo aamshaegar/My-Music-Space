@@ -19,9 +19,10 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public boolean exist(String email){
+    public boolean existEmail(String email){
         return repository.existsByEmail(email);
     }
+    //public boolean checkPassword(String password){return repository.checkPassword(password);}
 
     // crea lo user, lo salva nel db e ritorna il token generato
     public AuthenticationResponse register(RegisterRequest request){
@@ -53,24 +54,35 @@ public class AuthenticationService {
     }
 
     // fa tutto l'authenticationManager
+    // se l'email è presente nel db controllo la password, altrimenti restituisco un messaggio di errore
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+        if(existEmail(request.getEmail())){
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
 
-        // se arrivo a questo punto, l'utente si è autenticato
-        // devo generare il token e restituirlo
-        var user = repository.findByEmail(request.getEmail()).orElseThrow();
+            );
 
-        System.out.println(repository.existsByEmail(request.getEmail()));
+            // se arrivo a questo punto, l'utente si è autenticato
+            // devo generare il token e restituirlo
 
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .response("Authentication was successful!")
-                .build();
+            var user = repository.findByEmail(request.getEmail()).orElseThrow();
+            var jwtToken = jwtService.generateToken(user);
+            return AuthenticationResponse.builder()
+                    .token(jwtToken)
+                    .response("Authentication successful!")
+                    .build();
+
+            //TODO: gestire la password errata
+
+        } else {
+            return AuthenticationResponse.builder()
+                    .token("")
+                    .response("User not found.")
+                    .build();
+        }
     }
+
 }

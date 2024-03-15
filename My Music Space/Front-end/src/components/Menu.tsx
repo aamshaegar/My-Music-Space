@@ -4,6 +4,9 @@ const imageUrl1 = "/src/img/backgroundBlu.jpg";
 import "../css/Menu.css"
 import Cart from "./Cart";
 const imagelogo = "/src/img/My Music Space Logo dark.png";
+const musicLogo = "/src/img/fixedElements/discWhite.png";
+const shopLogo = "/src/img/fixedElements/bagWhite.png";
+const chatLogo = "/src/img/fixedElements/chatWhite.png";
 
 function Menu({onClick}) {
 
@@ -104,21 +107,21 @@ function Menu({onClick}) {
         id="musicButton"
         onClick={() => selected("musicButton")}
       >
-        Musica
+          <img className="icons" src={musicLogo}></img>
       </button>
       <button
         className="menuButton"
         id="shopButton"
         onClick={() => selected("shopButton")}
       >
-        Shop
+          <img className="icons" src={shopLogo}></img>
       </button>
       <button
         className="menuButton"
         id="chatButton"
         onClick={() => selected("chatButton")}
       >
-        Chat
+          <img className="icons" src={chatLogo}></img>
       </button>
         <div className="MySongsButton" id="MyLikeButton" onClick={() => selected("MyLikeButton")}>
             <img className="immagini" src={imageUrl1} alt="Immagine" />

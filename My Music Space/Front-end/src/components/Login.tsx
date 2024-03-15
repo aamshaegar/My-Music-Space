@@ -3,7 +3,6 @@ import "../css/Login.css"
 
 function Login() {
     function selected (){
-        console.log("Sono qui");
         document.getElementById("liquidContainer")!.style.display="block";
         document.getElementById("liquidContainer")!.style.transition = "opacity 1s";
         setTimeout(function() {
@@ -20,7 +19,7 @@ function Login() {
 
 
     function checkInput() {
-        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]$/;
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const email = $('#emailInput').val();
         const password = $('#passwordInput').val();
         if (!regex.test(email)) {
@@ -50,6 +49,8 @@ function Login() {
                 }),
                 success: function(response) {
                     if(response.response=="User not found."){
+                        alert(response.response);
+                    } else if(response.response=="Password incorrect."){
                         alert(response.response);
                     } else {
                         alert(response.response);

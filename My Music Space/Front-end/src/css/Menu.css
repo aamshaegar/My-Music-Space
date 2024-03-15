@@ -5,7 +5,7 @@
 .Menu{
     background-color: #404040;
     height: 100%;
-    width: 8%;
+    width: 6%;
     position: absolute;
     float: left;
     border-radius: 0 0 5% 0;
@@ -19,7 +19,7 @@
     position: relative;
     top: 20%;
     margin-top: 5vh;
-    margin-left: 5vh;
+    margin-left: 1vh;
     float: left;
 }
 
@@ -77,13 +77,13 @@
     box-sizing: border-box;
     appearance: none;
     color:white;
-    border-radius: 5vh;
+    border-radius: 2vh;
     border: 0 none;
-    height:10vh;
-    width:10vh;
+    height:8vh;
+    width:8vh;
     position: relative;
     top: 25%;
-    left: 5vh;
+    left: 1vh;
     font-weight: bold;
     font-style: italic;
     font-size: 3vh;
@@ -137,6 +137,14 @@
     left: 35%;
     top:5%;
 }
+
+.icons{
+    width: 80%;
+    height: 71%;
+    object-fit: cover;
+    color: white;
+}
+
 
 .LogoMenuImg{
     position: absolute;
