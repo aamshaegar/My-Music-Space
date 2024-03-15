@@ -19,11 +19,6 @@ function App() {
   const surname ="Rambaudo";
   const email ="rambaudo.aldo@gmail.com"
   const plane ="Premium"
-  const productname="Cappello PTN"
-  const type ="Abbigliamento"
-  const price ="30€"
-  const vendor ="PTN"
-  const date=""
 
   const [searchQuery, setSearchQuery] = useState("");
   const [focus, setFocus] = useState("musicButton");
@@ -70,15 +65,12 @@ function App() {
         </div>
         <div id="All">
           <div className="Search-User" id="Search-User">
-            <UserView name={name} surname={surname} email={email} plane={plane} ></UserView>
             <User name={name} />
-            <CartView productname={productname} type={type} price={price} vendor={vendor} date={date}></CartView>
-            <Cart />
+            <Search onClick={handleSearchBar} />
           </div>
           <div className="Menu+View">
             <Menu onClick={handleMenuButton}/>
             <div className="View" id="View">
-              <Search onClick={handleSearchBar} />
               <MyLikeView></MyLikeView>
               <MyChatView></MyChatView>
               <ChatView focus={focus} query={searchQuery}></ChatView>

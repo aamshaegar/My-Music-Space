@@ -19,7 +19,6 @@ function User({name}:Props) {
       <div className={"imgContainer"}>
         <img className="immagini" src={imageUrl} alt="Immagine" onClick={() => selected()}/>
       </div>
-        <p>Benvenuto, {name}</p>
     </div>
   );
 }

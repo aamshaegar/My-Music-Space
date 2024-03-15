@@ -1,6 +1,6 @@
 
 .search{
-    z-index:-5;
+    z-index:1;
 }
 .search input{
     position: relative;
@@ -18,7 +18,8 @@
 /*Search css*/
 .search{
     float: left;
-    width: 100%;
+    left: 15%;
+    width: 80%;
     position: absolute;
 }
 

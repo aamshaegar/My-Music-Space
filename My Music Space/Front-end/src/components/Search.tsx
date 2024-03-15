@@ -27,7 +27,6 @@ function Search({onClick}) {
           placeholder="Cosa stai cercando?"
         />
           <i className="fa fa-search"></i>
-          <button className="back" id="back" >&lt;</button>
       </div>
   );
 }

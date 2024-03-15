@@ -1,10 +1,11 @@
 .UserDiv{
-    background-color: #3E99CF;
+    background-color: transparent;
     width: 40vh;
     height: 17vh;
     border-radius: 0 0 50% 0;
-    position: relative;
-    float: left;
+    position: absolute;
+    float:left;
+    left:90%;
     padding-top: 3vh;
     padding-left: 1vh;
     margin-bottom: 2vh;

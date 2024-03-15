@@ -91,6 +91,7 @@ function Login() {
                 </form>
                 <button id="loginButton" type="submit" value="Login" onClick={() => authentication()}>Entra</button>
             </div>
+            <button id="registrationButton" onClick={() => selected()}> AVANZA</button>
         </div>
     );
 }

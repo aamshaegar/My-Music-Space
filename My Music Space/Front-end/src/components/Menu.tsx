@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
 const imageUrl1 = "/src/img/backgroundBlu.jpg";
-const imageUrlInsta="/src/img/Instagram_logo_2022.svg.png"
 import "../css/Menu.css"
-const imageUrl2 = "/src/img/MyChatLogo-modified.png";
+import Cart from "./Cart";
+const imagelogo = "/src/img/My Music Space Logo dark.png";
 
 function Menu({onClick}) {
 
@@ -35,8 +35,6 @@ function Menu({onClick}) {
       document.getElementById(id)!.style.backgroundColor = "#3E99CF";
       document.getElementById("MyLikeView")!.style.opacity = "0";
       document.getElementById("MyLikeView")!.style.display = "none";
-      document.getElementById("MyChatView")!.style.opacity = "0";
-      document.getElementById("MyChatView")!.style.display = "none";
       document.getElementById("MusicView")!.style.opacity = "0";
       document.getElementById("MusicView")!.style.display = "none";
       document.getElementById("ShopView")!.style.opacity = "0";
@@ -82,21 +80,6 @@ function Menu({onClick}) {
           onClick("chatButton")
 
       }
-      if (id == "MyChatButton") {
-          $(".search").show(0);
-          document.getElementById("patinaSong")!.style.display = "none";
-          document.getElementById("MyChatView")!.style.display = "block";
-          document.getElementById("MyChatView")!.style.transition = "opacity 1s";
-          document.getElementById("Chats")!.style.display = "grid";
-          setTimeout(function () {
-              document.getElementById("MyChatView")!.style.opacity = "1";
-          }, 50);
-          setTimeout(function () {
-              document.getElementById("Chats")!.style.opacity = "1";
-          }, 50);
-
-          onClick("MyChatButton")
-      }
 
       if (id == "MyLikeButton") {
           $(".search").show(0);
@@ -113,13 +96,8 @@ function Menu({onClick}) {
 
   return (
     <div className="Menu" id="Menu">
-        <div className="MySongsButton" id="MyLikeButton" onClick={() => selected("MyLikeButton")}>
-            <img className="immagini" src={imageUrl1} alt="Immagine" />
-            <div className="patina" id="patinaMyLike"></div>
-        </div>
-        <div className="MySongsButton" id="MyChatButton" onClick={() => selected("MyChatButton")}>
-            <img className="immagini" src={imageUrl2} alt="Immagine" />
-            <div className="patina" id="patinaSong"></div>
+        <div className="LogoMenu">
+            <img className="LogoMenuImg" src={imagelogo}></img>
         </div>
       <button
         className="menuButton"
@@ -142,24 +120,14 @@ function Menu({onClick}) {
       >
         Chat
       </button>
-      <div className="Social">
-        <div className="SocialButton">
-          <img className="immagini" src={imageUrlInsta} alt="Immagine" />
-          <div className="patina"></div>
+        <div className="MySongsButton" id="MyLikeButton" onClick={() => selected("MyLikeButton")}>
+            <img className="immagini" src={imageUrl1} alt="Immagine" />
+            <div className="patina" id="patinaMyLike"></div>
         </div>
-        <div className="SocialButton">
-          <img className="immagini" src={imageUrl1} alt="Immagine" />
-          <div className="patina"></div>
+        <div className="MySongsButton" id="MyChatButton">
+            <Cart />
+            <div className="patina" id="patinaSong"></div>
         </div>
-        <div className="SocialButton">
-          <img className="immagini" src={imageUrl1} alt="Immagine" />
-          <div className="patina"></div>
-        </div>
-        <div className="SocialButton">
-          <img className="immagini" src={imageUrl1} alt="Immagine" />
-          <div className="patina"></div>
-        </div>
-      </div>
     </div>
   );
 }

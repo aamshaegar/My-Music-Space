@@ -9,22 +9,10 @@ interface Props{
     date:string;
 }
 function CartView({productname, type, price, vendor, date}:Props) {
-    function selected() {
-        document.getElementById("CartView")!.style.transition = "opacity 1s";
-        setTimeout(function() {
-            document.getElementById("CartView")!.style.opacity = "0";
-        }, 50);
-        setTimeout(function() {
-            if( document.getElementById("UserView")!.style.opacity!=1) {
-                document.getElementById("View")!.style.zIndex="-5";
-                document.getElementById("Menu")!.style.zIndex="";}
-            document.getElementById("CartView")!.style.display = "none";
-        }, 500);
-    }
     return (
         <div className="CartView" id ="CartView">
             <div className={"imgContainer"}>
-                <img className="cartImg" src={imageUrl} alt="Immagine" onClick={() => selected()} />
+                <img className="cartImg" src={imageUrl} alt="Immagine" />
             </div>
             <div className="CartInfo">
                 <p> Ecco il tuo carrello:</p>
