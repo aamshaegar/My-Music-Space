@@ -24,7 +24,7 @@ function Search({onClick}) {
           onKeyDown={(event) => {propagateEvent(event)}}
           type="text"
           className="searchTerm"
-          placeholder="Cosa stai cercando?"
+          placeholder="Cerca..."
         />
           <i className="fa fa-search"></i>
       </div>

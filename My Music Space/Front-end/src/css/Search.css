@@ -5,10 +5,11 @@
 .search input{
     position: relative;
     background-color: #404040;
+    height: 90%;
     width: 88%;
     top: 5vh;
     margin-left: 2vh;
-    border-radius: 50vh;
+    border-radius: 3vh;
     border-style: solid;
     padding-left: 6vh;
     border-color: #3E99CF;

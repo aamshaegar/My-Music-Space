@@ -17,7 +17,7 @@
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    top: 25%;
+    top: 20%;
     margin-top: 5vh;
     margin-left: 5vh;
     float: left;
@@ -82,7 +82,7 @@
     height:10vh;
     width:10vh;
     position: relative;
-    top: 30%;
+    top: 25%;
     left: 5vh;
     font-weight: bold;
     font-style: italic;
