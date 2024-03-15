@@ -1,4 +1,9 @@
 /*Login and Registration*/
+*{
+    font-weight: bold;
+    font-style: italic;
+    font-size: 3vh;
+}
 
 .Login{
     display: block;
@@ -49,8 +54,9 @@
     position: relative;
 }
 
-#LoginButton{
+#loginButton{
     background-color: #404040;
+    width: 25vh;
     box-shadow: #000000 0 0 2vh inset;
     box-sizing: border-box;
     appearance: none;
@@ -59,9 +65,6 @@
     border: 0 none;
     height:7vh;
     position: relative;
-    font-weight: bold;
-    font-style: italic;
-    font-size: 3vh;
     display: inline-block;
     cursor: pointer;
     letter-spacing: -.24px;
@@ -74,7 +77,7 @@
     touch-action: manipulation;
     margin: 0 0 4vh;
 }
-#LoginButton:hover{
+#loginButton:hover{
     background-color: #3E99CF;
 }
 
@@ -88,6 +91,10 @@
 
 form label{
     width: 30vh;
+}
+
+#emailInput,#passwordInput{
+    font-size: 2vh;
 }
 
 /*Background*/

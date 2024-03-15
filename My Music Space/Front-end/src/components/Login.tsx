@@ -18,39 +18,78 @@ function Login() {
             document.getElementById("liquidContainer")!.style.display="none";}, 3000);
     }
 
-function prova(){
 
-    // Prima c'era un bottone <input> e il form
-    $.get(
-        'http://localhost:8094/api/v1/auth',
-        function(returnedData){
-            console.log("ciao")
-            console.log(returnedData)
-        }).fail(function(response){
-        alert('Error: ' + response.responseText);
-    });
+    function checkInput() {
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]$/;
+        const email = $('#emailInput').val();
+        const password = $('#passwordInput').val();
+        if (!regex.test(email)) {
+            alert("Email non valida.");
+            return false;
+        }
+        if(password==""){
+            alert("Campo password vuoto");
+            return false;
+        }
+        return true;
+    }
+
+    function authentication(){
+        //<button id="registrationButton" onClick={() => selected()}> AVANZA</button>
+        //<div id="MessaggioRegistrazione">Non sei registrato? Registrati!</div>
+        if(checkInput()){
+            $.ajax({
+                url: 'http://localhost:8094/api/v1/auth/authenticate',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    //nome: 'lorenz',
+                    //cognome: 'al',
+                    email: $('#emailInput').val(),
+                    password: $('#passwordInput').val()
+                }),
+                success: function(response) {
+                    if(response.response=="User not found."){
+                        alert(response.response);
+                    } else {
+                        alert(response.response);
+                        console.log("token: " + response.token);
+                        selected();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error during the request:', error);
+                }
+            });
+        } else {
+            // gestire il caso in cui il login non va a buon fine
+        }
+    }
 
 
-}
+
+    function prova(){
+        console.log($('#emailInput').val());
+        console.log($('#passwordInput').val());
+    }
+
+
     return (
         <div className="Login" id="login">
             <div className="slider-thumb"></div>
             <div className="ContainerLogin">
                 <img className="LogoImg" src={LogoUrl}></img>
-                
+                <form>
                     <label htmlFor="email">Email:</label>
                     <br></br>
-                    <input type="text" placeholder=""></input>
+                    <input id="emailInput" placeholder="Inserisci l'email"></input>
                     <br></br>
                     <label htmlFor="password">Password:</label>
                     <br></br>
-                    <input type="text" placeholder=""></input>
+                    <input type="password" id="passwordInput" placeholder="Inserisci la password"></input>
                     <br></br>
-                    
-                    <button id="LoginButton" type="submit" value="Login" onClick={() => prova()}></button>
-                    <div id="MessaggioRegistrazione">Non sei registrato? Registrati!</div>
-                
-                <button onClick={() => selected()}> AVANZA</button>
+                </form>
+                <button id="loginButton" type="submit" value="Login" onClick={() => authentication()}>Entra</button>
             </div>
         </div>
     );

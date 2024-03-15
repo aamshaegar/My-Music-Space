@@ -4,16 +4,11 @@ import com.example.auth.config.JwtService;
 import com.example.auth.user.Role;
 import com.example.auth.user.User;
 import com.example.auth.user.UserRepository;
-import com.example.auth.authentication.AuthenticationRequest;
-import com.example.auth.authentication.AuthenticationResponse;
-import com.example.auth.authentication.RegisterRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +18,10 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
+    public boolean exist(String email){
+        return repository.existsByEmail(email);
+    }
 
     // crea lo user, lo salva nel db e ritorna il token generato
     public AuthenticationResponse register(RegisterRequest request){
@@ -65,6 +64,8 @@ public class AuthenticationService {
         // se arrivo a questo punto, l'utente si è autenticato
         // devo generare il token e restituirlo
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
+
+        System.out.println(repository.existsByEmail(request.getEmail()));
 
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
