@@ -7,6 +7,8 @@ const imagelogo = "/src/img/My Music Space Logo dark.png";
 const musicLogo = "/src/img/fixedElements/discWhite.png";
 const shopLogo = "/src/img/fixedElements/bagWhite.png";
 const chatLogo = "/src/img/fixedElements/chatWhite.png";
+const likedLogoW = "/src/img/fixedElements/likeWhite.png";
+const cartLogo = "/src/img/fixedElements/cartWhite.png";
 
 function Menu({onClick}) {
 
@@ -18,8 +20,8 @@ function Menu({onClick}) {
   }, []);
 
   function sign_button_selected(id: string){
-      document.getElementById("patinaSong")!.style.display = "block";
-      document.getElementById("patinaMyLike")!.style.display="block";
+    //document.getElementById("patinaSong")!.style.display = "block";
+    //document.getElementById("patinaMyLike")!.style.display="block";
     document.getElementById("musicButton")!.style.backgroundColor = "#232425";
     document.getElementById("shopButton")!.style.backgroundColor = "#232425";
     document.getElementById("chatButton")!.style.backgroundColor = "#232425";
@@ -27,7 +29,27 @@ function Menu({onClick}) {
   }
 
 
+
   function selected(id: string) {
+      if(id=="likeButton"){
+          var imgElement = document.getElementById(id);
+          if (imgElement) {
+              imgElement.src = "/src/img/fixedElements/likeBlu.png";
+          } else {
+              console.error("Impossibile trovare l'elemento immagine con l'ID specificato.");
+          }
+          return;
+      }
+
+      if(id=="cartButton"){
+          var imgElement = document.getElementById(id);
+          if (imgElement) {
+              imgElement.src = "/src/img/fixedElements/cartBlu.png";
+          } else {
+              console.error("Impossibile trovare l'elemento immagine con l'ID specificato.");
+          }
+          return;
+      }
 
       // GESTION BRUTTISSIMA... Per Ora OK... Meglio usare un array di booleani DOPO
       if(document.getElementById(id)!.style.backgroundColor === "rgb(62, 153, 207)") {
@@ -86,7 +108,7 @@ function Menu({onClick}) {
 
       if (id == "MyLikeButton") {
           $(".search").show(0);
-          document.getElementById("patinaMyLike")!.style.display = "none";
+          //document.getElementById("patinaMyLike")!.style.display = "none";
           document.getElementById("MyLikeView")!.style.display = "block";
           document.getElementById("MyLikeView")!.style.transition = "opacity 1s";
           setTimeout(function () {
@@ -105,32 +127,43 @@ function Menu({onClick}) {
       <button
         className="menuButton"
         id="musicButton"
-        onClick={() => selected("musicButton")}
-      >
+        onClick={() => selected("musicButton")}>
           <img className="icons" src={musicLogo}></img>
       </button>
       <button
         className="menuButton"
         id="shopButton"
-        onClick={() => selected("shopButton")}
-      >
+        onClick={() => selected("shopButton")}>
           <img className="icons" src={shopLogo}></img>
       </button>
       <button
         className="menuButton"
         id="chatButton"
-        onClick={() => selected("chatButton")}
-      >
+        onClick={() => selected("chatButton")}>
           <img className="icons" src={chatLogo}></img>
       </button>
-        <div className="MySongsButton" id="MyLikeButton" onClick={() => selected("MyLikeButton")}>
-            <img className="immagini" src={imageUrl1} alt="Immagine" />
-            <div className="patina" id="patinaMyLike"></div>
-        </div>
-        <div className="MySongsButton" id="MyChatButton">
-            <Cart />
-            <div className="patina" id="patinaSong"></div>
-        </div>
+
+
+        {/*<div className="MySongsButton" id="MyLikeButton" onClick={() => selected("MyLikeButton")}>*/}
+            <button
+                className="likedAndCart"
+                onClick={() => selected("likeButton")}>
+                <img id="likeButton" className="icons" src={likedLogoW}></img>
+            </button>
+            {/*<div className="patina" id="patinaMyLike"></div>*/}
+        {/*</div>*/}
+
+
+        {/*<div className="MySongsButton" id="MyChatButton">*/}
+            {/*<Cart />*/}
+            <button
+                className="likedAndCart"
+                id="cartButton"
+                onClick={() => selected("cartButton")}>
+                <img id="cartButton" className="icons" src={cartLogo}></img>
+            </button>
+            {/*<div className="patina" id="patinaSong"></div>*/}
+        {/*</div>*/}
     </div>
   );
 }
