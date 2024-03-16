@@ -26,7 +26,14 @@ public class AuthenticationService {
 
     // crea lo user, lo salva nel db e ritorna il token generato
     public AuthenticationResponse register(RegisterRequest request){
-
+        /*
+        System.out.println("\n");
+        System.out.println(request.getFirstName());
+        System.out.println(request.getLastName());
+        System.out.println(request.getEmail());
+        System.out.println(request.getPassword());
+        System.out.println("\n");
+        */
 
         // TODO: potrebbe essere fatto meglio?
         // controllo che l'utente non esista
