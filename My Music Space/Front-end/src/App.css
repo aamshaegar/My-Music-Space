@@ -1,3 +1,9 @@
+@font-face { 
+  font-family: myFirstFont; 
+  src: url("./font/ATTriumvirate-CondensedBlac.ttf"); 
+} 
+
+
 #All {
   display: none;
 }

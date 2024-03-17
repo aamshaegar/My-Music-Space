@@ -70,6 +70,8 @@ function Menu({onClick}) {
       
       // GESTIONE BRUTTA, PER IL MOMENTO OK;
       $("#ChatMessage").hide(0);
+      $("#chats").show(0);
+
 
       if (id == "musicButton") {
           $(".search").show(0);

@@ -29,11 +29,7 @@
     cursor: pointer;
 }
 
-*{
-    font-weight: bold;
-    font-style: italic;
-    font-size: 3vh;
-}
+
 
 .Login{
     display: block;
