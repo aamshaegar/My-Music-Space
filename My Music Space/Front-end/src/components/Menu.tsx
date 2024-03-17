@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 
-const imageUrl1 = "/src/img/backgroundBlu.jpg";
 import "../css/Menu.css"
-import Cart from "./Cart";
 const imagelogo = "/src/img/My Music Space Logo dark.png";
 const musicLogo = "/src/img/fixedElements/discWhite.png";
 const shopLogo = "/src/img/fixedElements/bagWhite.png";
@@ -20,21 +18,21 @@ function Menu({onClick}) {
   }, []);
 
   function sign_button_selected(id: string){
-    //document.getElementById("patinaSong")!.style.display = "block";
-    //document.getElementById("patinaMyLike")!.style.display="block";
-    document.getElementById("musicButton")!.style.backgroundColor = "#232425";
-    document.getElementById("shopButton")!.style.backgroundColor = "#232425";
-    document.getElementById("chatButton")!.style.backgroundColor = "#232425";
     document.getElementById(id)!.style.backgroundColor = "#3E99CF";
   }
 
 
 
   function selected(id: string) {
+      document.getElementById("musicButton")!.style.backgroundColor = "#232425";
+      document.getElementById("shopButton")!.style.backgroundColor = "#232425";
+      document.getElementById("chatButton")!.style.backgroundColor = "#232425";
+      let imgElement;
       if(id=="likeButton"){
-          var imgElement = document.getElementById(id);
+          imgElement = document.getElementById(id);
           if (imgElement) {
               imgElement.src = "/src/img/fixedElements/likeBlu.png";
+              document.getElementById("cartButton").src = cartLogo;
           } else {
               console.error("Impossibile trovare l'elemento immagine con l'ID specificato.");
           }
@@ -42,9 +40,10 @@ function Menu({onClick}) {
       }
 
       if(id=="cartButton"){
-          var imgElement = document.getElementById(id);
+          imgElement = document.getElementById(id);
           if (imgElement) {
               imgElement.src = "/src/img/fixedElements/cartBlu.png";
+              document.getElementById("likeButton").src = likedLogoW;
           } else {
               console.error("Impossibile trovare l'elemento immagine con l'ID specificato.");
           }
@@ -57,7 +56,9 @@ function Menu({onClick}) {
       }
 
       sign_button_selected(id);
-      document.getElementById(id)!.style.backgroundColor = "#3E99CF";
+      document.getElementById("likeButton").src = likedLogoW;
+      document.getElementById("cartButton").src = cartLogo;
+      if(id!= "cartButton" && id!= "likeButton") document.getElementById(id)!.style.backgroundColor = "#3E99CF";
       document.getElementById("MyLikeView")!.style.opacity = "0";
       document.getElementById("MyLikeView")!.style.display = "none";
       document.getElementById("MusicView")!.style.opacity = "0";
@@ -158,7 +159,6 @@ function Menu({onClick}) {
             {/*<Cart />*/}
             <button
                 className="likedAndCart"
-                id="cartButton"
                 onClick={() => selected("cartButton")}>
                 <img id="cartButton" className="icons" src={cartLogo}></img>
             </button>

@@ -1,7 +1,7 @@
 #ChatMessage{
     display: none;
     color: white;
-    background-color: #404040;
+    background-color: transparent;
     border-radius: 5vh;
     min-height: 100%;
     max-height: 100%;
@@ -44,7 +44,8 @@
 }
 
 #ChatMessage .title{
-    background-color: #1a1a1a;
+    background-color: #404040;
+    width: 86%;
     border-radius: 1vh;
     margin: 0;
     display: flex;
@@ -73,6 +74,7 @@
 #ChatMessage .title{
     font-weight: bold;
     font-size: 1.5em;
+    margin-left:2%;
 }
 
 #ChatMessage .title i{
@@ -98,6 +100,7 @@
     min-height: 50vh;
     overflow-y: auto;
     max-height: 60vh;
+    width: 94%;
 }
 
 .chatContainer .MessageBox{
@@ -110,7 +113,7 @@
 }
 
 .chatContainer .OtherMessageBox{
-    background-color: #1a1a1a;
+    background-color: #404040;
     color: antiquewhite;
 }
 

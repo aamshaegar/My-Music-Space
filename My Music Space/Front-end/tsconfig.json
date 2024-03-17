@@ -21,6 +21,9 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "../../../../AppData/Roaming/JetBrains/IntelliJIdea2023.3/javascript/extLibs/global-types/node_modules/@types/jquery/misc.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
