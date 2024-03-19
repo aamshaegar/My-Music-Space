@@ -18,7 +18,7 @@ function Search({onClick}) {
   return (
       <div className="search">
           <img className="Lente" src={imageLente} alt="Immagine" />
-        <input
+        <input id="searchBar"
           onChange={handleChange}
           value={searchQuery}
           onKeyDown={(event) => {propagateEvent(event)}}

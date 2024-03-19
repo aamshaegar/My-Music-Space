@@ -1,3 +1,5 @@
+import {useState} from "react";
+import {useEffect} from "react";
 const ImgPlaylist ="/src/img/texas-road-trip-playlist.jpg"
 const ImgRadio="/src/img/music-note.png"
 import "../css/MusicView.css"
@@ -13,7 +15,16 @@ function Object({object}){
     );
 }
 
-function MusicView() {
+function MusicView({focus, query}) {
+
+    // questa lista verrà richiesta quando clicco sul bottone music, quindi sarà memorizzata nel padre e passata al figlio.
+    useEffect(() => {
+        if(focus == "musicButton"){
+            if(query && query != ""){
+                alert("Music view search bar piena OOOOOK")
+            }
+        }
+    },[focus, query]);
 
 
     // Type 1 == Album

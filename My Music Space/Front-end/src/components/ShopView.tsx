@@ -1,3 +1,5 @@
+import {useState} from "react";
+import {useEffect} from "react";
 const ImgVinyl = "/src/img/Vinyl_icon.png"
 const ImgAlbum = "/src/img/Viva la vida.jpg"
 const ImgTicket = "/src/img/elodie-show-2023.jpg"
@@ -20,7 +22,17 @@ function MerchProduct({object}){
     );
 }
 
-function ShopView() {
+function ShopView({focus, query}) {
+
+    // questa lista verrà richiesta quando clicco sul bottone music, quindi sarà memorizzata nel padre e passata al figlio.
+    useEffect(() => {
+        if(focus == "shopButton"){
+            if(query && query != ""){
+                alert("Shop view search bar piena OOOOOK")
+            }
+        }
+    },[focus, query]);
+
 
     // Type 1 == CD/vinili
     // Type 2 == Eventi

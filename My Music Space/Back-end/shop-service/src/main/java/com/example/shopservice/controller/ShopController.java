@@ -1,16 +1,11 @@
 package com.example.shopservice.controller;
-import com.example.shopservice.model.ItemType;
-import com.example.shopservice.model.ShopItem;
-import com.example.shopservice.model.ShopItemRepository;
+import com.example.shopservice.model.Item;
+import com.example.shopservice.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,26 +14,15 @@ public class ShopController {
 
 
     @Autowired
-    private ShopItemRepository Repository;
+    private ShopService service;
 
-    @GetMapping("/random")
-    public List <ShopItem> getRandomItems(){
-        //Query query = new Query().limit(10);
-
-        //Repository.save(new ShopItem(ItemType.CD, "coso", 4.0f, "nome", "data", "path"));
-
-        List<ShopItem> myList = Repository.findTop10ShopItemByType(ItemType.CD);
-        myList.addAll(Repository.findTop10ShopItemByType(ItemType.TICKET));
-        myList.addAll(Repository.findTop10ShopItemByType(ItemType.PRODUCT));
-        return myList;
-        //return template.find(query, ShopItem.class);
+    @GetMapping("/items")
+    public List <Item> getRandomItems(@RequestParam(defaultValue = "10") int maxItems){
+        return service.getRandomItems(maxItems);
     }
 
-    @GetMapping("/search")
-    public List <ShopItem> getItems(@RequestParam(name="query") String query){
-        //System.out.println(query);
-        //return Repository.findByNameContaining(query);
-        return Repository.findTop10ShopItemByNameContaining(query);
-        //return Repository.findByName(query);
+    @GetMapping("items/search")
+    public List <Item> getItems(@RequestParam(required = false) String name){
+        return service.getItems(name);
     }
 }

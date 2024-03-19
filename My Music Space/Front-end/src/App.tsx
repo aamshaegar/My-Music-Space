@@ -20,6 +20,7 @@ function App() {
   const email ="rambaudo.aldo@gmail.com"
   const plane ="Premium"
 
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [focus, setFocus] = useState("musicButton");
 
@@ -28,6 +29,9 @@ function App() {
   }
 
   function handleMenuButton(button){
+    if (focus != button) {
+      handleSearchBar("");
+    }
     setFocus(button)
   }
 
@@ -48,6 +52,7 @@ function App() {
             <div className="blob"></div>
             <div className="blob"></div>
           </div>
+
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0">
             <defs>
               <filter id="goog">
@@ -63,6 +68,7 @@ function App() {
             </defs>
           </svg>
         </div>
+
         <div id="All">
           <div className="Search-User" id="Search-User">
             <User name={name} />
@@ -71,11 +77,11 @@ function App() {
           <div className="Menu+View">
             <Menu onClick={handleMenuButton}/>
             <div className="View" id="View">
-              <MyLikeView></MyLikeView>
-              <MyChatView></MyChatView>
+              <MyLikeView focus={focus} query={searchQuery}></MyLikeView>
+              <MyChatView focus={focus} query={searchQuery}></MyChatView>
               <ChatView focus={focus} query={searchQuery}></ChatView>
-              <ShopView></ShopView>
-              <MusicView></MusicView>
+              <ShopView focus={focus} query={searchQuery}></ShopView>
+              <MusicView focus={focus} query={searchQuery}></MusicView>
             </div>
           </div>
             <div className='air air1'></div>
@@ -83,6 +89,7 @@ function App() {
             <div className='air air3'></div>
             <div className='air air4'></div>
         </div>
+        
       </div>
   );
 }
