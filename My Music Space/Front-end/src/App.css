@@ -23,35 +23,8 @@ body {
   z-index:-9;
 }
 
-.title {
-  margin-left: 5vh;
-  margin-top: 1vh;
-  position: relative
-}
-
 #All,#root {
   height: 0
-}
-
-.Container {
-  height: 24vh;
-  position: relative;
-  width: 97%;
-  border-radius: 5vh;
-  color: #fff;
-  font-weight: 700;
-  font-style: italic;
-  margin: 2vh auto;
-  background-color: #232425
-}
-
-.productImg img {
-  background-color: #3e99cf;
-  height: 15vh;
-  border-radius: 10%;
-  width: 15vh;
-  position: relative;
-  left: 5vh
 }
 
 .ChatRow,.MerchRow,.TicketRow,.VinylRow {
@@ -62,14 +35,6 @@ body {
 
 .description {
   margin-left: 5vh
-}
-
-.Object {
-  position: relative;
-  width: 20%;
-  float: left;
-  margin-left: auto;
-  margin-right: auto
 }
 
 .Menu+View,.Search-User {
