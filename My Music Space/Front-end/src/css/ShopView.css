@@ -3,7 +3,8 @@
     display: none;
     margin-left: auto;
     margin-right: auto;
-    transition: display 0s,opacity .5s linear
+    transition: display 0s,opacity .5s linear;
+    overflow-y:auto;
 }
 
 .ShopView p {
@@ -16,10 +17,14 @@
 }
 
 .MerchProduct img:hover {
-    transform: scale(1.2)
+    transform: scale(1.1)
 }
 
-.MerchProduct,.TicketProduct{
+.TicketRow{
+    margin-top:3%;
+}
+
+.TicketProduct{
     top: 1vh;
     position: relative;
     height: 100%;
@@ -27,15 +32,26 @@
     float: left
 }
 
+
+.MerchProduct{
+    margin-left: 5%;
+    top: 10%;
+    position: relative;
+    height: 100%;
+    width: 25%;
+    float: left
+}
 .MerchProduct img{
-    margin-left: 25%;
+    margin-left:5%;
     float: left;
-    position: relative
+    position: relative;
+    border-radius: 3vh;
 }
 
 .MerchProduct img {
-    width: 18vh;
-    height: 18vh;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     margin-bottom: 3%;
     transition: transform .3s ease-in-out
 }
@@ -50,21 +66,21 @@
 .TicketRow{
     height: 65%;
     border-color: white;
-    border-radius: 5vh 0 0 5vh;
+    border-radius: 5vh;
+    width: 95%;
     background-color: #404040;
     top: 5%;
 }
 
 .TicketProduct{
-    left: -4%;
     top: 5%;
-    margin-left: 2%;
+    margin-left: 1%;
     height: 90%;
-    width: 15%;
-
+    width: 17%;
 }
 
 .TicketImg{
+    display: inline-block;
     border-radius: 5vh;
     object-fit: cover;
     width: 100%;

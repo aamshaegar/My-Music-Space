@@ -58,10 +58,7 @@ function ShopView() {
         type: 3,
         name: "prodotto1"
     },
-    {
-        type: 3,
-        name: "prodotto2"
-    },]
+    ]
 
 
     return (
