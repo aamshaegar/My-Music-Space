@@ -17,12 +17,12 @@ public class ShopController {
     private ShopService service;
 
     @GetMapping("/items")
-    public List <Item> getRandomItems(@RequestParam(defaultValue = "10") int maxItems){
-        return service.getRandomItems(maxItems);
+    public List <Item> getFirstItems(){
+        return service.getFirstItems();
     }
 
     @GetMapping("items/search")
-    public List <Item> getItems(@RequestParam(required = false) String name){
-        return service.getItems(name);
+    public List <Item> getItems(@RequestParam(required = false) String itemName){
+        return service.getItems(itemName);
     }
 }

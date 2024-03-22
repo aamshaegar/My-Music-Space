@@ -8,7 +8,7 @@ public class Item {
 
     @Id
     private String id;
-    private String ItemName;
+    private String itemName;
     private String artistName;
     private String vendor;
     private String description;
@@ -25,7 +25,7 @@ public class Item {
 
 
     public Item(String itemName, String artistName, String vendor, String description, String imageURL, ItemType type, double price, int availability) {
-        ItemName = itemName;
+        this.itemName = itemName;
         this.artistName = artistName;
         this.vendor = vendor;
         this.description = description;
@@ -36,7 +36,7 @@ public class Item {
     }
 
     public Item(String itemName, String artistName, String vendor, String description, String imageURL, String location, String date, ItemType type, double price, int availability) {
-        ItemName = itemName;
+        this.itemName = itemName;
         this.artistName = artistName;
         this.vendor = vendor;
         this.description = description;
@@ -57,11 +57,11 @@ public class Item {
     }
 
     public String getItemName() {
-        return ItemName;
+        return itemName;
     }
 
     public void setItemName(String itemName) {
-        ItemName = itemName;
+        itemName = itemName;
     }
 
     public String getArtistName() {
@@ -140,7 +140,7 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "id='" + id + '\'' +
-                ", ItemName='" + ItemName + '\'' +
+                ", ItemName='" + itemName + '\'' +
                 ", artistName='" + artistName + '\'' +
                 ", vendor='" + vendor + '\'' +
                 ", description='" + description + '\'' +
