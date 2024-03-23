@@ -21,11 +21,17 @@ public class ShopService {
 
     public List<Item> getItems(String name){
         if (name != null && !name.isEmpty()) {
-            List<Item> items = itemRepository.findTop10ByItemNameContainingAndType(name,ItemType.PRODUCT);
-            items.addAll(itemRepository.findTop10ByItemNameContainingAndType(name,ItemType.EVENT));
+            List<Item> items = itemRepository.findTop10ByItemNameContainingIgnoreCaseAndType(name,ItemType.PRODUCT);
+            items.addAll(itemRepository.findTop10ByItemNameContainingIgnoreCaseAndType(name,ItemType.EVENT));
             return items;
         }else{
             return getFirstItems();
         }
+    }
+    public Boolean checkItemExits(String itemName) {
+        return itemRepository.existsByItemName(itemName);
+    }
+    public void addNewItem(Item item) {
+        itemRepository.save(item);
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface ItemRepository extends MongoRepository<Item, String> {
 
     List <Item> findTop10ByType(ItemType type);
-    List <Item> findTop10ByItemNameContainingAndType(String itemName, ItemType type);
-
+    List <Item> findTop10ByItemNameContainingIgnoreCaseAndType(String itemName, ItemType type);
+    boolean existsByItemName(String itemName);
 }
 

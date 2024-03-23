@@ -16,6 +16,7 @@ public class Item {
     private String location;
     private String date;
     private ItemType type;
+    private String productType;
     private double price;
     private int availability;
 
@@ -23,17 +24,18 @@ public class Item {
     public Item() {
     }
 
-
-    public Item(String itemName, String artistName, String vendor, String description, String imageURL, ItemType type, double price, int availability) {
+    public Item(String itemName, String artistName, String vendor, String description, String imageURL, ItemType type, String productType, double price, int availability) {
         this.itemName = itemName;
         this.artistName = artistName;
         this.vendor = vendor;
         this.description = description;
         this.imageURL = imageURL;
         this.type = type;
+        this.productType = productType;
         this.price = price;
         this.availability = availability;
     }
+
 
     public Item(String itemName, String artistName, String vendor, String description, String imageURL, String location, String date, ItemType type, double price, int availability) {
         this.itemName = itemName;
@@ -46,6 +48,14 @@ public class Item {
         this.type = type;
         this.price = price;
         this.availability = availability;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 
     public String getId() {
