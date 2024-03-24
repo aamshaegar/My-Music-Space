@@ -35,6 +35,46 @@ services:
       - mongoShopDB
     networks:
       - mynetwork
+
+
+  #######################################
+  # discovery-service
+  #######################################
+
+  discovery-service:
+    container_name: discovery-service
+    build:
+      context: ../discovery-service
+      dockerfile: Dockerfile
+    image: discovery-service:latest
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - mynetwork
+
+  #######################################
+  # chat-service container
+  #######################################
+
+  shop-service:
+    container_name: shop-service
+    build:
+      dockerfile: Dockerfile
+    image: shop-service:latest
+    ports:
+      - "8093:8093"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    networks:
+      - mynetwork
+    depends_on:
+      - discovery-service
+      - mongoShopDB
+    restart: always
+
+
+
 volumes:
   mongodata:
 

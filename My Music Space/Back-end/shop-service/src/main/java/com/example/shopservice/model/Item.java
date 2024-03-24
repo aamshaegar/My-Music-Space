@@ -70,9 +70,7 @@ public class Item {
         return itemName;
     }
 
-    public void setItemName(String itemName) {
-        itemName = itemName;
-    }
+    public void setItemName(String itemName) {this.itemName = itemName;}
 
     public String getArtistName() {
         return artistName;
