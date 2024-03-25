@@ -2,17 +2,15 @@ import "./App.css";
 import Login from "./components/Login"
 import User from "./components/User";
 import Menu from "./components/Menu";
-import Cart from "./components/Cart";
 import ChatView from "./components/ChatView";
 import ShopView from "./components/ShopView";
 import MusicView from "./components/MusicView"
-import UserView from "./components/UserView"
 import Search from "./components/Search";
-import CartView from "./components/CartView";
 
 import {useState} from "react";
 import MyChatView from "./components/MyChatView";
 import MyLikeView from "./components/MyLikeView";
+import ShopProductView from "./components/ShopProductView";
 
 function App() {
   const name = "Aldo";
@@ -82,6 +80,7 @@ function App() {
               <ChatView focus={focus} query={searchQuery}></ChatView>
               <ShopView focus={focus} query={searchQuery}></ShopView>
               <MusicView focus={focus} query={searchQuery}></MusicView>
+              <ShopProductView focus={focus} query={searchQuery}></ShopProductView>
             </div>
           </div>
             <div className='air air1'></div>

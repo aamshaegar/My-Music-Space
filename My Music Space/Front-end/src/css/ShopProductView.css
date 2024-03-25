@@ -1,0 +1,72 @@
+#ShopProductView{
+    opacity: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+#BackgroundSection{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    background-color: #BEBEBE;
+}
+
+#BackgroundSection img{
+    position: relative;
+    float: right;
+    width: 30%;
+    height: 70%;
+    top:30%;
+    right:5%;
+}
+
+#BackgroundSection h1{
+    position: relative;
+    float:left;
+    color: #404040;
+    top:60%;
+    left:5%
+}
+
+#BackgroundSection h2{
+    position: relative;
+    float:left;
+    color: #404040;
+    top:70%;
+    font-size: 14vh;
+}
+
+#OperationSection{
+    position: relative;
+    width: 100%;
+    height: 50%;
+}
+
+#OperationSection button{
+    background-color: #404040;
+    width: 25vh;
+    box-shadow: #000000 0 0 2vh inset;
+    box-sizing: border-box;
+    appearance: none;
+    color:white;
+    border-radius: 5vh;
+    border: 0 none;
+    height:7vh;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    letter-spacing: -.24px;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 0 0 4vh;
+    top: 2%;
+}
+
+#OperationSection button:focus{
+    background-color: #3E99CF;
+}

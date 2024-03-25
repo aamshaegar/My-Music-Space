@@ -6,9 +6,26 @@ const ImgTicket = "/src/img/elodie-show-2023.jpg"
 const ImgMerch ="/src/img/Cappello PTN.jpg"
 import "../css/ShopView.css"
 
+function selectedShop({ ImgTicket: PathTicket, ImgMerch :PathMerch }) {
+
+    //FATTO ALLA VELOCE
+    let nomeProdotto;
+    if(PathTicket != undefined) {
+        nomeProdotto = PathTicket.split('/').pop().split('.').slice(0, -1).join('.');
+    }
+    if(PathMerch != undefined) {
+        nomeProdotto = PathMerch.split('/').pop().split('.').slice(0, -1).join('.');
+    }
+    console.log(nomeProdotto);
+    document.getElementById("ShopView")!.style.opacity = "0";
+    document.getElementById("ShopView")!.style.display = "none";
+    document.getElementById("ShopProductView")!.style.opacity = "1";
+    document.getElementById("ShopProductView")!.style.display = "block";
+}
+
 function TicketProduct({object}){
     return(
-        <div className="TicketProduct">
+        <div className="TicketProduct" onClick={() => selectedShop({ImgTicket})}>
             <img src={ImgTicket} className="TicketImg"></img>
         </div>
     );
@@ -16,7 +33,7 @@ function TicketProduct({object}){
 
 function MerchProduct({object}){
     return(
-        <div className="MerchProduct">
+        <div className="MerchProduct" onClick={() => selectedShop({ImgMerch})}>
             <img src={ImgMerch} className="Merch"></img>
         </div>
     );
