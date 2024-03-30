@@ -8,6 +8,7 @@ import "../css/ShopView.css"
 
 function selectedShop({ ImgTicket: PathTicket, ImgMerch :PathMerch }) {
 
+
     //FATTO ALLA VELOCE
     let nomeProdotto;
     if(PathTicket != undefined) {
@@ -17,10 +18,16 @@ function selectedShop({ ImgTicket: PathTicket, ImgMerch :PathMerch }) {
         nomeProdotto = PathMerch.split('/').pop().split('.').slice(0, -1).join('.');
     }
     console.log(nomeProdotto);
+    
+
     document.getElementById("ShopView")!.style.opacity = "0";
     document.getElementById("ShopView")!.style.display = "none";
-    document.getElementById("ShopProductView")!.style.opacity = "1";
     document.getElementById("ShopProductView")!.style.display = "block";
+    document.getElementById("ShopProductView")!.style.transition = "opacity 1s";
+    setTimeout(function () {
+        document.getElementById("ShopProductView")!.style.opacity = "1";
+    }, 50);
+    $(".search").hide(0);
 }
 
 function TicketProduct({object}){
@@ -63,6 +70,15 @@ function ShopView({focus, query}) {
         type: 1,
         name: "Cd 1"
     },
+
+    {
+        type: 2,
+        name: "Evento1"
+    },
+    {
+        type: 2,
+        name: "Evento1"
+    },
     {
         type: 2,
         name: "Evento1"
@@ -71,18 +87,19 @@ function ShopView({focus, query}) {
         type: 2,
         name: "Evento2"
     },
-        {
-            type: 2,
-            name: "Evento1"
-        },
-        {
-            type: 2,
-            name: "Evento2"
-        },
-        {
-            type: 2,
-            name: "Evento2"
-        },
+    {
+        type: 2,
+        name: "Evento1"
+    },
+    {
+        type: 2,
+        name: "Evento2"
+    },
+    {
+        type: 2,
+        name: "Evento2"
+    },
+
     {
         type: 3,
         name: "prodotto1"
@@ -98,13 +115,15 @@ function ShopView({focus, query}) {
                 }
 
             </div>
-            <p>Eventi</p>
+
+            <div>Eventi</div>
             <div className="TicketRow">
                 {objects.map((obj,index) => (
                     obj['type'] == 2 ? (<TicketProduct key={index} object={obj} />) : null))
                 }
             </div>
-            <p>Prodotti</p>
+
+            <div>Prodotti</div> 
             <div className="TicketRow">
                 {objects.map((obj,index) => (
                     obj['type'] == 2 ? (<TicketProduct key={index} object={obj} />) : null))

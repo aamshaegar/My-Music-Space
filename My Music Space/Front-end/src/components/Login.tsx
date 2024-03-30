@@ -5,13 +5,11 @@ const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 function Login() {
     function mostraPopup() {
-        var popup = document.getElementById("registrazionePopup");
-        popup.style.display = "block";
+        $("#registrazionePopup").fadeIn(400)
     }
 
     function chiudiPopup() {
-        var popup = document.getElementById("registrazionePopup");
-        popup.style.display = "none";
+        $("#registrazionePopup").fadeOut(400)
     }
 
     function selected (){
@@ -141,28 +139,34 @@ function Login() {
         <div className="Login" id="login">
             <div className="slider-thumb"></div>
             <div className="ContainerLogin">
-                <img className="LogoImg" src={LogoUrl}></img>
-                <form>
-                    <label htmlFor="email">Email:</label>
-                    <br></br>
-                    <input id="emailInput" placeholder="Inserisci l'email"></input>
-                    <br></br>
-                    <label htmlFor="password">Password:</label>
-                    <br></br>
-                    <input type="password" id="passwordInput" placeholder="Inserisci la password"></input>
-                    <br></br>
-                </form>
-                <button id="loginButton" type="submit" value="Login" onClick={() => authentication()}>Entra</button>
+                <div id = "loginContent">
+                    <img className="LogoImg" src={LogoUrl}></img>
+                    <form>
+                        <label htmlFor="email">Email:</label>
+                        <br></br>
+                        <input id="emailInput" placeholder="Inserisci l'email"></input>
+                        <br></br>
+                        <label htmlFor="password">Password:</label>
+                        <br></br>
+                        <input type="password" id="passwordInput" placeholder="Inserisci la password"></input>
+                        <br></br>
+                        <button id="loginButton" type="submit" value="Login" onClick={() => authentication()}>Entra</button>
+                        <div id="registrazioneDiv" onClick={() => mostraPopup()}>
+                            Non sei registrato? Registrati ora.
+                        </div>
+                    </form>
+                </div>
+
+                
             </div>
 
 
-            <div id="registrazioneDiv" onClick={() => mostraPopup()}>
-                Non sei registrato? Registrati ora.
-            </div>
+            
 
             <div id="registrazionePopup">
                 <div id="registrazionePopupContent">
-                    <span className="closeButton" onClick={() => chiudiPopup()}>x</span>
+                    <div className="formTitle">Registrazione</div>
+                    <span className="closeButton" onClick={() => chiudiPopup()}>&#x2717;</span>
                     <form>
                         <label htmlFor="firstName">Nome:</label>
                         <br></br>
@@ -190,9 +194,10 @@ function Login() {
                         <br></br>
                         <input id="passwordRep" type="password" placeholder="Conferma password"></input>
                         <br></br>
+                        
+                        <button id="registerButton" value="Login" onClick={() => register()}>Registrati ora</button>
                     </form>
 
-                    <button id="registerButton" value="Login" onClick={() => register()}>Registrati ora</button>
                 </div>
             </div>
 

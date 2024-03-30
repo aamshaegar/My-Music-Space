@@ -3,6 +3,14 @@
   src: url("./font/ATTriumvirate-CondensedBlac.ttf"); 
 } 
 
+::-webkit-scrollbar:horizontal{
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb:horizontal{
+  border-radius: 10px;
+}
+
 
 #All {
   display: none;

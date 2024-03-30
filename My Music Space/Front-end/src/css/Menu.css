@@ -121,6 +121,7 @@
 }
 
 
+
 .menuButton:hover{
     background-color: #3E99CF !important;
     box-shadow: #000000 0 0 2vh inset !important;
@@ -152,3 +153,13 @@
 }
 
 
+.likedAndCart{
+    border-radius: 5vh;
+    margin: 1%;
+    margin-left: 5%;
+    transition: 0.3s;
+}
+
+.likedAndCart:hover{
+    box-shadow: #000000 0 0 2vh inset !important;
+}
