@@ -19,7 +19,7 @@ function Chat({index, name, handleClick, handleMessageChange }){
 
     return(
         // spostato click così si clicca solo sull'immagine o il campo p... 
-        <div className="Chat"  id="Chat">
+        <div className="Chat">
             <p onClick={() => {chatClicked()}}>{name} </p>
             <img src={ImgChat} id={name} onClick={() => {chatClicked()}}></img>
         </div>

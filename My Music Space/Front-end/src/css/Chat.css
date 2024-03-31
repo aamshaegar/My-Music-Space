@@ -1,14 +1,15 @@
-#Chat img{
-    border-radius: 30%;
+.Chat img{
+    border-radius: 20%;
     background: conic-gradient(from 180deg at 50% 50%, #00324F 0deg, #005282 120deg, #0082CF 240deg, #3E99CF 360deg);
 
 }
 
-#Chat{
+.Chat{
     padding-top: 7%;
+    padding-bottom: 7%;
 }
 
-#Chat img:hover{
+.Chat img:hover{
     box-shadow: 0 0 20px #0082CF;
 }
 

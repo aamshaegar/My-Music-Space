@@ -4,21 +4,15 @@ const ImgVinyl = "/src/img/Vinyl_icon.png"
 const ImgAlbum = "/src/img/Viva la vida.jpg"
 const ImgTicket = "/src/img/elodie-show-2023.jpg"
 const ImgMerch ="/src/img/Cappello PTN.jpg"
+const imagePath = "http://localhost:8093"
 import "../css/ShopView.css"
 
-function selectedShop({ ImgTicket: PathTicket, ImgMerch :PathMerch }) {
 
 
-    //FATTO ALLA VELOCE
-    let nomeProdotto;
-    if(PathTicket != undefined) {
-        nomeProdotto = PathTicket.split('/').pop().split('.').slice(0, -1).join('.');
-    }
-    if(PathMerch != undefined) {
-        nomeProdotto = PathMerch.split('/').pop().split('.').slice(0, -1).join('.');
-    }
-    console.log(nomeProdotto);
-    
+function selectedShop({ object }) {
+
+    // TROVARE UN MODO PER PASSARE QUESTA PROPERIES A SHOPPRODUCTVIEW
+    // forse quella componente va messa in shopView al pari di chatMessages
 
     document.getElementById("ShopView")!.style.opacity = "0";
     document.getElementById("ShopView")!.style.display = "none";
@@ -30,105 +24,119 @@ function selectedShop({ ImgTicket: PathTicket, ImgMerch :PathMerch }) {
     $(".search").hide(0);
 }
 
+
+
 function TicketProduct({object}){
+
+    let path = imagePath + object['imageURL']
+    path = path.split(" ").join("%20")
+
+    //console.log(path)
     return(
-        <div className="TicketProduct" onClick={() => selectedShop({ImgTicket})}>
-            <img src={ImgTicket} className="TicketImg"></img>
+        <div className="TicketProduct" onClick={() => selectedShop({object})}>
+            <img src={path} className="TicketImg"></img>
         </div>
     );
 }
 
+
 function MerchProduct({object}){
+
+    let path = imagePath + object['imageURL']
+    path = path.split(" ").join("%20")
+
     return(
-        <div className="MerchProduct" onClick={() => selectedShop({ImgMerch})}>
-            <img src={ImgMerch} className="Merch"></img>
+        <div className="MerchProduct" onClick={() => selectedShop({object})}>
+            <img src={path} className="Merch"></img>
         </div>
     );
 }
+
 
 function ShopView({focus, query}) {
 
-    // questa lista verrà richiesta quando clicco sul bottone music, quindi sarà memorizzata nel padre e passata al figlio.
+    const [items, setItems] = useState([]);
+    const [threeItems, setThreeItems] = useState([]);
+
     useEffect(() => {
         if(focus == "shopButton"){
             if(query && query != ""){
-                alert("Shop view search bar piena OOOOOK")
+                retrieveItems({itemName:query},"/shop/items/search")
+            }else{
+                // POSSIBILE MODIFICA: SE LA QUERY NON DA 
+                // RISULTATO ALLORA NON CANCELLIAMO LA PRECEDENTE VIEW. QUINDI LASCIAMO GLI OGGETTI DI PRIMA
+                retrieveItems({},"/shop/items")
             }
         }
     },[focus, query]);
 
 
-    // Type 1 == CD/vinili
-    // Type 2 == Eventi
-    // Type 3 == prodotti
+    function retrieveItems(params, URL){
 
-    const objects = [{
-        type: 1,
-        name: "Vinile 1"
-    },
-    {
-        type: 1,
-        name: "Cd 1"
-    },
+        $.ajax({
+            type:"GET",
+            url: URL,
+            data:params,
+            contentType: "application/json",
+            headers:{
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+            }
 
-    {
-        type: 2,
-        name: "Evento1"
-    },
-    {
-        type: 2,
-        name: "Evento1"
-    },
-    {
-        type: 2,
-        name: "Evento1"
-    },
-    {
-        type: 2,
-        name: "Evento2"
-    },
-    {
-        type: 2,
-        name: "Evento1"
-    },
-    {
-        type: 2,
-        name: "Evento2"
-    },
-    {
-        type: 2,
-        name: "Evento2"
-    },
+        }).then(function(data) {
 
-    {
-        type: 3,
-        name: "prodotto1"
-    },
-    ]
+            let products = []
+            let itemList = []
+            for(const el in data) {
+                if(data[el]['type'] == "PRODUCT"){
+                    products.push(data[el])
+                }else{
+                    itemList.push(data[el])
+                }
+            }
+
+            if(products.length > 3){
+                let firstThreeItems = products.slice(0, 3);
+                setThreeItems(firstThreeItems)
+                products.splice(0, 3);
+            }
+            itemList = itemList.concat(products)
+            setItems(itemList);
+        });
+    }
+
 
 
     return (
         <div className="ShopView" id = "ShopView">
+            
+            <div id="inEvidenza" className="labelRow">In evidenza</div>
             <div className="MerchRow">
-                {objects.map((obj,index) => (
-                    obj['type'] != 2 ? (<MerchProduct key={index} object={obj} />) : null))
+                {threeItems.map((obj,index) => (
+                    (<MerchProduct key={index} object={obj} />) ))
                 }
 
             </div>
 
-            <div>Eventi</div>
             <div className="TicketRow">
-                {objects.map((obj,index) => (
-                    obj['type'] == 2 ? (<TicketProduct key={index} object={obj} />) : null))
-                }
+                <div className="labelRow">Eventi</div>
+                <div className="scrollBar">
+                    {items.map((obj,index) => (
+                        obj['type'] == "EVENT" ? (<TicketProduct key={index} object={obj} />) : null))
+                    }
+                </div>
             </div>
 
-            <div>Prodotti</div> 
-            <div className="TicketRow">
-                {objects.map((obj,index) => (
-                    obj['type'] == 2 ? (<TicketProduct key={index} object={obj} />) : null))
-                }
+            <div className="TicketRow"> 
+                <div className="labelRow">Prodotti</div> 
+                <div className="scrollBar">
+                    {items.map((obj,index) => (
+                        obj['type'] == "PRODUCT" ? (<TicketProduct key={index} object={obj} />) : null))
+                    }
+                </div>
             </div>
+
         </div>
     );
 }

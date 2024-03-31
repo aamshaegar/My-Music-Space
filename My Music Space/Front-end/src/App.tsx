@@ -80,7 +80,7 @@ function App() {
               <ChatView focus={focus} query={searchQuery}></ChatView>
               <ShopView focus={focus} query={searchQuery}></ShopView>
               <MusicView focus={focus} query={searchQuery}></MusicView>
-              <ShopProductView focus={focus} query={searchQuery}></ShopProductView>
+              <ShopProductView></ShopProductView>
             </div>
           </div>
             <div className='air air1'></div>

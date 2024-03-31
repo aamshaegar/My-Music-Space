@@ -16,6 +16,7 @@ public class ShopController {
     @Autowired
     private ShopService service;
 
+
     @GetMapping("/items")
     public List <Item> getFirstItems(){
         return service.getFirstItems();
@@ -25,4 +26,5 @@ public class ShopController {
     public List <Item> getItems(@RequestParam(required = false) String itemName){
         return service.getItems(itemName);
     }
+
 }

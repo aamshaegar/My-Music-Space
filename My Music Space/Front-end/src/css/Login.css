@@ -139,7 +139,7 @@
     margin-top: 1%;
     font-size: 2vh;
     padding: 1%;
-    padding-left: 3%;
+    padding-left: 4%;
     width: 30vh;
     border-radius: 5vh;
     box-sizing: border-box;
@@ -192,7 +192,7 @@ form label{
 #emailInput,#passwordInput{
     font-size: 2vh;
     padding: 1%;
-    padding-left: 3%;
+    padding-left: 4%;
 }
 
 /*Background*/

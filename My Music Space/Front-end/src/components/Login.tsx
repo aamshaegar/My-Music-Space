@@ -32,11 +32,11 @@ function Login() {
         const email = $('#emailInput').val();
         const password = $('#passwordInput').val();
         if (!regex.test(email)) {
-            alert("Email non valida.");
+            swal("Login", "Email non corretta. Inserisci una mail valida!", "warning");
             return false;
         }
         if(password==""){
-            alert("Campo password vuoto");
+            swal("Login", "Campo password vuoto!", "info");
             return false;
         }
         return true;
@@ -49,22 +49,22 @@ function Login() {
         const password = $('#passwordRegistr').val();
         const passwordRep = $('#passwordRep').val();
         if(name=="" || surname=="" || email=="" || password=="" || passwordRep==""){
-            alert("Compila tutti i campi");
+            swal("Registrazione", "Compila tutti i campi, prima!", "info");
             return false;
         }
 
         if(password!=passwordRep){
-            alert("Le password non coincidono");
+            swal("Registrazione", "Le password non coincidono!", "warning");
             return false;
         }
 
         if(password.length<4){
-            alert("La password deve avere almeno 4 caratteri");
+            swal("Registrazione", "La password deve avere almeno 4 caratteri!", "warning");
             return false;
         }
 
         if (!regex.test(email)) {
-            alert("Email non valida.");
+            swal("Registrazione", "Email non corretta. Inserisci una mail valida!", "warning");
             return false;
         }
 
@@ -85,16 +85,23 @@ function Login() {
                 }),
                 success: function(response) {
                     if(response.response=="User not found."){
-                        alert(response.response);
+                        //alert(response.response);
+                        swal("Login", "Credenziali errate! Riprova", "error");
+
                     } else if(response.response=="Password incorrect."){
-                        alert(response.response);
+                        //alert(response.response);
+                        swal("Login", "Password non corretta! Riprova", "error");
+
                     } else {
-                        alert(response.response);
+                        swal("Login", "Login eseguito correttamente!", "success");
+                        //alert(response.response);
                         console.log("token: " + response.token);
                         selected();
+
                     }
                 },
                 error: function(xhr, status, error) {
+                    swal("Login", "Credenziali errate! Riprova", "error");
                     console.error('Error during the request:', error);
                 }
             });
@@ -119,15 +126,16 @@ function Login() {
                 success: function (response) {
 
                     if (response.response == "Error: username already exist") {
-                        alert(response.response);
+                        swal("Registrazione", "Email esistente. Perfavore inserisci un'altra mail", "error");
                     } else {
-                        alert(response.response);
+                        swal("Registrazione", "Utente registrato correttamente!", "success");
+                        //alert(response.response);
                         console.log("token: " + response.token);
                         selected();
                     }
                 },
                 error: function (xhr, status, error) {
-                    console.error('Error during the request:', error);
+                    swal("Registrazione", "Credenziali errate! Riprova", "error");
                 }
             });
         }else {
@@ -141,20 +149,22 @@ function Login() {
             <div className="ContainerLogin">
                 <div id = "loginContent">
                     <img className="LogoImg" src={LogoUrl}></img>
-                    <form>
-                        <label htmlFor="email">Email:</label>
+                    <div>
+                        <label htmlFor="emailInput">Email:</label>
                         <br></br>
                         <input id="emailInput" placeholder="Inserisci l'email"></input>
                         <br></br>
-                        <label htmlFor="password">Password:</label>
+                        <label htmlFor="passwordInput">Password:</label>
                         <br></br>
                         <input type="password" id="passwordInput" placeholder="Inserisci la password"></input>
                         <br></br>
-                        <button id="loginButton" type="submit" value="Login" onClick={() => authentication()}>Entra</button>
+
+                        {/* Ho rimosso il comportamento sincrono di default per debuggare meglio */}
+                        <button id="loginButton" value="Login" onClick={() => authentication()}>Entra</button>
                         <div id="registrazioneDiv" onClick={() => mostraPopup()}>
                             Non sei registrato? Registrati ora.
                         </div>
-                    </form>
+                    </div>
                 </div>
 
                 
@@ -167,7 +177,7 @@ function Login() {
                 <div id="registrazionePopupContent">
                     <div className="formTitle">Registrazione</div>
                     <span className="closeButton" onClick={() => chiudiPopup()}>&#x2717;</span>
-                    <form>
+                    <div>
                         <label htmlFor="firstName">Nome:</label>
                         <br></br>
                         <input id="firstName" placeholder="Inserisci il tuo nome"></input>
@@ -178,25 +188,25 @@ function Login() {
                         <input id="lastName" placeholder="Inserisci il tuo cognome"></input>
                         <br></br>
 
-                        <label htmlFor="email">Email:</label>
+                        <label htmlFor="emailRegistr">Email:</label>
                         <br></br>
                         <input id="emailRegistr" placeholder="Inserisci la tua email"></input>
                         <br></br>
 
-                        <label htmlFor="password">Password:</label>
+                        <label htmlFor="passwordRegistr">Password:</label>
                         <br></br>
                         <input id="passwordRegistr" type="password" placeholder="Scegli una password"></input>
                         <br></br>
 
                         {/*TODO: aggiungere un bottone per mostrare la password*/}
 
-                        <label htmlFor="email">Ripeti la password:</label>
+                        <label htmlFor="passwordRep">Ripeti la password:</label>
                         <br></br>
                         <input id="passwordRep" type="password" placeholder="Conferma password"></input>
                         <br></br>
                         
                         <button id="registerButton" value="Login" onClick={() => register()}>Registrati ora</button>
-                    </form>
+                    </div>
 
                 </div>
             </div>

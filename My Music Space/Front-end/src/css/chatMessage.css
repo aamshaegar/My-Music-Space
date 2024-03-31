@@ -155,7 +155,19 @@
     font-weight: bold;
     font-size: x-large;
     text-align: center;
+    transition: 0.3s;
 }
+
+#sendButton{
+    transition: 0.3s;
+}
+
+#ChatMessage #backButton:hover, #ChatMessage #sendButton:hover{
+    background-color: #3E99CF;
+    box-shadow: #000000 0 0 2vh inset;
+    box-sizing: border-box;
+}
+
 
 #ChatList .ChatMex{
     display: flex;
