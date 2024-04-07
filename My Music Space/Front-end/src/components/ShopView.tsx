@@ -6,7 +6,7 @@ const ImgTicket = "/src/img/elodie-show-2023.jpg"
 const ImgMerch ="/src/img/Cappello PTN.jpg"
 const imagePath = "http://localhost:8093"
 import "../css/ShopView.css"
-
+import ShopProductView from "./ShopProductView";
 
 
 function selectedShop({ object }) {
@@ -16,8 +16,6 @@ function selectedShop({ object }) {
 
     document.getElementById("ShopView")!.style.opacity = "0";
     document.getElementById("ShopView")!.style.display = "none";
-    document.getElementById("ShopProductView")!.style.display = "block";
-    document.getElementById("ShopProductView")!.style.transition = "opacity 1s";
     setTimeout(function () {
         document.getElementById("ShopProductView")!.style.opacity = "1";
     }, 50);
@@ -26,27 +24,38 @@ function selectedShop({ object }) {
 
 
 
-function TicketProduct({object}){
+function TicketProduct({object, setShopProduct}){
 
     let path = imagePath + object['imageURL']
     path = path.split(" ").join("%20")
 
-    //console.log(path)
+    function clickOnObject(){
+        setShopProduct(object)
+        selectedShop({object})
+    }
+
     return(
-        <div className="TicketProduct" onClick={() => selectedShop({object})}>
+        <div className="TicketProduct" onClick={() => clickOnObject()}>
             <img src={path} className="TicketImg"></img>
         </div>
     );
 }
 
 
-function MerchProduct({object}){
+function MerchProduct({object, setShopProduct}){
 
     let path = imagePath + object['imageURL']
     path = path.split(" ").join("%20")
+    
+
+    function clickOnObject(){
+        $("#ShopProductView").show(0);
+        setShopProduct(object)
+        selectedShop({object})
+    }
 
     return(
-        <div className="MerchProduct" onClick={() => selectedShop({object})}>
+        <div className="MerchProduct" onClick={() => clickOnObject()}>
             <img src={path} className="Merch"></img>
         </div>
     );
@@ -57,8 +66,12 @@ function ShopView({focus, query}) {
 
     const [items, setItems] = useState([]);
     const [threeItems, setThreeItems] = useState([]);
+    const [shopProduct, setShopProduct] = useState({});
+    const [buttonClicked, setButtonClicked] = useState(false);
+
 
     useEffect(() => {
+        $("#ShopProductView").hide(0);
         if(focus == "shopButton"){
             if(query && query != ""){
                 retrieveItems({itemName:query},"/shop/items/search")
@@ -69,6 +82,21 @@ function ShopView({focus, query}) {
             }
         }
     },[focus, query]);
+
+
+    useEffect(() => {
+        setButtonClicked(false);
+    }, []);
+
+
+    function selectProduct(newObject){
+        setButtonClicked(true)
+        setShopProduct(newObject)
+    }
+
+    function handleClick(param){
+        setButtonClicked(false)
+    }
 
 
     function retrieveItems(params, URL){
@@ -85,7 +113,7 @@ function ShopView({focus, query}) {
             }
 
         }).then(function(data) {
-
+            
             let products = []
             let itemList = []
             for(const el in data) {
@@ -109,34 +137,37 @@ function ShopView({focus, query}) {
 
 
     return (
-        <div className="ShopView" id = "ShopView">
+        <div id = "ShopViewContainer">
             
-            <div id="inEvidenza" className="labelRow">In evidenza</div>
-            <div className="MerchRow">
-                {threeItems.map((obj,index) => (
-                    (<MerchProduct key={index} object={obj} />) ))
-                }
-
-            </div>
-
-            <div className="TicketRow">
-                <div className="labelRow">Eventi</div>
-                <div className="scrollBar">
-                    {items.map((obj,index) => (
-                        obj['type'] == "EVENT" ? (<TicketProduct key={index} object={obj} />) : null))
+            <div id = "ShopView" className="ShopView">
+                <div id="inEvidenza" className="labelRow">In evidenza</div>
+                <div className="MerchRow">
+                    {threeItems.map((obj,index) => (
+                        (<MerchProduct key={index} object={obj} setShopProduct={selectProduct}/>) ))
                     }
+
+                </div>
+
+                <div className="TicketRow">
+                    <div className="labelRow">Eventi</div>
+                    <div className="scrollBar">
+                        {items.map((obj,index) => (
+                            obj['type'] == "EVENT" ? (<TicketProduct key={index} setShopProduct={selectProduct} object={obj} />) : null))
+                        }
+                    </div>
+                </div>
+
+                <div className="TicketRow"> 
+                    <div className="labelRow">Prodotti</div> 
+                    <div className="scrollBar">
+                        {items.map((obj,index) => (
+                            obj['type'] == "PRODUCT" ? (<TicketProduct key={index} setShopProduct={selectProduct} object={obj} />) : null))
+                        }
+                    </div>
                 </div>
             </div>
 
-            <div className="TicketRow"> 
-                <div className="labelRow">Prodotti</div> 
-                <div className="scrollBar">
-                    {items.map((obj,index) => (
-                        obj['type'] == "PRODUCT" ? (<TicketProduct key={index} object={obj} />) : null))
-                    }
-                </div>
-            </div>
-
+            {buttonClicked && <ShopProductView object={shopProduct} handleClick={handleClick}></ShopProductView>}
         </div>
     );
 }

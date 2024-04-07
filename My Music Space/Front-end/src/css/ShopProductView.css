@@ -12,7 +12,7 @@
 }
 
 #BackgroundSection img{
-    position: relative;
+    position: absolute;
     float: right;
     width: 30%;
     height: 70%;
@@ -21,19 +21,26 @@
 }
 
 #BackgroundSection h1{
+    font-family: myFirstFont; 
+    font-style: italic;
     position: relative;
     float:left;
     color: #404040;
-    top:60%;
-    left:5%
+    top:50%;
+    left:5%;
+    font-size: 1.8em;
 }
 
 #BackgroundSection h2{
-    position: relative;
-    float:left;
+    font-family: myFirstFont; 
+    font-style: italic;
+    position: absolute;
+    float: left;
     color: #404040;
-    top:70%;
-    font-size: 14vh;
+    top: 70%;
+    font-size: 6vh;
+    margin-left: 2%;
+    width: 60%;
 }
 
 #OperationSection{
@@ -43,6 +50,8 @@
 }
 
 #OperationSection button{
+    font-style: italic;
+    font-family: myFirstFont; 
     background-color: #404040;
     width: 25vh;
     box-shadow: #000000 0 0 2vh inset;
@@ -108,4 +117,17 @@
     background-color: #3E99CF;
     box-shadow: #000000 0 0 2vh inset;
     box-sizing: border-box;
+}
+
+
+#ShopProductView #ShopProductViewContainer{
+    height: 37vh;
+    position: relative;
+    width: 98%;
+    border-radius: 2vh;
+    background-color: #232425;
+    opacity: 0.97;
+    color: white;
+    padding: 2%;
+    font-size: 0.85em;
 }

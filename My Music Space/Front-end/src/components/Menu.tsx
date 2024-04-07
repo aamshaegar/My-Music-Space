@@ -67,8 +67,10 @@ function Menu({onClick}) {
       document.getElementById("ShopView")!.style.display = "none";
       document.getElementById("ChatView")!.style.opacity = "0";
       document.getElementById("ChatView")!.style.display = "none";
-      document.getElementById("ShopProductView")!.style.opacity = "0";
-      document.getElementById("ShopProductView")!.style.display = "none";
+      document.getElementById("ShopViewContainer")!.style.opacity = "0";
+      document.getElementById("ShopViewContainer")!.style.display = "none";
+      //document.getElementById("ShopProductView")!.style.opacity = "0";
+      //document.getElementById("ShopProductView")!.style.display = "none";
       
       // GESTIONE BRUTTA, PER IL MOMENTO OK;
       $("#ChatMessage").hide(0);
@@ -87,9 +89,12 @@ function Menu({onClick}) {
       }
       if (id == "shopButton") {
           $(".search").show(0);
+          document.getElementById("ShopViewContainer")!.style.display = "block";
+          document.getElementById("ShopViewContainer")!.style.transition = "opacity 1s";
           document.getElementById("ShopView")!.style.display = "block";
           document.getElementById("ShopView")!.style.transition = "opacity 1s";
           setTimeout(function() {
+              document.getElementById("ShopViewContainer")!.style.opacity = "1";
               document.getElementById("ShopView")!.style.opacity = "1";
           }, 50);
 

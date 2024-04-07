@@ -10,7 +10,6 @@ import Search from "./components/Search";
 import {useState} from "react";
 import MyChatView from "./components/MyChatView";
 import MyLikeView from "./components/MyLikeView";
-import ShopProductView from "./components/ShopProductView";
 
 function App() {
   const name = "Aldo";
@@ -80,7 +79,6 @@ function App() {
               <ChatView focus={focus} query={searchQuery}></ChatView>
               <ShopView focus={focus} query={searchQuery}></ShopView>
               <MusicView focus={focus} query={searchQuery}></MusicView>
-              <ShopProductView></ShopProductView>
             </div>
           </div>
             <div className='air air1'></div>
