@@ -1,9 +1,5 @@
 import {useState} from "react";
 import {useEffect} from "react";
-const ImgVinyl = "/src/img/Vinyl_icon.png"
-const ImgAlbum = "/src/img/Viva la vida.jpg"
-const ImgTicket = "/src/img/elodie-show-2023.jpg"
-const ImgMerch ="/src/img/Cappello PTN.jpg"
 const imagePath = "http://localhost:8093"
 import "../css/ShopView.css"
 import ShopProductView from "./ShopProductView";
@@ -13,13 +9,15 @@ function selectedShop({ object }) {
 
     // TROVARE UN MODO PER PASSARE QUESTA PROPERIES A SHOPPRODUCTVIEW
     // forse quella componente va messa in shopView al pari di chatMessages
-
+    $(".search").hide(0);
     document.getElementById("ShopView")!.style.opacity = "0";
     document.getElementById("ShopView")!.style.display = "none";
-    setTimeout(function () {
+    document.getElementById("ShopProductView")!.style.display = "block";
+    document.getElementById("ShopProductView")!.style.transition = "opacity 1s";
+    setTimeout(function() {
         document.getElementById("ShopProductView")!.style.opacity = "1";
     }, 50);
-    $(".search").hide(0);
+
 }
 
 

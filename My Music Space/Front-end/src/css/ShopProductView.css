@@ -1,5 +1,5 @@
 #ShopProductView{
-    opacity: 0;
+    opacity: 1;
     display: none;
     width: 100%;
     height: 100%;
@@ -10,6 +10,13 @@
     height: 50%;
     background-color: #BEBEBE;
 }
+#OperationSection #AddtoCart:hover{
+    background-color: green;
+}
+#OperationSection #AddtoCart{
+    margin:0;
+}
+
 
 #BackgroundSection img{
     position: absolute;
@@ -18,6 +25,7 @@
     height: 70%;
     top:30%;
     right:5%;
+    object-fit: cover;
 }
 
 #BackgroundSection h1{
@@ -130,4 +138,24 @@
     color: white;
     padding: 2%;
     font-size: 0.85em;
+    overflow-y: scroll;
+}
+
+#DescriptionContainer{
+    opacity:1;
+    display:block;
+}
+
+#ReviewsContainer{
+    opacity:0;
+    display:none;
+}
+
+#BuyContainer{
+    opacity:0;
+    display:none;
+}
+
+.AddtoCart:hover{
+    background-color: green;
 }
