@@ -1,86 +1,14 @@
-.CartView .imgContainer{
-    width: 10vh;
-    height: 10vh;
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-    float: right;
-}
-
-.CartInfo{
-    margin-top: 10%;
-    position: absolute;
-    float: left;
-    font-size: 120%;
-    font-weight: bold;
-}
-
 .CartView{
     display:none;
-    background-color: white;
-    width: 30%;
-    height: 530%;
-    border-radius: 0 0 0 50%;
+    background-color: transparent;
+    width: 102%;
+    height: 100%;
     position: absolute;
-    z-index: -4;
-    float: right;
-    right:0;
-    padding-top: 3vh;
-    padding-left: 3vh;
+    right: 0.1%;
     opacity: 0;
 }
-.imgContainer img {
-    cursor: pointer;
-    float: right;
-    position: absolute;
+.CartView img {
+    width: 55%;
     height: 100%;
-    width: 100%;
-}
-
-.ProductImg{
-    width: 15vh;
-    height: 15vh;
-    border-radius: 50%;
-    float: right;
-    left:50%;
-    position: relative;
-}
-.BuyButton{
-    position: relative;
-    text-align: center;
-    margin: auto;
-    left: 40%;
-}
-.BuyButton button{
-    background-color: #3E99CF;
-    box-shadow: #000000 0 0 2vh inset;
-    box-sizing: border-box;
-    appearance: none;
-    color:white;
-    border-radius: 5vh;
-    border: 0 none;
-    height:7vh;
-    width:25vh;
-    position: relative;
-    top: 11vh;
-    left: 5vh;
-    font-weight: bold;
-    font-style: italic;
-    font-size: 3vh;
-    display: inline-block;
-    cursor: pointer;
-    letter-spacing: -.24px;
-    outline: none;
-    text-align: center;
-    text-decoration: none;
-    transition: all .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin: 0 0 4vh;
-}
-
-.BuyButton button:hover{
-    background-color: green !important;
-    box-shadow: #000000 0 0 2vh inset !important;
+    margin-left:15%;
 }

@@ -6,7 +6,8 @@ const musicLogo = "/src/img/fixedElements/discWhite.png";
 const shopLogo = "/src/img/fixedElements/bagWhite.png";
 const chatLogo = "/src/img/fixedElements/chatWhite.png";
 const likedLogoW = "/src/img/fixedElements/likeWhite.png";
-const cartLogo = "/src/img/fixedElements/cartWhite.png";
+const cartLogoW = "/src/img/fixedElements/cartWhite.png";
+const cartLogo = "/src/img/fixedElements/cartBlu.png";
 
 function Menu({onClick}) {
 
@@ -18,7 +19,7 @@ function Menu({onClick}) {
   }, []);
 
   function sign_button_selected(id: string){
-    document.getElementById(id)!.style.backgroundColor = "#3E99CF";
+      if(id!= "cartButton" && id!= "likeButton") document.getElementById(id)!.style.backgroundColor = "#3E99CF";
   }
 
 
@@ -28,18 +29,34 @@ function Menu({onClick}) {
       document.getElementById("shopButton")!.style.backgroundColor = "#232425";
       document.getElementById("chatButton")!.style.backgroundColor = "#232425";
       let imgElement;
-      if(id=="likeButton"){
-          imgElement = document.getElementById(id);
-          if (imgElement) {
-              imgElement.src = "/src/img/fixedElements/likeBlu.png";
-              document.getElementById("cartButton").src = cartLogo;
-          } else {
-              console.error("Impossibile trovare l'elemento immagine con l'ID specificato.");
-          }
-          return;
-      }
+
+      sign_button_selected(id);
+      document.getElementById("likeButton").src = likedLogoW;
+      document.getElementById("cartButton").src = cartLogoW;
+      document.getElementById("MyLikeView")!.style.opacity = "0";
+      document.getElementById("MyLikeView")!.style.display = "none";
+      document.getElementById("CartView")!.style.display = "none";
+      document.getElementById("CartView")!.style.transition = "0";
+      document.getElementById("MusicView")!.style.opacity = "0";
+      document.getElementById("MusicView")!.style.display = "none";
+      document.getElementById("ShopView")!.style.opacity = "0";
+      document.getElementById("ShopView")!.style.display = "none";
+      document.getElementById("ChatView")!.style.opacity = "0";
+      document.getElementById("ChatView")!.style.display = "none";
+      document.getElementById("ShopViewContainer")!.style.opacity = "0";
+      document.getElementById("ShopViewContainer")!.style.display = "none";
+      
+      // GESTIONE BRUTTA, PER IL MOMENTO OK;
+      $("#ChatMessage").hide(0);
+      $("#chats").show(0);
 
       if(id=="cartButton"){
+          $(".search").hide(0);
+          document.getElementById("CartView")!.style.display = "block";
+          document.getElementById("CartView")!.style.transition = "opacity 1s";
+          setTimeout(function () {
+              document.getElementById("CartView")!.style.opacity = "1";
+          }, 50);
           imgElement = document.getElementById(id);
           if (imgElement) {
               imgElement.src = "/src/img/fixedElements/cartBlu.png";
@@ -50,31 +67,22 @@ function Menu({onClick}) {
           return;
       }
 
-      // GESTION BRUTTISSIMA... Per Ora OK... Meglio usare un array di booleani DOPO
-      if(document.getElementById(id)!.style.backgroundColor === "rgb(62, 153, 207)") {
+      if(id=="likeButton"){
+          $(".search").hide(0);
+          document.getElementById("MyLikeView")!.style.display = "block";
+          document.getElementById("MyLikeView")!.style.transition = "opacity 1s";
+          setTimeout(function () {
+              document.getElementById("MyLikeView")!.style.opacity = "1";
+          }, 50);
+          imgElement = document.getElementById(id);
+          if (imgElement) {
+              imgElement.src = "/src/img/fixedElements/likeBlu.png";
+              document.getElementById("cartButton").src = cartLogoW;
+          } else {
+              console.error("Impossibile trovare l'elemento immagine con l'ID specificato.");
+          }
           return;
       }
-
-      sign_button_selected(id);
-      document.getElementById("likeButton").src = likedLogoW;
-      document.getElementById("cartButton").src = cartLogo;
-      if(id!= "cartButton" && id!= "likeButton") document.getElementById(id)!.style.backgroundColor = "#3E99CF";
-      document.getElementById("MyLikeView")!.style.opacity = "0";
-      document.getElementById("MyLikeView")!.style.display = "none";
-      document.getElementById("MusicView")!.style.opacity = "0";
-      document.getElementById("MusicView")!.style.display = "none";
-      document.getElementById("ShopView")!.style.opacity = "0";
-      document.getElementById("ShopView")!.style.display = "none";
-      document.getElementById("ChatView")!.style.opacity = "0";
-      document.getElementById("ChatView")!.style.display = "none";
-      document.getElementById("ShopViewContainer")!.style.opacity = "0";
-      document.getElementById("ShopViewContainer")!.style.display = "none";
-      //document.getElementById("ShopProductView")!.style.opacity = "0";
-      //document.getElementById("ShopProductView")!.style.display = "none";
-      
-      // GESTIONE BRUTTA, PER IL MOMENTO OK;
-      $("#ChatMessage").hide(0);
-      $("#chats").show(0);
 
 
       if (id == "musicButton") {
@@ -115,17 +123,6 @@ function Menu({onClick}) {
           onClick("chatButton")
 
       }
-
-      if (id == "MyLikeButton") {
-          $(".search").show(0);
-          //document.getElementById("patinaMyLike")!.style.display = "none";
-          document.getElementById("MyLikeView")!.style.display = "block";
-          document.getElementById("MyLikeView")!.style.transition = "opacity 1s";
-          setTimeout(function () {
-              document.getElementById("MyLikeView")!.style.opacity = "1";
-          }, 50);
-          onClick("MyLikeButton")
-      }
     }
 
 
@@ -152,27 +149,17 @@ function Menu({onClick}) {
         onClick={() => selected("chatButton")}>
           <img className="icons" src={chatLogo}></img>
       </button>
+        <button
+            className="likedAndCart"
+            onClick={() => selected("likeButton")}>
+            <img id="likeButton" className="icons" src={likedLogoW}></img>
+        </button>
+        <button
+            className="likedAndCart"
+            onClick={() => selected("cartButton")}>
+            <img id="cartButton" className="icons" src={cartLogoW}></img>
+        </button>
 
-
-        {/*<div className="MySongsButton" id="MyLikeButton" onClick={() => selected("MyLikeButton")}>*/}
-            <button
-                className="likedAndCart"
-                onClick={() => selected("likeButton")}>
-                <img id="likeButton" className="icons" src={likedLogoW}></img>
-            </button>
-            {/*<div className="patina" id="patinaMyLike"></div>*/}
-        {/*</div>*/}
-
-
-        {/*<div className="MySongsButton" id="MyChatButton">*/}
-            {/*<Cart />*/}
-            <button
-                className="likedAndCart"
-                onClick={() => selected("cartButton")}>
-                <img id="cartButton" className="icons" src={cartLogo}></img>
-            </button>
-            {/*<div className="patina" id="patinaSong"></div>*/}
-        {/*</div>*/}
     </div>
   );
 }

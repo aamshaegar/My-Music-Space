@@ -14,6 +14,7 @@ function Cart() {
   return (
     <div className={"cartDiv"}>
       <div className={"imgContainer"}>
+          CIAOOOO
         <img className="cartImg" src={imageUrl} alt="Immagine" onClick={() => selected()} />
       </div>
     </div>
