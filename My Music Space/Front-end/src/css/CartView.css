@@ -8,7 +8,7 @@
     opacity: 0;
 }
 .CartView img {
-    width: 55%;
-    height: 100%;
-    margin-left:15%;
+    width: 100vh;
+    height: 94vh;
+    margin-left: 16%;
 }
