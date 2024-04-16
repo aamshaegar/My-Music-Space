@@ -1,4 +1,4 @@
-#ChatMessage{
+.ChatMessage{
     display: none;
     color: white;
     background-color: transparent;
@@ -9,11 +9,11 @@
     font-style: normal;
 }
 
-#ChatMessage .searchTerm{
+.ChatMessage .searchTerm{
     width: auto;
 }
 
-#ChatMessage .searchTerm input{
+.ChatMessage .searchTerm input{
     background-color: white;
     width: 75.5%;
     margin-left: 6%;
@@ -37,19 +37,19 @@
     font-size: 1.2em;
 }
 
-#ChatMessage .searchTerm input:focus{
+.ChatMessage .searchTerm input:focus{
     background-color: white;
     color: #232425;
 }
 
-#ChatMessage .searchTerm input:focus::placeholder{
+.ChatMessage .searchTerm input:focus::placeholder{
     color: #232425;
     opacity: 1;
 }
 
 
 
-#ChatMessage .searchTerm button{
+.ChatMessage .searchTerm button{
     width: auto;
     width: 9.5vh;
     height: 9.5vh;
@@ -65,7 +65,7 @@
     right: 12%;
 }
 
-#ChatMessage .title{
+.ChatMessage .title{
 
     font-weight: bold;
     font-size: 1.5em;
@@ -83,7 +83,7 @@
     align-items: center;
 }
 
-#ChatMessage .title .left{
+.ChatMessage .title .left{
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -91,33 +91,33 @@
     width: 70%;
 }
 
-#ChatMessage .title img{
+.ChatMessage .title img{
     width: 35%;
     height: 60%;
     margin: 1%;
 }
 
 
-#ChatMessage .title i{
+.ChatMessage .title i{
     color: #3E99CF;
     text-decoration: underline;
 }
 
-#ChatMessage .title span{
+.ChatMessage .title span{
     font-size: 0.5em;
 }
 
-#ChatMessage .titleName{
+.ChatMessage .titleName{
     margin: 1%;
 }
 
-#ChatMessage .chatContainer{
+.ChatMessage .chatContainer{
     margin-left: 7%;
     margin-right: 7%;
     margin-top: 1%;
 }
 
-#ChatMessage .chatContainer #ChatList{
+.ChatMessage .chatContainer #ChatList{
     min-height: 50vh;
     overflow-y: auto;
     max-height: 65vh;
@@ -146,7 +146,7 @@
     color: antiquewhite;
 }
 
-#ChatMessage .title #backButton{ 
+.ChatMessage .title #backButton{ 
     width: 7vh;
     height: 7vh;
     background-color: #232425;
@@ -162,7 +162,7 @@
     transition: 0.3s;
 }
 
-#ChatMessage #backButton:hover, #ChatMessage #sendButton:hover{
+.ChatMessage #backButton:hover, .ChatMessage #sendButton:hover{
     background-color: #3E99CF;
     box-shadow: #000000 0 0 2vh inset;
     box-sizing: border-box;

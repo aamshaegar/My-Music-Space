@@ -79,14 +79,13 @@ function MyChatView({focus, query}) {
     // ANIMAZIONE CARICAMENTO <Loader></Loader>
     return (
         <div className="MyChatView" id="MyChatView">
-    <div id="Chats">
-        {ChatNames.map((name,i) => (
-                <Chat key={i} index={i} name={name} handleClick={handleClick} handleMessageChange={handleMessageChange} />
-))}
-    </div>
-    {isButtonClicked && <ChatMessage message={message} handleClick={handleClick}/>}
-
-    </div>
+            <div id="Chats">
+                {ChatNames.map((name,i) => (
+                    <Chat key={i} index={i} name={name} handleClick={handleClick} handleMessageChange={handleMessageChange} />
+                ))}
+            </div>
+                {isButtonClicked && <ChatMessage message={message} handleClick={handleClick}/>}
+        </div>
     );
     }
     export default MyChatView;

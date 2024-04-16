@@ -75,7 +75,7 @@ function App() {
           <div className="Menu+View">
             <Menu onClick={handleMenuButton}/>
             <div className="View" id="View">
-              <MyLikeView focus={focus} query={searchQuery}></MyLikeView>
+              <MyLikeView></MyLikeView>
               <MyChatView focus={focus} query={searchQuery}></MyChatView>
               <ChatView focus={focus} query={searchQuery}></ChatView>
               <ShopView focus={focus} query={searchQuery}></ShopView>

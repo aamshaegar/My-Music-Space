@@ -47,7 +47,8 @@ function Menu({onClick}) {
       document.getElementById("ShopViewContainer")!.style.display = "none";
       
       // GESTIONE BRUTTA, PER IL MOMENTO OK;
-      $("#ChatMessage").hide(0);
+      $(".ChatMessage").hide(0);
+      $("#MyLikeViewContainer").show(0);
       $("#chats").show(0);
 
       if(id=="cartButton"){

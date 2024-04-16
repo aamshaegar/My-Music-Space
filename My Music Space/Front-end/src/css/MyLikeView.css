@@ -1,13 +1,30 @@
 .MyLikeView{
     opacity: 0;
     display: none;
-    margin-top: 4%;
-    margin-left:5%;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: auto auto auto auto;
+    max-height: 100%;
+    margin: 5%;
+    top: 5%;
+    margin-top: 1.5%;
+    height: 98%;
 }
 
 #MyChatContainer{
+    width: 105%;
     opacity: 1;
-    display: block;
+    max-height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#myChats{
+    margin-right: 5%;
+    margin-top: 1%;
+    width: 94%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
 }
 
 #MyMusicLikeStatic{
@@ -23,9 +40,11 @@
 
 #MyMusicLikeStatic{
     border-radius: 5vh;
+    margin-top: 2%;
 }
 #MyChatButton{
     background-color: #3E99CF;
+    margin-bottom: 0.5%;
 }
 
 .MyLikeView button{
@@ -65,4 +84,16 @@
     background-color: #3E99CF;
     box-shadow: #000000 0 0 2vh inset;
     box-sizing: border-box;
+}
+
+
+
+.MyLikeView  #sendButton{
+    top: 83.5vh;
+    left: 83%;
+}
+
+.MyLikeView  .ChatMessage{
+    margin-left: -5%;
+    margin-right: -5%;
 }

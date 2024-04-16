@@ -117,7 +117,7 @@ function ChatMessage({message, handleClick}){
 
 
     function back(){
-        $("#ChatMessage").fadeOut(300, function(){
+        $(".ChatMessage").fadeOut(300, function(){
             disconnect();
             handleClick(-1);
         }); 
@@ -166,7 +166,7 @@ function ChatMessage({message, handleClick}){
     
     
     return(
-        <div className="ChatMessage" id="ChatMessage">
+        <div className="ChatMessage">
             <div className="title">
                 <div className="left">
                     <div className="titleSymbol"> <img src="/src/img/people.png" alt="People"/></div>

@@ -10,7 +10,7 @@ function Chat({index, name, handleClick, handleMessageChange }){
 
         setTimeout(function (){
         $(".search").fadeOut(400);
-        $("#chats").fadeOut(400, function(){$("#ChatMessage").fadeIn(500);
+        $("#chats").fadeOut(400, function(){$(".ChatMessage").fadeIn(500);
         });
         document.getElementById(name).className = '';},400)
         handleMessageChange(name); 
