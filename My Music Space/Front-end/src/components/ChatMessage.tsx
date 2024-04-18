@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import {useState} from "react";
 import "../css/chatMessage.css";
+const ImgExit = "/src/img/Exit_ChatW.png";
 
 let stompClient = null;
 
@@ -173,6 +174,7 @@ function ChatMessage({message, handleClick}){
                     <div className="titleName">Chat Room &nbsp; <i>{message}</i> &nbsp; &nbsp;<span>[{status}]</span></div>
                 </div>
                 <div className="right">
+                    <img id="ImgExit" src={ImgExit}></img>
                     <div className="backButton"><button id="backButton" onClick={() => {back()}}> &#8592;</button></div>
                 </div>
             </div>
