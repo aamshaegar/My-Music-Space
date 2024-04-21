@@ -29,13 +29,14 @@ function ChatMex({object,username}){
     );
 }
 
-function ChatMessage({message, handleClick}){
+function ChatMessage({active, message, handleClick, subscribe, leave}){
     
     // In ascolto sulla variabile "message == nome della chatroom"
-    
+    const [state, setState] = useState(false);
     useEffect(() => {
         //console.log("In ChatMessage! ")
         //retrieveMessagesList();
+        setState(active)
         connect();
     }, [message]);
 
@@ -162,7 +163,77 @@ function ChatMessage({message, handleClick}){
             stompClient.send("/app/chat/" + actualRoom, {}, JSON.stringify(new_chatMessage));
             setInputValue("");
         }
+    }
+
+    function joinChat(){
+        /*
+        $.ajax({
+            type:"POST",
+            url: "/chat/messages/join",
+            data: { room: actualRoom} ,
+            contentType: "application/json",
+            headers:{
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+            }
+
+        }).then(function(data) {
+            let lista = data.reverse();
+            array = lista;
+            setChatMessages(lista);
+        });
+        */
         
+
+        // SE OK DOPO LA RICHIESTA AL SERVER
+        $(".right #leaveText").fadeIn(1);
+        $("#chatBar").fadeIn(1);
+        $("#chatJoin").fadeOut(1);
+        setState(true);
+        subscribe(message);
+        swal("Iscrizione","Ti sei iscritto alla chatRoom " + message + ". Adesso puoi iniziare a chattare con i fan!","success"); 
+    }
+
+    function leaveChat(){
+
+        /*
+        $.ajax({
+            type:"POST",
+            url: "/chat/messages/leave",
+            data: { room: actualRoom} ,
+            contentType: "application/json",
+            headers:{
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+            }
+
+        }).then(function(data) {
+            let lista = data.reverse();
+            array = lista;
+            setChatMessages(lista);
+        });
+        */
+
+        // SE OK DOPO LA RICHIESTA AL SERVER
+        // EVENTUALI ANIMAZIONI
+
+
+        swal({
+            title: "Abbandona chatRoom",
+            text: "Sei sicuro di voler abbandonare questa ChatRoom?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                setState(false);
+                leave(message);
+                swal("Abbandona chatRoom","Hai abbandonato la chatRoom " + message,"success"); 
+            } 
+        });
+
     }
     
     
@@ -173,8 +244,14 @@ function ChatMessage({message, handleClick}){
                     <div className="titleSymbol"> <img src="/src/img/people.png" alt="People"/></div>
                     <div className="titleName">Chat Room &nbsp; <i>{message}</i> &nbsp; &nbsp;<span>[{status}]</span></div>
                 </div>
+                
+                
                 <div className="right">
-                    <img id="ImgExit" src={ImgExit}></img>
+                    {state &&
+                        <div id="leaveText" onClick={() => {leaveChat()}}>Abbandona
+                            <img id="ImgExit" src={ImgExit}></img>
+                        </div>
+                    }
                     <div className="backButton"><button id="backButton" onClick={() => {back()}}> &#8592;</button></div>
                 </div>
             </div>
@@ -186,8 +263,18 @@ function ChatMessage({message, handleClick}){
             </div>
 
             <div className="searchTerm">
-                <input type="text" id="input" value={inputValue} onChange={handleChange} onKeyDown={(event) => {sendMessage(event)}} placeholder="Scrivi un messaggio qui!"></input>
-                <button id="sendButton" onClick={() => {sendMessage()}}> &#10003;</button>
+                {state &&
+                    <div id="chatBar">
+                        <input type="text" id="input" value={inputValue} onChange={handleChange} onKeyDown={(event) => {sendMessage(event)}} placeholder="Scrivi un messaggio qui!"></input>
+                        <button id="sendButton" onClick={() => {sendMessage()}}> &#10003;</button>
+                    </div>
+                }
+
+                {!state &&
+                    <div id = "chatJoin" onClick={() => {joinChat()}}>
+                        <div>Unisciti alla ChatRoom</div>
+                    </div>
+                }
             </div>
         </div>
     )

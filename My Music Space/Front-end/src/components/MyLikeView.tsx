@@ -8,38 +8,16 @@ import select = Simulate.select;
 import "../css/MyLikeView.css"
 const ImgStaticMusicLike="/src/img/MyMusicLikeStatic.PNG"
 
-function MyLikeView() {
+function MyLikeView({registeredChatRooms, subscribe, leave}) {
 
-    const [registeredChatRooms, setRegisteredChatRooms] = useState(["General", "FolkFusion", "Folk",  "Metal", "MetalMania"]);
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [message, setMessage] = useState("");
 
     useEffect(() => {
         setIsButtonClicked(false);
-        retrieveRegisteredChatRooms();
+        //retrieveRegisteredChatRooms();
     },[]);
 
-
-    function retrieveRegisteredChatRooms(){
-
-        /*
-        $.ajax({
-            type:"GET",
-            url: "/chat/messages/collections",
-            //data:{room:query},
-            contentType: "application/json",
-            headers:{
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-                'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
-            }
-
-        }).then(function(data) {
-            setRegisteredChatRooms(data);
-            //console.log("Collecions retrieved!")
-        });
-        */
-    }
 
     const handleClick = (index) => { //ascolto sulla chiat cliccata e retropropago l'indice dell'array Chats
         if(index === -1){
@@ -106,9 +84,7 @@ function MyLikeView() {
                 </div>
                 <img id="MyMusicLikeStatic" src={ImgStaticMusicLike}></img>
             </div>
-
-            {isButtonClicked && <ChatMessage message={message} handleClick={handleClick}/>}
-
+            {isButtonClicked && <ChatMessage active={true} message={message} handleClick={handleClick} subscribe={subscribe} leave={leave}/>}
         </div>
     );
 }

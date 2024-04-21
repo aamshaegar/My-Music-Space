@@ -6,12 +6,14 @@ import Loader from "./Loader"
 import "../css/ChatView.css"
 
 
-function ChatView({focus, query}) {
+function ChatView({registeredChatRooms, focus, query, subscribe, leave}) {
     
     // questa lista verrà richiesta quando clicco sul bottone Chat, quindi sarà memorizzata nel padre e passata al figlio.
     const [ChatNames, setChatNames] = useState([]);
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [message, setMessage] = useState("");
+    const [state, setState] = useState(false);
+
 
     useEffect(() => {
         setIsButtonClicked(false);
@@ -27,6 +29,13 @@ function ChatView({focus, query}) {
     
     const handleMessageChange = (newMessage) => {
         setMessage(newMessage);
+        setState(false)
+        for(let chat in registeredChatRooms){
+            if (registeredChatRooms[chat] == newMessage){
+                setState(true)
+            }
+        }
+        
     };
 
 
@@ -71,7 +80,7 @@ function ChatView({focus, query}) {
                     <Chat key={i} index={i} name={name} handleClick={handleClick} handleMessageChange={handleMessageChange} />
                 ))}
             </div>
-                {isButtonClicked && <ChatMessage message={message} handleClick={handleClick}/>}
+                {isButtonClicked && <ChatMessage active={state} message={message} handleClick={handleClick} subscribe={subscribe} leave={leave} />}
                 
         </div>
     );

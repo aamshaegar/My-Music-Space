@@ -6,16 +6,22 @@ import "../css/ChatView.css"
 import "../css/MyChatView.css"
 
 
-function MyChatView({focus, query}) {
+function MyChatView({registeredChatRooms, focus, query}) {
 
     // questa lista verrà richiesta quando clicco sul bottone Chat, quindi sarà memorizzata nel padre e passata al figlio.
     const [ChatNames, setChatNames] = useState([]);
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [message, setMessage] = useState("");
+    const [state, setState] = useState(false);
 
     useEffect(() => {
         setIsButtonClicked(false);
-    }, []);
+        for(let chat in registeredChatRooms){
+            if(registeredChatRooms[chat] == message)
+                setState(true)
+        }
+
+    }, [registeredChatRooms]);
 
     useEffect(() => {
         if(focus == "MyChatButton"){
@@ -26,6 +32,10 @@ function MyChatView({focus, query}) {
 
 
     const handleMessageChange = (newMessage) => {
+        for(let chat in registeredChatRooms){
+            if(registeredChatRooms[chat] == newMessage)
+            setState(true)
+        }
         setMessage(newMessage);
     };
 
@@ -37,8 +47,10 @@ function MyChatView({focus, query}) {
             $(".search").fadeIn(400);
             $("#Chats").fadeIn(400);
         }
-        else
+        else{
             setIsButtonClicked(true);
+
+        }
     };
 
     function retrieveChatRoomsByQuery(query){
@@ -55,7 +67,6 @@ function MyChatView({focus, query}) {
 
         }).then(function(data) {
             setChatNames(data);
-            //console.log("Collecions retrieved!")
         });
     }
 
@@ -73,6 +84,7 @@ function MyChatView({focus, query}) {
 
         }).then(function(data) {
             setChatNames(data);
+
         });
     }
 
@@ -80,11 +92,11 @@ function MyChatView({focus, query}) {
     return (
         <div className="MyChatView" id="MyChatView">
             <div id="Chats">
-                {ChatNames.map((name,i) => (
+                {/*ChatNames.map((name,i) => (
                     <Chat key={i} index={i} name={name} handleClick={handleClick} handleMessageChange={handleMessageChange} />
-                ))}
+                ))*/}
             </div>
-                {isButtonClicked && <ChatMessage message={message} handleClick={handleClick}/>}
+                {/*isButtonClicked && <ChatMessage active={state} message={message} handleClick={handleClick}/>*/}
         </div>
     );
     }

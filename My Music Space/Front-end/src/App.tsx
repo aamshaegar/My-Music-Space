@@ -18,7 +18,8 @@ function App() {
   const email ="rambaudo.aldo@gmail.com"
   const plane ="Premium"
 
-  
+  //  Richiesta al db
+  const [registeredChatRooms, setRegisteredChatRooms] = useState(["General", "FolkFusion", "Folk",  "Metal", "MetalMania"]);
   const [searchQuery, setSearchQuery] = useState("");
   const [focus, setFocus] = useState("musicButton");
 
@@ -27,11 +28,43 @@ function App() {
   }
 
   function handleMenuButton(button){
-    if (focus != button) {
-      handleSearchBar("");
-    }
+    if (focus != button) {handleSearchBar("");}
     setFocus(button)
   }
+
+  function subscribe_to_chatRoom(chatRoom){
+    const chatRoomNames = []
+    for(const el in registeredChatRooms) chatRoomNames.push(registeredChatRooms[el])
+    chatRoomNames.push(chatRoom)
+    setRegisteredChatRooms(chatRoomNames)
+  }
+
+  function leave_chatRoom(chatRoom){
+    let chatRoomNames = []
+    for(const el in registeredChatRooms) chatRoomNames.push(registeredChatRooms[el])
+    chatRoomNames = chatRoomNames.filter(function(item) {return item !== chatRoom})
+    setRegisteredChatRooms(chatRoomNames)
+  }
+
+  function retrieveRegisteredChatRooms(){
+    /*
+    $.ajax({
+        type:"GET",
+        url: "/user/messages/list",
+        //data:{room:query},
+        contentType: "application/json",
+        headers:{
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+            'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+        }
+
+    }).then(function(data) {
+        setRegisteredChatRooms(data);
+        //console.log("Collecions retrieved!")
+    });
+    */
+  } 
 
   return (
       <div id="My Music Space">
@@ -75,12 +108,12 @@ function App() {
           <div className="Menu+View">
             <Menu onClick={handleMenuButton}/>
             <div className="View" id="View">
-              <MyLikeView></MyLikeView>
-              <MyChatView focus={focus} query={searchQuery}></MyChatView>
-              <ChatView focus={focus} query={searchQuery}></ChatView>
+              <MyChatView></MyChatView>
+              <MyLikeView registeredChatRooms={registeredChatRooms} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></MyLikeView>
+              <ChatView registeredChatRooms={registeredChatRooms} focus={focus} query={searchQuery} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></ChatView>
               <ShopView focus={focus} query={searchQuery}></ShopView>
               <MusicView focus={focus} query={searchQuery}></MusicView>
-              <CartView focus={focus} query={searchQuery}></CartView>
+              <CartView ></CartView>
             </div>
           </div>
             <div className='air air1'></div>
