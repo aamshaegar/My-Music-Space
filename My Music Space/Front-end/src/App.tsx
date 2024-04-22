@@ -11,6 +11,7 @@ import {useState} from "react";
 import MyChatView from "./components/MyChatView";
 import MyLikeView from "./components/MyLikeView";
 import CartView from "./components/CartView";
+import Loader from "./components/Loader"
 
 function App() {
   const name = "Aldo";
@@ -108,6 +109,7 @@ function App() {
           <div className="Menu+View">
             <Menu onClick={handleMenuButton}/>
             <div className="View" id="View">
+              <Loader></Loader>
               <MyChatView></MyChatView>
               <MyLikeView registeredChatRooms={registeredChatRooms} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></MyLikeView>
               <ChatView registeredChatRooms={registeredChatRooms} focus={focus} query={searchQuery} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></ChatView>
