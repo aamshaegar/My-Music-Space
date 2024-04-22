@@ -5,6 +5,10 @@
     initial-value: 0deg;
 }
 
+#loaderBar{
+    display: none;
+}
+
 .loader{
     position: absolute;
     margin:20% 40%;

@@ -71,6 +71,7 @@ function ShopView({focus, query}) {
     useEffect(() => {
         $("#ShopProductView").hide(0);
         if(focus == "shopButton"){
+            $("#loaderBar").fadeIn(0);
             if(query && query != ""){
                 retrieveItems({itemName:query},"/shop/items/search")
             }else{
@@ -78,6 +79,7 @@ function ShopView({focus, query}) {
                 // RISULTATO ALLORA NON CANCELLIAMO LA PRECEDENTE VIEW. QUINDI LASCIAMO GLI OGGETTI DI PRIMA
                 retrieveItems({},"/shop/items")
             }
+            $("#loaderBar").fadeOut(200);
         }
     },[focus, query]);
 

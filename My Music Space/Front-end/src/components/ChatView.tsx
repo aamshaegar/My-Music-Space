@@ -21,8 +21,10 @@ function ChatView({registeredChatRooms, focus, query, subscribe, leave}) {
 
     useEffect(() => {
         if(focus == "chatButton"){
+            $("#loaderBar").fadeIn(0);
             if(query && query != ""){retrieveChatRoomsByQuery(query);
             }else{retrieveChatRoomsByQuery(null);}
+            $("#loaderBar").fadeOut(200);
         }
     },[focus, query]);
     
@@ -52,6 +54,7 @@ function ChatView({registeredChatRooms, focus, query, subscribe, leave}) {
     };
 
     function retrieveChatRoomsByQuery(query){
+        
         $.ajax({
             type:"GET",
             url: "/chatrooms",
@@ -68,6 +71,7 @@ function ChatView({registeredChatRooms, focus, query, subscribe, leave}) {
             for(const el in data) chatRoomNames.push(data[el]["name"])
             setChatNames(chatRoomNames);
             //console.log("Collecions retrieved!")
+
         });
     }
 

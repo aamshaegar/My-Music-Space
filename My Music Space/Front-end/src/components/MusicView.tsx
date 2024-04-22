@@ -42,9 +42,11 @@ function MusicView({ focus, query }) {
   // questa lista verrà richiesta quando clicco sul bottone music, quindi sarà memorizzata nel padre e passata al figlio.
   useEffect(() => {
     if (focus == "musicButton") {
+      $("#loaderBar").fadeIn(0);
       if (query && query != "") {
         alert("Music view search bar piena OOOOOK");
       }
+      $("#loaderBar").fadeOut(200);
     }
   }, [focus, query]);
 

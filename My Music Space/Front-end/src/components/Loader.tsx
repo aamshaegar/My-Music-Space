@@ -2,7 +2,7 @@ import React from "react";
 import "../css/loader.css"
 function Loader() {
     return (
-        <div className="loader">
+        <div className="loader" id="loaderBar">
             <span id="span0"></span>
             <span id="span1"></span>
             <span id="span2"></span>
