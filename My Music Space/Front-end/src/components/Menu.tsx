@@ -53,6 +53,7 @@ function Menu({onClick}) {
 
       if(id=="cartButton"){
           $(".search").hide(0);
+          $("#loaderBar").fadeOut(200);
           document.getElementById("CartView")!.style.display = "block";
           document.getElementById("CartView")!.style.transition = "opacity 1s";
           setTimeout(function () {
@@ -70,6 +71,7 @@ function Menu({onClick}) {
 
       if(id=="likeButton"){
           $(".search").hide(0);
+          $("#loaderBar").fadeOut(200);
           document.getElementById("MyLikeView")!.style.display = "block";
           document.getElementById("MyLikeView")!.style.transition = "opacity 1s";
           setTimeout(function () {
