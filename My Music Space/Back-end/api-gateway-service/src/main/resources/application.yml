@@ -55,3 +55,8 @@ spring:
           uri: lb://music-service
           predicates:
             - Path=/music-service/**
+
+        - id: shop-service
+          uri: lb://shop-service
+          predicates:
+            - Path=/shop-service/**

@@ -8,7 +8,7 @@ services:
     ports:
       - "27018:27017"
     volumes:
-      - mongodata:/data/db
+      - mongodatashop:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=rootuser
       - MONGO_INITDB_ROOT_PASSWORD=rootpass
@@ -20,21 +20,21 @@ services:
   # Mongo express
   #######################################
 
-  mongo-express-shop:
-    image: mongo-express
-    container_name: mongo-express-shop
-    restart: always
-    ports:
-      - "8082:8081"
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
-      - ME_CONFIG_MONGODB_SERVER=mongoShopDB
+  # mongo-express-shop:
+  #   image: mongo-express
+  #   container_name: mongo-express-shop
+  #   restart: always
+  #   ports:
+  #     - "8082:8081"
+  #   environment:
+  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+  #     - ME_CONFIG_MONGODB_SERVER=mongoShopDB
 
-    depends_on:
-      - mongoShopDB
-    networks:
-      - mynetwork
+  #   depends_on:
+  #     - mongoShopDB
+  #   networks:
+  #     - mynetwork
 
 
   #######################################
@@ -53,8 +53,30 @@ services:
     networks:
       - mynetwork
 
+
   #######################################
-  # chat-service container
+  # API GATEWAY
+  #######################################
+
+  api-gateway-service:
+    container_name: api-gateway-service
+    build:
+      context: ../api-gateway-service
+      dockerfile: Dockerfile
+    image: api-gateway-service
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    depends_on:
+      - discovery-service
+    restart: always
+    networks:
+      - mynetwork
+
+
+  #######################################
+  # shop-service container
   #######################################
 
   shop-service:
@@ -63,7 +85,7 @@ services:
       dockerfile: Dockerfile
     image: shop-service:latest
     ports:
-      - "8093:8093"
+      - "8095:8095"
     environment:
       - EUREKA_SERVER=http://discovery-service:8761/eureka/
     networks:
@@ -76,7 +98,7 @@ services:
 
 
 volumes:
-  mongodata:
+  mongodatashop:
 
 networks:
   mynetwork:

@@ -159,25 +159,6 @@ services:
 
 
 
-  #######################################
-  # MUSIC
-  #######################################
-
-  music-service:
-    container_name: music-service
-    build:
-      context: Back-end/music-service
-      dockerfile: Dockerfile
-    image: music-service
-    ports:
-      - "8092:8092"
-    environment:
-      - EUREKA_SERVER=http://discovery-service:8761/eureka/
-    depends_on:
-      - discovery-service
-    restart: always
-    networks:
-      - mynetwork
 
 
   #######################################
@@ -201,6 +182,28 @@ services:
       - mongoDB
 
     restart: always
+
+
+
+  #######################################
+  # music-service container
+  #######################################
+
+  music-service:
+    container_name: music-service
+    build:
+      context: Back-end/music-service
+      dockerfile: Dockerfile
+    image: music-service
+    ports:
+      - "8092:8092"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    depends_on:
+      - discovery-service
+    restart: always
+    networks:
+      - mynetwork
 
 
   #######################################
