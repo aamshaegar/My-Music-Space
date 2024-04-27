@@ -1,7 +1,9 @@
-package com.Taass.Ricerca.MySQL.artists;
+package com.Taass.Ricerca.MySQL.service;
 
-import com.Taass.Ricerca.MySQL.songs.Song;
-import com.Taass.Ricerca.MySQL.songs.SongRepository;
+import com.Taass.Ricerca.MySQL.model.Artist;
+import com.Taass.Ricerca.MySQL.model.ArtistRepository;
+import com.Taass.Ricerca.MySQL.model.Song;
+import com.Taass.Ricerca.MySQL.model.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -30,9 +32,9 @@ public class ArtistService {
         return true;
     }
 
-    List<Artist> getArtist(){return artistRepository.findAll();}
+    public List<Artist> getArtist(){return artistRepository.findAll();}
 
-    Artist createArtist(Artist artist){return artistRepository.save(artist);}
+    public Artist createArtist(Artist artist){return artistRepository.save(artist);}
 
     public Artist assignSongToArtist(Long artistId, Long songId) {
         try {

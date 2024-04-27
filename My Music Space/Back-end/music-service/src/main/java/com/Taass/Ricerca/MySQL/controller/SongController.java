@@ -1,6 +1,8 @@
-package com.Taass.Ricerca.MySQL.songs;
+package com.Taass.Ricerca.MySQL.controller;
 
 
+import com.Taass.Ricerca.MySQL.model.Song;
+import com.Taass.Ricerca.MySQL.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

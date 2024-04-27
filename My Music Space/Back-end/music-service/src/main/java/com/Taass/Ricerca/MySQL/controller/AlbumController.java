@@ -1,5 +1,7 @@
-package com.Taass.Ricerca.MySQL.album;
+package com.Taass.Ricerca.MySQL.controller;
 
+import com.Taass.Ricerca.MySQL.service.AlbumService;
+import com.Taass.Ricerca.MySQL.model.Album;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

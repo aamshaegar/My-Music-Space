@@ -1,6 +1,8 @@
-package com.Taass.Ricerca.MySQL.artists;
+package com.Taass.Ricerca.MySQL.controller;
 
 
+import com.Taass.Ricerca.MySQL.service.ArtistService;
+import com.Taass.Ricerca.MySQL.model.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

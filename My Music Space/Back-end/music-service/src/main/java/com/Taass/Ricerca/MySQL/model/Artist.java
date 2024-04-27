@@ -1,8 +1,5 @@
-package com.Taass.Ricerca.MySQL.artists;
+package com.Taass.Ricerca.MySQL.model;
 
-import com.Taass.Ricerca.MySQL.album.Album;
-import com.Taass.Ricerca.MySQL.songs.Song;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;

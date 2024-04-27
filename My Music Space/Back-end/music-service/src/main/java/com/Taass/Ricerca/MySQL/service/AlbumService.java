@@ -1,7 +1,9 @@
-package com.Taass.Ricerca.MySQL.album;
+package com.Taass.Ricerca.MySQL.service;
 
-import com.Taass.Ricerca.MySQL.artists.Artist;
-import com.Taass.Ricerca.MySQL.artists.ArtistRepository;
+import com.Taass.Ricerca.MySQL.model.Album;
+import com.Taass.Ricerca.MySQL.model.AlbumRepository;
+import com.Taass.Ricerca.MySQL.model.Artist;
+import com.Taass.Ricerca.MySQL.model.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
