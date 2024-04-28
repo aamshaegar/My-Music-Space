@@ -46,7 +46,6 @@ function ChatMessage({active, message, handleClick, subscribe, leave}){
     // ----------------------------------------------------
 
     // Type: JOIN, CHAT, LEAVE
-    const path = "http://localhost:8091"
     const [chatMessages, setChatMessages] = useState([]);
     const [status, setStatus] = useState("disconnected!");
     const [inputValue, setInputValue] = useState('');
@@ -71,7 +70,7 @@ function ChatMessage({active, message, handleClick, subscribe, leave}){
     function retrieveMessagesList(){
         $.ajax({
             type:"GET",
-            url: "/chat/messages",
+            url: "http://localhost:8080/api/chat/messages",
             data: { room: actualRoom} ,
             contentType: "application/json",
             headers:{
@@ -91,7 +90,7 @@ function ChatMessage({active, message, handleClick, subscribe, leave}){
 
     function connect() {
         setStatus("connecting...")
-        let socket = new SockJS(path + '/websocket');
+        let socket = new SockJS("http://localhost:8091/websocket");
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
     }

@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useEffect} from "react";
-const imagePath = "http://localhost:8093"
+const imagePath = "http://localhost:8080/shop-service"
 import "../css/ShopView.css"
 import ShopProductView from "./ShopProductView";
 
@@ -12,8 +12,8 @@ function selectedShop({ object }) {
     $(".search").hide(0);
     document.getElementById("ShopView")!.style.opacity = "0";
     document.getElementById("ShopView")!.style.display = "none";
-    document.getElementById("ShopProductView")!.style.display = "block";
-    document.getElementById("ShopProductView")!.style.transition = "opacity 1s";
+    //document.getElementById("ShopProductView")!.style.display = "block";
+    //document.getElementById("ShopProductView")!.style.transition = "opacity 1s";
     setTimeout(function() {
         document.getElementById("ShopProductView")!.style.opacity = "1";
     }, 50);
@@ -72,11 +72,11 @@ function ShopView({focus, query}) {
         $("#ShopProductView").hide(0);
         if(focus == "shopButton"){
             if(query && query != ""){
-                retrieveItems({itemName:query},"/shop/items/search")
+                retrieveItems({itemName:query},"http://localhost:8080/api/shop/items/search")
             }else{
                 // POSSIBILE MODIFICA: SE LA QUERY NON DA 
                 // RISULTATO ALLORA NON CANCELLIAMO LA PRECEDENTE VIEW. QUINDI LASCIAMO GLI OGGETTI DI PRIMA
-                retrieveItems({},"/shop/items")
+                retrieveItems({},"http://localhost:8080/api/shop/items")
             }
         }
     },[focus, query]);

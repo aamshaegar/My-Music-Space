@@ -57,7 +57,7 @@ function ChatView({registeredChatRooms, focus, query, subscribe, leave}) {
         $("#loaderBar").fadeIn(0);
         $.ajax({
             type:"GET",
-            url: "/chatrooms",
+            url: "http://localhost:8080/api/chat/chatrooms",
             data:{name:query},
             contentType: "application/json",
             headers:{

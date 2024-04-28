@@ -37,7 +37,7 @@ public class SecurityConfig {
                 // il metodo and() è deprecato e non ho capito con cosa sia stato sostituito
                 .authorizeHttpRequests(auth -> {
                             // voglio autorizzare tutti i metodi che ho dentro il mio authController
-                            auth.requestMatchers("/api/v1/auth/**").permitAll();
+                            auth.requestMatchers("/api/auth/**").permitAll();
                             auth.anyRequest().authenticated();
                         }
                 )

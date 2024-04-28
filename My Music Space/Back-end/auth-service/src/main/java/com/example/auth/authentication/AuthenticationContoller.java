@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 // creo 2 endpoint: uno per la registrazione e uno per l'autenticazione
 @RestController
-@RequestMapping("api/v1/auth")
+@RequestMapping("api/auth")
 @RequiredArgsConstructor
 public class AuthenticationContoller {
 

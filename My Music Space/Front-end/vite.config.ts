@@ -3,16 +3,25 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: {
-    proxy: {
-      "/websocket": "http://localhost:8091",
-      "/chat": "http://localhost:8091",
-      "/chatrooms":"http://localhost:8091",
-      "/app":"http://localhost:8091",
-      "/api":"http://localhost:8094",
-      "/shop": "http://localhost:8093",
-      "/images":"http://localhost:8093",
-    }  
-  },
+  base: "/",
   plugins: [react()],
+  preview: {
+    port: 5173,
+    strictPort: true,
+  },
+  server: {
+    watch: {
+      usePolling: true,
+    },
+    port: 5173,
+    strictPort: true,
+    host: true,
+    origin: "http://0.0.0.0:5173",
+
+    proxy: {
+      "/app":"http://localhost:8091",
+      "/api":"http://localhost:8080",
+    },
+    cors:false
+  }
 })

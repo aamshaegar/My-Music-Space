@@ -3,6 +3,7 @@ import "../css/ShopProductView.css"
 const ImgReview = "/src/img/Recensione.PNG"
 const ImgReview2= "/src/img/Recensione 2.PNG"
 const ImgAddNumber="/src/img/AddNumber.PNG"
+const imagePath = "http://localhost:8080/shop-service"
 
 function ShopProductView({object, handleClick}){
 
@@ -54,7 +55,7 @@ function ShopProductView({object, handleClick}){
             <div id="BackgroundSection">
                 <h1>{object['artistName']}</h1>
                 <h2>{object['itemName']}</h2>
-                <img src={object['imageURL']}></img>
+                <img src={imagePath + object['imageURL']}></img>
             </div>
             <div id="OperationSection">
                 <button onClick={() => {changeContainer("Descrizione")}}>Descrizione</button>

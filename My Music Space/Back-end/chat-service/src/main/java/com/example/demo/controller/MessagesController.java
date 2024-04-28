@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/chat/messages")
+@RequestMapping(path = "api/chat/messages")
 public class MessagesController {
 
     private final ChatService service;

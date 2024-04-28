@@ -1,5 +1,59 @@
 server:
   port: 8080
+
+spring:
+  application:
+    name: api-gateway-service
+  
+  cloud:
+    loadbalancer:
+      cache:
+        enabled: false
+    
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:5173"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            max-age: 3600
+            allowed-headers: "*"
+            exposed-headers: "X-Get-Header"
+      
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      
+      
+      routes:
+
+        ## API-GATEWAY/api/patient
+        - id: chat-service
+          uri: lb://chat-service
+          predicates:
+            - Path=/api/chat/**
+
+        - id: music-service
+          uri: lb://music-service
+          predicates:
+            - Path=/api/music/***
+
+        - id: shop-service
+          uri: lb://shop-service
+          predicates:
+            - Path=/api/shop/**
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials
+        - DedupeResponseHeader=Access-Control-Allow-Origin
+
+
 eureka:
   client:
     fetch-registry: true
@@ -11,52 +65,3 @@ eureka:
   instance:
     appname: api-gateway-service
     instanceId: api-gateway-service
-
-spring:
-  application:
-    name: api-gateway-service
-  cloud:
-    loadbalancer:
-      cache:
-        enabled: false
-    gateway:
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
-            max-age: 3600
-            allowed-headers: "Requestor-Type"
-            exposed-headers: "X-Get-Header"
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
-
-        - id: discovery-service
-          uri: lb://discovery-service
-          predicates:
-            - Path=/eureka/web
-          filters:
-            - SetPath=/**
-
-        - id: chat-service
-          uri: lb://chat-service
-          predicates:
-            - Path=/chat-service/**
-
-        - id: music-service
-          uri: lb://music-service
-          predicates:
-            - Path=/music-service/**
-
-        - id: shop-service
-          uri: lb://shop-service
-          predicates:
-            - Path=/shop-service/**

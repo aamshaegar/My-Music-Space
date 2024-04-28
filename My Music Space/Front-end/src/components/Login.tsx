@@ -76,7 +76,7 @@ function Login() {
         //<div id="MessaggioRegistrazione">Non sei registrato? Registrati!</div>
         if(checkInputAuth()){
             $.ajax({
-                url: 'http://localhost:8094/api/v1/auth/authenticate',
+                url: 'http://localhost:8090/api/auth/authenticate',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -93,7 +93,7 @@ function Login() {
                         swal("Login", "Password non corretta! Riprova", "error");
 
                     } else {
-                        swal("Login", "Login eseguito correttamente!", "success");
+                        //swal("Login", "Login eseguito correttamente!", "success");
                         //alert(response.response);
                         console.log("token: " + response.token);
                         selected();
@@ -114,7 +114,7 @@ function Login() {
     function register() {
         if(checkInputRegistr()) {
             $.ajax({
-                url: 'http://localhost:8094/api/v1/auth/register',
+                url: 'http://localhost:8090/api/auth/register',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -128,7 +128,7 @@ function Login() {
                     if (response.response == "Error: username already exist") {
                         swal("Registrazione", "Email esistente. Perfavore inserisci un'altra mail", "error");
                     } else {
-                        swal("Registrazione", "Utente registrato correttamente!", "success");
+                        //swal("Registrazione", "Utente registrato correttamente!", "success");
                         //alert(response.response);
                         console.log("token: " + response.token);
                         selected();

@@ -56,7 +56,7 @@ function MyChatView({registeredChatRooms, focus, query}) {
     function retrieveChatRoomsByQuery(query){
         $.ajax({
             type:"GET",
-            url: "/chat/messages/collections",
+            url: "api/chat/messages/collections",
             data:{room:query},
             contentType: "application/json",
             headers:{
@@ -74,7 +74,7 @@ function MyChatView({registeredChatRooms, focus, query}) {
     function retrieveChatRooms(){
         $.ajax({
             type:"GET",
-            url: "/chat/messages/collections/all",
+            url: "api/chat/messages/collections/all",
             contentType: "application/json",
             headers:{
                 'Access-Control-Allow-Origin': '*',
