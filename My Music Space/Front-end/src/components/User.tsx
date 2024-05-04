@@ -4,7 +4,7 @@ interface Props{
     name: string;
 }
 
-function User({name}:Props) {
+function User({name, focus}) {
     function selected() {
         document.getElementById("UserView")!.style.display = "block";
         document.getElementById("UserView")!.style.transition = "opacity 1s";

@@ -103,7 +103,7 @@ function App() {
 
         <div id="All">
           <div className="Search-User" id="Search-User">
-            <User name={name} />
+            <User name={name} focus={focus} ></User>
             <Search onClick={handleSearchBar} />
           </div>
           <div className="Menu+View">

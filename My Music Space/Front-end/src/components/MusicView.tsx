@@ -4,6 +4,17 @@ const ImgPlaylist = "/src/img/texas-road-trip-playlist.jpg";
 const ImgRadio = "/src/img/music-note.png";
 const imgArtist = "/src/img/harryStyles.webp";
 import "../css/MusicView.css";
+import ArtistView from "./ArtistView"
+
+function selectedShop({object}){
+  $(".search").hide(0);
+  document.getElementById("MusicView")!.style.opacity = "0";
+  document.getElementById("MusicView")!.style.display = "none";
+  setTimeout(function() {
+    document.getElementById("ArtistView")!.style.opacity = "1";
+  },50);
+}
+
 
 function Album({ object }) {
   return (
@@ -16,10 +27,17 @@ function Album({ object }) {
   );
 }
 
-function Artist({ object }) {
+function Artist({ object, setShopProduct }) {
+
+  function clickOnObject(){
+    $("#ArtistView").show(0);
+    setShopProduct(object);
+    selectedShop({object});
+  }
+
   return (
-    <div className="artistDiv">
-      <div className="externDiv">
+    <div className="artistDiv" onClick={()=>clickOnObject()}>
+      <div className="externDiv" >
         <img id="artistImg" src={object["imgURL"]}></img>
       </div>
       <div className="description">{object["title"]}</div>
@@ -39,8 +57,15 @@ function Song({ object }) {
 }
 
 function MusicView({ focus, query }) {
+  const [items, setItems] = useState([]);
+  const [threeItems, setThreeItems] = useState([]);
+  const [shopProduct, setShopProduct] = useState({});
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+
   // questa lista verrà richiesta quando clicco sul bottone music, quindi sarà memorizzata nel padre e passata al figlio.
   useEffect(() => {
+    $("#ArtistView").hide(0);
     if (focus == "musicButton") {
       $("#loaderBar").fadeIn(0);
       if (query && query != "") {
@@ -49,6 +74,19 @@ function MusicView({ focus, query }) {
       $("#loaderBar").fadeOut(200);
     }
   }, [focus, query]);
+
+  useEffect (()=> {
+    setButtonClicked(false);
+  },[]);
+
+  function selectProduct(newObject){
+    setButtonClicked(true);
+    setShopProduct(newObject)
+  }
+
+  function handleClick(param){
+    setButtonClicked(false);
+  }
 
   // Type 1 == Album
   // Type 2 == Artisti
@@ -105,28 +143,48 @@ function MusicView({ focus, query }) {
     },
   ];
 
+  function clickOnCkaudio(){
+    console.log("stupido");
+  }
+
   return (
-    <div className="MusicView" id="MusicView">
-      <div className="title">Artisti</div>
-      <div className="Container">
-        {objects.map((obj, index) =>
-          obj["type"] == 1 ? <Album key={index} object={obj} /> : null
-        )}
+    <div className="" id="">
+
+      <div className="MusicView" id="MusicView">
+        <div className="claudio">
+          <div className="sinistro" onClick={()=> clickOnCkaudio()}>Div sx</div>
+          <div className="sinistro" onClick={()=> clickOnCkaudio()}>Div sx</div>
+          <div className="destro" onClick={()=> clickOnCkaudio()}>Div dx</div>
       </div>
 
       <div className="title">Album</div>
       <div className="Container">
-        {objects.map((obj, index) =>
-          obj["type"] == 2 ? <Artist key={index} object={obj} /> : null
-        )}
+        <div className="scrollBar">
+          {objects.map((obj, index) =>
+            obj["type"] == 1 ? <Album key={index} object={obj} /> : null
+          )}
+        </div>
+      </div>
+
+      <div className="title">Artisti</div>
+      <div className="Container">
+        <div className="scrollBar">
+          {objects.map((obj, index) =>
+            obj["type"] == 2 ? <Artist key={index} object={obj} setShopProduct={selectProduct} /> : null
+          )}
+        </div>
       </div>
 
       <div className="title">Brani</div>
       <div className="Container">
-        {objects.map((obj, index) =>
-          obj["type"] == 3 ? <Song key={index} object={obj} /> : null
-        )}
+        <div className="scrollBar">
+          {objects.map((obj, index) =>
+            obj["type"] == 3 ? <Song key={index} object={obj} /> : null
+          )}
+        </div>
       </div>
+      </div>
+      {buttonClicked && <ArtistView object={shopProduct} handleClick={handleClick}></ArtistView>}
     </div>
   );
 }
