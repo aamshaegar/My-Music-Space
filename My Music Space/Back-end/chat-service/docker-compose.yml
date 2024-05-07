@@ -38,6 +38,28 @@ services:
       - mynetwork
 
 
+  #######################################
+  # API GATEWAY
+  #######################################
+
+  api-gateway-service:
+    container_name: api-gateway-service
+    build:
+      context: ../api-gateway-service
+      dockerfile: Dockerfile
+    image: api-gateway-service
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    depends_on:
+      - discovery-service
+    restart: always
+    networks:
+      - mynetwork
+
+
+
 
  #######################################
   # discovery-service

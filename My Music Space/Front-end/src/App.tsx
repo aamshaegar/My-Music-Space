@@ -8,21 +8,34 @@ import MusicView from "./components/MusicView"
 import Search from "./components/Search";
 
 import {useState} from "react";
+import {useEffect} from "react";
 import MyChatView from "./components/MyChatView";
 import MyLikeView from "./components/MyLikeView";
 import CartView from "./components/CartView";
 import Loader from "./components/Loader"
 
 function App() {
-  const name = "Aldo";
-  const surname ="Rambaudo";
-  const email ="rambaudo.aldo@gmail.com"
-  const plane ="Premium"
+  //const name = "Aldo";
+  //const email ="rambaudo.aldo@gmail.com"
+  //const surname ="Rambaudo";
+  //const plane ="Premium"
+
+  const [username, setUsername] = useState("Aldo");
+  const [email, setEmail] = useState("rambaudo.aldo@gmail.com");
+
+
 
   //  Richiesta al db
-  const [registeredChatRooms, setRegisteredChatRooms] = useState(["General", "FolkFusion", "Folk",  "Metal", "MetalMania"]);
+  const [registeredChatRooms, setRegisteredChatRooms] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [focus, setFocus] = useState("musicButton");
+  const [isLogged, setIsLogged] = useState(true);
+
+  // Da modificare. Appena gestiamo correttamente il login
+  useEffect(() => {
+    if (isLogged)
+      retrieveRegisteredChatRooms()
+  }, [isLogged]);
 
   function handleSearchBar(query){
     setSearchQuery(query);
@@ -48,11 +61,11 @@ function App() {
   }
 
   function retrieveRegisteredChatRooms(){
-    /*
+    
     $.ajax({
         type:"GET",
-        url: "/user/messages/list",
-        //data:{room:query},
+        url: "http://localhost:8080/api/chat/preferred",
+        data:{userEmail:email},
         contentType: "application/json",
         headers:{
             'Access-Control-Allow-Origin': '*',
@@ -61,10 +74,11 @@ function App() {
         }
 
     }).then(function(data) {
+        console.log(data);
         setRegisteredChatRooms(data);
-        //console.log("Collecions retrieved!")
+        console.log("Registered Chatrooms retrieved!")
     });
-    */
+    
   } 
 
   return (
@@ -111,8 +125,8 @@ function App() {
             <div className="View" id="View">
               <Loader></Loader>
               <MyChatView></MyChatView>
-              <MyLikeView registeredChatRooms={registeredChatRooms} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></MyLikeView>
-              <ChatView registeredChatRooms={registeredChatRooms} focus={focus} query={searchQuery} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></ChatView>
+              <MyLikeView userEmail={email} username={username} registeredChatRooms={registeredChatRooms} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></MyLikeView>
+              <ChatView userEmail={email} username={username} registeredChatRooms={registeredChatRooms} focus={focus} query={searchQuery} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></ChatView>
               <ShopView focus={focus} query={searchQuery}></ShopView>
               <MusicView focus={focus} query={searchQuery}></MusicView>
               <CartView ></CartView>

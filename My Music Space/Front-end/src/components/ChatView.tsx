@@ -6,7 +6,7 @@ import Loader from "./Loader"
 import "../css/ChatView.css"
 
 
-function ChatView({registeredChatRooms, focus, query, subscribe, leave}) {
+function ChatView({userEmail, username, registeredChatRooms, focus, query, subscribe, leave}) {
     
     // questa lista verrà richiesta quando clicco sul bottone Chat, quindi sarà memorizzata nel padre e passata al figlio.
     const [ChatNames, setChatNames] = useState([]);
@@ -17,6 +17,8 @@ function ChatView({registeredChatRooms, focus, query, subscribe, leave}) {
 
     useEffect(() => {
         setIsButtonClicked(false);
+        console.log(userEmail)
+
     }, []);
 
     useEffect(() => {
@@ -88,7 +90,7 @@ function ChatView({registeredChatRooms, focus, query, subscribe, leave}) {
                     <Chat key={i} index={i} name={name} handleClick={handleClick} handleMessageChange={handleMessageChange} />
                 ))}
             </div>
-                {isButtonClicked && <ChatMessage active={state} message={message} handleClick={handleClick} subscribe={subscribe} leave={leave} />}
+                {isButtonClicked && <ChatMessage userEmail = {userEmail} username = {username} active={state} message={message} handleClick={handleClick} subscribe={subscribe} leave={leave} />}
                 
         </div>
     );

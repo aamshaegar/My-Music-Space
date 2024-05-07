@@ -29,7 +29,7 @@ function ChatMex({object,username}){
     );
 }
 
-function ChatMessage({active, message, handleClick, subscribe, leave}){
+function ChatMessage({userEmail, username, active, message, handleClick, subscribe, leave}){
     
     // In ascolto sulla variabile "message == nome della chatroom"
     const [state, setState] = useState(false);
@@ -49,7 +49,6 @@ function ChatMessage({active, message, handleClick, subscribe, leave}){
     const [chatMessages, setChatMessages] = useState([]);
     const [status, setStatus] = useState("disconnected!");
     const [inputValue, setInputValue] = useState('');
-    let username = "Aldo";
     let actualRoom = message.replace("#", "");
     let array = [];
 
@@ -165,72 +164,68 @@ function ChatMessage({active, message, handleClick, subscribe, leave}){
     }
 
     function joinChat(){
-        /*
+
+
+        let chat = {
+            userEmail: userEmail,
+            chatRoom: message
+        };
+
         $.ajax({
             type:"POST",
-            url: "/chat/messages/join",
-            data: { room: actualRoom} ,
+            url: "http://localhost:8080/api/chat/preferred/insert",
+            data: JSON.stringify(chat) ,
             contentType: "application/json",
             headers:{
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
                 'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
             }
-
-        }).then(function(data) {
-            let lista = data.reverse();
-            array = lista;
-            setChatMessages(lista);
+    
+        }).always(function(xhr) {
+            if(xhr.status == 200){
+                
+                console.log("Add chatRoom");
+                // SE OK DOPO LA RICHIESTA AL SERVER
+                $(".right #leaveText").fadeIn(1);
+                $("#chatBar").fadeIn(1);
+                $("#chatJoin").fadeOut(1);
+                setState(true);
+                subscribe(message);
+                swal("Iscrizione","Ti sei iscritto alla chatRoom " + message + ". Adesso puoi iniziare a chattare con i fan!","success"); 
+            
+            }else{
+                swal("Iscrizione","Non è stato possibile iscriverti alla chatRoom " + message + ". Riprova","error"); 
+            }
         });
-        */
-        
-
-        // SE OK DOPO LA RICHIESTA AL SERVER
-        $(".right #leaveText").fadeIn(1);
-        $("#chatBar").fadeIn(1);
-        $("#chatJoin").fadeOut(1);
-        setState(true);
-        subscribe(message);
-        swal("Iscrizione","Ti sei iscritto alla chatRoom " + message + ". Adesso puoi iniziare a chattare con i fan!","success"); 
     }
 
     function leaveChat(){
 
-        /*
+        let chat = {
+            userEmail: userEmail,
+            chatRoom: message
+        };
+
         $.ajax({
-            type:"POST",
-            url: "/chat/messages/leave",
-            data: { room: actualRoom} ,
+            type:"DELETE",
+            url: "http://localhost:8080/api/chat/preferred/leave",
+            data: JSON.stringify(chat) ,
             contentType: "application/json",
             headers:{
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
                 'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
             }
-
-        }).then(function(data) {
-            let lista = data.reverse();
-            array = lista;
-            setChatMessages(lista);
-        });
-        */
-
-        // SE OK DOPO LA RICHIESTA AL SERVER
-        // EVENTUALI ANIMAZIONI
-
-
-        swal({
-            title: "Abbandona chatRoom",
-            text: "Sei sicuro di voler abbandonare questa ChatRoom?",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
+    
+        }).always(function(xhr) {
+            if(xhr.status == 200){
                 setState(false);
                 leave(message);
                 swal("Abbandona chatRoom","Hai abbandonato la chatRoom " + message,"success"); 
-            } 
+            }else{
+                swal("Abbandona","Non è stato possibile abbandonare la chatRoom " + message + ". Riprova","error");
+            }
         });
 
     }

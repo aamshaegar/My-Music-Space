@@ -142,7 +142,7 @@ services:
   discovery-service:
     container_name: discovery-service
     build:
-      context: ./My Music Space/Back-end/discovery-service
+      context:  Back-end/discovery-service
       dockerfile: Dockerfile
     image: discovery-service:latest
     ports:
@@ -159,7 +159,7 @@ services:
   api-gateway-service:
     container_name: api-gateway-service
     build:
-      context: ./My Music Space/Back-end/api-gateway-service
+      context: Back-end/api-gateway-service
       dockerfile: Dockerfile
     image: api-gateway-service
     ports:
@@ -182,7 +182,7 @@ services:
   auth-service:
     container_name: auth-service
     build:
-      context: ./My Music Space/Back-end/auth-service
+      context: Back-end/auth-service
       dockerfile: Dockerfile
     image: auth-service:latest
     ports:
@@ -201,7 +201,7 @@ services:
   chat-service:
     container_name: chat-service
     build:
-      context: ./My Music Space/Back-end/chat-service
+      context: Back-end/chat-service
       dockerfile: Dockerfile
     image: chat-service:latest
     ports:
@@ -225,7 +225,7 @@ services:
   music-service:
     container_name: music-service
     build:
-      context: ./My Music Space/Back-end/music-service
+      context: Back-end/music-service
       dockerfile: Dockerfile
     image: music-service
     ports:
@@ -246,7 +246,7 @@ services:
   shop-service:
     container_name: shop-service
     build:
-      context: ./My Music Space/Back-end/shop-service
+      context: Back-end/shop-service
       dockerfile: Dockerfile
     image: shop-service:latest
     ports:
@@ -269,7 +269,7 @@ services:
   front-end-container:
     container_name: front-end-container
     build:
-      context: ./My Music Space/Front-end
+      context: ./Front-end
       dockerfile: Dockerfile
     image: front-end-container:latest
     networks:
