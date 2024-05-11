@@ -32,8 +32,19 @@ public class Album {
     private int year;
     private int nsong;
     private String hp; //Casa discografica
+    private String imageURL; //Casa discografica
 
     public Album(){}
+
+    public Album(String title, Artist artist, Set<Song> songs, int year, int nsong, String hp, String imageURL) {
+        this.title = title;
+        this.artist = artist;
+        this.songs = songs;
+        this.year = year;
+        this.nsong = nsong;
+        this.hp = hp;
+        this.imageURL = imageURL;
+    }
 
     public Long getIdAlbum() {return this.id;}
 
@@ -42,6 +53,10 @@ public class Album {
     public String getTitle() {return this.title;}
 
     public void setTitle(String title) {this.title = title;}
+
+    public String getImageURL() {return this.imageURL;}
+
+    public void setImageURL(String imageURL) {this.imageURL = imageURL;}
 
     public Artist getArtist() {return this.artist;}
 

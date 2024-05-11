@@ -1,6 +1,6 @@
 @font-face { 
   font-family: myFirstFont; 
-  src: url("./font/ATTriumvirate-CondensedBlac.ttf"); 
+  src: url("src/font/ATTriumvirate-CondensedBlac.ttf"); 
 } 
 
 ::-webkit-scrollbar:horizontal{

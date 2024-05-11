@@ -36,6 +36,17 @@ public class Song {
     private int year;
     private int duration;
     private String feat;
+    private String imageURL;
+
+    public Song(String title, Set<Artist> artists, Album album, int year, int duration, String feat, String imageURL) {
+        this.title = title;
+        this.artists = artists;
+        this.album = album;
+        this.year = year;
+        this.duration = duration;
+        this.feat = feat;
+        this.imageURL = imageURL;
+    }
 
     public Song() {}
 
@@ -50,6 +61,10 @@ public class Song {
     public Album getAlbum() {return this.album;}
 
     public void setAlbum(Album album) {this.album = album;}
+
+    public String getImageURL() {return this.imageURL;}
+
+    public void setImageURL(String imageURL) {this.imageURL = imageURL;}
 
     //public String getArtist() {return this.artist;}
 

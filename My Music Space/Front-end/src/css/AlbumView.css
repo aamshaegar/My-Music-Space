@@ -1,18 +1,11 @@
-/*#ArtistView{
-    border: 2px solid white;
-    width: 50%;
-    height: 50%;
-}*/
-
-
-#ArtistView{
+#AlbumView{
     opacity: 1;
     display: none;
     width: 100%;
     height: 100%;
 }
 
-#ArtistView .backButton{
+#AlbumView .backButton{
 
     position: absolute;
     z-index: 1;
@@ -30,25 +23,25 @@
 
 }
 
-#ArtistView #backButton{
+#AlbumView #backButton{
     background: none;
     color: white;
     padding-top: 10%;
     border: none;
 }
 
-#ArtistView .backButton:hover{
+#AlbumView .backButton:hover{
     background-color: #3E99CF;
     box-shadow: #000000 0 0 2vh inset;
     box-sizing: border-box;
 }
 
 
-#ArtistView #ArtistContainer{
-    left: 0%;
+#AlbumView #ArtistContainer{
+    left: 2%;
     height: 38vh;
     position: relative;
-    width: 98%;
+    width: 90%;
     border-radius: 2vh;
     background-color: #232425;
     opacity: 0.97;
@@ -60,10 +53,9 @@
 
 #BackgroundS{
     position: relative;
-    width: 110%;
+    width: 100%;
     height: 400px;
     background-color: #BEBEBE;
-    right: 2%;
 }
 
 #BackgroundS img{

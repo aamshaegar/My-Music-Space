@@ -1,10 +1,29 @@
+/*import { useEffect, useState } from "react";
+import "../css/SongView.css";
+
+function SongView({ handleClick, object }) {
+    const [items, setItems] = useState([]);
+    useEffect(() => {
+      $("#SongView").show(0);
+      document.getElementById("SongView")!.style.display = "block";
+      document.getElementById("SongView")!.style.transition = "opacity 1s";
+    }, []);
+
+    return(
+        <div className = "SongView">
+                <div id="prova"></div>
+            </div>
+    )
+}
+export default SongView;*/
+
 import { useEffect, useState } from "react";
 import "../css/ArtistView.css";
 const imagePath = "/src/img/Viva la vida.jpg";
 
-function SongElement({ object }) {
+function SongSelected({ object }) {
   return (
-    <div className="songElement">
+    <div className="SongSelected">
       <img src={imagePath}></img>
       <h1>Persona</h1>
       <h2>2019</h2>
@@ -12,17 +31,17 @@ function SongElement({ object }) {
   );
 }
 
-function ArtistView({ handleClick, object }) {
+function SongView({ handleClick, object }) {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    $("#ArtistView").show(0);
-    document.getElementById("ArtistView")!.style.display = "block";
-    document.getElementById("ArtistView")!.style.transition = "opacity 1s";
+    $("#SongView").show(0);
+    document.getElementById("SongView")!.style.display = "block";
+    document.getElementById("SongView")!.style.transition = "opacity 1s";
   }, []);
 
   function GianClaudio() {
-    document.getElementById("ArtistView")!.style.opacity = "0";
-    document.getElementById("ArtistView")!.style.display = "none";
+    document.getElementById("SongView")!.style.opacity = "0";
+    document.getElementById("SongView")!.style.display = "none";
     document.getElementById("MusicView")!.style.display = "block";
     document.getElementById("MusicView")!.style.transition = "opacity 1s";
     setTimeout(function () {
@@ -54,13 +73,15 @@ function ArtistView({ handleClick, object }) {
   }
 
   return (
-    /*<div id = "ArtistView">
+    /*<div id = "SongView">
             <div id="prova"></div>
         </div>*/
 
-    <div id="ArtistView">
+    <div id="SongView">
       <div className="backButton">
-        <button id="backButton"onClick={() => {
+        <button
+          id="backButton"
+          onClick={() => {
             GianClaudio();
           }}
         >
@@ -99,11 +120,11 @@ function ArtistView({ handleClick, object }) {
         <div id="ArtistContainer">
           <div id="DescriptionC">
             {items.map((obj, index) => (
-              <SongElement key={index} object={obj} />
-            ))}
+              <SongSelected key={index} object={obj} />
+            ))}*/
           </div>
           <div id="ReviewsC">
-            <SongElement object={null} />
+            <SongSelected object={null} />
           </div>
           <div id="BuyC">
             <p>Prezzo: {object["price"]},00 €</p>
@@ -117,4 +138,4 @@ function ArtistView({ handleClick, object }) {
     </div>
   );
 }
-export default ArtistView;
+export default SongView;

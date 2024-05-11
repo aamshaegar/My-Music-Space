@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import "../css/ArtistView.css";
+import "../css/AlbumView.css";
 const imagePath = "/src/img/Viva la vida.jpg";
 
-function SongElement({ object }) {
+function SongSelected({ object }) {
   return (
-    <div className="songElement">
+    <div className="SongSelected">
       <img src={imagePath}></img>
       <h1>Persona</h1>
       <h2>2019</h2>
@@ -12,17 +12,17 @@ function SongElement({ object }) {
   );
 }
 
-function ArtistView({ handleClick, object }) {
+function AlbumView({ handleClick, object }) {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    $("#ArtistView").show(0);
-    document.getElementById("ArtistView")!.style.display = "block";
-    document.getElementById("ArtistView")!.style.transition = "opacity 1s";
+    $("#AlbumView").show(0);
+    document.getElementById("AlbumView")!.style.display = "block";
+    document.getElementById("AlbumView")!.style.transition = "opacity 1s";
   }, []);
 
   function GianClaudio() {
-    document.getElementById("ArtistView")!.style.opacity = "0";
-    document.getElementById("ArtistView")!.style.display = "none";
+    document.getElementById("AlbumView")!.style.opacity = "0";
+    document.getElementById("AlbumView")!.style.display = "none";
     document.getElementById("MusicView")!.style.display = "block";
     document.getElementById("MusicView")!.style.transition = "opacity 1s";
     setTimeout(function () {
@@ -54,13 +54,15 @@ function ArtistView({ handleClick, object }) {
   }
 
   return (
-    /*<div id = "ArtistView">
+    /*<div id = "AlbumView">
             <div id="prova"></div>
         </div>*/
 
-    <div id="ArtistView">
+    <div id="AlbumView">
       <div className="backButton">
-        <button id="backButton"onClick={() => {
+        <button
+          id="backButton"
+          onClick={() => {
             GianClaudio();
           }}
         >
@@ -69,8 +71,8 @@ function ArtistView({ handleClick, object }) {
         </button>
       </div>
       <div id="BackgroundS">
-        <h1>Artista</h1>
-        <h2>Marracash</h2>
+        <h1>Pinguini Tattici Nucleari</h1>
+        <h2>Fake News</h2>
         <img src={"/src/img/marracash.png"}></img>
       </div>
       <div id="OperationS">
@@ -99,11 +101,11 @@ function ArtistView({ handleClick, object }) {
         <div id="ArtistContainer">
           <div id="DescriptionC">
             {items.map((obj, index) => (
-              <SongElement key={index} object={obj} />
+              <SongSelected key={index} object={obj} />
             ))}
           </div>
           <div id="ReviewsC">
-            <SongElement object={null} />
+            <SongSelected object={null} />
           </div>
           <div id="BuyC">
             <p>Prezzo: {object["price"]},00 €</p>
@@ -117,4 +119,4 @@ function ArtistView({ handleClick, object }) {
     </div>
   );
 }
-export default ArtistView;
+export default AlbumView;

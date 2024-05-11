@@ -3,188 +3,283 @@ import { useEffect } from "react";
 const ImgPlaylist = "/src/img/texas-road-trip-playlist.jpg";
 const ImgRadio = "/src/img/music-note.png";
 const imgArtist = "/src/img/harryStyles.webp";
+const imgPath = "http://localhost:8092/";
 import "../css/MusicView.css";
-import ArtistView from "./ArtistView"
+import ArtistView from "./ArtistView";
+import SongView from "./SongView";
+import AlbumView from "./AlbumView";
 
-function selectedShop({object}){
+function selectArtist() {
   $(".search").hide(0);
   document.getElementById("MusicView")!.style.opacity = "0";
   document.getElementById("MusicView")!.style.display = "none";
-  setTimeout(function() {
+  setTimeout(function () {
     document.getElementById("ArtistView")!.style.opacity = "1";
-  },50);
+  }, 50);
 }
 
+function selectSong() {
+  $(".search").hide(0);
+  document.getElementById("MusicView")!.style.opacity = "0";
+  document.getElementById("MusicView")!.style.display = "none";
+  setTimeout(function () {
+    document.getElementById("SongView")!.style.opacity = "1";
+  }, 50);
+}
 
-function Album({ object }) {
+function selectAlbum() {
+  $(".search").hide(0);
+  document.getElementById("MusicView")!.style.opacity = "0";
+  document.getElementById("MusicView")!.style.display = "none";
+  setTimeout(function () {
+    document.getElementById("AlbumView")!.style.opacity = "1";
+  }, 50);
+}
+
+function Album({ object, setAlbum }) {
+  let path = imgPath + object["imageURL"];
+
+  function clickOnAlbum() {
+    $("#AlbumView").show(0);
+    setAlbum(object);
+    selectAlbum({ object });
+  }
   return (
-    <div className="albumDiv">
+    <div className="albumDiv" onClick={() => clickOnAlbum()}>
       <div className="externDiv">
-        <img id="albumImg" src={object["imgURL"]}></img>
+        <img id="albumImg" src={path}></img>
+        <div className="description">{object["title"]}</div>
       </div>
-      <div className="description">{object["title"]}</div>
     </div>
   );
 }
 
-function Artist({ object, setShopProduct }) {
+function Artist({ object, setArtist }) {
+  let path = imgPath + object["imageURL"];
 
-  function clickOnObject(){
+  function clickOnArtist() {
     $("#ArtistView").show(0);
-    setShopProduct(object);
-    selectedShop({object});
+    setArtist(object);
+    selectArtist({ object });
   }
 
   return (
-    <div className="artistDiv" onClick={()=>clickOnObject()}>
-      <div className="externDiv" >
-        <img id="artistImg" src={object["imgURL"]}></img>
+    <div className="artistDiv" onClick={() => clickOnArtist()}>
+      <div className="externDiv">
+        <img id="artistImg" src={path}></img>
+        <h1 className="description">{object["name"]}</h1>
       </div>
-      <div className="description">{object["title"]}</div>
     </div>
   );
 }
 
-function Song({ object }) {
+function Song({ object, setSong }) {
+  let path = imgPath + object["imageURL"];
+
+  function clickOnSong() {
+    $("#SongView").show(0);
+    setSong(object);
+    selectSong({ object });
+  }
   return (
-    <div className="songDiv">
+    <div className="songDiv" onClick={() => clickOnSong()}>
       <div className="externDiv">
-        <img id="songImg" src={object["imgURL"]}></img>
+        <img id="songImg" src={path}></img>
+        <h1 className="description">{object["title"]}</h1>
       </div>
-      <div className="description">{object["title"]}</div>
     </div>
   );
 }
 
 function MusicView({ focus, query }) {
-  const [items, setItems] = useState([]);
-  const [threeItems, setThreeItems] = useState([]);
-  const [shopProduct, setShopProduct] = useState({});
-  const [buttonClicked, setButtonClicked] = useState(false);
+  const [artist, setArtist] = useState({});
+  const [artistArray, setArtistArray] = useState([]);
 
+  const [song, setSong] = useState({});
+  const [songArray, setSongArray] = useState([]);
+
+  const [album, setAlbum] = useState({});
+  const [albumArray, setAlbumArray] = useState([]);
+
+  const [buttonClickedArtist, setButtonClickedArtist] = useState(false);
+  const [buttonClickedSong, setButtonClickedSong] = useState(false);
+  const [buttonClickedAlbum, setButtonClickedAlbum] = useState(false);
 
   // questa lista verrà richiesta quando clicco sul bottone music, quindi sarà memorizzata nel padre e passata al figlio.
   useEffect(() => {
     $("#ArtistView").hide(0);
+    $("#SongView").hide(0);
+    $("#AlbumView").hide(0);
     if (focus == "musicButton") {
       $("#loaderBar").fadeIn(0);
-      if (query && query != "") {
-        alert("Music view search bar piena OOOOOK");
-      }
+
+      $.ajax({
+        url: "http://localhost:8092/artist",
+        method: "GET",
+        contentType: "application/json",
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods":
+            "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+          "Access-Control-Allow-Headers":
+            "X-Requested-With, content-type, Authorization",
+        },
+        success: function (data) {
+          let artist = [];
+          for (const el in data) {
+            artist.push(data[el]);
+          }
+          console.log(artist);
+          setArtistArray(artist);
+        },
+        error: function (error) {
+          console.error("Error:", error);
+        },
+      });
+
+      $.ajax({
+        url: "http://localhost:8092/song",
+        method: "GET",
+        contentType: "application/json",
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods":
+            "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+          "Access-Control-Allow-Headers":
+            "X-Requested-With, content-type, Authorization",
+        },
+        success: function (data) {
+          let song = [];
+          for (const el in data) {
+            song.push(data[el]);
+          }
+          console.log(song);
+          setSongArray(song);
+        },
+        error: function (error) {
+          console.error("Error:", error);
+        },
+      });
+
+      $.ajax({
+        url: "http://localhost:8092/album",
+        method: "GET",
+        contentType: "application/json",
+        crossDomain: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods":
+            "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+          "Access-Control-Allow-Headers":
+            "X-Requested-With, content-type, Authorization",
+        },
+        success: function (data) {
+          let album = [];
+          for (const el in data) {
+            album.push(data[el]);
+          }
+          console.log(album);
+          setAlbumArray(album);
+        },
+        error: function (error) {
+          console.error("Error:", error);
+        },
+      });
+
       $("#loaderBar").fadeOut(200);
     }
   }, [focus, query]);
 
-  useEffect (()=> {
-    setButtonClicked(false);
-  },[]);
+  useEffect(() => {
+    setButtonClickedArtist(false);
+    setButtonClickedSong(false);
+    setButtonClickedAlbum(false);
+  }, []);
 
-  function selectProduct(newObject){
-    setButtonClicked(true);
-    setShopProduct(newObject)
+  function selectArtist(newObject) {
+    setButtonClickedArtist(true);
+    setArtist(newObject);
   }
 
-  function handleClick(param){
-    setButtonClicked(false);
+  function selectSong(newObject) {
+    setButtonClickedSong(true);
+    setSong(newObject);
   }
 
-  // Type 1 == Album
-  // Type 2 == Artisti
-  // Type 3 == Brani
+  function selectAlbum(newObject) {
+    setButtonClickedAlbum(true);
+    setAlbum(newObject);
+  }
 
-  const objects = [
-    {
-      title: "Viva la vida",
-      type: 1,
-      imgURL: "/src/img/Viva la vida.jpg",
-    },
-    {
-      title: "Viva la vida",
-      type: 1,
-      imgURL: "/src/img/Viva la vida.jpg",
-    },
+  function handleClickArtist(param) {
+    setButtonClickedArtist(false);
+  }
 
-    {
-      title: "Viva la vida",
-      type: 1,
-      imgURL: "/src/img/Viva la vida.jpg",
-    },
+  function handleClickAlbum(param) {
+    setButtonClickedAlbum(false);
+  }
 
-    {
-      title: "Viva la vida",
-      type: 1,
-      imgURL: "/src/img/Viva la vida.jpg",
-    },
+  function handleClickSong(param) {
+    setButtonClickedSong(false);
+  }
 
-    {
-      title: "Viva la vida",
-      type: 1,
-      imgURL: "/src/img/Viva la vida.jpg",
-    },
-    {
-      title: "HS",
-      type: 2,
-      imgURL: "/src/img/harryStyles.webp",
-    },
-    {
-      title: "HS",
-      type: 2,
-      imgURL: "/src/img/harryStyles.webp",
-    },
-    {
-      title: "Viva la vida",
-      type: 3,
-      imgURL: "/src/img/Viva la vida.jpg",
-    },
-    {
-      title: "Viva la vida",
-      type: 3,
-      imgURL: "/src/img/Viva la vida.jpg",
-    },
-  ];
-
-  function clickOnCkaudio(){
+  function clickOnCkaudio() {
     console.log("stupido");
   }
 
   return (
     <div className="" id="">
-
       <div className="MusicView" id="MusicView">
         <div className="claudio">
-          <div className="sinistro" onClick={()=> clickOnCkaudio()}>Div sx</div>
-          <div className="sinistro" onClick={()=> clickOnCkaudio()}>Div sx</div>
-          <div className="destro" onClick={()=> clickOnCkaudio()}>Div dx</div>
-      </div>
+          <div className="sinistro" onClick={() => clickOnCkaudio()}>
+            Div sx
+          </div>
+          <div className="sinistro" onClick={() => clickOnCkaudio()}>
+            Div sx
+          </div>
+          <div className="destro" onClick={() => clickOnCkaudio()}>
+            Div dx
+          </div>
+        </div>
 
-      <div className="title">Album</div>
-      <div className="Container">
-        <div className="scrollBar">
-          {objects.map((obj, index) =>
-            obj["type"] == 1 ? <Album key={index} object={obj} /> : null
-          )}
+        <div className="title">Album</div>
+        <div className="Container">
+          <div className="scrollBar">
+            {albumArray.map((obj, index) => (
+              <Album key={index} object={obj} setAlbum={selectAlbum} />
+            ))}
+          </div>
+        </div>
+
+        <div className="title">Artisti</div>
+        <div className="Container">
+          <div className="scrollBar">
+            {artistArray.map((obj, index) => (
+              <Artist key={index} object={obj} setArtist={selectArtist} />
+            ))}
+          </div>
+        </div>
+
+        <div className="title">Brani</div>
+        <div className="Container">
+          <div className="scrollBar">
+            {songArray.map((obj, index) => (
+              <Song key={index} object={obj} setSong={selectSong} />
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="title">Artisti</div>
-      <div className="Container">
-        <div className="scrollBar">
-          {objects.map((obj, index) =>
-            obj["type"] == 2 ? <Artist key={index} object={obj} setShopProduct={selectProduct} /> : null
-          )}
-        </div>
-      </div>
-
-      <div className="title">Brani</div>
-      <div className="Container">
-        <div className="scrollBar">
-          {objects.map((obj, index) =>
-            obj["type"] == 3 ? <Song key={index} object={obj} /> : null
-          )}
-        </div>
-      </div>
-      </div>
-      {buttonClicked && <ArtistView object={shopProduct} handleClick={handleClick}></ArtistView>}
+      {buttonClickedArtist && (
+        <ArtistView object={artist} handleClick={handleClickArtist} />
+      )}
+      {buttonClickedAlbum && (
+        <AlbumView object={album} handleClick={handleClickAlbum}></AlbumView>
+      )}
+      {buttonClickedSong && (
+        <SongView object={album} handleClick={handleClickSong}></SongView>
+      )}
     </div>
   );
 }
