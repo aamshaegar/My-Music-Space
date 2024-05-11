@@ -1,10 +1,14 @@
 package com.example.demo.config;
 
+import com.example.demo.model.chatLog.RabbitMqChatData;
 import com.example.demo.model.chatMessage.ChatMessage;
 import com.example.demo.model.chatRoom.Chatroom;
+import com.example.demo.rabbitmq.RabbitMqConfig;
 import com.example.demo.service.ChatService;
 import com.example.demo.service.ChatroomService;
+import com.example.demo.service.CronService;
 import com.google.gson.*;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -14,9 +18,13 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.util.FileCopyUtils;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 @Configuration
 public class MongoDBConfig {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private ChatroomService chatroomService;
@@ -25,11 +33,15 @@ public class MongoDBConfig {
     private ChatService service;
 
     @Autowired
+    private CronService cronService;
+
+    @Autowired
     ApplicationContext appContext;
 
     @Bean
     public int initChatDB() {
 
+        Boolean init = false;
         String strJson = null;
         ClassPathResource classPathResource = new ClassPathResource("chatroom.json");
         try {
@@ -46,6 +58,7 @@ public class MongoDBConfig {
                     String room = jsonObject.get("collection_name").getAsString();
 
                     if (!chatroomService.checkChatroomExists(room)) {
+                        init = true;
                         chatroomService.createChatroom(new Chatroom(room));
                         JsonArray jsonMessages = jsonObject.getAsJsonArray("messages");
                         for (JsonElement messageElement : jsonMessages) {
@@ -64,6 +77,13 @@ public class MongoDBConfig {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if (init){
+            ArrayList<RabbitMqChatData> chatDataList = cronService.findAllChatroomData(true);
+            System.out.println("Data found ... ");
+            rabbitTemplate.convertAndSend(RabbitMqConfig.TOPIC_EXCHANGE, RabbitMqConfig.ROUTING_KEY, chatDataList);
+            System.out.println("Sending data to rabbitMQ Queue...");
         }
 
         return 0;

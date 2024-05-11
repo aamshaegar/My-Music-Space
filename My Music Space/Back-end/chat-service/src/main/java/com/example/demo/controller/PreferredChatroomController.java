@@ -2,10 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.model.preferredChat.PreferredChatroom;
 import com.example.demo.service.PreferredChatroomService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -15,7 +16,7 @@ public class PreferredChatroomController {
     @Autowired
     private final PreferredChatroomService service;
 
-    public PreferredChatroomController(PreferredChatroomService service) {
+    public PreferredChatroomController(RabbitTemplate rabbitTemplate, PreferredChatroomService service) {
         this.service = service;
     }
 
