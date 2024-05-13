@@ -27,6 +27,7 @@ function App() {
 
   //  Richiesta al db
   const [registeredChatRooms, setRegisteredChatRooms] = useState([]);
+  const [chatLog, setChatLog] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [focus, setFocus] = useState("musicButton");
   const [isLogged, setIsLogged] = useState(true);
@@ -34,7 +35,8 @@ function App() {
   // Da modificare. Appena gestiamo correttamente il login
   useEffect(() => {
     if (isLogged)
-      retrieveRegisteredChatRooms()
+      retrieveRegisteredChatRooms();
+      retrieveChatLog();
   }, [isLogged]);
 
   function handleSearchBar(query){
@@ -74,12 +76,34 @@ function App() {
         }
 
     }).then(function(data) {
-        console.log(data);
+        //console.log(data);
         setRegisteredChatRooms(data);
         console.log("Registered Chatrooms retrieved!")
     });
     
   } 
+
+
+  function retrieveChatLog(){
+    
+    $.ajax({
+        type:"GET",
+        url: "http://localhost:8096/api/log/chat",
+        data:{userEmail:email},
+        contentType: "application/json",
+        headers:{
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+            'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+        }
+
+    }).then(function(data) {
+        //console.log(data);
+        setChatLog(data);
+        console.log("Most popular chat received!")
+    });
+    
+  }
 
   return (
       <div id="My Music Space">
@@ -118,7 +142,7 @@ function App() {
         <div id="All">
           <div className="Search-User" id="Search-User">
             <User name={name} focus={focus} ></User>
-            <Search onClick={handleSearchBar} />
+            <Search focus={focus} onClick={handleSearchBar} chatLog={chatLog}/>
           </div>
           <div className="Menu+View">
             <Menu onClick={handleMenuButton}/>

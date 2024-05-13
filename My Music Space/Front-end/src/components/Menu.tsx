@@ -45,6 +45,7 @@ function Menu({onClick}) {
       document.getElementById("ChatView")!.style.display = "none";
       document.getElementById("ShopViewContainer")!.style.opacity = "0";
       document.getElementById("ShopViewContainer")!.style.display = "none";
+      //document.getElementById("searchBar")!.setAttribute("value", "");
       
       // GESTIONE BRUTTA, PER IL MOMENTO OK;
       $(".ChatMessage").hide(0);
@@ -112,18 +113,19 @@ function Menu({onClick}) {
           onClick("shopButton")
       }
       if (id == "chatButton") {
-          $(".search").show(0);
-          document.getElementById("ChatView")!.style.display = "block";
-          document.getElementById("ChatView")!.style.transition = "opacity 1s";
-          document.getElementById("Chats")!.style.display = "grid";
-          setTimeout(function() {
-              document.getElementById("ChatView")!.style.opacity = "1";
-          }, 50);
-          setTimeout(function() {
-              document.getElementById("Chats")!.style.opacity = "1";
-          }, 50);
+            
+        $(".search").show(0);
+        document.getElementById("ChatView")!.style.display = "block";
+        document.getElementById("ChatView")!.style.transition = "opacity 1s";
+        document.getElementById("Chats")!.style.display = "grid";
+        setTimeout(function() {
+            document.getElementById("ChatView")!.style.opacity = "1";
+        }, 50);
+        setTimeout(function() {
+            document.getElementById("Chats")!.style.opacity = "1";
+        }, 50);
 
-          onClick("chatButton")
+        onClick("chatButton");
 
       }
     }

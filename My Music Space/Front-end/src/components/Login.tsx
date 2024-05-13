@@ -4,6 +4,8 @@ import "../css/Login.css"
 const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 function Login() {
+
+    
     function mostraPopup() {
         $("#registrazionePopup").fadeIn(400)
     }

@@ -21,7 +21,9 @@ export default defineConfig({
     proxy: {
       "/app":"http://localhost:8091",
       "/artist":"http://localhost:8092",
-      "/api":"http://localhost:8080"
+      "/api":"http://localhost:8080",
+      "/api/log":"http://localhost:8096"
+
     },
     cors:false
   }
