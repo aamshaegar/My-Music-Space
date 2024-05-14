@@ -89,7 +89,6 @@ function App() {
     $.ajax({
         type:"GET",
         url: "http://localhost:8080/api/log/chat",
-        data:{userEmail:email},
         contentType: "application/json",
         headers:{
             'Access-Control-Allow-Origin': '*',

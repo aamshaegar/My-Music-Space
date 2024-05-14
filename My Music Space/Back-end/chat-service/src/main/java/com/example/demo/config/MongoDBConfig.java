@@ -80,9 +80,18 @@ public class MongoDBConfig {
         }
 
         if (init){
+            System.out.println("DATI ------------------------------------------");
+            System.out.println("DATI ------------------------------------------");
+            System.out.println("DATI ------------------------------------------");
+            System.out.println(init);
+            System.out.println("DATI ------------------------------------------");
+            System.out.println("DATI ------------------------------------------");
+            System.out.println("DATI ------------------------------------------");
+
             ArrayList<RabbitMqChatData> chatDataList = cronService.findAllChatroomData(true);
             System.out.println("Data found ... ");
             rabbitTemplate.convertAndSend(RabbitMqConfig.TOPIC_EXCHANGE, RabbitMqConfig.ROUTING_KEY, chatDataList);
+            //rabbitTemplate.convertAndSend(RabbitMqConfig.TOPIC_EXCHANGE, RabbitMqConfig.ROUTING_KEY, chatDataList);
             System.out.println("Sending data to rabbitMQ Queue...");
         }
 

@@ -78,7 +78,7 @@ function Login() {
         //<div id="MessaggioRegistrazione">Non sei registrato? Registrati!</div>
         if(checkInputAuth()){
             $.ajax({
-                url: 'http://localhost:8090/api/auth/authenticate',
+                url: 'http://localhost:8080/api/auth/authenticate',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -116,7 +116,7 @@ function Login() {
     function register() {
         if(checkInputRegistr()) {
             $.ajax({
-                url: 'http://localhost:8090/api/auth/register',
+                url: 'http://localhost:8080/api/auth/register',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({

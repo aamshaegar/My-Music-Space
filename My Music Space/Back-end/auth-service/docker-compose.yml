@@ -20,6 +20,47 @@ services:
       - mynetwork
 
 
+
+
+  #######################################
+  # discovery-service
+  #######################################
+
+  discovery-service:
+    container_name: discovery-service
+    build:
+      context: Back-end/discovery-service
+      dockerfile: Dockerfile
+    image: discovery-service:latest
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - mynetwork
+
+
+  #######################################
+  # API GATEWAY
+  #######################################
+
+  api-gateway-service:
+    container_name: api-gateway-service
+    build:
+      context: Back-end/api-gateway-service
+      dockerfile: Dockerfile
+    image: api-gateway-service
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    depends_on:
+      - discovery-service
+    restart: always
+    networks:
+      - mynetwork
+
+
+
   #######################################
   # auth-service container
   #######################################
@@ -33,6 +74,11 @@ services:
       - "8090:8090"
     networks:
       - mynetwork
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    depends_on:
+      - discovery-service
+      - api-gateway-service
     restart: always
 
 
