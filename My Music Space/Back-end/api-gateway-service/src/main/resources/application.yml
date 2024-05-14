@@ -49,6 +49,16 @@ spring:
           predicates:
             - Path=/api/shop/**
 
+        - id: log-service
+          uri: lb://log-service
+          predicates:
+            - Path=/api/log/**
+
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
+
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials
         - DedupeResponseHeader=Access-Control-Allow-Origin
