@@ -6,9 +6,10 @@
 }
 #BackgroundSection{
     position: relative;
-    width: 100%;
+    width: 102.5%;
     height: 50%;
     background-color: #BEBEBE;
+    right:2.5%;
 }
 #OperationSection #AddtoCart:hover{
     background-color: green;
