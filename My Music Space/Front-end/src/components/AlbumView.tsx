@@ -1,26 +1,38 @@
 import { useEffect, useState } from "react";
 import "../css/AlbumView.css";
-const imagePath = "/src/img/Viva la vida.jpg";
+const imgPath = "http://localhost:8092/";
 
-function SongSelected({ object }) {
+function SongElement({ object }) {
+  let path = imgPath + object["imageURL"];
   return (
-    <div className="SongSelected">
-      <img src={imagePath}></img>
-      <h1>Persona</h1>
-      <h2>2019</h2>
+    <div className="songElement">
+      <div className="songImg">
+        <img src={path}></img>
+      </div>
+
+      <div className="info">
+        <h1 className="titleSong">{object["title"]}</h1>
+        <h1 className="visual">542.211</h1>
+        <img className="likeButton" src="/src/img/like.png"></img>
+        <h1 className="duration">{object["duration"]}</h1>
+      </div>
     </div>
   );
 }
 
 function AlbumView({ handleClick, object }) {
   const [items, setItems] = useState([]);
+  const [song, setSong] = useState([]);
+
   useEffect(() => {
     $("#AlbumView").show(0);
     document.getElementById("AlbumView")!.style.display = "block";
     document.getElementById("AlbumView")!.style.transition = "opacity 1s";
+
+    retrieveSong();
   }, []);
 
-  function GianClaudio() {
+  function back() {
     document.getElementById("AlbumView")!.style.opacity = "0";
     document.getElementById("AlbumView")!.style.display = "none";
     document.getElementById("MusicView")!.style.display = "block";
@@ -30,6 +42,35 @@ function AlbumView({ handleClick, object }) {
     }, 50);
     $(".search").show(0);
     handleClick(false);
+  }
+
+  function retrieveSong() {
+    $.ajax({
+      url: "http://localhost:8092/song",
+      method: "GET",
+      contentType: "application/json",
+      crossDomain: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "X-Requested-With, content-type, Authorization",
+      },
+      success: function (data) {
+        let song = [];
+        for (const el in data) {
+          if (data[el]["idAlbum"] == object["idAlbum"]) {
+            song.push(data[el]);
+          }
+        }
+        setSong(song);
+        console.log(song);
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
   }
 
   function changeContainer(Clicked) {
@@ -54,16 +95,12 @@ function AlbumView({ handleClick, object }) {
   }
 
   return (
-    /*<div id = "AlbumView">
-            <div id="prova"></div>
-        </div>*/
-
     <div id="AlbumView">
       <div className="backButton">
         <button
           id="backButton"
           onClick={() => {
-            GianClaudio();
+            back();
           }}
         >
           {" "}
@@ -71,48 +108,16 @@ function AlbumView({ handleClick, object }) {
         </button>
       </div>
       <div id="BackgroundS">
-        <h1>Pinguini Tattici Nucleari</h1>
-        <h2>Fake News</h2>
-        <img src={"/src/img/marracash.png"}></img>
+        <h1>Album</h1>
+        <h2 className="albumTitle">{object["title"]}</h2>
+        <img src={"http://localhost:8092/" + object["imageURL"]}></img>
       </div>
       <div id="OperationS">
-        <button
-          onClick={() => {
-            changeContainer("Descrizione");
-          }}
-        >
-          Brani
-        </button>
-        <button
-          onClick={() => {
-            changeContainer("Recensioni");
-          }}
-        >
-          Album
-        </button>
-        <button
-          onClick={() => {
-            changeContainer("Acquista");
-          }}
-        >
-          Bio
-        </button>
-
         <div id="ArtistContainer">
           <div id="DescriptionC">
-            {items.map((obj, index) => (
-              <SongSelected key={index} object={obj} />
+            {song.map((obj, index) => (
+              <SongElement key={index} object={obj} />
             ))}
-          </div>
-          <div id="ReviewsC">
-            <SongSelected object={null} />
-          </div>
-          <div id="BuyC">
-            <p>Prezzo: {object["price"]},00 €</p>
-            <img src={imagePath}></img>
-            <br></br>
-            <button id="AddtoCart">Aggiungi al carrello</button>
-            <button id="AddtoCart">Acquista ora</button>
           </div>
         </div>
       </div>

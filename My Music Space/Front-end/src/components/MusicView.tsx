@@ -91,15 +91,70 @@ function Song({ object, setSong }) {
   );
 }
 
+function ForegroundSong({ object, setSong }) {
+  let path = imgPath + object["imageURL"];
+
+  function clickOnSong() {
+    $("#SongView").show(0);
+    setSong(object);
+    selectSong({ object });
+    //console.log(object);
+  }
+
+  return (
+    <div className="sinistro" onClick={() => clickOnSong()}>
+      <img className="forSongImg" src={path}></img>
+    </div>
+  );
+}
+
+function ForegroundArtist({ object, setArtist }) {
+  let path = imgPath + object["imageURL"];
+
+  function clickOnArtist() {
+    $("#ArtistView").show(0);
+    setArtist(object);
+    selectArtist({ object });
+  }
+  return (
+    <div className="sinistro" onClick={() => clickOnArtist()}>
+      <img className="forArtImg" src={path}></img>
+    </div>
+  );
+}
+
+function ForegroundAlbum({ object, setAlbum }) {
+  let path = imgPath + object["imageURL"];
+
+  function clickOnAlbum() {
+    $("#AlbumView").show(0);
+    setAlbum(object);
+    selectAlbum({ object });
+  }
+  return (
+    <div className="destro" onClick={() => clickOnAlbum()}>
+      <img className="forAlbumImg" src={path}></img>
+    </div>
+  );
+}
+
 function MusicView({ focus, query }) {
   const [artist, setArtist] = useState({});
+  //lista degli artist
   const [artistArray, setArtistArray] = useState([]);
 
   const [song, setSong] = useState({});
+  //lista delle canzoni
   const [songArray, setSongArray] = useState([]);
 
   const [album, setAlbum] = useState({});
+  //lista degli album
   const [albumArray, setAlbumArray] = useState([]);
+
+  //singoli canzone, album, artista da inserire in alto nel frontend
+  const [songElem, setSongElem] = useState([]);
+  const [artistElem, setArtistElem] = useState([]);
+  const [albumElem, setAlbumElem] = useState([]);
 
   const [buttonClickedArtist, setButtonClickedArtist] = useState(false);
   const [buttonClickedSong, setButtonClickedSong] = useState(false);
@@ -107,89 +162,16 @@ function MusicView({ focus, query }) {
 
   // questa lista verrà richiesta quando clicco sul bottone music, quindi sarà memorizzata nel padre e passata al figlio.
   useEffect(() => {
+    $("#loaderBar").fadeIn(0);
     $("#ArtistView").hide(0);
     $("#SongView").hide(0);
     $("#AlbumView").hide(0);
     if (focus == "musicButton") {
-      $("#loaderBar").fadeIn(0);
-
-      $.ajax({
-        url: "http://localhost:8092/artist",
-        method: "GET",
-        contentType: "application/json",
-        crossDomain: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods":
-            "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-          "Access-Control-Allow-Headers":
-            "X-Requested-With, content-type, Authorization",
-        },
-        success: function (data) {
-          let artist = [];
-          for (const el in data) {
-            artist.push(data[el]);
-          }
-          console.log(artist);
-          setArtistArray(artist);
-        },
-        error: function (error) {
-          console.error("Error:", error);
-        },
-      });
-
-      $.ajax({
-        url: "http://localhost:8092/song",
-        method: "GET",
-        contentType: "application/json",
-        crossDomain: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods":
-            "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-          "Access-Control-Allow-Headers":
-            "X-Requested-With, content-type, Authorization",
-        },
-        success: function (data) {
-          let song = [];
-          for (const el in data) {
-            song.push(data[el]);
-          }
-          console.log(song);
-          setSongArray(song);
-        },
-        error: function (error) {
-          console.error("Error:", error);
-        },
-      });
-
-      $.ajax({
-        url: "http://localhost:8092/album",
-        method: "GET",
-        contentType: "application/json",
-        crossDomain: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods":
-            "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-          "Access-Control-Allow-Headers":
-            "X-Requested-With, content-type, Authorization",
-        },
-        success: function (data) {
-          let album = [];
-          for (const el in data) {
-            album.push(data[el]);
-          }
-          console.log(album);
-          setAlbumArray(album);
-        },
-        error: function (error) {
-          console.error("Error:", error);
-        },
-      });
-
-      $("#loaderBar").fadeOut(200);
+      retrieveAlbum();
+      retrieveSong();
+      retrieveArtist();
     }
+    $("#loaderBar").fadeOut(200);
   }, [focus, query]);
 
   useEffect(() => {
@@ -197,6 +179,115 @@ function MusicView({ focus, query }) {
     setButtonClickedSong(false);
     setButtonClickedAlbum(false);
   }, []);
+
+  function retrieveSong() {
+    $.ajax({
+      url: "http://localhost:8092/song",
+      method: "GET",
+      contentType: "application/json",
+      crossDomain: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "X-Requested-With, content-type, Authorization",
+      },
+      success: function (data) {
+        let song = [];
+        for (const el in data) {
+          song.push(data[el]);
+        }
+        let currentIndex = song.length;
+        while (currentIndex != 0) {
+          let randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+          [song[currentIndex], song[randomIndex]] = [
+            song[randomIndex],
+            song[currentIndex],
+          ];
+        }
+        setSongElem(song[0]);
+        setSongArray(song.slice(0, 9));
+        //console.log(songElem);
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
+  }
+
+  function retrieveArtist() {
+    $.ajax({
+      url: "http://localhost:8092/artist",
+      method: "GET",
+      contentType: "application/json",
+      crossDomain: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "X-Requested-With, content-type, Authorization",
+      },
+      success: function (data) {
+        let artist = [];
+        for (const el in data) {
+          artist.push(data[el]);
+        }
+        let currentIndex = artist.length;
+        while (currentIndex != 0) {
+          let randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+          [artist[currentIndex], artist[randomIndex]] = [
+            artist[randomIndex],
+            artist[currentIndex],
+          ];
+        }
+        setArtistElem(artist[0]);
+        setArtistArray(artist);
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
+  }
+
+  function retrieveAlbum() {
+    $.ajax({
+      url: "http://localhost:8092/album",
+      method: "GET",
+      contentType: "application/json",
+      crossDomain: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "X-Requested-With, content-type, Authorization",
+      },
+      success: function (data) {
+        let album = [];
+        for (const el in data) {
+          album.push(data[el]);
+        }
+        let currentIndex = album.length;
+        while (currentIndex != 0) {
+          let randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+          [album[currentIndex], album[randomIndex]] = [
+            album[randomIndex],
+            album[currentIndex],
+          ];
+        }
+        setAlbumElem(album[0]);
+        setAlbumArray(album);
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
+  }
 
   function selectArtist(newObject) {
     setButtonClickedArtist(true);
@@ -225,23 +316,22 @@ function MusicView({ focus, query }) {
     setButtonClickedSong(false);
   }
 
-  function clickOnCkaudio() {
-    console.log("stupido");
-  }
-
   return (
     <div className="" id="">
       <div className="MusicView" id="MusicView">
         <div className="claudio">
-          <div className="sinistro" onClick={() => clickOnCkaudio()}>
-            Div sx
-          </div>
-          <div className="sinistro" onClick={() => clickOnCkaudio()}>
-            Div sx
-          </div>
-          <div className="destro" onClick={() => clickOnCkaudio()}>
-            Div dx
-          </div>
+          <ForegroundSong
+            object={songElem}
+            setSong={selectSong}
+          ></ForegroundSong>
+          <ForegroundArtist
+            object={artistElem}
+            setArtist={selectArtist}
+          ></ForegroundArtist>
+          <ForegroundAlbum
+            object={albumElem}
+            setAlbum={selectAlbum}
+          ></ForegroundAlbum>
         </div>
 
         <div className="title">Album</div>
@@ -275,10 +365,10 @@ function MusicView({ focus, query }) {
         <ArtistView object={artist} handleClick={handleClickArtist} />
       )}
       {buttonClickedAlbum && (
-        <AlbumView object={album} handleClick={handleClickAlbum}></AlbumView>
+        <AlbumView object={album} handleClick={handleClickAlbum} />
       )}
       {buttonClickedSong && (
-        <SongView object={album} handleClick={handleClickSong}></SongView>
+        <SongView object={song} handleClick={handleClickSong} />
       )}
     </div>
   );

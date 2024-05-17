@@ -1,4 +1,9 @@
 /*Music View*/
+@font-face { 
+    font-family: myFirstFont; 
+    src: url("src/font/ATTriumvirate-CondensedBlac.ttf"); 
+  } 
+  
 .MusicView{
     width:100%;
     display:block;
@@ -24,6 +29,7 @@
     white-space: nowrap;
 }
 
+
 .claudio{
     width:90%;
     margin:30px auto;
@@ -45,10 +51,8 @@
     float:left;
     margin-left: 1%;
     border-radius: 2vh;
+    overflow: hidden;
     }
-
-
-
 
 .title {
     color: #BFBFBF;
@@ -72,10 +76,8 @@
 .albumDiv {
     position: relative;
     width: 18%;
-    height: 77%;
+    height: 61%;
     float: left;
-    margin-left: auto;
-    margin-right: auto;
     top:10%;
 }
 
@@ -92,7 +94,7 @@
 .songDiv {
     position: relative;
     width: 18%;
-    height: 77%;
+    height: 61%;
     float: left;
     margin-left: auto;
     margin-right: auto;
@@ -112,9 +114,40 @@
 
 #artistImg{
     border-radius: 100%;
+    background-color: #BFBFBF;
 }
 
 .description{
     color: white;
-    font-family: my;
+    font-family: myFirstFont;
+    font-size: .8rem;
+    margin-top: 20%;
+    margin-left: 0%;
+    text-align: center;
+    font-style: italic;
+}
+
+.forArtImg{
+    position: relative;
+    top: -15%;
+    width: 60%;
+    height: 115%;
+}
+
+.forAlbumImg{
+    position: relative;
+    top: -30%;
+    left: -8%;
+    width: 120%;
+    height: 160%;
+    border-radius: 2vh;
+}
+
+.forSongImg{
+    position: relative;
+    top: -30%;
+    left: -8%;
+    width: 120%;
+    height: 160%;
+    border-radius: 2vh;
 }

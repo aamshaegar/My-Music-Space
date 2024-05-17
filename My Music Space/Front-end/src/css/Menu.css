@@ -128,13 +128,11 @@
 }
 
 .LogoMenu{
-    background-color: #3E99CF;
-    border-radius: 50%;
     position: absolute;
     width: 15vh;
     height: 15vh;
-    left: 35%;
-    top:5%;
+    left: 136%;
+    top:1%;
 }
 
 .icons{
@@ -146,8 +144,8 @@
 
 .LogoMenuImg{
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 15%;
+    left: -80%;
     width: 100%;
     height: 100%;
 }

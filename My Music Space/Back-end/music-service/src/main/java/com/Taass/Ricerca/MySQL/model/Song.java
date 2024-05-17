@@ -34,11 +34,13 @@ public class Song {
     private Album album;
 
     private int year;
-    private int duration;
+    private double duration;
     private String feat;
     private String imageURL;
+    private int idArtist;
+    private int idAlbum;
 
-    public Song(String title, Set<Artist> artists, Album album, int year, int duration, String feat, String imageURL) {
+    public Song(String title, Set<Artist> artists, Album album, int year, double duration, String feat, String imageURL,int idArtist, int idAlbum) {
         this.title = title;
         this.artists = artists;
         this.album = album;
@@ -46,6 +48,8 @@ public class Song {
         this.duration = duration;
         this.feat = feat;
         this.imageURL = imageURL;
+        this.idArtist = idArtist;
+        this.idAlbum = idAlbum;
     }
 
     public Song() {}
@@ -57,6 +61,14 @@ public class Song {
     public String getTitle() {return this.title;}
 
     public void setTitle(String title) {this.title = title;}
+
+    public int getIdAlbum() {return idAlbum;}
+
+    public void setIdAlbum(int idAlbum) {this.idAlbum = idAlbum;}
+
+    public int getIdArtist() {return idArtist;}
+
+    public void setIdArtist(int idArtist) {this.idArtist = idArtist;}
 
     public Album getAlbum() {return this.album;}
 
@@ -74,9 +86,9 @@ public class Song {
 
     public void setYear(int year) {this.year = year;}
 
-    public int getDuration() {return this.duration;}
+    public double getDuration() {return this.duration;}
 
-    public void setDuration(int durata) {this.duration=durata;}
+    public void setDuration(double durata) {this.duration=durata;}
 
     public String getFeat() {return this.feat;}
 

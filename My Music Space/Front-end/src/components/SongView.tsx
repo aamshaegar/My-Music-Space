@@ -1,45 +1,41 @@
-/*import { useEffect, useState } from "react";
-import "../css/SongView.css";
-
-function SongView({ handleClick, object }) {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-      $("#SongView").show(0);
-      document.getElementById("SongView")!.style.display = "block";
-      document.getElementById("SongView")!.style.transition = "opacity 1s";
-    }, []);
-
-    return(
-        <div className = "SongView">
-                <div id="prova"></div>
-            </div>
-    )
-}
-export default SongView;*/
-
 import { useEffect, useState } from "react";
-import "../css/ArtistView.css";
+import "../css/SongView.css";
 const imagePath = "/src/img/Viva la vida.jpg";
+const imgPath = "http://localhost:8092/";
 
-function SongSelected({ object }) {
+function SongElement1({ object, artist }) {
+  let path = imgPath + object["imageURL"];
+  console.log(object);
   return (
-    <div className="SongSelected">
-      <img src={imagePath}></img>
-      <h1>Persona</h1>
-      <h2>2019</h2>
+    <div className="songElement1">
+      <div className="songImg1">
+        <img src={path}></img>
+      </div>
+      <div className="songTitle1">
+        <div className="infoTitle">
+          <h1 className="infoSong">{object["title"]} - Singolo</h1>
+        </div>
+        <div className="infoTitle">
+          <h1 className="infoSong">duration: {object["duration"]}</h1>
+          <h1 className="infoSong">year: {object["year"]}</h1>
+        </div>
+      </div>
     </div>
   );
 }
 
 function SongView({ handleClick, object }) {
-  const [items, setItems] = useState([]);
+  let [artist, setArtist] = useState([]);
+
   useEffect(() => {
     $("#SongView").show(0);
     document.getElementById("SongView")!.style.display = "block";
     document.getElementById("SongView")!.style.transition = "opacity 1s";
+
+    retrieveArtist();
   }, []);
 
-  function GianClaudio() {
+  function back() {
     document.getElementById("SongView")!.style.opacity = "0";
     document.getElementById("SongView")!.style.display = "none";
     document.getElementById("MusicView")!.style.display = "block";
@@ -51,89 +47,50 @@ function SongView({ handleClick, object }) {
     handleClick(false);
   }
 
-  function changeContainer(Clicked) {
-    document.getElementById("DescriptionC")!.style.opacity = "0";
-    document.getElementById("DescriptionC")!.style.display = "none";
-    document.getElementById("ReviewsC")!.style.opacity = "0";
-    document.getElementById("ReviewsC")!.style.display = "none";
-    document.getElementById("BuyC")!.style.opacity = "0";
-    document.getElementById("BuyC")!.style.display = "none";
-    if (Clicked == "Descrizione") {
-      document.getElementById("DescriptionC")!.style.opacity = "1";
-      document.getElementById("DescriptionC")!.style.display = "block";
-    }
-    if (Clicked == "Recensioni") {
-      document.getElementById("ReviewsC")!.style.opacity = "1";
-      document.getElementById("ReviewsC")!.style.display = "block";
-    }
-    if (Clicked == "Acquista") {
-      document.getElementById("BuyC")!.style.opacity = "1";
-      document.getElementById("BuyC")!.style.display = "block";
-    }
+  function retrieveArtist() {
+    $.ajax({
+      url: "http://localhost:8092/artist",
+      method: "GET",
+      contentType: "application/json",
+      crossDomain: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "X-Requested-With, content-type, Authorization",
+      },
+      success: function (data) {
+        let artist = [];
+        for (const el in data) {
+          if (data[el]["idArtist"] == object["idArtist"]) {
+            artist.push(data[el]);
+          }
+        }
+        setArtist(artist);
+        //console.log(artist);
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
   }
 
   return (
-    /*<div id = "SongView">
-            <div id="prova"></div>
-        </div>*/
-
     <div id="SongView">
       <div className="backButton">
         <button
           id="backButton"
           onClick={() => {
-            GianClaudio();
+            back();
           }}
         >
           {" "}
           &#8592;
         </button>
       </div>
-      <div id="BackgroundS">
-        <h1>Artista</h1>
-        <h2>Marracash</h2>
-        <img src={"/src/img/marracash.png"}></img>
-      </div>
-      <div id="OperationS">
-        <button
-          onClick={() => {
-            changeContainer("Descrizione");
-          }}
-        >
-          Brani
-        </button>
-        <button
-          onClick={() => {
-            changeContainer("Recensioni");
-          }}
-        >
-          Album
-        </button>
-        <button
-          onClick={() => {
-            changeContainer("Acquista");
-          }}
-        >
-          Bio
-        </button>
-
-        <div id="ArtistContainer">
-          <div id="DescriptionC">
-            {items.map((obj, index) => (
-              <SongSelected key={index} object={obj} />
-            ))}*/
-          </div>
-          <div id="ReviewsC">
-            <SongSelected object={null} />
-          </div>
-          <div id="BuyC">
-            <p>Prezzo: {object["price"]},00 €</p>
-            <img src={imagePath}></img>
-            <br></br>
-            <button id="AddtoCart">Aggiungi al carrello</button>
-            <button id="AddtoCart">Acquista ora</button>
-          </div>
-        </div>
+      <div id="BackgroundSi">
+        <SongElement1 object={object} artist={artist} />
       </div>
     </div>
   );

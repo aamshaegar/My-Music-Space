@@ -1,19 +1,13 @@
-/*#ArtistView{
-    border: 2px solid white;
-    width: 50%;
-    height: 50%;
-}*/
-
-
 #ArtistView{
     opacity: 1;
     display: none;
     width: 100%;
     height: 100%;
+    font-family: myFirstFont;
+    font-style: italic;
 }
 
 #ArtistView .backButton{
-
     position: absolute;
     z-index: 1;
     top: 10%;
@@ -45,6 +39,8 @@
 
 
 #ArtistView #ArtistContainer{
+    margin-top: 2%;
+    margin-left: 1%;
     left: 0%;
     height: 38vh;
     position: relative;
@@ -163,7 +159,7 @@
     display:none;
 }
 
-#BuyC{
+#bio{
     opacity:0;
     display:none;
 }
@@ -175,4 +171,130 @@
 #songView{
     width: 100%;
     height: 50%;
+    
+}
+
+.songElement{
+    width: 102%;
+    height: 100px;
+    position: relative;
+    float: left;
+    border-bottom: 2vh;
+    background-color: #404040;
+    margin-bottom: 2%;
+    font-size: 1.5rem;
+    overflow: hidden;
+    border-radius: 4.5vh;
+}
+
+.songImg{
+    width: 6%;
+    height: 70%;
+    border-radius: 3.5vh;
+    float: left;
+    position: relative;
+    margin-left: 2%;
+    margin-top: .8%;
+    overflow: hidden;
+    box-shadow: 8px 10px 5px rgb(49, 49, 49);
+}
+
+.songImg img{
+    width: 100%;
+    height: 100%;
+}
+
+.info{
+    width: 90%;
+    height: 100%;
+    position: relative;
+    float: left;
+    font-size: 1.5em;
+    padding-top: 3%;
+}
+
+.titleSong{
+    float: left;
+    width: 40%;
+    position: relative;
+    padding-left: 2%;
+    font-size: 2.0rem;
+}
+
+.visual{
+    float: left;
+    position: relative;
+    left: 30%;
+    width: 10%;
+    font-size: 2.0rem;
+}
+
+.duration{
+    float: left;
+    position: relative;
+    left: 39%;
+    width: 10%;
+    font-size: 2.0rem;
+}
+
+.likeButton{
+    float: left;
+    position: relative;
+    width: 3%;
+    left: 34%;
+}
+
+
+.albumElement{
+    width: 20%;
+    height: 220px;
+    position: relative;
+    float: left;
+    border-bottom: 2vh;
+    background-color: #404040;
+    margin-bottom: 2%;
+    font-size: 1.5rem;
+    overflow: hidden;
+    border-radius: 4.5vh;
+}
+
+.albumImg{
+    width: 60%;
+    height: 65%;
+    border-radius: 3.5vh;
+    position: relative;
+    margin-left: 20%;
+    margin-top: 5%;
+    overflow: hidden;
+    box-shadow: 8px 10px 5px rgb(49, 49, 49);
+}
+
+.infoAlbum{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-size: 1.5em;
+    padding-top: 3%;
+    text-align: center;
+    left: 27%;
+}
+
+.albumTitle{
+    width: 40%;
+    position: relative;
+    padding-left: 2%;
+    font-size: 1.4rem;
+}
+
+.albumImg img{
+    width: 100%;
+    height: 100%;
+}
+
+.albumYear{
+    text-align: center;
+    width: 40%;
+    position: relative;
+    padding-left: 2%;
+    font-size: 1.0rem;
 }

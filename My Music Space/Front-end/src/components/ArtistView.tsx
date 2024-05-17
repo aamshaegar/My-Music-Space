@@ -1,26 +1,54 @@
 import { useEffect, useState } from "react";
 import "../css/ArtistView.css";
-const imagePath = "/src/img/Viva la vida.jpg";
+
+const imgPath = "http://localhost:8092/";
 
 function SongElement({ object }) {
+  let path = imgPath + object["imageURL"];
   return (
     <div className="songElement">
-      <img src={imagePath}></img>
-      <h1>Persona</h1>
-      <h2>2019</h2>
+      <div className="songImg">
+        <img src={path}></img>
+      </div>
+
+      <div className="info">
+        <h1 className="titleSong">{object["title"]}</h1>
+        <h1 className="visual">542.211</h1>
+        <img className="likeButton" src="/src/img/like.png"></img>
+        <h1 className="duration">{object["duration"]}</h1>
+      </div>
+    </div>
+  );
+}
+
+function AlbumElement({ object }) {
+  let path = imgPath + object["imageURL"];
+  return (
+    <div className="albumElement">
+      <div className="albumImg">
+        <img src={path}></img>
+      </div>
+
+      <div className="infoAlbum">
+        <h1 className="albumTitle">{object["title"]}</h1>
+        <h1 className="albumYear">{object["year"]}</h1>
+      </div>
     </div>
   );
 }
 
 function ArtistView({ handleClick, object }) {
   const [items, setItems] = useState([]);
+  const [song, setSong] = useState([]);
+  const [album, setAlbum] = useState([]);
+
   useEffect(() => {
     $("#ArtistView").show(0);
     document.getElementById("ArtistView")!.style.display = "block";
     document.getElementById("ArtistView")!.style.transition = "opacity 1s";
   }, []);
 
-  function GianClaudio() {
+  function back() {
     document.getElementById("ArtistView")!.style.opacity = "0";
     document.getElementById("ArtistView")!.style.display = "none";
     document.getElementById("MusicView")!.style.display = "block";
@@ -37,8 +65,6 @@ function ArtistView({ handleClick, object }) {
     document.getElementById("DescriptionC")!.style.display = "none";
     document.getElementById("ReviewsC")!.style.opacity = "0";
     document.getElementById("ReviewsC")!.style.display = "none";
-    document.getElementById("BuyC")!.style.opacity = "0";
-    document.getElementById("BuyC")!.style.display = "none";
     if (Clicked == "Descrizione") {
       document.getElementById("DescriptionC")!.style.opacity = "1";
       document.getElementById("DescriptionC")!.style.display = "block";
@@ -47,31 +73,87 @@ function ArtistView({ handleClick, object }) {
       document.getElementById("ReviewsC")!.style.opacity = "1";
       document.getElementById("ReviewsC")!.style.display = "block";
     }
-    if (Clicked == "Acquista") {
-      document.getElementById("BuyC")!.style.opacity = "1";
-      document.getElementById("BuyC")!.style.display = "block";
-    }
+
+    retrieveSong();
+    retrieveAlbum();
+  }
+
+  function retrieveSong() {
+    $.ajax({
+      url: "http://localhost:8092/song",
+      method: "GET",
+      contentType: "application/json",
+      crossDomain: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "X-Requested-With, content-type, Authorization",
+      },
+      success: function (data) {
+        let song = [];
+        for (const el in data) {
+          if (data[el]["idArtist"] == object["idArtist"]) {
+            song.push(data[el]);
+          }
+        }
+        setSong(song);
+        //console.log(song);
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
+  }
+
+  function retrieveAlbum() {
+    $.ajax({
+      url: "http://localhost:8092/album",
+      method: "GET",
+      contentType: "application/json",
+      crossDomain: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "X-Requested-With, content-type, Authorization",
+      },
+      success: function (data) {
+        let album = [];
+        for (const el in data) {
+          if (data[el]["idArtist"] == object["idArtist"]) {
+            album.push(data[el]);
+          }
+        }
+        setAlbum(album);
+        console.log(album);
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
   }
 
   return (
-    /*<div id = "ArtistView">
-            <div id="prova"></div>
-        </div>*/
-
     <div id="ArtistView">
       <div className="backButton">
-        <button id="backButton"onClick={() => {
-            GianClaudio();
+        <button
+          id="backButton"
+          onClick={() => {
+            back();
           }}
         >
           {" "}
           &#8592;
         </button>
       </div>
+
       <div id="BackgroundS">
         <h1>Artista</h1>
-        <h2>Marracash</h2>
-        <img src={"/src/img/marracash.png"}></img>
+        <h2>{object["name"]}</h2>
+        <img src={"http://localhost:8092/" + object["imageURL"]}></img>
       </div>
       <div id="OperationS">
         <button
@@ -88,29 +170,16 @@ function ArtistView({ handleClick, object }) {
         >
           Album
         </button>
-        <button
-          onClick={() => {
-            changeContainer("Acquista");
-          }}
-        >
-          Bio
-        </button>
-
         <div id="ArtistContainer">
           <div id="DescriptionC">
-            {items.map((obj, index) => (
+            {song.map((obj, index) => (
               <SongElement key={index} object={obj} />
             ))}
           </div>
           <div id="ReviewsC">
-            <SongElement object={null} />
-          </div>
-          <div id="BuyC">
-            <p>Prezzo: {object["price"]},00 €</p>
-            <img src={imagePath}></img>
-            <br></br>
-            <button id="AddtoCart">Aggiungi al carrello</button>
-            <button id="AddtoCart">Acquista ora</button>
+            {album.map((obj, index) => (
+              <AlbumElement key={index} object={obj} />
+            ))}
           </div>
         </div>
       </div>

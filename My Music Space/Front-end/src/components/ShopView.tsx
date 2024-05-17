@@ -173,10 +173,7 @@ function ShopView({ focus, query }) {
       </div>
 
       {buttonClicked && (
-        <ShopProductView
-          object={shopProduct}
-          handleClick={handleClick}
-        ></ShopProductView>
+        <ShopProductView object={shopProduct} handleClick={handleClick} />
       )}
     </div>
   );
