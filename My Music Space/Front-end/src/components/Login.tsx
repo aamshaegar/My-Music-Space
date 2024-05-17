@@ -1,4 +1,4 @@
-const LogoUrl = "/src/img/My Music Space Logo.png";
+const LogoUrl = "/src/img/Logo_senza_sfondo.png";
 import "../css/Login.css"
 
 const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

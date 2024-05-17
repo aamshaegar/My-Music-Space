@@ -17,8 +17,8 @@
 #SongView .backButton{
     position: absolute;
     z-index: 1;
-    top: 10%;
-    left: 7%;
+    top: 20%;
+    left: 12%;
     width: 6vh;
     height: 6vh;
     background-color: #232425;
@@ -63,10 +63,12 @@
 
 #BackgroundSi{
     position: relative;
-    width: 110%;
-    height: 784px;
-    background-color: #BEBEBE;
-    right: 2%;
+
+    width: 80%;
+    height: 468px;
+    background-color: #3E99CF;
+    border-radius: 5vh;
+    margin: 10%;
 }
 
 
@@ -95,13 +97,13 @@
 
 
 .songImg1{
-    width: 25%;
-    height: 55%;
+    width: 35%;
+    height: 95%;
     border-radius: 3.5vh;
     float: left;
     position: relative;
-    margin-left: 5%;
-    margin-top: 3%;
+    margin-left: 2%;
+    margin-top: 0%;
     overflow: hidden;
     box-shadow: 8px 10px 5px rgb(49, 49, 49);
 }
@@ -129,24 +131,22 @@
 
 .infoTitle{
     width: 97%;
-    height: 44%;
+    height: 50%;
     position: relative;
     float: left;
     font-size: 2em;
     padding-top: 3%;
-    background-color: #979797;
     overflow: hidden;
     border-radius: 4.5vh;
     margin-bottom: 1%;
-    border: 2px solid black;
-    box-shadow: 8px 10px 5px rgb(49, 49, 49);
+    /*box-shadow: 8px 10px 5px rgb(49, 49, 49);*/
 }
 
 .songTitle1{
     margin-top: 3%;
     margin-left: 2%;
     width: 30%;
-    height: 56%;
+    height: 70%;
     top: 0%;
     position: relative;
     float: left;
