@@ -43,6 +43,8 @@ function Menu({ onClick }) {
     document.getElementById("ChatView")!.style.display = "none";
     document.getElementById("ShopViewContainer")!.style.opacity = "0";
     document.getElementById("ShopViewContainer")!.style.display = "none";
+    document.getElementById("UserView")!.style.opacity = "0";
+    document.getElementById("UserView")!.style.display = "none";
 
     // GESTIONE BRUTTA, PER IL MOMENTO OK;
     $(".ChatMessage").hide(0);

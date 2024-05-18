@@ -1,16 +1,24 @@
 const imageUrl = "/src/img/user.jpg";
 import "../css/User.css"
-interface Props{
-    name: string;
-}
 
-function User({name, focus}) {
+function User() {
     function selected() {
+        $(".search").hide(0);
+        document.getElementById("MyLikeView")!.style.opacity = "0";
+        document.getElementById("MyLikeView")!.style.display = "none";
+        document.getElementById("CartView")!.style.display = "none";
+        document.getElementById("CartView")!.style.transition = "0";
+        document.getElementById("MusicView")!.style.opacity = "0";
+        document.getElementById("MusicView")!.style.display = "none";
+        document.getElementById("ShopView")!.style.opacity = "0";
+        document.getElementById("ShopView")!.style.display = "none";
+        document.getElementById("ChatView")!.style.opacity = "0";
+        document.getElementById("ChatView")!.style.display = "none";
+        document.getElementById("ShopViewContainer")!.style.opacity = "0";
+        document.getElementById("ShopViewContainer")!.style.display = "none";
         document.getElementById("UserView")!.style.display = "block";
         document.getElementById("UserView")!.style.transition = "opacity 1s";
         setTimeout(function() {
-            document.getElementById("View")!.style.zIndex="-7";
-            document.getElementById("Menu")!.style.zIndex="-8";
             document.getElementById("UserView")!.style.opacity = "1";
         }, 50);
     }
