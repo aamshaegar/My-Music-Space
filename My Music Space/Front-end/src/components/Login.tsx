@@ -2,6 +2,7 @@ const LogoUrl = "/src/img/Logo_senza_sfondo.png";
 import "../css/Login.css"
 
 const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const EXPIRATION_TIME = 1 * 60 * 1000; 
 
 function Login({setUserProfile,setIsLogged}) {
     function mostraPopup() {
@@ -96,12 +97,17 @@ function Login({setUserProfile,setIsLogged}) {
                         //swal("Login", "Login eseguito correttamente!", "success");
                         //alert(response.response);
                         //console.log("token: " + response.token);
-                        let data = JSON.stringify(response);
-                        let userProfile = {"token": data['token'], "email": data['response'][0], "name": data['response'][1], "surname":data['response'][2]};
+                        let res = JSON.parse(JSON.stringify(response['response']))
+                        res = res.substring(1, res.length-1);
+                        const myArray = res.split(",");
+                        let userProfile = {"token": response['token'], "email": myArray[0].trim(), "name": myArray[1].trim(), "surname":myArray[2].trim()};
+                        localStorage.setItem('token', response['token']);
+                        const expirationTime = new Date().getTime() + EXPIRATION_TIME;
+                        localStorage.setItem("expiration_date", new Date(expirationTime).toISOString());
+                        
                         setUserProfile(userProfile);
                         setIsLogged(true);
                         selected();
-
                     }
                 },
                 error: function(xhr, status, error) {
@@ -136,8 +142,15 @@ function Login({setUserProfile,setIsLogged}) {
                         //alert(response.response);
                         //console.log("token: " + response.token);
                         //console.log(JSON.stringify(response));
-                        let data = JSON.stringify(response);
-                        let userProfile = {"token": data['token'], "email": data['response'][0], "name": data['response'][1], "surname":data['response'][2]};
+                        
+                        let res = JSON.parse(JSON.stringify(response['response']))
+                        res = res.substring(1, res.length-1);
+                        const myArray = res.split(",");
+                        let userProfile = {"token": response['token'], "email": myArray[0].trim(), "name": myArray[1].trim(), "surname":myArray[2].trim()};
+                        localStorage.setItem('token', response['token']);
+                        const expirationTime = new Date().getTime() + EXPIRATION_TIME;
+                        localStorage.setItem("expiration_date", new Date(expirationTime).toISOString());
+                        
                         setUserProfile(userProfile);
                         setIsLogged(true);
                         selected();

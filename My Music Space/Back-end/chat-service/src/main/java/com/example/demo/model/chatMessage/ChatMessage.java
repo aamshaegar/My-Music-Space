@@ -11,6 +11,7 @@ public class ChatMessage {
     private String id;
     private String content;
     private String sender;
+    private String email;
     @Transient
     private MessageType type;
     @Transient
@@ -22,21 +23,31 @@ public class ChatMessage {
 
     }
 
-    public ChatMessage(String id, String content, String sender, MessageType type, String room, String date) {
+    public ChatMessage(String id, String content, String sender, String email, MessageType type, String room, String date) {
         this.id = id;
         this.content = content;
         this.sender = sender;
+        this.email=email;
         this.type = type;
         this.room = room;
         this.date = date;
     }
 
-    public ChatMessage(String content, String sender, MessageType type, String room, String date) {
+    public ChatMessage(String content, String sender, String email, MessageType type, String room, String date) {
         this.content = content;
         this.sender = sender;
+        this.email=email;
         this.type = type;
         this.room = room;
         this.date = date;
+    }
+
+    public ChatMessage(String content, String sender, String email, String room, String date) {
+        this.content = content;
+        this.sender = sender;
+        this.email=email;
+        this.date = date;
+        this.room = room;
     }
 
     public ChatMessage(String content, String sender, String room, String date) {
@@ -92,6 +103,14 @@ public class ChatMessage {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

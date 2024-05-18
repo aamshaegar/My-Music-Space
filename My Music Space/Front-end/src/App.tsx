@@ -15,12 +15,21 @@ import CartView from "./components/CartView";
 import Loader from "./components/Loader"
 import UserView from "./components/UserView";
 
+
 function App() {
+
+  function appSelected (){
+    document.getElementById("All")!.style.display = "block";
+    document.getElementById("All")!.style.transition = "opacity 1s";
+    document.getElementById("login")!.style.opacity = "0";
+    document.getElementById("All")!.style.opacity = "1";
+    document.getElementById("login")!.style.display = "none";
+  }
+  
 
   const [username, setUsername] = useState("Aldo");
   const [email, setEmail] = useState("rambaudo.aldo@gmail.com");
-  const [userProfile, setUserProfile] = useState({});
-  
+  const [userProfile, setUserProfile] = useState({"token": "", "email": "", "name": "", "surname": ""});
 
   //  Richiesta al db
   const [registeredChatRooms, setRegisteredChatRooms] = useState([]);
@@ -29,13 +38,43 @@ function App() {
   const [focus, setFocus] = useState("musicButton");
   const [isLogged, setIsLogged] = useState(false);
 
+
+  useEffect(() => {
+    checkToken();
+  }, []);
+
   // Da modificare. Appena gestiamo correttamente il login
   useEffect(() => {
+    //console.log(userProfile)
     if (isLogged){
       retrieveRegisteredChatRooms();
       retrieveChatLog();
     }
   }, [isLogged]);
+
+
+  function checkToken(){
+
+    const token = localStorage.getItem("token");
+    const expiration = localStorage.getItem("expiration_date");
+    if (token && expiration) {
+      const expirationTime = new Date(expiration).getTime();
+      const currentTime = new Date().getTime();
+
+      if (currentTime >= expirationTime) {
+        setIsLogged(false);
+        localStorage.clear();
+        window.location.reload();
+      
+      } else {
+        setIsLogged(true);
+        appSelected();
+      }
+
+    } else {
+      setIsLogged(false);
+    }
+  }
 
   function handleSearchBar(query){
     setSearchQuery(query);
@@ -65,9 +104,10 @@ function App() {
     $.ajax({
         type:"GET",
         url: "http://localhost:8080/api/log/chat",
-        data:{userEmail:email},
+        data:{userEmail:userProfile['email']},
         contentType: "application/json",
         headers:{
+            'token':userProfile['token'],
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
             'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
@@ -77,6 +117,7 @@ function App() {
         //console.log(data);
         setChatLog(data);
         console.log("Most popular chat received!")
+        //console.log(data);
     });
 
   }
@@ -86,7 +127,7 @@ function App() {
     $.ajax({
         type:"GET",
         url: "http://localhost:8080/api/chat/preferred",
-        data:{userEmail:email},
+        data:{userEmail:userProfile['email']},
         contentType: "application/json",
         headers:{
             'Access-Control-Allow-Origin': '*',
@@ -138,19 +179,19 @@ function App() {
 
         <div id="All">
           <div className="Search-User" id="Search-User">
-            <User name={name} focus={focus} ></User>
+            <User focus={focus} ></User>
             <Search focus={focus} onClick={handleSearchBar} chatLog={chatLog}/>
           </div>
           <div className="Menu+View">
             <Menu onClick={handleMenuButton}/>
             <div className="View" id="View">
               <Loader></Loader>
-              <UserView></UserView>
+              <UserView userProfile={userProfile}></UserView>
               <MyChatView></MyChatView>
-              <MyLikeView userEmail={email} username={username} registeredChatRooms={registeredChatRooms} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></MyLikeView>
-              <ChatView userEmail={email} username={username} registeredChatRooms={registeredChatRooms} focus={focus} query={searchQuery} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></ChatView>
-              <ShopView focus={focus} query={searchQuery}></ShopView>
-              <MusicView focus={focus} query={searchQuery}></MusicView>
+              <MyLikeView userProfile={userProfile} userEmail={email} username={username} registeredChatRooms={registeredChatRooms} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></MyLikeView>
+              <ChatView userProfile={userProfile} userEmail={email} username={username} registeredChatRooms={registeredChatRooms} focus={focus} query={searchQuery} subscribe={subscribe_to_chatRoom} leave={leave_chatRoom}></ChatView>
+              <ShopView userProfile={userProfile} focus={focus} query={searchQuery}></ShopView>
+              <MusicView userProfile={userProfile} focus={focus} query={searchQuery}></MusicView>
               <CartView ></CartView>
             </div>
           </div>

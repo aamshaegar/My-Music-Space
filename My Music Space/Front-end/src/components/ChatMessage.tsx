@@ -5,14 +5,13 @@ const ImgExit = "/src/img/Exit_ChatW.png";
 
 let stompClient = null;
 
-function ChatMex({object,username}){
+function ChatMex({object, email, username}){
     return(
         <div className="ChatMex">
 
-            {object['sender'] == username ? 
-    
+            {object['email'] == email ? 
                 <div className="MessageBox MyMessageBox">
-                    <div className="sender">{object['sender']}</div>
+                    <div className="sender">{username}</div>
                     <div className="content">{object['content']}</div>
                     <div className="date">{object['date']}</div>
 
@@ -29,7 +28,7 @@ function ChatMex({object,username}){
     );
 }
 
-function ChatMessage({userEmail, username, active, message, handleClick, subscribe, leave}){
+function ChatMessage({userProfile, userEmail, username, active, message, handleClick, subscribe, leave}){
     
     // In ascolto sulla variabile "message == nome della chatroom"
     const [state, setState] = useState(false);
@@ -40,6 +39,7 @@ function ChatMessage({userEmail, username, active, message, handleClick, subscri
         connect();
     }, [message]);
 
+    
 
     // ----------------------------------------------------
     // Dichiarazione delle variabili
@@ -70,7 +70,7 @@ function ChatMessage({userEmail, username, active, message, handleClick, subscri
         $.ajax({
             type:"GET",
             url: "http://localhost:8080/api/chat/messages",
-            data: { room: actualRoom} ,
+            data: { room: actualRoom},
             contentType: "application/json",
             headers:{
                 'Access-Control-Allow-Origin': '*',
@@ -99,7 +99,7 @@ function ChatMessage({userEmail, username, active, message, handleClick, subscri
     // inoltriamo una richiesta al message broker per registrare l'utente username
     function onConnected() {
         stompClient.subscribe('/topic/messages/' + actualRoom, onMessageReceived);
-        stompClient.send("/app/chat/" + actualRoom, {}, JSON.stringify({sender: username, type: 'JOIN'}))
+        stompClient.send("/app/chat/" + actualRoom, {}, JSON.stringify({sender: userProfile['name'], email: userProfile['email'], type: 'JOIN'}))
     }
 
     function onError(error) {
@@ -129,7 +129,7 @@ function ChatMessage({userEmail, username, active, message, handleClick, subscri
         // recupero dal payload l'oggetto message
         let new_message = JSON.parse(payload.body);
         if(new_message.type === 'JOIN') {
-            if(new_message.sender == username) {
+            if(new_message.email == userProfile['email']) {
                 setStatus("joined!")
                 retrieveMessagesList();
             }
@@ -150,7 +150,8 @@ function ChatMessage({userEmail, username, active, message, handleClick, subscri
         if (event && event.key !== "Enter") {return;}
         if(inputValue != "" && stompClient) {
             let new_chatMessage = {
-                sender: username,
+                sender: userProfile['name'],
+                email: userProfile['email'],
                 content: inputValue,
                 type: 'CHAT',
                 room: actualRoom,
@@ -167,7 +168,7 @@ function ChatMessage({userEmail, username, active, message, handleClick, subscri
 
 
         let chat = {
-            userEmail: userEmail,
+            userEmail: userProfile['email'],
             chatRoom: message
         };
 
@@ -203,7 +204,7 @@ function ChatMessage({userEmail, username, active, message, handleClick, subscri
     function leaveChat(){
 
         let chat = {
-            userEmail: userEmail,
+            userEmail: userProfile['email'],
             chatRoom: message
         };
 
@@ -252,7 +253,7 @@ function ChatMessage({userEmail, username, active, message, handleClick, subscri
 
             <div className="chatContainer">
                 <div id="ChatList">
-                    {chatMessages.map((obj,index) => (<ChatMex key={index} object={obj} username={username}/>))}
+                    {chatMessages.map((obj,index) => (<ChatMex key={index} object={obj} email={userProfile['email']} username={userProfile['name']}/>))}
                 </div>
             </div>
 

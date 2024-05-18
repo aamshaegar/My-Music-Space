@@ -23,6 +23,7 @@ public class CronConfig {
     private CronService service;
 
     @Scheduled(cron = "0 0 0 L * *")
+    @Scheduled(fixedRate = 180000)
     public void scheduleFixedDelayTask() {
         ArrayList<RabbitMqChatData> chatDataList = service.findAllChatroomData(false);
         System.out.println("Data found ... ");

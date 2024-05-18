@@ -8,7 +8,7 @@ import select = Simulate.select;
 import "../css/MyLikeView.css"
 const ImgStaticMusicLike="/src/img/MyMusicLikeStatic.PNG"
 
-function MyLikeView({userEmail, username,registeredChatRooms, subscribe, leave}) {
+function MyLikeView({userProfile, userEmail, username,registeredChatRooms, subscribe, leave}) {
 
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [message, setMessage] = useState("");
@@ -84,7 +84,7 @@ function MyLikeView({userEmail, username,registeredChatRooms, subscribe, leave})
                 </div>
                 <img id="MyMusicLikeStatic" src={ImgStaticMusicLike}></img>
             </div>
-            {isButtonClicked && <ChatMessage userEmail = {userEmail} username = {username} active={true} message={message} handleClick={handleClick} subscribe={subscribe} leave={leave}/>}
+            {isButtonClicked && <ChatMessage userProfile={userProfile} userEmail = {userEmail} username = {username} active={true} message={message} handleClick={handleClick} subscribe={subscribe} leave={leave}/>}
         </div>
     );
 }

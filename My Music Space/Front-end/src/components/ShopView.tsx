@@ -50,7 +50,7 @@ function MerchProduct({ object, setShopProduct }) {
   );
 }
 
-function ShopView({ focus, query }) {
+function ShopView({ userProfile, focus, query }) {
   const [items, setItems] = useState([]);
   const [threeItems, setThreeItems] = useState([]);
   const [shopProduct, setShopProduct] = useState({});

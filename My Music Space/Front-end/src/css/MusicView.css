@@ -24,9 +24,13 @@
 }
 
 .scrollBar{
-    height: 100%;
-    min-width: 1500px;
+    
     white-space: nowrap;
+}
+
+.Container .scrollBar{
+    min-width: 1500px;
+    height: 100%;
 }
 
 

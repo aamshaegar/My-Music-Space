@@ -1,7 +1,4 @@
-version: '3.7'
-
 services:
-
 
   #######################################
   # RabbitMQ container
@@ -107,32 +104,14 @@ services:
 
 
   #######################################
-  # discovery-service
-  #######################################
-
-  discovery-service:
-    container_name: discovery-service
-    build:
-      context: Back-end/discovery-service
-      dockerfile: Dockerfile
-    image: discovery-service:latest
-    ports:
-      - "8761:8761"
-    restart: always
-    depends_on:
-      - rabbitmq
-    networks:
-      - mynetwork
-
-
-  #######################################
   # API GATEWAY
   #######################################
+
 
   api-gateway-service:
     container_name: api-gateway-service
     build:
-      context: Back-end/api-gateway-service
+      context: ./Back-end/api-gateway-service
       dockerfile: Dockerfile
     image: api-gateway-service
     ports:
@@ -149,13 +128,32 @@ services:
 
 
   #######################################
+  # discovery-service
+  #######################################
+
+  discovery-service:
+    container_name: discovery-service
+    build:
+      context: ./Back-end/discovery-service
+      dockerfile: Dockerfile
+    image: discovery-service:latest
+    ports:
+      - "8761:8761"
+    restart: always
+    depends_on:
+      - rabbitmq
+    networks:
+      - mynetwork
+
+
+  #######################################
   # log-service container
   #######################################
 
   log-service:
     container_name: log-service
     build:
-      context: Back-end/log-service
+      context: ./Back-end/log-service
       dockerfile: Dockerfile
     image: log-service:latest
     ports:
@@ -175,6 +173,38 @@ services:
     restart: always
 
 
+
+  #######################################
+  # chat-service container
+  #######################################
+
+  chat-service:
+    container_name: chat-service
+    build:
+      context: ./Back-end/chat-service
+      dockerfile: Dockerfile
+    image: chat-service:latest
+    ports:
+      - "8091:8091"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    networks:
+      - mynetwork
+    depends_on:
+      - rabbitmq
+      - discovery-service
+      - mongoDB
+      - mongoLogDB
+      - mongo-log-express
+      - log-service
+    restart: always
+
+
+
   #######################################
   # auth-service container
   #######################################
@@ -182,7 +212,7 @@ services:
   auth-service:
     container_name: auth-service
     build:
-      context: Back-end/auth-service
+      context: ./Back-end/auth-service
       dockerfile: Dockerfile
     image: auth-service:latest
     ports:
@@ -206,7 +236,7 @@ services:
   music-service:
     container_name: music-service
     build:
-      context: Back-end/music-service
+      context: ./Back-end/music-service
       dockerfile: Dockerfile
     image: music-service
     ports:
@@ -214,15 +244,15 @@ services:
     environment:
       - EUREKA_SERVER=http://discovery-service:8761/eureka/
     depends_on:
-      - rabbitmq
       - discovery-service
       - api-gateway-service
       - mysqlDB
     restart: always
     networks:
       - mynetwork
-  
-  
+
+
+
   #######################################
   # shop-service container
   #######################################
@@ -230,7 +260,7 @@ services:
   shop-service:
     container_name: shop-service
     build:
-      context: Back-end/shop-service
+      context: ./Back-end/shop-service
       dockerfile: Dockerfile
     image: shop-service:latest
     ports:
@@ -247,49 +277,21 @@ services:
 
 
 
-
-  ######################################
-  # chat-service container
-  ######################################
-
-  chat-service:
-    container_name: chat-service
-    build:
-      context: Back-end/chat-service
-      dockerfile: Dockerfile
-    image: chat-service:latest
+  mongo-log-express:
+    image: mongo-express
+    container_name: mongo-log-express
+    restart: always
     ports:
-      - "8091:8091"
+      - "8082:8081"
     environment:
-      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+      - ME_CONFIG_MONGODB_SERVER=mongoLogDB
+    depends_on:
+      - mongoLogDB
     networks:
       - mynetwork
-    depends_on:
-      - rabbitmq
-      - discovery-service
-      - mongoDB
-      - shop-service
-      - music-service
-      - log-service
 
-    restart: always
-
-
-
-  # mongo-log-express:
-  #   image: mongo-express
-  #   container_name: mongo-log-express
-  #   restart: always
-  #   ports:
-  #     - "8082:8081"
-  #   environment:
-  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
-  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
-  #     - ME_CONFIG_MONGODB_SERVER=mongoLogDB
-  #   depends_on:
-  #     - mongoLogDB
-  #   networks:
-  #     - mynetwork
 
 
   #######################################
@@ -310,15 +312,12 @@ services:
 
 volumes:
   mongodatalog:
-  mongodatashop:
+  mongodata:
   mongodatachat:
+  mongodatashop:
   persistent:
   mysqldataauth:
-
 
 networks:
   mynetwork:
     driver: bridge
-
-# Per cancellare tutti i volumi: 
-# docker volume rm $(docker volume ls -qf dangling=true)

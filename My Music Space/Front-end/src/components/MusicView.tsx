@@ -138,7 +138,7 @@ function ForegroundAlbum({ object, setAlbum }) {
   );
 }
 
-function MusicView({ focus, query }) {
+function MusicView({userProfile, focus, query }) {
   const [artist, setArtist] = useState({});
   //lista degli artist
   const [artistArray, setArtistArray] = useState([]);
