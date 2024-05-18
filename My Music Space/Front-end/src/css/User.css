@@ -7,7 +7,7 @@
     float:left;
     left:90%;
     padding-top: 3vh;
-    padding-left: 1vh;
+    padding-left: 5vh;
     margin-bottom: 2vh;
 }
 
@@ -25,4 +25,8 @@
     overflow: hidden;
     position: relative;
     float: left;
+}
+
+.immagini:hover{
+    cursor: pointer;
 }
