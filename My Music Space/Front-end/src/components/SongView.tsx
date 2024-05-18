@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../css/SongView.css";
 const imagePath = "/src/img/Viva la vida.jpg";
-const imgPath = "http://localhost:8092/";
+const imgPath = "http://localhost:8080/music-service";
 
 function SongElement1({ object, artist }) {
   let path = imgPath + object["imageURL"];
@@ -49,7 +49,7 @@ function SongView({ handleClick, object }) {
 
   function retrieveArtist() {
     $.ajax({
-      url: "http://localhost:8092/artist",
+      url: "http://localhost:8080api/music/artist",
       method: "GET",
       contentType: "application/json",
       crossDomain: true,

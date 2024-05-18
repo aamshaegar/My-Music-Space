@@ -19,8 +19,6 @@ export default defineConfig({
     origin: "http://0.0.0.0:5173",
 
     proxy: {
-      "/app":"http://localhost:8091",
-      "/artist":"http://localhost:8092",
       "/api":"http://localhost:8080"
     },
     cors:false

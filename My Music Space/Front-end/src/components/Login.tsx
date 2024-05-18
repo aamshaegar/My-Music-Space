@@ -3,7 +3,7 @@ import "../css/Login.css"
 
 const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-function Login() {
+function Login({setUserProfile,setIsLogged}) {
     function mostraPopup() {
         $("#registrazionePopup").fadeIn(400)
     }
@@ -76,7 +76,7 @@ function Login() {
         //<div id="MessaggioRegistrazione">Non sei registrato? Registrati!</div>
         if(checkInputAuth()){
             $.ajax({
-                url: 'http://localhost:8090/api/auth/authenticate',
+                url: 'http://localhost:8080/api/auth/authenticate',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -95,7 +95,11 @@ function Login() {
                     } else {
                         //swal("Login", "Login eseguito correttamente!", "success");
                         //alert(response.response);
-                        console.log("token: " + response.token);
+                        //console.log("token: " + response.token);
+                        let data = JSON.stringify(response);
+                        let userProfile = {"token": data['token'], "email": data['response'][0], "name": data['response'][1], "surname":data['response'][2]};
+                        setUserProfile(userProfile);
+                        setIsLogged(true);
                         selected();
 
                     }
@@ -114,7 +118,7 @@ function Login() {
     function register() {
         if(checkInputRegistr()) {
             $.ajax({
-                url: 'http://localhost:8090/api/auth/register',
+                url: 'http://localhost:8080/api/auth/register',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -130,7 +134,12 @@ function Login() {
                     } else {
                         //swal("Registrazione", "Utente registrato correttamente!", "success");
                         //alert(response.response);
-                        console.log("token: " + response.token);
+                        //console.log("token: " + response.token);
+                        //console.log(JSON.stringify(response));
+                        let data = JSON.stringify(response);
+                        let userProfile = {"token": data['token'], "email": data['response'][0], "name": data['response'][1], "surname":data['response'][2]};
+                        setUserProfile(userProfile);
+                        setIsLogged(true);
                         selected();
                     }
                 },

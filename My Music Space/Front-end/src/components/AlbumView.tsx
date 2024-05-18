@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../css/AlbumView.css";
-const imgPath = "http://localhost:8092/";
+const imgPath = "http://localhost:8080/music-service";
 
 function SongElement({ object }) {
   let path = imgPath + object["imageURL"];
@@ -46,7 +46,7 @@ function AlbumView({ handleClick, object }) {
 
   function retrieveSong() {
     $.ajax({
-      url: "http://localhost:8092/song",
+      url: "http://localhost:8080/api/music/song",
       method: "GET",
       contentType: "application/json",
       crossDomain: true,
@@ -110,7 +110,7 @@ function AlbumView({ handleClick, object }) {
       <div id="BackgroundS">
         <h1>Album</h1>
         <h2 className="albumTitle">{object["title"]}</h2>
-        <img src={"http://localhost:8092/" + object["imageURL"]}></img>
+        <img src={"http://localhost:8080/music-service" + object["imageURL"]}></img>
       </div>
       <div id="OperationS">
         <div id="ArtistContainer">

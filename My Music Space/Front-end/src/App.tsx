@@ -15,26 +15,25 @@ import CartView from "./components/CartView";
 import Loader from "./components/Loader"
 
 function App() {
-  //const name = "Aldo";
-  //const email ="rambaudo.aldo@gmail.com"
-  //const surname ="Rambaudo";
-  //const plane ="Premium"
 
   const [username, setUsername] = useState("Aldo");
   const [email, setEmail] = useState("rambaudo.aldo@gmail.com");
-
-
+  const [userProfile, setUserProfile] = useState({});
+  
 
   //  Richiesta al db
   const [registeredChatRooms, setRegisteredChatRooms] = useState([]);
+  const [chatLog, setChatLog] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [focus, setFocus] = useState("musicButton");
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
 
   // Da modificare. Appena gestiamo correttamente il login
   useEffect(() => {
-    if (isLogged)
-      retrieveRegisteredChatRooms()
+    if (isLogged){
+      retrieveRegisteredChatRooms();
+      retrieveChatLog();
+    }
   }, [isLogged]);
 
   function handleSearchBar(query){
@@ -60,6 +59,27 @@ function App() {
     setRegisteredChatRooms(chatRoomNames)
   }
 
+  function retrieveChatLog(){
+
+    $.ajax({
+        type:"GET",
+        url: "http://localhost:8080/api/log/chat",
+        data:{userEmail:email},
+        contentType: "application/json",
+        headers:{
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+            'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+        }
+
+    }).then(function(data) {
+        //console.log(data);
+        setChatLog(data);
+        console.log("Most popular chat received!")
+    });
+
+  }
+
   function retrieveRegisteredChatRooms(){
     
     $.ajax({
@@ -74,7 +94,7 @@ function App() {
         }
 
     }).then(function(data) {
-        console.log(data);
+        //console.log(data);
         setRegisteredChatRooms(data);
         console.log("Registered Chatrooms retrieved!")
     });
@@ -84,7 +104,7 @@ function App() {
   return (
       <div id="My Music Space">
         <link rel="icon" type="image/x-icon" href="./img/Logo_My%20Music%20Space_round.png"></link>
-        <Login></Login>
+        <Login setUserProfile={setUserProfile} setIsLogged={setIsLogged}></Login>
         <div className="liquidContainer" id="liquidContainer">
 
           <div className="blobs">
@@ -118,7 +138,7 @@ function App() {
         <div id="All">
           <div className="Search-User" id="Search-User">
             <User name={name} focus={focus} ></User>
-            <Search onClick={handleSearchBar} />
+            <Search focus={focus} onClick={handleSearchBar} chatLog={chatLog}/>
           </div>
           <div className="Menu+View">
             <Menu onClick={handleMenuButton}/>

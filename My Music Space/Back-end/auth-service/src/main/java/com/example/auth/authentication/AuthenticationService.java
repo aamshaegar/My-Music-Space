@@ -10,6 +10,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -54,9 +57,10 @@ public class AuthenticationService {
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
+        List<String> res = List.of(user.getEmail(), user.getFirstName(), user.getLastName());
         return AuthenticationResponse.builder()
                 .token(jwtToken)
-                .response("Registration was successful!")
+                .response(res.toString())
                 .build();
     }
 
@@ -76,10 +80,11 @@ public class AuthenticationService {
             // devo generare il token e restituirlo
 
             var user = repository.findByEmail(request.getEmail()).orElseThrow();
+            List<String> res = List.of(user.getEmail(), user.getFirstName(), user.getLastName());
             var jwtToken = jwtService.generateToken(user);
             return AuthenticationResponse.builder()
                     .token(jwtToken)
-                    .response("Authentication successful!")
+                    .response(res.toString())
                     .build();
 
             //TODO: gestire la password errata

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/album")
+@RequestMapping("api/music/album")
 
 public class AlbumController {
 

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const ImgPlaylist = "/src/img/texas-road-trip-playlist.jpg";
 const ImgRadio = "/src/img/music-note.png";
 const imgArtist = "/src/img/harryStyles.webp";
-const imgPath = "http://localhost:8092/";
+const imgPath = "http://localhost:8080/music-service";
 import "../css/MusicView.css";
 import ArtistView from "./ArtistView";
 import SongView from "./SongView";
@@ -182,7 +182,7 @@ function MusicView({ focus, query }) {
 
   function retrieveSong() {
     $.ajax({
-      url: "http://localhost:8092/song",
+      url: "http://localhost:8080/api/music/song",
       method: "GET",
       contentType: "application/json",
       crossDomain: true,
@@ -219,7 +219,7 @@ function MusicView({ focus, query }) {
 
   function retrieveArtist() {
     $.ajax({
-      url: "http://localhost:8092/artist",
+      url: "http://localhost:8080/api/music/artist",
       method: "GET",
       contentType: "application/json",
       crossDomain: true,
@@ -255,7 +255,7 @@ function MusicView({ focus, query }) {
 
   function retrieveAlbum() {
     $.ajax({
-      url: "http://localhost:8092/album",
+      url: "http://localhost:8080/api/music/album",
       method: "GET",
       contentType: "application/json",
       crossDomain: true,
