@@ -14,7 +14,6 @@ services:
     networks:
       - mynetwork
 
-
   #######################################
   # MYSQL DBMS
   #######################################
@@ -52,8 +51,6 @@ services:
     restart: always
     networks:
       - mynetwork
-
-
 
   #######################################
   # mongoDB
@@ -101,8 +98,6 @@ services:
     networks:
       - mynetwork
 
-
-
   #######################################
   # API GATEWAY
   #######################################
@@ -125,8 +120,6 @@ services:
     networks:
       - mynetwork
 
-
-
   #######################################
   # discovery-service
   #######################################
@@ -144,7 +137,6 @@ services:
       - rabbitmq
     networks:
       - mynetwork
-
 
   #######################################
   # log-service container
@@ -171,8 +163,6 @@ services:
       - discovery-service
       - mongoLogDB
     restart: always
-
-
 
   #######################################
   # chat-service container
@@ -203,8 +193,6 @@ services:
       - log-service
     restart: always
 
-
-
   #######################################
   # auth-service container
   #######################################
@@ -228,7 +216,6 @@ services:
       - api-gateway-service
       - mysqlAuthDB
 
-
   #######################################
   # music-service container
   #######################################
@@ -250,8 +237,6 @@ services:
     restart: always
     networks:
       - mynetwork
-
-
 
   #######################################
   # shop-service container
@@ -275,8 +260,6 @@ services:
       - mongoShopDB
     restart: always
 
-
-
   mongo-log-express:
     image: mongo-express
     container_name: mongo-log-express
@@ -292,23 +275,21 @@ services:
     networks:
       - mynetwork
 
-
-
   #######################################
   # front-end-service container
   #######################################
 
-  # front-end-container:
-  #   container_name: front-end-container
-  #   build:
-  #     context: ./Front-end
-  #     dockerfile: Dockerfile
-  #   image: front-end-container:latest
-  #   networks:
-  #     - mynetwork
-  #   ports:
-  #     - "5173:5173"
-  #   restart: always
+  front-end-container:
+    container_name: front-end-container
+    build:
+      context: ./Front-end
+      dockerfile: Dockerfile
+    image: front-end-container:latest
+    networks:
+      - mynetwork
+    ports:
+      - "5173:5173"
+    restart: always
 
 volumes:
   mongodatalog:
@@ -317,6 +298,7 @@ volumes:
   mongodatashop:
   persistent:
   mysqldataauth:
+
 
 networks:
   mynetwork:
