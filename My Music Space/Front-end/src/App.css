@@ -139,6 +139,11 @@ body {
   z-index: -6;
 }
 
+
+#BluBackGorund{
+  display: none;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,700,900');
 @mixin leftPos($count){
   @for $i from 1 through $count {
@@ -217,6 +222,8 @@ body {
    height:42px;
    animation: drip_three 3s infinite;
  }
+
+
 }
 
 }
@@ -245,3 +252,12 @@ body {
   from{height:15px;}
   to{height:109%;}
 }
+
+
+
+
+
+
+
+
+

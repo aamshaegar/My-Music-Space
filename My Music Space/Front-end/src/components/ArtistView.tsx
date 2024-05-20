@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../css/ArtistView.css";
 
-const imgPath = "http://localhost:8080/music-service";
+const imgPath = "http://localhost:8092/";
 
 function SongElement({ object }) {
   let path = imgPath + object["imageURL"];
@@ -150,10 +150,10 @@ function ArtistView({ handleClick, object }) {
         </button>
       </div>
 
-      <div id="BackgroundS">
+      <div id="BackgroundArtist">
         <h1>Artista</h1>
         <h2>{object["name"]}</h2>
-        <img src={"http://localhost:8080/music-service" + object["imageURL"]}></img>
+        <img src={"http://localhost:8092/" + object["imageURL"]}></img>
       </div>
       <div id="OperationS">
         <button

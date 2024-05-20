@@ -43,8 +43,6 @@ function Menu({ onClick }) {
     document.getElementById("ChatView")!.style.display = "none";
     document.getElementById("ShopViewContainer")!.style.opacity = "0";
     document.getElementById("ShopViewContainer")!.style.display = "none";
-    document.getElementById("UserView")!.style.opacity = "0";
-    document.getElementById("UserView")!.style.display = "none";
 
     // GESTIONE BRUTTA, PER IL MOMENTO OK;
     $(".ChatMessage").hide(0);
@@ -157,10 +155,10 @@ function Menu({ onClick }) {
       >
         <img className="icons" src={chatLogo}></img>
       </button>
-      <button className="likedAndCart" onClick={() => selected("likeButton")}>
+      <button className="likedAndCart" id="likeButton" onClick={() => selected("likeButton")}>
         <img id="likeButton" className="icons" src={likedLogoW}></img>
       </button>
-      <button className="likedAndCart" onClick={() => selected("cartButton")}>
+      <button className="likedAndCart" id="cartButton" onClick={() => selected("cartButton")}>
         <img id="cartButton" className="icons" src={cartLogoW}></img>
       </button>
     </div>
