@@ -150,10 +150,10 @@ function ArtistView({ handleClick, object }) {
         </button>
       </div>
 
-      <div id="BackgroundS">
+      <div id="BackgroundArtist">
         <h1>Artista</h1>
         <h2>{object["name"]}</h2>
-        <img src={import.meta.env.VITE_REACT_APP_API_URL + "/music-service/" + object["imageURL"]}></img>
+        <img src={"http://localhost:8080/music-service" + object["imageURL"]}></img>
       </div>
       <div id="OperationS">
         <button
