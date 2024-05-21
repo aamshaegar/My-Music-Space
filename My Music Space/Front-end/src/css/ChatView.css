@@ -15,8 +15,8 @@
 
 #chats{
     display: grid;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
     grid-template-columns: auto auto auto auto;
     overflow-y: auto;
     margin-top: 8%;
@@ -33,9 +33,9 @@
     justify-content: center;
     text-align: center;
     position: relative;
-    height: 100%;
-    width: 100%;
-    float:left;
+    height: 40vh;
+    width: 40vh;
+    float: left;
 }
 
 .Chat img {

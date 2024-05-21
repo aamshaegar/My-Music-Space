@@ -24,9 +24,12 @@
 }
 
 .scrollBar{
-    height: 100%;
-    min-width: 1500px;
     white-space: nowrap;
+}
+
+.Container .scrollBar {
+    min-width: 1500px;
+    height: 100%;
 }
 
 
@@ -150,6 +153,18 @@
     width: 120%;
     height: 160%;
     border-radius: 2vh;
+}
+#albumImg,#artistImg,#songImg,.forAlbumImg,.forArtImg,.forSongImg:hover{
+    cursor: pointer;
+}
+.externDiv:hover{
+    transform: scale(1.06);
+}
+.sinistro:hover{
+    transform: scale(1.02);
+}
+.destro:hover{
+    transform: scale(1.02);
 }
 
 
