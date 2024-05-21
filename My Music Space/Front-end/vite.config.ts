@@ -19,8 +19,8 @@ export default defineConfig({
     origin: "http://0.0.0.0:5173",
 
     proxy: {
-      "/api":"http://localhost:8080"
+      "/api":"http://webui.mymusicspace.it"
     },
-    cors:false
+    cors:true
   }
 })

@@ -6,9 +6,10 @@ WORKDIR /app
 
 # Copy the package.json and package-lock.json files to the container
 COPY package.json .
+COPY package-lock.json .
 
 # Install the dependencies
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copy the rest of the application code
 COPY . .

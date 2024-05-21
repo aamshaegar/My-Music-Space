@@ -3,7 +3,7 @@ import "../css/ShopProductView.css"
 const ImgReview = "/src/img/Recensione.PNG"
 const ImgReview2= "/src/img/Recensione 2.PNG"
 const ImgAddNumber="/src/img/AddNumber.PNG"
-const imagePath = "http://localhost:8080/shop-service"
+const imagePath = import.meta.env.VITE_REACT_APP_API_URL + "/shop-service"
 
 function ShopProductView({object, handleClick}){
 

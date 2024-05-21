@@ -199,7 +199,6 @@ services:
       - discovery-service
       - mongoDB
       - mongoLogDB
-      - mongo-log-express
       - log-service
     restart: always
 
@@ -277,20 +276,20 @@ services:
 
 
 
-  mongo-log-express:
-    image: mongo-express
-    container_name: mongo-log-express
-    restart: always
-    ports:
-      - "8082:8081"
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
-      - ME_CONFIG_MONGODB_SERVER=mongoLogDB
-    depends_on:
-      - mongoLogDB
-    networks:
-      - mynetwork
+  # mongo-log-express:
+  #   image: mongo-express
+  #   container_name: mongo-log-express
+  #   restart: always
+  #   ports:
+  #     - "8082:8081"
+  #   environment:
+  #     - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
+  #     - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
+  #     - ME_CONFIG_MONGODB_SERVER=mongoLogDB
+  #   depends_on:
+  #     - mongoLogDB
+  #   networks:
+  #     - mynetwork
 
 
 

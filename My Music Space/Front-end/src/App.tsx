@@ -15,6 +15,14 @@ import CartView from "./components/CartView";
 import Loader from "./components/Loader"
 import UserView from "./components/UserView";
 
+$(document).ready(function() {
+  // Define the new background URL
+  let newBackgroundUrl = 'url("' + import.meta.env.VITE_REACT_APP_BACKGROUND_URL + '/src/img/wave.png")';
+  // Apply the new background URL to all elements matching the #All .air selector
+  $('#All .air').css('background-image', newBackgroundUrl);
+});
+
+
 
 function App() {
 
@@ -103,7 +111,7 @@ function App() {
 
     $.ajax({
         type:"GET",
-        url: "http://localhost:8080/api/log/chat",
+        url: import.meta.env.VITE_REACT_APP_API_URL + "/api/log/chat",
         data:{userEmail:userProfile['email']},
         contentType: "application/json",
         headers:{
@@ -126,7 +134,7 @@ function App() {
     
     $.ajax({
         type:"GET",
-        url: "http://localhost:8080/api/chat/preferred",
+        url: import.meta.env.VITE_REACT_APP_API_URL + "/api/chat/preferred",
         data:{userEmail:userProfile['email']},
         contentType: "application/json",
         headers:{

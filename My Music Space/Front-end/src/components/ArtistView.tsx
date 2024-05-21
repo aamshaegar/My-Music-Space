@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../css/ArtistView.css";
 
-const imgPath = "http://localhost:8080/music-service";
+const imgPath = import.meta.env.VITE_REACT_APP_API_URL + "/music-service";
 
 function SongElement({ object }) {
   let path = imgPath + object["imageURL"];
@@ -80,7 +80,7 @@ function ArtistView({ handleClick, object }) {
 
   function retrieveSong() {
     $.ajax({
-      url: "http://localhost:8080/api/music/song",
+      url: import.meta.env.VITE_REACT_APP_API_URL + "/api/music/song",
       method: "GET",
       contentType: "application/json",
       crossDomain: true,
@@ -109,7 +109,7 @@ function ArtistView({ handleClick, object }) {
 
   function retrieveAlbum() {
     $.ajax({
-      url: "http://localhost:8080/api/music/album",
+      url: import.meta.env.VITE_REACT_APP_API_URL + "/api/music/album",
       method: "GET",
       contentType: "application/json",
       crossDomain: true,
@@ -153,7 +153,7 @@ function ArtistView({ handleClick, object }) {
       <div id="BackgroundS">
         <h1>Artista</h1>
         <h2>{object["name"]}</h2>
-        <img src={"http://localhost:8080/music-service" + object["imageURL"]}></img>
+        <img src={import.meta.env.VITE_REACT_APP_API_URL + "/music-service/" + object["imageURL"]}></img>
       </div>
       <div id="OperationS">
         <button

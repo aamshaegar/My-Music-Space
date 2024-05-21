@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../css/SongView.css";
 const imagePath = "/src/img/Viva la vida.jpg";
-const imgPath = "http://localhost:8080/music-service";
+const imgPath = import.meta.env.VITE_REACT_APP_API_URL + "/music-service";
 
 function SongElement1({ object, artist }) {
   let path = imgPath + object["imageURL"];
@@ -49,7 +49,7 @@ function SongView({ handleClick, object }) {
 
   function retrieveArtist() {
     $.ajax({
-      url: "http://localhost:8080api/music/artist",
+      url: import.meta.env.VITE_REACT_APP_API_URL + "/api/music/artist",
       method: "GET",
       contentType: "application/json",
       crossDomain: true,
@@ -71,6 +71,7 @@ function SongView({ handleClick, object }) {
         //console.log(artist);
       },
       error: function (error) {
+        console.log("ERRORE QUIIIIIIIIIIIIIIII")
         console.error("Error:", error);
       },
     });

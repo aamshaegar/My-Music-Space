@@ -2,7 +2,7 @@
   "name": "my-music-space",
   "private": true,
   "version": "1.0.0",
-  "proxy": "http://localhost:8080",
+  "proxy": "http://webui.mymusicspace.it",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,10 +11,11 @@
     "preview": "vite preview",
     "watch": "vite build --watch"
   },
-
   "dependencies": {
     "bootstrap": "^5.2.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "env-cmd": "^10.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

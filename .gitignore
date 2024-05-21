@@ -1,1 +1,5 @@
 ./My Music Space/Front-end/node_modules
+.idea
+.vscode
+.DS_Store
+

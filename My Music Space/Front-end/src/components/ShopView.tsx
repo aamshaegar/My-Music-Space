@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-const imagePath = "http://localhost:8080/shop-service";
+const imagePath = import.meta.env.VITE_REACT_APP_API_URL + "/shop-service";
 import "../css/ShopView.css";
 import ShopProductView from "./ShopProductView";
 
@@ -62,12 +62,12 @@ function ShopView({ userProfile, focus, query }) {
       if (query && query != "") {
         retrieveItems(
           { itemName: query },
-          "http://localhost:8080/api/shop/items/search"
+          import.meta.env.VITE_REACT_APP_API_URL + "/api/shop/items/search"
         );
       } else {
         // POSSIBILE MODIFICA: SE LA QUERY NON DA
         // RISULTATO ALLORA NON CANCELLIAMO LA PRECEDENTE VIEW. QUINDI LASCIAMO GLI OGGETTI DI PRIMA
-        retrieveItems({}, "http://localhost:8080/api/shop/items");
+        retrieveItems({}, import.meta.env.VITE_REACT_APP_API_URL + "/api/shop/items");
       }
     }
   }, [focus, query]);

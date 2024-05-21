@@ -77,7 +77,7 @@ function Login({setUserProfile,setIsLogged}) {
         //<div id="MessaggioRegistrazione">Non sei registrato? Registrati!</div>
         if(checkInputAuth()){
             $.ajax({
-                url: 'http://localhost:8080/api/auth/authenticate',
+                url: import.meta.env.VITE_REACT_APP_API_URL + '/api/auth/authenticate',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
@@ -124,7 +124,7 @@ function Login({setUserProfile,setIsLogged}) {
     function register() {
         if(checkInputRegistr()) {
             $.ajax({
-                url: 'http://localhost:8080/api/auth/register',
+                url: import.meta.env.VITE_REACT_APP_API_URL + '/api/auth/register',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({

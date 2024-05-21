@@ -69,7 +69,7 @@ function ChatMessage({userProfile, userEmail, username, active, message, handleC
     function retrieveMessagesList(){
         $.ajax({
             type:"GET",
-            url: "http://localhost:8080/api/chat/messages",
+            url: import.meta.env.VITE_REACT_APP_API_URL + "/api/chat/messages",
             data: { room: actualRoom},
             contentType: "application/json",
             headers:{
@@ -89,7 +89,7 @@ function ChatMessage({userProfile, userEmail, username, active, message, handleC
 
     function connect() {
         setStatus("connecting...")
-        let socket = new SockJS("http://localhost:8091/websocket");
+        let socket = new SockJS(import.meta.env.VITE_REACT_APP_API_URL + "/chat-service/websocket");
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
     }
@@ -174,7 +174,7 @@ function ChatMessage({userProfile, userEmail, username, active, message, handleC
 
         $.ajax({
             type:"POST",
-            url: "http://localhost:8080/api/chat/preferred/insert",
+            url: import.meta.env.VITE_REACT_APP_API_URL + "/api/chat/preferred/insert",
             data: JSON.stringify(chat) ,
             contentType: "application/json",
             headers:{
@@ -210,7 +210,7 @@ function ChatMessage({userProfile, userEmail, username, active, message, handleC
 
         $.ajax({
             type:"DELETE",
-            url: "http://localhost:8080/api/chat/preferred/leave",
+            url: import.meta.env.VITE_REACT_APP_API_URL + "/api/chat/preferred/leave",
             data: JSON.stringify(chat) ,
             contentType: "application/json",
             headers:{

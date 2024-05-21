@@ -17,7 +17,6 @@ function ChatView({userProfile, userEmail, username, registeredChatRooms, focus,
 
     useEffect(() => {
         setIsButtonClicked(false);
-        console.log(userEmail)
     }, []);
 
     useEffect(() => {
@@ -41,7 +40,7 @@ function ChatView({userProfile, userEmail, username, registeredChatRooms, focus,
     };
 
 
-    // crea il chatMessage Dinamicamente quando clicco su una chat
+    // crea il chatMessage Dinamizcamente quando clicco su una chat
     const handleClick = (index) => { //ascolto sulla chiat cliccata e retropropago l'indice dell'array Chats
         if(index === -1){
             setIsButtonClicked(false);
@@ -57,7 +56,7 @@ function ChatView({userProfile, userEmail, username, registeredChatRooms, focus,
         $("#loaderBar").fadeIn(0);
         $.ajax({
             type:"GET",
-            url: "http://localhost:8080/api/chat/chatrooms",
+            url: import.meta.env.VITE_REACT_APP_API_URL + "/api/chat/chatrooms",
             data:{name:query},
             contentType: "application/json",
             headers:{

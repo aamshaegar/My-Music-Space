@@ -23,14 +23,14 @@ broker supporting the protocol.
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
-    //@CrossOrigin(origins = "http://localhost:5500")
+    @CrossOrigin(origins = "http://webui.mymusicspace.it:30010")
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/websocket").setAllowedOrigins("http://localhost:5173").withSockJS().setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js");
+        registry.addEndpoint("/websocket").setAllowedOrigins("http://localhost:5173", "http://webui.mymusicspace.it:30010", "http://api.mymusicspace.it:30012/chat-service").withSockJS().setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js");
         //registry.addEndpoint("/websocket").withSockJS();
     }
 
     @Override
-    //@CrossOrigin(origins = "http://localhost:5500")
+    @CrossOrigin(origins = "http://webui.mymusicspace.it:30010")
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app");
         registry.enableSimpleBroker("/topic");
