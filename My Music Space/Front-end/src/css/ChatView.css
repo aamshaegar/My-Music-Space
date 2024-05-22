@@ -15,8 +15,8 @@
 
 #chats{
     display: grid;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left:auto;
+    margin-right:auto;
     grid-template-columns: auto auto auto auto;
     overflow-y: auto;
     margin-top: 8%;
@@ -33,9 +33,9 @@
     justify-content: center;
     text-align: center;
     position: relative;
-    height: 40vh;
-    width: 40vh;
-    float: left;
+    height: 100%;
+    width: 100%;
+    float:left;
 }
 
 .Chat img {
@@ -53,4 +53,86 @@
     font-size: x-large;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     Cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 480px) {
+    .ChatView{
+        margin-left:0%;
+        overflow-y: auto;
+        max-height: 100%;
+        opacity: 0;
+        margin-top: 30%;
+        width: 110%;
+        height: 78%;
+        margin-left: -5%;
+
+    }
+
+    .MyChatView{
+        margin-left:0%;
+        overflow-y: auto;
+        max-height: 100%;
+        opacity: 0;
+        margin-top: 50%;
+        width: 110%;
+        height: 70%;
+        margin-left: -5%;
+
+    }
+    
+    
+    
+    #chats{
+        margin-left: 0%;
+        grid-template-columns: auto;
+        margin-top: 0%;
+        top: 12%;
+        position: relative;
+    }
+    
+    
+    .Chat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        height: 90%;
+        width: 100%;
+        float:left;
+        margin-left: 0%;
+        top: 50%;
+        margin-top: -10%;
+    }
+    
+    .Chat img {
+        width: 42vh;
+        cursor: pointer;
+        height: 8vh;
+        border-radius: 2vh;
+    }
+    
+    .Chat p{
+        margin: auto;
+        z-index: 1;
+        position: absolute;
+        color:white;
+        font-weight: bold;
+        font-size: x-large;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        Cursor: pointer;
+    }
 }

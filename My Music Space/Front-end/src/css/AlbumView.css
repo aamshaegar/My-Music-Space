@@ -51,7 +51,7 @@
     overflow-y: scroll;
 }
 
-#BackgroundS{
+#Backgrounds{
     left: -2%;
     position: relative;
     width: 110%;
@@ -59,7 +59,7 @@
     background-color: #BEBEBE;
 }
 
-#BackgroundS img{
+#Backgrounds img{
     position: absolute;
     float: right;
     width: 30%;
@@ -69,7 +69,7 @@
     object-fit: cover;
 }
 
-#BackgroundS h1{
+#Backgrounds h1{
     font-family: myFirstFont; 
     font-style: italic;
     position: relative;
@@ -80,7 +80,7 @@
     font-size: 5vh;
 }
 
-#BackgroundS h2{
+#Backgrounds h2{
     font-family: myFirstFont; 
     font-style: italic;
     position: absolute;
@@ -314,7 +314,7 @@
     }
     
     
-    #BackgroundS{
+    #Backgrounds{
         position: relative;
         margin-left: -7%;
         width: 110%;
@@ -322,7 +322,7 @@
         background-color: #BEBEBE;
     }
     
-    #BackgroundS img{
+    #Backgrounds img{
         position: absolute;
         float: right;
         width: 35%;
@@ -332,7 +332,7 @@
         object-fit: cover;
     }
     
-    #BackgroundS h1{
+    #Backgrounds h1{
         font-family: myFirstFont; 
         font-style: italic;
         position: relative;
@@ -343,7 +343,7 @@
         font-size: 2vh;
     }
     
-    #BackgroundS h2{
+    #Backgrounds h2{
         font-family: myFirstFont; 
         font-style: italic;
         position: absolute;
