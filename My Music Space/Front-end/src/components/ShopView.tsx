@@ -27,7 +27,11 @@ function TicketProduct({ object, setShopProduct }) {
   }
 
   return (
-    <div className="TicketProduct" onClick={() => clickOnObject()}>
+    <div
+      className="TicketProduct"
+      id="eventProduct"
+      onClick={() => clickOnObject()}
+    >
       <img src={path} className="TicketImg"></img>
     </div>
   );
@@ -67,7 +71,10 @@ function ShopView({ userProfile, focus, query }) {
       } else {
         // POSSIBILE MODIFICA: SE LA QUERY NON DA
         // RISULTATO ALLORA NON CANCELLIAMO LA PRECEDENTE VIEW. QUINDI LASCIAMO GLI OGGETTI DI PRIMA
-        retrieveItems({}, import.meta.env.VITE_REACT_APP_API_URL + "/api/shop/items");
+        retrieveItems(
+          {},
+          import.meta.env.VITE_REACT_APP_API_URL + "/api/shop/items"
+        );
       }
     }
   }, [focus, query]);
@@ -141,8 +148,8 @@ function ShopView({ userProfile, focus, query }) {
           ))}
         </div>
 
-        <div className="TicketRow">
-          <div className="labelRow">Eventi</div>
+        <div className="eventName">Eventi</div>
+        <div className="TicketRow" id="eventRow">
           <div className="scrollBar">
             {items.map((obj, index) =>
               obj["type"] == "EVENT" ? (
@@ -156,8 +163,8 @@ function ShopView({ userProfile, focus, query }) {
           </div>
         </div>
 
+        <div className="productName">Prodotti</div>
         <div className="TicketRow">
-          <div className="labelRow">Prodotti</div>
           <div className="scrollBar">
             {items.map((obj, index) =>
               obj["type"] == "PRODUCT" ? (
