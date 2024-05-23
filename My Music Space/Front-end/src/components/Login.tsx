@@ -5,7 +5,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
 const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const EXPIRATION_TIME = 1 * 60 * 1000;
+const EXPIRATION_TIME = 5 * 60 * 1000;
 
 function Login({ setUserProfile, setIsLogged }) {
   const responseMessage = (response) => {
@@ -18,6 +18,12 @@ function Login({ setUserProfile, setIsLogged }) {
       name: name,
       surname: "",
     };
+
+    console.log(userProfile);
+    localStorage.setItem('token', String(response.credential));
+    const expirationTime = new Date().getTime() + EXPIRATION_TIME;
+    localStorage.setItem("expiration_date", new Date(expirationTime).toISOString());
+                        
     setUserProfile(userProfile);
     setIsLogged(true);
     selected();
@@ -302,10 +308,11 @@ function Login({ setUserProfile, setIsLogged }) {
         </div>
       </div>
 
-      <button id="registrationButton" onClick={() => selected()}>
+    
+      {/*<button id="registrationButton" onClick={() => selected()}>
         {" "}
         AVANZA
-      </button>
+      </button>*/}
     </div>
   );
 }
