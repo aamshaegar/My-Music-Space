@@ -1,14 +1,7 @@
 # MyMusicSpace
 
-Tecniche e architetture avanzate per lo sviluppo del software (TAASS)
-- Year 2023-24
-- Prof. Giovanna Petrone
-
-Students: 
-- Aldo Rambaudo
-- Corrado Picone
-- Lorenzo Falchi
-- Michele Colombino
+This repository contains our distributed application "MyMusicSpace". This project aims to offer an overview concerning the development of a microservices infrastructure for a server-side application, using Kubernetes and Docker for the orchestration of the containers. 
+MuMusicSpace is a web application that allows users to find their musical interests and chat with their friends. 
 
 ---
 # Package explorer
@@ -18,14 +11,14 @@ This section contains a quick refer to the package structure of the application
     - **Front-end**: the react application we developed
 
 - **Spikes**: This folder contains all the principal spikes we work about during the project management
-- **Kubernetes**: This folder contains all the kubernetes manifest used to initialize the minikube cluster
+- **Kubernetes**: This folder contains all the Kubernetes manifest used to initialize the minikube cluster
 
 ---
 # How to run
 This section contains a tutorial to update the images on Docker Hub (if needed) and set up the minikube cluster.
 
 ## Run Containers
-For simply build and run locally all the docker containers for testing purposes, under the **My Music Space** directory there is a **docker-compose.yaml**. 
+To simply build and run locally all the docker containers for testing purposes, under the **My Music Space** directory there is a **docker-compose.yaml**. 
 Run the file with the following command:
 ```bash
 docker compose up --build
@@ -42,7 +35,7 @@ All the docker container described in the docker-compose file will run locally, 
 ```
 
 ## Docker Hub
-In alternative to the **docker-compose.yaml** file, in the main folder there is a .sh, **docker-container-build**, which describe a list of sh command for build, update and push all the docker images on the personal docker-hub, needed for running the application, both in local and in the minikube cluster. 
+In alternative to the **docker-compose.yaml** file, in the main folder there is a .sh, **docker-container-build**, which describes a list of sh commands for build, update and push all the docker images on the personal docker-hub, needed for running the application, both in local and in the minikube cluster. 
 Here is the content of the file:
 
 ```bash
@@ -72,7 +65,7 @@ docker push aamshaegar/api-gateway-service:1.0.0
 
 ## Minikube [Linux]
 First of all, install Minikube: https://minikube.sigs.k8s.io/docs/start/ and kubectl https://kubernetes.io/docs/tasks/tools/. 
-In the kubernetes folder there are different file .sh, we explain in detail:
+In the Kubernetes folder there are different file .sh, we explain in detail:
 - **start_minikube.sh**: Run the cluster and add all necessary Addons
 - **run_all_components.sh**: Execute in block some kubectl apply to run all the minikube components
 - **delete_all_components.sh**: Remove all the previous component
@@ -127,7 +120,7 @@ minikube stop
 ---
 
 # Links
-In this section we report all the links referred to the developing of the **MyMusicSpace** project
+In this section, we report all the links referred to the development of the **MyMusicSpace** project
 
 - **Github** page:&emsp;            https://github.com/aamshaegar/Pogetto-TAASS
 - **DockerHub** page:&emsp;         https://hub.docker.com/repositories/aamshaegar  
