@@ -122,8 +122,10 @@ minikube stop
 # Links
 In this section, we report all the links referred to the development of the **MyMusicSpace** project
 
-- **Github** page:&emsp;            https://github.com/aamshaegar/Pogetto-TAASS
 - **DockerHub** page:&emsp;         https://hub.docker.com/repositories/aamshaegar  
 - WebApp **documentation**:&emsp;         https://docs.google.com/document/d/1dm7XAdYdlLNTkll6YT95Sjmz3cM5pwcd7BrWNxiY8os/edit?usp=sharing 
 - **Project review** (slide - 6/11/2023):&emsp;        https://docs.google.com/presentation/d/1i5Q6OMum0MDsFqxsMwcbwkR0nbPvQvySuCCmutZWVkY/edit?usp=sharing 
 - **First release** (slide):&emsp;        https://docs.google.com/presentation/d/13RQ5hLLqxpc0NFc0QJqm8vffB8DbVakq/edit?usp=sharing&ouid=110250751011780247086&rtpof=true&sd=true
+
+# Preview
+![splashscreen](https://github.com/aamshaegar/My-Music-Space/assets/101206267/eed66098-bf20-4ff5-a881-f6daf55dc32a)
